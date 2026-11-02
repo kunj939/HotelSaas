@@ -1,0 +1,13 @@
+# Local server secrets. Never commit real database passwords or install keys.
+public/api/config.local.php
+.env
+
+# Build and upload artefacts
+*.zip
+node_modules/
+
+# OS and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

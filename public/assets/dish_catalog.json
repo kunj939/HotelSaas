@@ -1,0 +1,3502 @@
+[
+  {
+    "name": "Paneer Butter Masala",
+    "category": "North Indian",
+    "slug": "paneer-butter-masala",
+    "illustration": "assets/dishes/paneer-butter-masala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Shahi Paneer",
+    "category": "North Indian",
+    "slug": "shahi-paneer",
+    "illustration": "assets/dishes/shahi-paneer.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kadai Paneer",
+    "category": "North Indian",
+    "slug": "kadai-paneer",
+    "illustration": "assets/dishes/kadai-paneer.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Palak Paneer",
+    "category": "North Indian",
+    "slug": "palak-paneer",
+    "illustration": "assets/dishes/palak-paneer.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Matar Paneer",
+    "category": "North Indian",
+    "slug": "matar-paneer",
+    "illustration": "assets/dishes/matar-paneer.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Tikka Masala",
+    "category": "North Indian",
+    "slug": "paneer-tikka-masala",
+    "illustration": "assets/dishes/paneer-tikka-masala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Lababdar",
+    "category": "North Indian",
+    "slug": "paneer-lababdar",
+    "illustration": "assets/dishes/paneer-lababdar.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Bhurji",
+    "category": "North Indian",
+    "slug": "paneer-bhurji",
+    "illustration": "assets/dishes/paneer-bhurji.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Do Pyaza",
+    "category": "North Indian",
+    "slug": "paneer-do-pyaza",
+    "illustration": "assets/dishes/paneer-do-pyaza.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Achari Paneer",
+    "category": "North Indian",
+    "slug": "achari-paneer",
+    "illustration": "assets/dishes/achari-paneer.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Kali Mirch",
+    "category": "North Indian",
+    "slug": "paneer-kali-mirch",
+    "illustration": "assets/dishes/paneer-kali-mirch.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Pasanda",
+    "category": "North Indian",
+    "slug": "paneer-pasanda",
+    "illustration": "assets/dishes/paneer-pasanda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Makhani",
+    "category": "North Indian",
+    "slug": "paneer-makhani",
+    "illustration": "assets/dishes/paneer-makhani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Malai Kofta",
+    "category": "North Indian",
+    "slug": "malai-kofta",
+    "illustration": "assets/dishes/malai-kofta.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vegetable Kofta",
+    "category": "North Indian",
+    "slug": "vegetable-kofta",
+    "illustration": "assets/dishes/vegetable-kofta.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dum Aloo",
+    "category": "North Indian",
+    "slug": "dum-aloo",
+    "illustration": "assets/dishes/dum-aloo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Aloo Gobi",
+    "category": "North Indian",
+    "slug": "aloo-gobi",
+    "illustration": "assets/dishes/aloo-gobi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Aloo Matar",
+    "category": "North Indian",
+    "slug": "aloo-matar",
+    "illustration": "assets/dishes/aloo-matar.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Jeera Aloo",
+    "category": "North Indian",
+    "slug": "jeera-aloo",
+    "illustration": "assets/dishes/jeera-aloo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bhindi Masala",
+    "category": "North Indian",
+    "slug": "bhindi-masala",
+    "illustration": "assets/dishes/bhindi-masala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bhindi Do Pyaza",
+    "category": "North Indian",
+    "slug": "bhindi-do-pyaza",
+    "illustration": "assets/dishes/bhindi-do-pyaza.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Baingan Bharta",
+    "category": "North Indian",
+    "slug": "baingan-bharta",
+    "illustration": "assets/dishes/baingan-bharta.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mixed Veg Curry",
+    "category": "North Indian",
+    "slug": "mixed-veg-curry",
+    "illustration": "assets/dishes/mixed-veg-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Navratan Korma",
+    "category": "North Indian",
+    "slug": "navratan-korma",
+    "illustration": "assets/dishes/navratan-korma.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vegetable Jalfrezi",
+    "category": "North Indian",
+    "slug": "vegetable-jalfrezi",
+    "illustration": "assets/dishes/vegetable-jalfrezi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chana Masala",
+    "category": "North Indian",
+    "slug": "chana-masala",
+    "illustration": "assets/dishes/chana-masala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chole Masala",
+    "category": "North Indian",
+    "slug": "chole-masala",
+    "illustration": "assets/dishes/chole-masala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Punjabi Chole",
+    "category": "North Indian",
+    "slug": "punjabi-chole",
+    "illustration": "assets/dishes/punjabi-chole.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rajma Masala",
+    "category": "North Indian",
+    "slug": "rajma-masala",
+    "illustration": "assets/dishes/rajma-masala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kadhi Pakora",
+    "category": "North Indian",
+    "slug": "kadhi-pakora",
+    "illustration": "assets/dishes/kadhi-pakora.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dal Makhani",
+    "category": "North Indian",
+    "slug": "dal-makhani",
+    "illustration": "assets/dishes/dal-makhani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dal Tadka",
+    "category": "North Indian",
+    "slug": "dal-tadka",
+    "illustration": "assets/dishes/dal-tadka.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dal Fry",
+    "category": "North Indian",
+    "slug": "dal-fry",
+    "illustration": "assets/dishes/dal-fry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dal Palak",
+    "category": "North Indian",
+    "slug": "dal-palak",
+    "illustration": "assets/dishes/dal-palak.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Pindi Chole",
+    "category": "North Indian",
+    "slug": "pindi-chole",
+    "illustration": "assets/dishes/pindi-chole.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Methi Matar Malai",
+    "category": "North Indian",
+    "slug": "methi-matar-malai",
+    "illustration": "assets/dishes/methi-matar-malai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sarson Ka Saag",
+    "category": "North Indian",
+    "slug": "sarson-ka-saag",
+    "illustration": "assets/dishes/sarson-ka-saag.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Makki Ki Roti",
+    "category": "North Indian",
+    "slug": "makki-ki-roti",
+    "illustration": "assets/dishes/makki-ki-roti.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Amritsari Kulcha",
+    "category": "North Indian",
+    "slug": "amritsari-kulcha",
+    "illustration": "assets/dishes/amritsari-kulcha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Stuffed Kulcha",
+    "category": "North Indian",
+    "slug": "stuffed-kulcha",
+    "illustration": "assets/dishes/stuffed-kulcha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Aloo Paratha",
+    "category": "North Indian",
+    "slug": "aloo-paratha",
+    "illustration": "assets/dishes/aloo-paratha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gobi Paratha",
+    "category": "North Indian",
+    "slug": "gobi-paratha",
+    "illustration": "assets/dishes/gobi-paratha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Paratha",
+    "category": "North Indian",
+    "slug": "paneer-paratha",
+    "illustration": "assets/dishes/paneer-paratha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mooli Paratha",
+    "category": "North Indian",
+    "slug": "mooli-paratha",
+    "illustration": "assets/dishes/mooli-paratha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Lachha Paratha",
+    "category": "North Indian",
+    "slug": "lachha-paratha",
+    "illustration": "assets/dishes/lachha-paratha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tandoori Roti",
+    "category": "North Indian",
+    "slug": "tandoori-roti",
+    "illustration": "assets/dishes/tandoori-roti.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Butter Roti",
+    "category": "North Indian",
+    "slug": "butter-roti",
+    "illustration": "assets/dishes/butter-roti.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Plain Naan",
+    "category": "North Indian",
+    "slug": "plain-naan",
+    "illustration": "assets/dishes/plain-naan.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Butter Naan",
+    "category": "North Indian",
+    "slug": "butter-naan",
+    "illustration": "assets/dishes/butter-naan.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Garlic Naan",
+    "category": "North Indian",
+    "slug": "garlic-naan",
+    "illustration": "assets/dishes/garlic-naan.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Cheese Naan",
+    "category": "North Indian",
+    "slug": "cheese-naan",
+    "illustration": "assets/dishes/cheese-naan.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Missi Roti",
+    "category": "North Indian",
+    "slug": "missi-roti",
+    "illustration": "assets/dishes/missi-roti.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rumali Roti",
+    "category": "North Indian",
+    "slug": "rumali-roti",
+    "illustration": "assets/dishes/rumali-roti.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Phulka",
+    "category": "North Indian",
+    "slug": "phulka",
+    "illustration": "assets/dishes/phulka.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tawa Roti",
+    "category": "North Indian",
+    "slug": "tawa-roti",
+    "illustration": "assets/dishes/tawa-roti.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Aloo Puri",
+    "category": "North Indian",
+    "slug": "aloo-puri",
+    "illustration": "assets/dishes/aloo-puri.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Puri Bhaji",
+    "category": "North Indian",
+    "slug": "puri-bhaji",
+    "illustration": "assets/dishes/puri-bhaji.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kashmiri Dum Aloo",
+    "category": "North Indian",
+    "slug": "kashmiri-dum-aloo",
+    "illustration": "assets/dishes/kashmiri-dum-aloo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kashmiri Pulao",
+    "category": "North Indian",
+    "slug": "kashmiri-pulao",
+    "illustration": "assets/dishes/kashmiri-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Naan Basket",
+    "category": "North Indian",
+    "slug": "naan-basket",
+    "illustration": "assets/dishes/naan-basket.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tandoori Platter",
+    "category": "North Indian",
+    "slug": "tandoori-platter",
+    "illustration": "assets/dishes/tandoori-platter.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vegetable Handi",
+    "category": "North Indian",
+    "slug": "vegetable-handi",
+    "illustration": "assets/dishes/vegetable-handi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Handi",
+    "category": "North Indian",
+    "slug": "paneer-handi",
+    "illustration": "assets/dishes/paneer-handi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Soya Chaap Masala",
+    "category": "North Indian",
+    "slug": "soya-chaap-masala",
+    "illustration": "assets/dishes/soya-chaap-masala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Malai Soya Chaap",
+    "category": "North Indian",
+    "slug": "malai-soya-chaap",
+    "illustration": "assets/dishes/malai-soya-chaap.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tandoori Soya Chaap",
+    "category": "North Indian",
+    "slug": "tandoori-soya-chaap",
+    "illustration": "assets/dishes/tandoori-soya-chaap.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mushroom Masala",
+    "category": "North Indian",
+    "slug": "mushroom-masala",
+    "illustration": "assets/dishes/mushroom-masala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mushroom Do Pyaza",
+    "category": "North Indian",
+    "slug": "mushroom-do-pyaza",
+    "illustration": "assets/dishes/mushroom-do-pyaza.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mushroom Matar",
+    "category": "North Indian",
+    "slug": "mushroom-matar",
+    "illustration": "assets/dishes/mushroom-matar.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mushroom Kadai",
+    "category": "North Indian",
+    "slug": "mushroom-kadai",
+    "illustration": "assets/dishes/mushroom-kadai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Kolhapuri",
+    "category": "North Indian",
+    "slug": "veg-kolhapuri",
+    "illustration": "assets/dishes/veg-kolhapuri.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Makhanwala",
+    "category": "North Indian",
+    "slug": "veg-makhanwala",
+    "illustration": "assets/dishes/veg-makhanwala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dahi Ke Kebab",
+    "category": "North Indian",
+    "slug": "dahi-ke-kebab",
+    "illustration": "assets/dishes/dahi-ke-kebab.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Hara Bhara Kebab",
+    "category": "North Indian",
+    "slug": "hara-bhara-kebab",
+    "illustration": "assets/dishes/hara-bhara-kebab.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tandoori Broccoli",
+    "category": "North Indian",
+    "slug": "tandoori-broccoli",
+    "illustration": "assets/dishes/tandoori-broccoli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Stuffed Mushroom",
+    "category": "North Indian",
+    "slug": "stuffed-mushroom",
+    "illustration": "assets/dishes/stuffed-mushroom.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Malai Tikka",
+    "category": "North Indian",
+    "slug": "paneer-malai-tikka",
+    "illustration": "assets/dishes/paneer-malai-tikka.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Achari Tikka",
+    "category": "North Indian",
+    "slug": "paneer-achari-tikka",
+    "illustration": "assets/dishes/paneer-achari-tikka.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tandoori Paneer Tikka",
+    "category": "North Indian",
+    "slug": "tandoori-paneer-tikka",
+    "illustration": "assets/dishes/tandoori-paneer-tikka.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Lasooni Paneer Tikka",
+    "category": "North Indian",
+    "slug": "lasooni-paneer-tikka",
+    "illustration": "assets/dishes/lasooni-paneer-tikka.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Hariyali Tikka",
+    "category": "North Indian",
+    "slug": "paneer-hariyali-tikka",
+    "illustration": "assets/dishes/paneer-hariyali-tikka.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Afghani Paneer Tikka",
+    "category": "North Indian",
+    "slug": "afghani-paneer-tikka",
+    "illustration": "assets/dishes/afghani-paneer-tikka.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tandoori Aloo",
+    "category": "North Indian",
+    "slug": "tandoori-aloo",
+    "illustration": "assets/dishes/tandoori-aloo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tandoori Gobi",
+    "category": "North Indian",
+    "slug": "tandoori-gobi",
+    "illustration": "assets/dishes/tandoori-gobi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Amritsari Fish",
+    "category": "North Indian",
+    "slug": "amritsari-fish",
+    "illustration": "assets/dishes/amritsari-fish.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Butter Chicken",
+    "category": "North Indian",
+    "slug": "butter-chicken",
+    "illustration": "assets/dishes/butter-chicken.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Tikka Masala",
+    "category": "North Indian",
+    "slug": "chicken-tikka-masala",
+    "illustration": "assets/dishes/chicken-tikka-masala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kadai Chicken",
+    "category": "North Indian",
+    "slug": "kadai-chicken",
+    "illustration": "assets/dishes/kadai-chicken.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Curry",
+    "category": "North Indian",
+    "slug": "chicken-curry",
+    "illustration": "assets/dishes/chicken-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Handi",
+    "category": "North Indian",
+    "slug": "chicken-handi",
+    "illustration": "assets/dishes/chicken-handi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Do Pyaza",
+    "category": "North Indian",
+    "slug": "chicken-do-pyaza",
+    "illustration": "assets/dishes/chicken-do-pyaza.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Korma",
+    "category": "North Indian",
+    "slug": "chicken-korma",
+    "illustration": "assets/dishes/chicken-korma.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Saagwala",
+    "category": "North Indian",
+    "slug": "chicken-saagwala",
+    "illustration": "assets/dishes/chicken-saagwala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Chettinad",
+    "category": "North Indian",
+    "slug": "chicken-chettinad",
+    "illustration": "assets/dishes/chicken-chettinad.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Lababdar",
+    "category": "North Indian",
+    "slug": "chicken-lababdar",
+    "illustration": "assets/dishes/chicken-lababdar.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tandoori Chicken",
+    "category": "North Indian",
+    "slug": "tandoori-chicken",
+    "illustration": "assets/dishes/tandoori-chicken.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Malai Tikka",
+    "category": "North Indian",
+    "slug": "chicken-malai-tikka",
+    "illustration": "assets/dishes/chicken-malai-tikka.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Seekh Kebab",
+    "category": "North Indian",
+    "slug": "chicken-seekh-kebab",
+    "illustration": "assets/dishes/chicken-seekh-kebab.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mutton Rogan Josh",
+    "category": "North Indian",
+    "slug": "mutton-rogan-josh",
+    "illustration": "assets/dishes/mutton-rogan-josh.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mutton Curry",
+    "category": "North Indian",
+    "slug": "mutton-curry",
+    "illustration": "assets/dishes/mutton-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mutton Korma",
+    "category": "North Indian",
+    "slug": "mutton-korma",
+    "illustration": "assets/dishes/mutton-korma.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Keema Matar",
+    "category": "North Indian",
+    "slug": "keema-matar",
+    "illustration": "assets/dishes/keema-matar.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Laal Maas",
+    "category": "North Indian",
+    "slug": "laal-maas",
+    "illustration": "assets/dishes/laal-maas.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Safed Maas",
+    "category": "North Indian",
+    "slug": "safed-maas",
+    "illustration": "assets/dishes/safed-maas.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rajasthani Gatta Curry",
+    "category": "North Indian",
+    "slug": "rajasthani-gatta-curry",
+    "illustration": "assets/dishes/rajasthani-gatta-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ker Sangri",
+    "category": "North Indian",
+    "slug": "ker-sangri",
+    "illustration": "assets/dishes/ker-sangri.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Panchmel Dal",
+    "category": "North Indian",
+    "slug": "panchmel-dal",
+    "illustration": "assets/dishes/panchmel-dal.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dal Bati Churma",
+    "category": "North Indian",
+    "slug": "dal-bati-churma",
+    "illustration": "assets/dishes/dal-bati-churma.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bajra Roti",
+    "category": "North Indian",
+    "slug": "bajra-roti",
+    "illustration": "assets/dishes/bajra-roti.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gatte Ki Sabzi",
+    "category": "North Indian",
+    "slug": "gatte-ki-sabzi",
+    "illustration": "assets/dishes/gatte-ki-sabzi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Papad Ki Sabzi",
+    "category": "North Indian",
+    "slug": "papad-ki-sabzi",
+    "illustration": "assets/dishes/papad-ki-sabzi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Jodhpuri Mirchi Bada",
+    "category": "North Indian",
+    "slug": "jodhpuri-mirchi-bada",
+    "illustration": "assets/dishes/jodhpuri-mirchi-bada.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Jaipuri Pyaz Kachori",
+    "category": "North Indian",
+    "slug": "jaipuri-pyaz-kachori",
+    "illustration": "assets/dishes/jaipuri-pyaz-kachori.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bikaneri Bhujia Curry",
+    "category": "North Indian",
+    "slug": "bikaneri-bhujia-curry",
+    "illustration": "assets/dishes/bikaneri-bhujia-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bharwa Shimla Mirch",
+    "category": "North Indian",
+    "slug": "bharwa-shimla-mirch",
+    "illustration": "assets/dishes/bharwa-shimla-mirch.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bharwa Bhindi",
+    "category": "North Indian",
+    "slug": "bharwa-bhindi",
+    "illustration": "assets/dishes/bharwa-bhindi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Karela Masala",
+    "category": "North Indian",
+    "slug": "karela-masala",
+    "illustration": "assets/dishes/karela-masala.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Methi Thepla",
+    "category": "North Indian",
+    "slug": "methi-thepla",
+    "illustration": "assets/dishes/methi-thepla.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chur Chur Naan",
+    "category": "North Indian",
+    "slug": "chur-chur-naan",
+    "illustration": "assets/dishes/chur-chur-naan.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Stuffed Cheese Kulcha",
+    "category": "North Indian",
+    "slug": "stuffed-cheese-kulcha",
+    "illustration": "assets/dishes/stuffed-cheese-kulcha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Plain Dosa",
+    "category": "South Indian",
+    "slug": "plain-dosa",
+    "illustration": "assets/dishes/plain-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Masala Dosa",
+    "category": "South Indian",
+    "slug": "masala-dosa",
+    "illustration": "assets/dishes/masala-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mysore Masala Dosa",
+    "category": "South Indian",
+    "slug": "mysore-masala-dosa",
+    "illustration": "assets/dishes/mysore-masala-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rava Dosa",
+    "category": "South Indian",
+    "slug": "rava-dosa",
+    "illustration": "assets/dishes/rava-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Onion Rava Dosa",
+    "category": "South Indian",
+    "slug": "onion-rava-dosa",
+    "illustration": "assets/dishes/onion-rava-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paper Dosa",
+    "category": "South Indian",
+    "slug": "paper-dosa",
+    "illustration": "assets/dishes/paper-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Butter Dosa",
+    "category": "South Indian",
+    "slug": "butter-dosa",
+    "illustration": "assets/dishes/butter-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ghee Roast Dosa",
+    "category": "South Indian",
+    "slug": "ghee-roast-dosa",
+    "illustration": "assets/dishes/ghee-roast-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Cheese Dosa",
+    "category": "South Indian",
+    "slug": "cheese-dosa",
+    "illustration": "assets/dishes/cheese-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Set Dosa",
+    "category": "South Indian",
+    "slug": "set-dosa",
+    "illustration": "assets/dishes/set-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Neer Dosa",
+    "category": "South Indian",
+    "slug": "neer-dosa",
+    "illustration": "assets/dishes/neer-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Pesarattu",
+    "category": "South Indian",
+    "slug": "pesarattu",
+    "illustration": "assets/dishes/pesarattu.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Adai Dosa",
+    "category": "South Indian",
+    "slug": "adai-dosa",
+    "illustration": "assets/dishes/adai-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Uttapam",
+    "category": "South Indian",
+    "slug": "uttapam",
+    "illustration": "assets/dishes/uttapam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Onion Uttapam",
+    "category": "South Indian",
+    "slug": "onion-uttapam",
+    "illustration": "assets/dishes/onion-uttapam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tomato Uttapam",
+    "category": "South Indian",
+    "slug": "tomato-uttapam",
+    "illustration": "assets/dishes/tomato-uttapam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mixed Vegetable Uttapam",
+    "category": "South Indian",
+    "slug": "mixed-vegetable-uttapam",
+    "illustration": "assets/dishes/mixed-vegetable-uttapam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Idli",
+    "category": "South Indian",
+    "slug": "idli",
+    "illustration": "assets/dishes/idli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mini Idli",
+    "category": "South Indian",
+    "slug": "mini-idli",
+    "illustration": "assets/dishes/mini-idli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rava Idli",
+    "category": "South Indian",
+    "slug": "rava-idli",
+    "illustration": "assets/dishes/rava-idli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kanchipuram Idli",
+    "category": "South Indian",
+    "slug": "kanchipuram-idli",
+    "illustration": "assets/dishes/kanchipuram-idli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Thatte Idli",
+    "category": "South Indian",
+    "slug": "thatte-idli",
+    "illustration": "assets/dishes/thatte-idli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Medu Vada",
+    "category": "South Indian",
+    "slug": "medu-vada",
+    "illustration": "assets/dishes/medu-vada.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sambar Vada",
+    "category": "South Indian",
+    "slug": "sambar-vada",
+    "illustration": "assets/dishes/sambar-vada.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dahi Vada",
+    "category": "South Indian",
+    "slug": "dahi-vada",
+    "illustration": "assets/dishes/dahi-vada.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rasam Vada",
+    "category": "South Indian",
+    "slug": "rasam-vada",
+    "illustration": "assets/dishes/rasam-vada.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sambar Idli",
+    "category": "South Indian",
+    "slug": "sambar-idli",
+    "illustration": "assets/dishes/sambar-idli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Podi Idli",
+    "category": "South Indian",
+    "slug": "podi-idli",
+    "illustration": "assets/dishes/podi-idli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ven Pongal",
+    "category": "South Indian",
+    "slug": "ven-pongal",
+    "illustration": "assets/dishes/ven-pongal.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sweet Pongal",
+    "category": "South Indian",
+    "slug": "sweet-pongal",
+    "illustration": "assets/dishes/sweet-pongal.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Upma",
+    "category": "South Indian",
+    "slug": "upma",
+    "illustration": "assets/dishes/upma.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rava Upma",
+    "category": "South Indian",
+    "slug": "rava-upma",
+    "illustration": "assets/dishes/rava-upma.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tomato Upma",
+    "category": "South Indian",
+    "slug": "tomato-upma",
+    "illustration": "assets/dishes/tomato-upma.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vegetable Upma",
+    "category": "South Indian",
+    "slug": "vegetable-upma",
+    "illustration": "assets/dishes/vegetable-upma.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Lemon Rice",
+    "category": "South Indian",
+    "slug": "lemon-rice",
+    "illustration": "assets/dishes/lemon-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tamarind Rice",
+    "category": "South Indian",
+    "slug": "tamarind-rice",
+    "illustration": "assets/dishes/tamarind-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Curd Rice",
+    "category": "South Indian",
+    "slug": "curd-rice",
+    "illustration": "assets/dishes/curd-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Coconut Rice",
+    "category": "South Indian",
+    "slug": "coconut-rice",
+    "illustration": "assets/dishes/coconut-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tomato Rice",
+    "category": "South Indian",
+    "slug": "tomato-rice",
+    "illustration": "assets/dishes/tomato-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sambar Rice",
+    "category": "South Indian",
+    "slug": "sambar-rice",
+    "illustration": "assets/dishes/sambar-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bisi Bele Bath",
+    "category": "South Indian",
+    "slug": "bisi-bele-bath",
+    "illustration": "assets/dishes/bisi-bele-bath.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rasam Rice",
+    "category": "South Indian",
+    "slug": "rasam-rice",
+    "illustration": "assets/dishes/rasam-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gongura Rice",
+    "category": "South Indian",
+    "slug": "gongura-rice",
+    "illustration": "assets/dishes/gongura-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Puliyogare",
+    "category": "South Indian",
+    "slug": "puliyogare",
+    "illustration": "assets/dishes/puliyogare.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Appam",
+    "category": "South Indian",
+    "slug": "appam",
+    "illustration": "assets/dishes/appam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Egg Appam",
+    "category": "South Indian",
+    "slug": "egg-appam",
+    "illustration": "assets/dishes/egg-appam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vegetable Stew",
+    "category": "South Indian",
+    "slug": "vegetable-stew",
+    "illustration": "assets/dishes/vegetable-stew.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Idiyappam",
+    "category": "South Indian",
+    "slug": "idiyappam",
+    "illustration": "assets/dishes/idiyappam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Puttu",
+    "category": "South Indian",
+    "slug": "puttu",
+    "illustration": "assets/dishes/puttu.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kadala Curry",
+    "category": "South Indian",
+    "slug": "kadala-curry",
+    "illustration": "assets/dishes/kadala-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kerala Parotta",
+    "category": "South Indian",
+    "slug": "kerala-parotta",
+    "illustration": "assets/dishes/kerala-parotta.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Malabar Parotta",
+    "category": "South Indian",
+    "slug": "malabar-parotta",
+    "illustration": "assets/dishes/malabar-parotta.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kothu Parotta",
+    "category": "South Indian",
+    "slug": "kothu-parotta",
+    "illustration": "assets/dishes/kothu-parotta.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Avial",
+    "category": "South Indian",
+    "slug": "avial",
+    "illustration": "assets/dishes/avial.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Thoran",
+    "category": "South Indian",
+    "slug": "thoran",
+    "illustration": "assets/dishes/thoran.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Olan",
+    "category": "South Indian",
+    "slug": "olan",
+    "illustration": "assets/dishes/olan.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Erissery",
+    "category": "South Indian",
+    "slug": "erissery",
+    "illustration": "assets/dishes/erissery.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kootu",
+    "category": "South Indian",
+    "slug": "kootu",
+    "illustration": "assets/dishes/kootu.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Poriyal",
+    "category": "South Indian",
+    "slug": "poriyal",
+    "illustration": "assets/dishes/poriyal.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Murungakkai Sambar",
+    "category": "South Indian",
+    "slug": "murungakkai-sambar",
+    "illustration": "assets/dishes/murungakkai-sambar.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tomato Rasam",
+    "category": "South Indian",
+    "slug": "tomato-rasam",
+    "illustration": "assets/dishes/tomato-rasam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Pepper Rasam",
+    "category": "South Indian",
+    "slug": "pepper-rasam",
+    "illustration": "assets/dishes/pepper-rasam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Moru Curry",
+    "category": "South Indian",
+    "slug": "moru-curry",
+    "illustration": "assets/dishes/moru-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vatha Kuzhambu",
+    "category": "South Indian",
+    "slug": "vatha-kuzhambu",
+    "illustration": "assets/dishes/vatha-kuzhambu.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chettinad Vegetable Curry",
+    "category": "South Indian",
+    "slug": "chettinad-vegetable-curry",
+    "illustration": "assets/dishes/chettinad-vegetable-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Andhra Pappu",
+    "category": "South Indian",
+    "slug": "andhra-pappu",
+    "illustration": "assets/dishes/andhra-pappu.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gutti Vankaya Curry",
+    "category": "South Indian",
+    "slug": "gutti-vankaya-curry",
+    "illustration": "assets/dishes/gutti-vankaya-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gongura Pachadi",
+    "category": "South Indian",
+    "slug": "gongura-pachadi",
+    "illustration": "assets/dishes/gongura-pachadi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Hyderabadi Bagara Baingan",
+    "category": "South Indian",
+    "slug": "hyderabadi-bagara-baingan",
+    "illustration": "assets/dishes/hyderabadi-bagara-baingan.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mirchi Ka Salan",
+    "category": "South Indian",
+    "slug": "mirchi-ka-salan",
+    "illustration": "assets/dishes/mirchi-ka-salan.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken 65",
+    "category": "South Indian",
+    "slug": "chicken-65",
+    "illustration": "assets/dishes/chicken-65.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gobi 65",
+    "category": "South Indian",
+    "slug": "gobi-65",
+    "illustration": "assets/dishes/gobi-65.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer 65",
+    "category": "South Indian",
+    "slug": "paneer-65",
+    "illustration": "assets/dishes/paneer-65.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kerala Chicken Curry",
+    "category": "South Indian",
+    "slug": "kerala-chicken-curry",
+    "illustration": "assets/dishes/kerala-chicken-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Andhra Chicken Fry",
+    "category": "South Indian",
+    "slug": "andhra-chicken-fry",
+    "illustration": "assets/dishes/andhra-chicken-fry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mangalorean Fish Curry",
+    "category": "South Indian",
+    "slug": "mangalorean-fish-curry",
+    "illustration": "assets/dishes/mangalorean-fish-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Malabar Fish Curry",
+    "category": "South Indian",
+    "slug": "malabar-fish-curry",
+    "illustration": "assets/dishes/malabar-fish-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kerala Fish Fry",
+    "category": "South Indian",
+    "slug": "kerala-fish-fry",
+    "illustration": "assets/dishes/kerala-fish-fry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Prawn Moilee",
+    "category": "South Indian",
+    "slug": "prawn-moilee",
+    "illustration": "assets/dishes/prawn-moilee.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Prawn Ghee Roast",
+    "category": "South Indian",
+    "slug": "prawn-ghee-roast",
+    "illustration": "assets/dishes/prawn-ghee-roast.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Egg Roast",
+    "category": "South Indian",
+    "slug": "egg-roast",
+    "illustration": "assets/dishes/egg-roast.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Egg Curry Kerala Style",
+    "category": "South Indian",
+    "slug": "egg-curry-kerala-style",
+    "illustration": "assets/dishes/egg-curry-kerala-style.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Beef Ularthiyathu",
+    "category": "South Indian",
+    "slug": "beef-ularthiyathu",
+    "illustration": "assets/dishes/beef-ularthiyathu.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kozhi Varutharacha Curry",
+    "category": "South Indian",
+    "slug": "kozhi-varutharacha-curry",
+    "illustration": "assets/dishes/kozhi-varutharacha-curry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kerala Sadya",
+    "category": "South Indian",
+    "slug": "kerala-sadya",
+    "illustration": "assets/dishes/kerala-sadya.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "South Indian Meals",
+    "category": "South Indian",
+    "slug": "south-indian-meals",
+    "illustration": "assets/dishes/south-indian-meals.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mini Tiffin",
+    "category": "South Indian",
+    "slug": "mini-tiffin",
+    "illustration": "assets/dishes/mini-tiffin.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Filter Coffee",
+    "category": "South Indian",
+    "slug": "filter-coffee",
+    "illustration": "assets/dishes/filter-coffee.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sukku Coffee",
+    "category": "South Indian",
+    "slug": "sukku-coffee",
+    "illustration": "assets/dishes/sukku-coffee.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ragi Dosa",
+    "category": "South Indian",
+    "slug": "ragi-dosa",
+    "illustration": "assets/dishes/ragi-dosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ragi Idli",
+    "category": "South Indian",
+    "slug": "ragi-idli",
+    "illustration": "assets/dishes/ragi-idli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ragi Mudde",
+    "category": "South Indian",
+    "slug": "ragi-mudde",
+    "illustration": "assets/dishes/ragi-mudde.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Akki Roti",
+    "category": "South Indian",
+    "slug": "akki-roti",
+    "illustration": "assets/dishes/akki-roti.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rava Kesari",
+    "category": "South Indian",
+    "slug": "rava-kesari",
+    "illustration": "assets/dishes/rava-kesari.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paal Payasam",
+    "category": "South Indian",
+    "slug": "paal-payasam",
+    "illustration": "assets/dishes/paal-payasam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Semiya Payasam",
+    "category": "South Indian",
+    "slug": "semiya-payasam",
+    "illustration": "assets/dishes/semiya-payasam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Steamed Basmati Rice",
+    "category": "Rice & Biryani",
+    "slug": "steamed-basmati-rice",
+    "illustration": "assets/dishes/steamed-basmati-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Jeera Rice",
+    "category": "Rice & Biryani",
+    "slug": "jeera-rice",
+    "illustration": "assets/dishes/jeera-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Peas Pulao",
+    "category": "Rice & Biryani",
+    "slug": "peas-pulao",
+    "illustration": "assets/dishes/peas-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vegetable Pulao",
+    "category": "Rice & Biryani",
+    "slug": "vegetable-pulao",
+    "illustration": "assets/dishes/vegetable-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Pulao",
+    "category": "Rice & Biryani",
+    "slug": "paneer-pulao",
+    "illustration": "assets/dishes/paneer-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mushroom Pulao",
+    "category": "Rice & Biryani",
+    "slug": "mushroom-pulao",
+    "illustration": "assets/dishes/mushroom-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Shahi Pulao",
+    "category": "Rice & Biryani",
+    "slug": "shahi-pulao",
+    "illustration": "assets/dishes/shahi-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Saffron Rice",
+    "category": "Rice & Biryani",
+    "slug": "saffron-rice",
+    "illustration": "assets/dishes/saffron-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ghee Rice",
+    "category": "Rice & Biryani",
+    "slug": "ghee-rice",
+    "illustration": "assets/dishes/ghee-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Corn Pulao",
+    "category": "Rice & Biryani",
+    "slug": "corn-pulao",
+    "illustration": "assets/dishes/corn-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mint Pulao",
+    "category": "Rice & Biryani",
+    "slug": "mint-pulao",
+    "illustration": "assets/dishes/mint-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tomato Pulao",
+    "category": "Rice & Biryani",
+    "slug": "tomato-pulao",
+    "illustration": "assets/dishes/tomato-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vegetable Biryani",
+    "category": "Rice & Biryani",
+    "slug": "vegetable-biryani",
+    "illustration": "assets/dishes/vegetable-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Biryani",
+    "category": "Rice & Biryani",
+    "slug": "paneer-biryani",
+    "illustration": "assets/dishes/paneer-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mushroom Biryani",
+    "category": "Rice & Biryani",
+    "slug": "mushroom-biryani",
+    "illustration": "assets/dishes/mushroom-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Soya Biryani",
+    "category": "Rice & Biryani",
+    "slug": "soya-biryani",
+    "illustration": "assets/dishes/soya-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Hyderabadi Veg Biryani",
+    "category": "Rice & Biryani",
+    "slug": "hyderabadi-veg-biryani",
+    "illustration": "assets/dishes/hyderabadi-veg-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dum Veg Biryani",
+    "category": "Rice & Biryani",
+    "slug": "dum-veg-biryani",
+    "illustration": "assets/dishes/dum-veg-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Biryani",
+    "category": "Rice & Biryani",
+    "slug": "chicken-biryani",
+    "illustration": "assets/dishes/chicken-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Hyderabadi Chicken Biryani",
+    "category": "Rice & Biryani",
+    "slug": "hyderabadi-chicken-biryani",
+    "illustration": "assets/dishes/hyderabadi-chicken-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Dum Biryani",
+    "category": "Rice & Biryani",
+    "slug": "chicken-dum-biryani",
+    "illustration": "assets/dishes/chicken-dum-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Lucknowi Chicken Biryani",
+    "category": "Rice & Biryani",
+    "slug": "lucknowi-chicken-biryani",
+    "illustration": "assets/dishes/lucknowi-chicken-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kolkata Chicken Biryani",
+    "category": "Rice & Biryani",
+    "slug": "kolkata-chicken-biryani",
+    "illustration": "assets/dishes/kolkata-chicken-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Malabar Chicken Biryani",
+    "category": "Rice & Biryani",
+    "slug": "malabar-chicken-biryani",
+    "illustration": "assets/dishes/malabar-chicken-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ambur Chicken Biryani",
+    "category": "Rice & Biryani",
+    "slug": "ambur-chicken-biryani",
+    "illustration": "assets/dishes/ambur-chicken-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Thalassery Biryani",
+    "category": "Rice & Biryani",
+    "slug": "thalassery-biryani",
+    "illustration": "assets/dishes/thalassery-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mutton Biryani",
+    "category": "Rice & Biryani",
+    "slug": "mutton-biryani",
+    "illustration": "assets/dishes/mutton-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Hyderabadi Mutton Biryani",
+    "category": "Rice & Biryani",
+    "slug": "hyderabadi-mutton-biryani",
+    "illustration": "assets/dishes/hyderabadi-mutton-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Egg Biryani",
+    "category": "Rice & Biryani",
+    "slug": "egg-biryani",
+    "illustration": "assets/dishes/egg-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Fish Biryani",
+    "category": "Rice & Biryani",
+    "slug": "fish-biryani",
+    "illustration": "assets/dishes/fish-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Prawn Biryani",
+    "category": "Rice & Biryani",
+    "slug": "prawn-biryani",
+    "illustration": "assets/dishes/prawn-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Keema Biryani",
+    "category": "Rice & Biryani",
+    "slug": "keema-biryani",
+    "illustration": "assets/dishes/keema-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bamboo Biryani",
+    "category": "Rice & Biryani",
+    "slug": "bamboo-biryani",
+    "illustration": "assets/dishes/bamboo-biryani.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Pulao",
+    "category": "Rice & Biryani",
+    "slug": "chicken-pulao",
+    "illustration": "assets/dishes/chicken-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mutton Pulao",
+    "category": "Rice & Biryani",
+    "slug": "mutton-pulao",
+    "illustration": "assets/dishes/mutton-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kashmiri Yakhni Pulao",
+    "category": "Rice & Biryani",
+    "slug": "kashmiri-yakhni-pulao",
+    "illustration": "assets/dishes/kashmiri-yakhni-pulao.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tahari",
+    "category": "Rice & Biryani",
+    "slug": "tahari",
+    "illustration": "assets/dishes/tahari.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Khichdi",
+    "category": "Rice & Biryani",
+    "slug": "khichdi",
+    "illustration": "assets/dishes/khichdi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Masala Khichdi",
+    "category": "Rice & Biryani",
+    "slug": "masala-khichdi",
+    "illustration": "assets/dishes/masala-khichdi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Moong Dal Khichdi",
+    "category": "Rice & Biryani",
+    "slug": "moong-dal-khichdi",
+    "illustration": "assets/dishes/moong-dal-khichdi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Palak Khichdi",
+    "category": "Rice & Biryani",
+    "slug": "palak-khichdi",
+    "illustration": "assets/dishes/palak-khichdi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sabudana Khichdi",
+    "category": "Rice & Biryani",
+    "slug": "sabudana-khichdi",
+    "illustration": "assets/dishes/sabudana-khichdi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gujarati Khichdi",
+    "category": "Rice & Biryani",
+    "slug": "gujarati-khichdi",
+    "illustration": "assets/dishes/gujarati-khichdi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bengali Bhoger Khichuri",
+    "category": "Rice & Biryani",
+    "slug": "bengali-bhoger-khichuri",
+    "illustration": "assets/dishes/bengali-bhoger-khichuri.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ghee Khichdi",
+    "category": "Rice & Biryani",
+    "slug": "ghee-khichdi",
+    "illustration": "assets/dishes/ghee-khichdi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Curd Rice with Tempering",
+    "category": "Rice & Biryani",
+    "slug": "curd-rice-with-tempering",
+    "illustration": "assets/dishes/curd-rice-with-tempering.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Samosa",
+    "category": "Street Food & Snacks",
+    "slug": "samosa",
+    "illustration": "assets/dishes/samosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Punjabi Samosa",
+    "category": "Street Food & Snacks",
+    "slug": "punjabi-samosa",
+    "illustration": "assets/dishes/punjabi-samosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Aloo Tikki",
+    "category": "Street Food & Snacks",
+    "slug": "aloo-tikki",
+    "illustration": "assets/dishes/aloo-tikki.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Aloo Tikki Chaat",
+    "category": "Street Food & Snacks",
+    "slug": "aloo-tikki-chaat",
+    "illustration": "assets/dishes/aloo-tikki-chaat.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Papdi Chaat",
+    "category": "Street Food & Snacks",
+    "slug": "papdi-chaat",
+    "illustration": "assets/dishes/papdi-chaat.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dahi Papdi Chaat",
+    "category": "Street Food & Snacks",
+    "slug": "dahi-papdi-chaat",
+    "illustration": "assets/dishes/dahi-papdi-chaat.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dahi Bhalla",
+    "category": "Street Food & Snacks",
+    "slug": "dahi-bhalla",
+    "illustration": "assets/dishes/dahi-bhalla.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dahi Puri",
+    "category": "Street Food & Snacks",
+    "slug": "dahi-puri",
+    "illustration": "assets/dishes/dahi-puri.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Pani Puri",
+    "category": "Street Food & Snacks",
+    "slug": "pani-puri",
+    "illustration": "assets/dishes/pani-puri.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Golgappa",
+    "category": "Street Food & Snacks",
+    "slug": "golgappa",
+    "illustration": "assets/dishes/golgappa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sev Puri",
+    "category": "Street Food & Snacks",
+    "slug": "sev-puri",
+    "illustration": "assets/dishes/sev-puri.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bhel Puri",
+    "category": "Street Food & Snacks",
+    "slug": "bhel-puri",
+    "illustration": "assets/dishes/bhel-puri.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Jhal Muri",
+    "category": "Street Food & Snacks",
+    "slug": "jhal-muri",
+    "illustration": "assets/dishes/jhal-muri.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ragda Pattice",
+    "category": "Street Food & Snacks",
+    "slug": "ragda-pattice",
+    "illustration": "assets/dishes/ragda-pattice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Misal Pav",
+    "category": "Street Food & Snacks",
+    "slug": "misal-pav",
+    "illustration": "assets/dishes/misal-pav.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Usal Pav",
+    "category": "Street Food & Snacks",
+    "slug": "usal-pav",
+    "illustration": "assets/dishes/usal-pav.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vada Pav",
+    "category": "Street Food & Snacks",
+    "slug": "vada-pav",
+    "illustration": "assets/dishes/vada-pav.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Cheese Vada Pav",
+    "category": "Street Food & Snacks",
+    "slug": "cheese-vada-pav",
+    "illustration": "assets/dishes/cheese-vada-pav.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Pav Bhaji",
+    "category": "Street Food & Snacks",
+    "slug": "pav-bhaji",
+    "illustration": "assets/dishes/pav-bhaji.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Butter Pav Bhaji",
+    "category": "Street Food & Snacks",
+    "slug": "butter-pav-bhaji",
+    "illustration": "assets/dishes/butter-pav-bhaji.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Masala Pav",
+    "category": "Street Food & Snacks",
+    "slug": "masala-pav",
+    "illustration": "assets/dishes/masala-pav.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dabeli",
+    "category": "Street Food & Snacks",
+    "slug": "dabeli",
+    "illustration": "assets/dishes/dabeli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kutchi Dabeli",
+    "category": "Street Food & Snacks",
+    "slug": "kutchi-dabeli",
+    "illustration": "assets/dishes/kutchi-dabeli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kachori",
+    "category": "Street Food & Snacks",
+    "slug": "kachori",
+    "illustration": "assets/dishes/kachori.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dal Kachori",
+    "category": "Street Food & Snacks",
+    "slug": "dal-kachori",
+    "illustration": "assets/dishes/dal-kachori.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Pyaz Kachori",
+    "category": "Street Food & Snacks",
+    "slug": "pyaz-kachori",
+    "illustration": "assets/dishes/pyaz-kachori.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Raj Kachori",
+    "category": "Street Food & Snacks",
+    "slug": "raj-kachori",
+    "illustration": "assets/dishes/raj-kachori.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Khasta Kachori",
+    "category": "Street Food & Snacks",
+    "slug": "khasta-kachori",
+    "illustration": "assets/dishes/khasta-kachori.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bread Pakora",
+    "category": "Street Food & Snacks",
+    "slug": "bread-pakora",
+    "illustration": "assets/dishes/bread-pakora.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Pakora",
+    "category": "Street Food & Snacks",
+    "slug": "paneer-pakora",
+    "illustration": "assets/dishes/paneer-pakora.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Onion Pakora",
+    "category": "Street Food & Snacks",
+    "slug": "onion-pakora",
+    "illustration": "assets/dishes/onion-pakora.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mirchi Pakora",
+    "category": "Street Food & Snacks",
+    "slug": "mirchi-pakora",
+    "illustration": "assets/dishes/mirchi-pakora.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vegetable Pakora",
+    "category": "Street Food & Snacks",
+    "slug": "vegetable-pakora",
+    "illustration": "assets/dishes/vegetable-pakora.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Palak Pakora",
+    "category": "Street Food & Snacks",
+    "slug": "palak-pakora",
+    "illustration": "assets/dishes/palak-pakora.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Moong Dal Pakora",
+    "category": "Street Food & Snacks",
+    "slug": "moong-dal-pakora",
+    "illustration": "assets/dishes/moong-dal-pakora.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Batata Vada",
+    "category": "Street Food & Snacks",
+    "slug": "batata-vada",
+    "illustration": "assets/dishes/batata-vada.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sabudana Vada",
+    "category": "Street Food & Snacks",
+    "slug": "sabudana-vada",
+    "illustration": "assets/dishes/sabudana-vada.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chole Bhature",
+    "category": "Street Food & Snacks",
+    "slug": "chole-bhature",
+    "illustration": "assets/dishes/chole-bhature.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chole Kulche",
+    "category": "Street Food & Snacks",
+    "slug": "chole-kulche",
+    "illustration": "assets/dishes/chole-kulche.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chana Jor Garam",
+    "category": "Street Food & Snacks",
+    "slug": "chana-jor-garam",
+    "illustration": "assets/dishes/chana-jor-garam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chowmein Samosa",
+    "category": "Street Food & Snacks",
+    "slug": "chowmein-samosa",
+    "illustration": "assets/dishes/chowmein-samosa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Aloo Chaat",
+    "category": "Street Food & Snacks",
+    "slug": "aloo-chaat",
+    "illustration": "assets/dishes/aloo-chaat.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Fruit Chaat",
+    "category": "Street Food & Snacks",
+    "slug": "fruit-chaat",
+    "illustration": "assets/dishes/fruit-chaat.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Corn Chaat",
+    "category": "Street Food & Snacks",
+    "slug": "corn-chaat",
+    "illustration": "assets/dishes/corn-chaat.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sprout Chaat",
+    "category": "Street Food & Snacks",
+    "slug": "sprout-chaat",
+    "illustration": "assets/dishes/sprout-chaat.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chana Chaat",
+    "category": "Street Food & Snacks",
+    "slug": "chana-chaat",
+    "illustration": "assets/dishes/chana-chaat.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Matar Kulcha",
+    "category": "Street Food & Snacks",
+    "slug": "matar-kulcha",
+    "illustration": "assets/dishes/matar-kulcha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ram Ladoo",
+    "category": "Street Food & Snacks",
+    "slug": "ram-ladoo",
+    "illustration": "assets/dishes/ram-ladoo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Moong Dal Chilla",
+    "category": "Street Food & Snacks",
+    "slug": "moong-dal-chilla",
+    "illustration": "assets/dishes/moong-dal-chilla.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Besan Chilla",
+    "category": "Street Food & Snacks",
+    "slug": "besan-chilla",
+    "illustration": "assets/dishes/besan-chilla.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Chilla",
+    "category": "Street Food & Snacks",
+    "slug": "paneer-chilla",
+    "illustration": "assets/dishes/paneer-chilla.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dhokla",
+    "category": "Street Food & Snacks",
+    "slug": "dhokla",
+    "illustration": "assets/dishes/dhokla.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Khaman Dhokla",
+    "category": "Street Food & Snacks",
+    "slug": "khaman-dhokla",
+    "illustration": "assets/dishes/khaman-dhokla.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Khandvi",
+    "category": "Street Food & Snacks",
+    "slug": "khandvi",
+    "illustration": "assets/dishes/khandvi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Patra",
+    "category": "Street Food & Snacks",
+    "slug": "patra",
+    "illustration": "assets/dishes/patra.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Handvo",
+    "category": "Street Food & Snacks",
+    "slug": "handvo",
+    "illustration": "assets/dishes/handvo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Fafda",
+    "category": "Street Food & Snacks",
+    "slug": "fafda",
+    "illustration": "assets/dishes/fafda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Thepla",
+    "category": "Street Food & Snacks",
+    "slug": "thepla",
+    "illustration": "assets/dishes/thepla.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Methi Gota",
+    "category": "Street Food & Snacks",
+    "slug": "methi-gota",
+    "illustration": "assets/dishes/methi-gota.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Lilva Kachori",
+    "category": "Street Food & Snacks",
+    "slug": "lilva-kachori",
+    "illustration": "assets/dishes/lilva-kachori.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Surti Locho",
+    "category": "Street Food & Snacks",
+    "slug": "surti-locho",
+    "illustration": "assets/dishes/surti-locho.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Undhiyu",
+    "category": "Street Food & Snacks",
+    "slug": "undhiyu",
+    "illustration": "assets/dishes/undhiyu.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Khakhra",
+    "category": "Street Food & Snacks",
+    "slug": "khakhra",
+    "illustration": "assets/dishes/khakhra.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chakli",
+    "category": "Street Food & Snacks",
+    "slug": "chakli",
+    "illustration": "assets/dishes/chakli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Murmura Chivda",
+    "category": "Street Food & Snacks",
+    "slug": "murmura-chivda",
+    "illustration": "assets/dishes/murmura-chivda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Poha",
+    "category": "Street Food & Snacks",
+    "slug": "poha",
+    "illustration": "assets/dishes/poha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Indori Poha",
+    "category": "Street Food & Snacks",
+    "slug": "indori-poha",
+    "illustration": "assets/dishes/indori-poha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kanda Poha",
+    "category": "Street Food & Snacks",
+    "slug": "kanda-poha",
+    "illustration": "assets/dishes/kanda-poha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Jalebi Fafda",
+    "category": "Street Food & Snacks",
+    "slug": "jalebi-fafda",
+    "illustration": "assets/dishes/jalebi-fafda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Litti Chokha",
+    "category": "Street Food & Snacks",
+    "slug": "litti-chokha",
+    "illustration": "assets/dishes/litti-chokha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sattu Paratha",
+    "category": "Street Food & Snacks",
+    "slug": "sattu-paratha",
+    "illustration": "assets/dishes/sattu-paratha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ghugni",
+    "category": "Street Food & Snacks",
+    "slug": "ghugni",
+    "illustration": "assets/dishes/ghugni.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kathi Roll",
+    "category": "Street Food & Snacks",
+    "slug": "kathi-roll",
+    "illustration": "assets/dishes/kathi-roll.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Kathi Roll",
+    "category": "Street Food & Snacks",
+    "slug": "paneer-kathi-roll",
+    "illustration": "assets/dishes/paneer-kathi-roll.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Kathi Roll",
+    "category": "Street Food & Snacks",
+    "slug": "chicken-kathi-roll",
+    "illustration": "assets/dishes/chicken-kathi-roll.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Egg Roll",
+    "category": "Street Food & Snacks",
+    "slug": "egg-roll",
+    "illustration": "assets/dishes/egg-roll.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Vegetable Frankie",
+    "category": "Street Food & Snacks",
+    "slug": "vegetable-frankie",
+    "illustration": "assets/dishes/vegetable-frankie.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Frankie",
+    "category": "Street Food & Snacks",
+    "slug": "chicken-frankie",
+    "illustration": "assets/dishes/chicken-frankie.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Masala Maggi",
+    "category": "Street Food & Snacks",
+    "slug": "masala-maggi",
+    "illustration": "assets/dishes/masala-maggi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Cheese Maggi",
+    "category": "Street Food & Snacks",
+    "slug": "cheese-maggi",
+    "illustration": "assets/dishes/cheese-maggi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Sandwich",
+    "category": "Street Food & Snacks",
+    "slug": "veg-sandwich",
+    "illustration": "assets/dishes/veg-sandwich.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bombay Sandwich",
+    "category": "Street Food & Snacks",
+    "slug": "bombay-sandwich",
+    "illustration": "assets/dishes/bombay-sandwich.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Grilled Cheese Sandwich",
+    "category": "Street Food & Snacks",
+    "slug": "grilled-cheese-sandwich",
+    "illustration": "assets/dishes/grilled-cheese-sandwich.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chilli Cheese Toast",
+    "category": "Street Food & Snacks",
+    "slug": "chilli-cheese-toast",
+    "illustration": "assets/dishes/chilli-cheese-toast.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Masala Toast",
+    "category": "Street Food & Snacks",
+    "slug": "masala-toast",
+    "illustration": "assets/dishes/masala-toast.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dahi Sandwich",
+    "category": "Street Food & Snacks",
+    "slug": "dahi-sandwich",
+    "illustration": "assets/dishes/dahi-sandwich.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Aloo Bonda",
+    "category": "Street Food & Snacks",
+    "slug": "aloo-bonda",
+    "illustration": "assets/dishes/aloo-bonda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mysore Bonda",
+    "category": "Street Food & Snacks",
+    "slug": "mysore-bonda",
+    "illustration": "assets/dishes/mysore-bonda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Banana Fritters",
+    "category": "Street Food & Snacks",
+    "slug": "banana-fritters",
+    "illustration": "assets/dishes/banana-fritters.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Pazham Pori",
+    "category": "Street Food & Snacks",
+    "slug": "pazham-pori",
+    "illustration": "assets/dishes/pazham-pori.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Punugulu",
+    "category": "Street Food & Snacks",
+    "slug": "punugulu",
+    "illustration": "assets/dishes/punugulu.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sundal",
+    "category": "Street Food & Snacks",
+    "slug": "sundal",
+    "illustration": "assets/dishes/sundal.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chana Sundal",
+    "category": "Street Food & Snacks",
+    "slug": "chana-sundal",
+    "illustration": "assets/dishes/chana-sundal.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Hakka Noodles",
+    "category": "Indo Chinese",
+    "slug": "veg-hakka-noodles",
+    "illustration": "assets/dishes/veg-hakka-noodles.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Hakka Noodles",
+    "category": "Indo Chinese",
+    "slug": "chicken-hakka-noodles",
+    "illustration": "assets/dishes/chicken-hakka-noodles.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Schezwan Noodles",
+    "category": "Indo Chinese",
+    "slug": "schezwan-noodles",
+    "illustration": "assets/dishes/schezwan-noodles.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chilli Garlic Noodles",
+    "category": "Indo Chinese",
+    "slug": "chilli-garlic-noodles",
+    "illustration": "assets/dishes/chilli-garlic-noodles.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Chowmein",
+    "category": "Indo Chinese",
+    "slug": "veg-chowmein",
+    "illustration": "assets/dishes/veg-chowmein.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Egg Chowmein",
+    "category": "Indo Chinese",
+    "slug": "egg-chowmein",
+    "illustration": "assets/dishes/egg-chowmein.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Chowmein",
+    "category": "Indo Chinese",
+    "slug": "chicken-chowmein",
+    "illustration": "assets/dishes/chicken-chowmein.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Singapuri Noodles",
+    "category": "Indo Chinese",
+    "slug": "singapuri-noodles",
+    "illustration": "assets/dishes/singapuri-noodles.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Fried Rice",
+    "category": "Indo Chinese",
+    "slug": "veg-fried-rice",
+    "illustration": "assets/dishes/veg-fried-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Egg Fried Rice",
+    "category": "Indo Chinese",
+    "slug": "egg-fried-rice",
+    "illustration": "assets/dishes/egg-fried-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Fried Rice",
+    "category": "Indo Chinese",
+    "slug": "chicken-fried-rice",
+    "illustration": "assets/dishes/chicken-fried-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Schezwan Fried Rice",
+    "category": "Indo Chinese",
+    "slug": "schezwan-fried-rice",
+    "illustration": "assets/dishes/schezwan-fried-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Triple Schezwan Rice",
+    "category": "Indo Chinese",
+    "slug": "triple-schezwan-rice",
+    "illustration": "assets/dishes/triple-schezwan-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Burnt Garlic Fried Rice",
+    "category": "Indo Chinese",
+    "slug": "burnt-garlic-fried-rice",
+    "illustration": "assets/dishes/burnt-garlic-fried-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Fried Rice",
+    "category": "Indo Chinese",
+    "slug": "paneer-fried-rice",
+    "illustration": "assets/dishes/paneer-fried-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mushroom Fried Rice",
+    "category": "Indo Chinese",
+    "slug": "mushroom-fried-rice",
+    "illustration": "assets/dishes/mushroom-fried-rice.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chilli Paneer Dry",
+    "category": "Indo Chinese",
+    "slug": "chilli-paneer-dry",
+    "illustration": "assets/dishes/chilli-paneer-dry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chilli Paneer Gravy",
+    "category": "Indo Chinese",
+    "slug": "chilli-paneer-gravy",
+    "illustration": "assets/dishes/chilli-paneer-gravy.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Manchurian",
+    "category": "Indo Chinese",
+    "slug": "paneer-manchurian",
+    "illustration": "assets/dishes/paneer-manchurian.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Manchurian Dry",
+    "category": "Indo Chinese",
+    "slug": "veg-manchurian-dry",
+    "illustration": "assets/dishes/veg-manchurian-dry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Manchurian Gravy",
+    "category": "Indo Chinese",
+    "slug": "veg-manchurian-gravy",
+    "illustration": "assets/dishes/veg-manchurian-gravy.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gobi Manchurian",
+    "category": "Indo Chinese",
+    "slug": "gobi-manchurian",
+    "illustration": "assets/dishes/gobi-manchurian.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Baby Corn Manchurian",
+    "category": "Indo Chinese",
+    "slug": "baby-corn-manchurian",
+    "illustration": "assets/dishes/baby-corn-manchurian.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mushroom Manchurian",
+    "category": "Indo Chinese",
+    "slug": "mushroom-manchurian",
+    "illustration": "assets/dishes/mushroom-manchurian.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chilli Chicken Dry",
+    "category": "Indo Chinese",
+    "slug": "chilli-chicken-dry",
+    "illustration": "assets/dishes/chilli-chicken-dry.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chilli Chicken Gravy",
+    "category": "Indo Chinese",
+    "slug": "chilli-chicken-gravy",
+    "illustration": "assets/dishes/chilli-chicken-gravy.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Manchurian",
+    "category": "Indo Chinese",
+    "slug": "chicken-manchurian",
+    "illustration": "assets/dishes/chicken-manchurian.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Crispy Chilli Potato",
+    "category": "Indo Chinese",
+    "slug": "crispy-chilli-potato",
+    "illustration": "assets/dishes/crispy-chilli-potato.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Honey Chilli Potato",
+    "category": "Indo Chinese",
+    "slug": "honey-chilli-potato",
+    "illustration": "assets/dishes/honey-chilli-potato.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dragon Paneer",
+    "category": "Indo Chinese",
+    "slug": "dragon-paneer",
+    "illustration": "assets/dishes/dragon-paneer.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dragon Chicken",
+    "category": "Indo Chinese",
+    "slug": "dragon-chicken",
+    "illustration": "assets/dishes/dragon-chicken.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chilli Mushroom",
+    "category": "Indo Chinese",
+    "slug": "chilli-mushroom",
+    "illustration": "assets/dishes/chilli-mushroom.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chilli Baby Corn",
+    "category": "Indo Chinese",
+    "slug": "chilli-baby-corn",
+    "illustration": "assets/dishes/chilli-baby-corn.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Spring Roll",
+    "category": "Indo Chinese",
+    "slug": "veg-spring-roll",
+    "illustration": "assets/dishes/veg-spring-roll.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Spring Roll",
+    "category": "Indo Chinese",
+    "slug": "chicken-spring-roll",
+    "illustration": "assets/dishes/chicken-spring-roll.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Crispy Corn",
+    "category": "Indo Chinese",
+    "slug": "crispy-corn",
+    "illustration": "assets/dishes/crispy-corn.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Momos",
+    "category": "Indo Chinese",
+    "slug": "veg-momos",
+    "illustration": "assets/dishes/veg-momos.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Steamed Chicken Momos",
+    "category": "Indo Chinese",
+    "slug": "steamed-chicken-momos",
+    "illustration": "assets/dishes/steamed-chicken-momos.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Fried Veg Momos",
+    "category": "Indo Chinese",
+    "slug": "fried-veg-momos",
+    "illustration": "assets/dishes/fried-veg-momos.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tandoori Momos",
+    "category": "Indo Chinese",
+    "slug": "tandoori-momos",
+    "illustration": "assets/dishes/tandoori-momos.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Afghani Momos",
+    "category": "Indo Chinese",
+    "slug": "afghani-momos",
+    "illustration": "assets/dishes/afghani-momos.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Paneer Momos",
+    "category": "Indo Chinese",
+    "slug": "paneer-momos",
+    "illustration": "assets/dishes/paneer-momos.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Schezwan Momos",
+    "category": "Indo Chinese",
+    "slug": "schezwan-momos",
+    "illustration": "assets/dishes/schezwan-momos.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Wonton",
+    "category": "Indo Chinese",
+    "slug": "veg-wonton",
+    "illustration": "assets/dishes/veg-wonton.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Wonton",
+    "category": "Indo Chinese",
+    "slug": "chicken-wonton",
+    "illustration": "assets/dishes/chicken-wonton.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Veg Clear Soup",
+    "category": "Indo Chinese",
+    "slug": "veg-clear-soup",
+    "illustration": "assets/dishes/veg-clear-soup.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Hot and Sour Soup",
+    "category": "Indo Chinese",
+    "slug": "hot-and-sour-soup",
+    "illustration": "assets/dishes/hot-and-sour-soup.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sweet Corn Soup",
+    "category": "Indo Chinese",
+    "slug": "sweet-corn-soup",
+    "illustration": "assets/dishes/sweet-corn-soup.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Manchow Soup",
+    "category": "Indo Chinese",
+    "slug": "manchow-soup",
+    "illustration": "assets/dishes/manchow-soup.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tomato Soup",
+    "category": "Indo Chinese",
+    "slug": "tomato-soup",
+    "illustration": "assets/dishes/tomato-soup.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Lemon Coriander Soup",
+    "category": "Indo Chinese",
+    "slug": "lemon-coriander-soup",
+    "illustration": "assets/dishes/lemon-coriander-soup.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Sweet Corn Soup",
+    "category": "Indo Chinese",
+    "slug": "chicken-sweet-corn-soup",
+    "illustration": "assets/dishes/chicken-sweet-corn-soup.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chicken Manchow Soup",
+    "category": "Indo Chinese",
+    "slug": "chicken-manchow-soup",
+    "illustration": "assets/dishes/chicken-manchow-soup.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gulab Jamun",
+    "category": "Sweets & Desserts",
+    "slug": "gulab-jamun",
+    "illustration": "assets/dishes/gulab-jamun.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kala Jamun",
+    "category": "Sweets & Desserts",
+    "slug": "kala-jamun",
+    "illustration": "assets/dishes/kala-jamun.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rasgulla",
+    "category": "Sweets & Desserts",
+    "slug": "rasgulla",
+    "illustration": "assets/dishes/rasgulla.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rasmalai",
+    "category": "Sweets & Desserts",
+    "slug": "rasmalai",
+    "illustration": "assets/dishes/rasmalai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Cham Cham",
+    "category": "Sweets & Desserts",
+    "slug": "cham-cham",
+    "illustration": "assets/dishes/cham-cham.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sandesh",
+    "category": "Sweets & Desserts",
+    "slug": "sandesh",
+    "illustration": "assets/dishes/sandesh.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kesar Peda",
+    "category": "Sweets & Desserts",
+    "slug": "kesar-peda",
+    "illustration": "assets/dishes/kesar-peda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Milk Peda",
+    "category": "Sweets & Desserts",
+    "slug": "milk-peda",
+    "illustration": "assets/dishes/milk-peda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mathura Peda",
+    "category": "Sweets & Desserts",
+    "slug": "mathura-peda",
+    "illustration": "assets/dishes/mathura-peda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kaju Katli",
+    "category": "Sweets & Desserts",
+    "slug": "kaju-katli",
+    "illustration": "assets/dishes/kaju-katli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Badam Katli",
+    "category": "Sweets & Desserts",
+    "slug": "badam-katli",
+    "illustration": "assets/dishes/badam-katli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Motichoor Ladoo",
+    "category": "Sweets & Desserts",
+    "slug": "motichoor-ladoo",
+    "illustration": "assets/dishes/motichoor-ladoo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Besan Ladoo",
+    "category": "Sweets & Desserts",
+    "slug": "besan-ladoo",
+    "illustration": "assets/dishes/besan-ladoo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Boondi Ladoo",
+    "category": "Sweets & Desserts",
+    "slug": "boondi-ladoo",
+    "illustration": "assets/dishes/boondi-ladoo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Coconut Ladoo",
+    "category": "Sweets & Desserts",
+    "slug": "coconut-ladoo",
+    "illustration": "assets/dishes/coconut-ladoo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Til Ladoo",
+    "category": "Sweets & Desserts",
+    "slug": "til-ladoo",
+    "illustration": "assets/dishes/til-ladoo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gond Ladoo",
+    "category": "Sweets & Desserts",
+    "slug": "gond-ladoo",
+    "illustration": "assets/dishes/gond-ladoo.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mysore Pak",
+    "category": "Sweets & Desserts",
+    "slug": "mysore-pak",
+    "illustration": "assets/dishes/mysore-pak.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Soan Papdi",
+    "category": "Sweets & Desserts",
+    "slug": "soan-papdi",
+    "illustration": "assets/dishes/soan-papdi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Patisa",
+    "category": "Sweets & Desserts",
+    "slug": "patisa",
+    "illustration": "assets/dishes/patisa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Gajar Halwa",
+    "category": "Sweets & Desserts",
+    "slug": "gajar-halwa",
+    "illustration": "assets/dishes/gajar-halwa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Moong Dal Halwa",
+    "category": "Sweets & Desserts",
+    "slug": "moong-dal-halwa",
+    "illustration": "assets/dishes/moong-dal-halwa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sooji Halwa",
+    "category": "Sweets & Desserts",
+    "slug": "sooji-halwa",
+    "illustration": "assets/dishes/sooji-halwa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Atta Halwa",
+    "category": "Sweets & Desserts",
+    "slug": "atta-halwa",
+    "illustration": "assets/dishes/atta-halwa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Badam Halwa",
+    "category": "Sweets & Desserts",
+    "slug": "badam-halwa",
+    "illustration": "assets/dishes/badam-halwa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Lauki Halwa",
+    "category": "Sweets & Desserts",
+    "slug": "lauki-halwa",
+    "illustration": "assets/dishes/lauki-halwa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kheer",
+    "category": "Sweets & Desserts",
+    "slug": "kheer",
+    "illustration": "assets/dishes/kheer.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rice Kheer",
+    "category": "Sweets & Desserts",
+    "slug": "rice-kheer",
+    "illustration": "assets/dishes/rice-kheer.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sabudana Kheer",
+    "category": "Sweets & Desserts",
+    "slug": "sabudana-kheer",
+    "illustration": "assets/dishes/sabudana-kheer.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Phirni",
+    "category": "Sweets & Desserts",
+    "slug": "phirni",
+    "illustration": "assets/dishes/phirni.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Zafrani Phirni",
+    "category": "Sweets & Desserts",
+    "slug": "zafrani-phirni",
+    "illustration": "assets/dishes/zafrani-phirni.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rabri",
+    "category": "Sweets & Desserts",
+    "slug": "rabri",
+    "illustration": "assets/dishes/rabri.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Malpua",
+    "category": "Sweets & Desserts",
+    "slug": "malpua",
+    "illustration": "assets/dishes/malpua.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rabri Malpua",
+    "category": "Sweets & Desserts",
+    "slug": "rabri-malpua",
+    "illustration": "assets/dishes/rabri-malpua.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Jalebi",
+    "category": "Sweets & Desserts",
+    "slug": "jalebi",
+    "illustration": "assets/dishes/jalebi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Imarti",
+    "category": "Sweets & Desserts",
+    "slug": "imarti",
+    "illustration": "assets/dishes/imarti.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Shahi Tukda",
+    "category": "Sweets & Desserts",
+    "slug": "shahi-tukda",
+    "illustration": "assets/dishes/shahi-tukda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Double Ka Meetha",
+    "category": "Sweets & Desserts",
+    "slug": "double-ka-meetha",
+    "illustration": "assets/dishes/double-ka-meetha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Balushahi",
+    "category": "Sweets & Desserts",
+    "slug": "balushahi",
+    "illustration": "assets/dishes/balushahi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ghewar",
+    "category": "Sweets & Desserts",
+    "slug": "ghewar",
+    "illustration": "assets/dishes/ghewar.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mawa Kachori",
+    "category": "Sweets & Desserts",
+    "slug": "mawa-kachori",
+    "illustration": "assets/dishes/mawa-kachori.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kulfi",
+    "category": "Sweets & Desserts",
+    "slug": "kulfi",
+    "illustration": "assets/dishes/kulfi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Malai Kulfi",
+    "category": "Sweets & Desserts",
+    "slug": "malai-kulfi",
+    "illustration": "assets/dishes/malai-kulfi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Pista Kulfi",
+    "category": "Sweets & Desserts",
+    "slug": "pista-kulfi",
+    "illustration": "assets/dishes/pista-kulfi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mango Kulfi",
+    "category": "Sweets & Desserts",
+    "slug": "mango-kulfi",
+    "illustration": "assets/dishes/mango-kulfi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Falooda",
+    "category": "Sweets & Desserts",
+    "slug": "falooda",
+    "illustration": "assets/dishes/falooda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Royal Falooda",
+    "category": "Sweets & Desserts",
+    "slug": "royal-falooda",
+    "illustration": "assets/dishes/royal-falooda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kulfi Falooda",
+    "category": "Sweets & Desserts",
+    "slug": "kulfi-falooda",
+    "illustration": "assets/dishes/kulfi-falooda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Shrikhand",
+    "category": "Sweets & Desserts",
+    "slug": "shrikhand",
+    "illustration": "assets/dishes/shrikhand.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Aamrakhand",
+    "category": "Sweets & Desserts",
+    "slug": "aamrakhand",
+    "illustration": "assets/dishes/aamrakhand.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Basundi",
+    "category": "Sweets & Desserts",
+    "slug": "basundi",
+    "illustration": "assets/dishes/basundi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Puran Poli",
+    "category": "Sweets & Desserts",
+    "slug": "puran-poli",
+    "illustration": "assets/dishes/puran-poli.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Modak",
+    "category": "Sweets & Desserts",
+    "slug": "modak",
+    "illustration": "assets/dishes/modak.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ukadiche Modak",
+    "category": "Sweets & Desserts",
+    "slug": "ukadiche-modak",
+    "illustration": "assets/dishes/ukadiche-modak.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Unniyappam",
+    "category": "Sweets & Desserts",
+    "slug": "unniyappam",
+    "illustration": "assets/dishes/unniyappam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ada Pradhaman",
+    "category": "Sweets & Desserts",
+    "slug": "ada-pradhaman",
+    "illustration": "assets/dishes/ada-pradhaman.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Payasam",
+    "category": "Sweets & Desserts",
+    "slug": "payasam",
+    "illustration": "assets/dishes/payasam.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Bebinca",
+    "category": "Sweets & Desserts",
+    "slug": "bebinca",
+    "illustration": "assets/dishes/bebinca.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Dharwad Peda",
+    "category": "Sweets & Desserts",
+    "slug": "dharwad-peda",
+    "illustration": "assets/dishes/dharwad-peda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chhena Poda",
+    "category": "Sweets & Desserts",
+    "slug": "chhena-poda",
+    "illustration": "assets/dishes/chhena-poda.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Ariselu",
+    "category": "Sweets & Desserts",
+    "slug": "ariselu",
+    "illustration": "assets/dishes/ariselu.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Pootharekulu",
+    "category": "Sweets & Desserts",
+    "slug": "pootharekulu",
+    "illustration": "assets/dishes/pootharekulu.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Khubani Ka Meetha",
+    "category": "Sweets & Desserts",
+    "slug": "khubani-ka-meetha",
+    "illustration": "assets/dishes/khubani-ka-meetha.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Misti Doi",
+    "category": "Sweets & Desserts",
+    "slug": "misti-doi",
+    "illustration": "assets/dishes/misti-doi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Nolen Gur Sandesh",
+    "category": "Sweets & Desserts",
+    "slug": "nolen-gur-sandesh",
+    "illustration": "assets/dishes/nolen-gur-sandesh.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Patishapta",
+    "category": "Sweets & Desserts",
+    "slug": "patishapta",
+    "illustration": "assets/dishes/patishapta.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Chhena Jalebi",
+    "category": "Sweets & Desserts",
+    "slug": "chhena-jalebi",
+    "illustration": "assets/dishes/chhena-jalebi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sutarfeni",
+    "category": "Sweets & Desserts",
+    "slug": "sutarfeni",
+    "illustration": "assets/dishes/sutarfeni.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Masala Chai",
+    "category": "Drinks & Shakes",
+    "slug": "masala-chai",
+    "illustration": "assets/dishes/masala-chai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Adrak Chai",
+    "category": "Drinks & Shakes",
+    "slug": "adrak-chai",
+    "illustration": "assets/dishes/adrak-chai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Elaichi Chai",
+    "category": "Drinks & Shakes",
+    "slug": "elaichi-chai",
+    "illustration": "assets/dishes/elaichi-chai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kesar Chai",
+    "category": "Drinks & Shakes",
+    "slug": "kesar-chai",
+    "illustration": "assets/dishes/kesar-chai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Tulsi Chai",
+    "category": "Drinks & Shakes",
+    "slug": "tulsi-chai",
+    "illustration": "assets/dishes/tulsi-chai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Irani Chai",
+    "category": "Drinks & Shakes",
+    "slug": "irani-chai",
+    "illustration": "assets/dishes/irani-chai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kashmiri Kahwa",
+    "category": "Drinks & Shakes",
+    "slug": "kashmiri-kahwa",
+    "illustration": "assets/dishes/kashmiri-kahwa.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Noon Chai",
+    "category": "Drinks & Shakes",
+    "slug": "noon-chai",
+    "illustration": "assets/dishes/noon-chai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kulhad Chai",
+    "category": "Drinks & Shakes",
+    "slug": "kulhad-chai",
+    "illustration": "assets/dishes/kulhad-chai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Cutting Chai",
+    "category": "Drinks & Shakes",
+    "slug": "cutting-chai",
+    "illustration": "assets/dishes/cutting-chai.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "South Indian Coffee",
+    "category": "Drinks & Shakes",
+    "slug": "south-indian-coffee",
+    "illustration": "assets/dishes/south-indian-coffee.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Cold Coffee",
+    "category": "Drinks & Shakes",
+    "slug": "cold-coffee",
+    "illustration": "assets/dishes/cold-coffee.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Cold Coffee with Ice Cream",
+    "category": "Drinks & Shakes",
+    "slug": "cold-coffee-with-ice-cream",
+    "illustration": "assets/dishes/cold-coffee-with-ice-cream.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Cappuccino",
+    "category": "Drinks & Shakes",
+    "slug": "cappuccino",
+    "illustration": "assets/dishes/cappuccino.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Cafe Latte",
+    "category": "Drinks & Shakes",
+    "slug": "cafe-latte",
+    "illustration": "assets/dishes/cafe-latte.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Espresso",
+    "category": "Drinks & Shakes",
+    "slug": "espresso",
+    "illustration": "assets/dishes/espresso.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Hot Chocolate",
+    "category": "Drinks & Shakes",
+    "slug": "hot-chocolate",
+    "illustration": "assets/dishes/hot-chocolate.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Badam Milk",
+    "category": "Drinks & Shakes",
+    "slug": "badam-milk",
+    "illustration": "assets/dishes/badam-milk.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Kesar Milk",
+    "category": "Drinks & Shakes",
+    "slug": "kesar-milk",
+    "illustration": "assets/dishes/kesar-milk.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Rose Milk",
+    "category": "Drinks & Shakes",
+    "slug": "rose-milk",
+    "illustration": "assets/dishes/rose-milk.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Masala Milk",
+    "category": "Drinks & Shakes",
+    "slug": "masala-milk",
+    "illustration": "assets/dishes/masala-milk.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Sweet Lassi",
+    "category": "Drinks & Shakes",
+    "slug": "sweet-lassi",
+    "illustration": "assets/dishes/sweet-lassi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Salted Lassi",
+    "category": "Drinks & Shakes",
+    "slug": "salted-lassi",
+    "illustration": "assets/dishes/salted-lassi.svg",
+    "photo_verified": false
+  },
+  {
+    "name": "Mango Lassi",
+    "category": "Drinks & Shakes",
+    "slug": "mango-lassi",
+    "illustration": "assets/dishes/mango-lassi.svg",
+    "photo_verified": false
+  }
+]
