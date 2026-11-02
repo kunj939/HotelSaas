@@ -16,7 +16,6 @@ A ready-to-deploy PHP + MySQL + HTML/CSS/JavaScript project for Hostinger Premiu
 | Analytics | Monthly order counts, item popularity, top ordering hours, recorded order value (not verified cash collection) |
 | SaaS admin | Create restaurant + owner, 7-day trial, subscription status/expiry, ₹499 or ₹599 fees, monthly recurring revenue, paid-subscription receipts, restaurant-wide platform analysis, password resets |
 | Security | Server-priced orders, session/CSRF auth, role checks, MySQL prepared statements, tenant-scoped operations, rate limits, idempotency keys, non-executable uploads, password hashing |
-| Demo | `public/demo.html`: end-to-end demo using local simulated data; no database required |
 | Image starters | Exactly 500 Indian dish names and 500 original **illustrated SVG placeholders**, not 500 real photographs. Photo suggestion fetches suitable Wikimedia Commons results with license attribution; owner chooses image. |
 
 ### Important: about the 500 images
@@ -36,12 +35,11 @@ QR settings generate the appropriate URL. Restaurant owner sees only their data.
 ## Files
 
 ```
-public/                   # upload contents to your site's web root (public_html)
+.htaccess                 # serves public/ as the site root and keeps project files private
+public/                   # website files
   index.html              # production single-page app
-  demo.html               # standalone demo (DELETE before production)
   api/index.php           # PHP REST API
   api/config.example.php  # template: copy to config.local.php
-  api/install_once.php    # first Super Admin setup (DELETE after use)
   assets/app.js           # UI logic
   assets/styles.css       # frontend design
   assets/qr.js            # offline QR generator
@@ -58,18 +56,6 @@ HOSTINGER_DEPLOY.md       # detailed setup
 SECURITY_AND_LIMITATIONS.md
 TEST_PLAN.md
 ```
-
-## Quick preview, before using MySQL
-
-Open `public/demo.html` via a local web server. For example:
-
-```bash
-cd public
-python -m http.server 8000
-# open http://localhost:8000/demo.html
-```
-
-Then experience the customer flow. To see restaurant or Super Admin, change the address to `demo.html#/owner` or `demo.html#/admin`. Demo login accepts any nonempty email and password; `kvmeena2004@outlook.com` becomes Super Admin; any other email becomes restaurant owner. **These are mock accounts only, not production credentials.**
 
 ## Production installation
 

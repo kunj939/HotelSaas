@@ -7,9 +7,7 @@ Run:
 ```bash
 python tests/test_static.py
 php -l public/api/index.php
-php -l public/api/install_once.php
 node --check public/assets/app.js
-node --check public/assets/demo.js
 node --check public/assets/qr.js
 ```
 

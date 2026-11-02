@@ -46,7 +46,7 @@ Generate strong random secrets locally, e.g. run `python -c "import secrets; pri
 
 Open `https://menu.yourdomain.com/api/install_once.php` in your browser. Enter the installation key from config, admin name, email and a strong password of at least 14 characters. This only works if no Super Admin exists.
 
-**Immediately delete `api/install_once.php` after success**, and clear `install_key` from `config.local.php`. Also remove `public_html/demo.html` and `public_html/assets/demo.js` from the production site.
+`install_once.php` is no longer in the GitHub repo. Use the copy in the uploaded ZIP to create the admin. **Then delete `api/install_once.php` from the server** and clear `install_key` from `config.local.php`.
 
 Open `https://menu.yourdomain.com/index.html#/admin` and sign in.
 

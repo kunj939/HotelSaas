@@ -1,0 +1,12 @@
+# Hostinger deploys this whole repository into public_html. This file makes the
+# website files in public/ the site root and keeps project files private.
+Options -Indexes
+RewriteEngine On
+
+# Hidden folders and project folders are never served
+RewriteRule ^(\.git|\.github|database|docs|catalog|tools|tests)(/|$) - [F,L]
+RewriteRule \.(md|sql|py|ps1|sh)$ - [F,L]
+
+# Serve public/ as the site root, unless the request already points inside it
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]
