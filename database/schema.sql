@@ -75,6 +75,8 @@ CREATE TABLE IF NOT EXISTS orders (
  status ENUM('new','accepted','preparing','ready','served','rejected') NOT NULL DEFAULT 'new',
  total DECIMAL(12,2) NOT NULL,
  note VARCHAR(500) DEFAULT NULL,
+ customer_name VARCHAR(60) DEFAULT NULL,
+ customer_phone VARCHAR(10) DEFAULT NULL,
  client_request_id VARCHAR(80) NOT NULL,
  tracking_key CHAR(64) NOT NULL,
  ip_hash CHAR(64) NOT NULL,

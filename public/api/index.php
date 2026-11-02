@@ -106,10 +106,14 @@ try {
    $prepared[]=['item_id'=>$itemId,'name'=>$m['name'],'variant'=>$variant,'addons'=>$checked,'quantity'=>$qty,'unit'=>round($unit,2),'line'=>$line];
   }
   if($total<=0||$total>100000)fail('Invalid order amount');
+  $customerName=val($b['customer_name']??'',60);if(mb_strlen($customerName)<2)fail('Please enter your name so we can call you');
+  $phone=preg_replace('/\D+/','',val($b['customer_phone']??'',20));if(strlen($phone)===12&&str_starts_with($phone,'91'))$phone=substr($phone,2);
+  if($phone!==''&&!preg_match('/^[6-9]\d{9}$/',$phone))fail('Enter a valid 10-digit mobile number, or leave it empty');
+  $customerPhone=$phone===''?null:$phone;
   $track=bin2hex(random_bytes(32));$note=val($b['note']??'',500);
   try {
    db()->beginTransaction();
-   execq('INSERT INTO orders(restaurant_id,table_no,total,note,client_request_id,tracking_key,ip_hash) VALUES(?,?,?,?,?,?,?)',[$r['id'],$table,round($total,2),$note,$token,$track,iphash()]);
+   execq('INSERT INTO orders(restaurant_id,table_no,total,note,customer_name,customer_phone,client_request_id,tracking_key,ip_hash) VALUES(?,?,?,?,?,?,?,?,?)',[$r['id'],$table,round($total,2),$note,$customerName,$customerPhone,$token,$track,iphash()]);
    $oid=(int)db()->lastInsertId();
    foreach($prepared as $p)execq('INSERT INTO order_items(order_id,item_id,dish_name,variant_name,addons_json,quantity,unit_price,line_total) VALUES(?,?,?,?,?,?,?,?)',[$oid,$p['item_id'],$p['name'],$p['variant'],json_encode($p['addons'],JSON_UNESCAPED_UNICODE),$p['quantity'],$p['unit'],$p['line']]);
    db()->commit();
@@ -164,7 +168,7 @@ try {
   elseif($range==='today'){$where.=' AND created_at>=CURDATE()';}
   elseif($range==='past'){$where.=' AND created_at>=DATE_SUB(NOW(), INTERVAL 60 DAY)';}
   else fail('Invalid order range');
-  $out=rows("SELECT id,table_no,status,total,note,created_at,updated_at FROM orders WHERE $where ORDER BY created_at DESC,id DESC LIMIT 250",$p);
+  $out=rows("SELECT id,table_no,status,total,note,customer_name,customer_phone,created_at,updated_at FROM orders WHERE $where ORDER BY created_at DESC,id DESC LIMIT 250",$p);
   foreach($out as &$o)$o=orderRow($o);respond(['orders'=>$out]);
  }
  if($route==='owner/order/status'){
