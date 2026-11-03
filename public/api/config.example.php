@@ -14,5 +14,6 @@ return [
   'mode' => 'test',
   'key' => 'CHANGE_ME',
   'salt' => 'CHANGE_ME',
+  'merchant_name' => '', // optional: the business name PayU shows at checkout, if it is not TableBloom
  ],
 ];

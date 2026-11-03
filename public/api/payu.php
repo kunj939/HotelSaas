@@ -15,6 +15,8 @@ function payuConf():array {
  if(empty($p['key'])||empty($p['salt'])||str_contains((string)$p['key'],'CHANGE_ME'))throw new RuntimeException('PayU is not configured in config.local.php');
  return $p;
 }
+// Business name PayU shows on its checkout page (the PayU account's name), so owners are not surprised by it.
+function payuMerchantName():?string {global $c;$n=trim((string)($c['payu']['merchant_name']??''));return $n!==''?$n:null;}
 function payuReady():bool {try{payuConf();return true;}catch(RuntimeException $e){return false;}}
 function payuLive():bool {return (payuConf()['mode']??'test')==='live';}
 function payuPayUrl():string {return payuLive()?'https://secure.payu.in/_payment':'https://test.payu.in/_payment';}

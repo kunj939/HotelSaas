@@ -85,8 +85,8 @@ Prices are set in `api/payu.php`: ₹599/month without autopay, ₹549/month wit
 
 1. Create a PayU business account and ask PayU to enable **Recurring Payments / Standing Instructions (SI)** for UPI Autopay and cards. Without SI, only the monthly plan works.
 2. Put the PayU **test** key and salt in `config.local.php` (`'mode' => 'test'`). `app_url` must be the real HTTPS address because PayU returns to `app_url/api/payu_return.php`.
-3. In the PayU dashboard, add the webhook URL `https://menu.yourdomain.com/api/payu_return.php?webhook=1` for payment success and failure. This settles payments even if the owner closes the browser.
-4. Hostinger hPanel → Advanced → Cron Jobs → add a daily job at about 07:00 (NPCI asks to avoid 10:00–13:00 and 17:00–21:30 for UPI autopay):
+3. In the PayU dashboard, add the webhook URL `https://menu.yourdomain.com/api/payu_return.php?webhook=1` for payment success and failure. This settles payments even if the owner closes the browser. **Sharing a PayU account with another website?** Do not replace that website's webhook; skip this step and rely on the cron below (run it hourly) to settle payments. Also ask PayU to add this domain to the account's allowed websites, and set `'merchant_name'` to the account's business name so owners know what they'll see at checkout.
+4. Hostinger hPanel → Advanced → Cron Jobs → add a job that runs every hour (safe: each autopay month is notified once and charged at most once a day; NPCI asks to avoid 10:00–13:00 and 17:00–21:30 for UPI autopay, and debits run on the first hourly run of the due day):
    `php /home/YOUR_USER/public_html/public/api/payu_cron.php`
    (If you uploaded only the contents of `public/`, the path is `.../public_html/api/payu_cron.php`.)
    It sends the pre-debit notice about 3 days before each autopay month, charges the month and settles pending payments. Without it, autopay never charges.

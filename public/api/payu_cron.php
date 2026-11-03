@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-// Daily autopay job. Run from Hostinger hPanel → Advanced → Cron Jobs, once a day around 7:00 AM:
+// Autopay + payment settling job. Run from Hostinger hPanel → Advanced → Cron Jobs, every hour (safe to repeat):
 //   php /home/USER/public_html/public/api/payu_cron.php
 // It sends pre-debit notices, charges due autopay months and settles pending PayU payments.
 if(PHP_SAPI!=='cli'){http_response_code(404);exit;}
