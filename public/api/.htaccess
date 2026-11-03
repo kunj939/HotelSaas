@@ -1,4 +1,4 @@
 Options -Indexes
-<FilesMatch "^(config\.(local|example)\.php|bootstrap\.php|README.*)$">
+<FilesMatch "^(config\.(local|example)\.php|bootstrap\.php|db\.php|payu\.php|payu_cron\.php|README.*)$">
  Require all denied
 </FilesMatch>

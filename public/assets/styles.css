@@ -229,6 +229,15 @@ select{appearance:auto}
 .order-number{display:grid;justify-items:center;gap:4px;width:100%;padding:18px 24px;border:2px solid var(--brand);border-radius:var(--radius);background:color-mix(in srgb,var(--brand) 6%,var(--card));text-align:center}
 .order-number b{font-family:var(--font-display);font-size:44px;line-height:1.1;color:var(--brand-text)}
 .order-card a{color:var(--brand-text);font-weight:700}
+.token-chip{display:inline-grid;place-items:center;min-width:40px;height:40px;margin-right:10px;padding:0 8px;border-radius:12px;background:var(--brand);color:var(--onbrand);font-family:var(--font-display);font-size:20px;vertical-align:middle}
+
+/* Token call: full-screen alert on the guest's phone */
+.modal-wrap.token-call{align-items:center;padding:20px;background:rgba(12,32,26,.72)}
+.token-call-card{display:grid;justify-items:center;gap:14px;width:min(380px,100%);padding:30px 24px;border-radius:28px;background:var(--card);text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:callIn .45s cubic-bezier(.3,1.5,.5,1)}
+.token-big{display:grid;place-items:center;min-width:150px;height:150px;padding:0 24px;border-radius:999px;background:var(--brand);color:var(--onbrand);font-family:var(--font-display);font-size:76px;font-weight:700;line-height:1;animation:callPulse 1.2s ease-in-out infinite}
+.token-call-card p{font-size:17px;font-weight:600}
+@keyframes callIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:none}}
+@keyframes callPulse{0%,100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--brand) 45%,transparent)}50%{box-shadow:0 0 0 22px transparent}}
 
 /* Dish sheet & modals */
 .modal-wrap{position:fixed;inset:0;z-index:120;display:flex;align-items:flex-end;justify-content:center;background:rgba(12,32,26,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
@@ -302,6 +311,8 @@ select{appearance:auto}
 .admin-menu-row p{margin-top:4px;font-size:13px;color:var(--muted)}
 .admin-menu-row .row:last-child{flex-shrink:0}
 
+.danger-zone{border:1px solid #F3C7C2;background:color-mix(in srgb,#FDECEA 60%,var(--card))}
+.danger-zone .row{gap:8px}
 .options-group{display:grid;gap:12px;padding:16px;border:1px dashed var(--line-strong);border-radius:14px;background:var(--soft)}
 .option-row{display:grid;grid-template-columns:minmax(0,1fr) 120px 40px;align-items:center;gap:8px}
 .option-row .btn{min-height:40px;padding:8px;font-size:16px}

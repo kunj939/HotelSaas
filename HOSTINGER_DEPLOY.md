@@ -14,7 +14,9 @@ Hostinger hPanel → Databases → MySQL Databases. Create one database and user
 - Exact DB user
 - DB password
 
-Open phpMyAdmin for this database and import `database/schema.sql` (bundled inside the ZIP). It creates the tables `restaurants`, `users`, `categories`, `menu_items`, `orders`, `order_items`, `subscription_payments`, `audit_logs`, `auth_attempts`.
+Open phpMyAdmin for this database and import `database/schema.sql` (bundled inside the ZIP). It creates the tables `restaurants`, `users`, `categories`, `menu_items`, `orders`, `order_items`, `subscription_payments`, `autopay_mandates`, `payu_transactions`, `token_counters`, `restaurant_access`, `audit_logs`, `auth_attempts`.
+
+**Upgrading an existing database?** Don't re-import `schema.sql`. Run each file in `database/migrations/` that you have not run yet, oldest first, in phpMyAdmin → SQL.
 
 ## 2. Upload files
 
@@ -35,6 +37,7 @@ return [
  'app_url' => 'https://menu.yourdomain.com',
  'app_secret' => 'A_UNIQUE_RANDOM_HEX_STRING_AT_LEAST_64_CHARACTERS',
  'install_key' => 'ANOTHER_UNIQUE_RANDOM_SECRET_AT_LEAST_24_CHARACTERS',
+ 'payu' => ['mode' => 'test', 'key' => 'YOUR_PAYU_KEY', 'salt' => 'YOUR_PAYU_SALT'],
 ];
 ```
 
@@ -52,13 +55,40 @@ Open `https://menu.yourdomain.com/admin` and sign in. The home page has no Super
 
 ## 5. Add a restaurant
 
-Super Admin → Restaurants → Add Restaurant. Enter the restaurant name, owner email, temporary password (12+ characters), table count, monthly subscription fee (₹599 or agreed ₹499). A 7-day trial is created.
+Super Admin → Restaurants → Add Restaurant. Enter the restaurant name, owner email, temporary password (12+ characters), table count, monthly subscription fee (₹599 by default). A 7-day trial is created.
 
 Restaurant owner signs in at `index.html#/owner` and changes their password under Settings. Owner adds menu categories and dishes, sizes, extras, their own photos or licensed photo suggestions. Owner sets their logo, cover, theme and number of tables. In Settings → QR Code Generator, choose Common QR or Table QR, print and place QR cards.
 
-## 6. Turn on subscription
+## 5a. Counter mode, tokens and multiple outlets
 
-Super Admin → Restaurants → Manage → set **Active**, choose the correct expiry date, save. Record any received UPI subscription payment separately under Record Payment. Saving a payment does not automatically extend expiry; update the expiry explicitly.
+- **Small restaurant without tables:** owner → Settings → QR code type → **Counter · No tables, token only**. Print the single QR for the counter.
+- **Tokens:** every order gets a daily token (restarts at midnight in the `timezone` set in `config.local.php`, default `Asia/Kolkata`). In Orders, **📣 Call token** marks the order ready and rings the guest's phone. The guest must keep the order page open, and phones only play sound after the guest has tapped the page once (placing the order counts).
+- **One owner, several restaurants:** create each restaurant as usual, then Super Admin → Restaurants → Manage (the extra restaurant) → **Other owner logins with access** → enter the main owner's login email → Link. The owner then switches outlets from the top bar and can view **All outlets** in Orders. 2 outlets per login are included; each extra outlet adds ₹200/month to the bill of the owner's own restaurant.
+
+## 5b. Stopping or deleting a restaurant
+
+Super Admin → Restaurants → Manage → **Danger zone**:
+- **Stop restaurant:** QR ordering closes and the owner/staff are logged out at once. **Resume** reopens it. Nothing is deleted.
+- **Download all data:** a JSON backup of the menu, orders, payments and logins (no passwords). Keep it before deleting.
+- **Delete restaurant:** hides it from customers and owners and stops autopay, but keeps every record. **Restore** brings it back.
+- **Delete permanently** (only after Delete): type the restaurant's URL slug to confirm. Erases its menu, orders, payments, uploaded photos and its own owner/staff logins. Cannot be undone.
+
+## 6. Subscription payments (PayU)
+
+Prices are set in `api/payu.php`: ₹599/month without autopay, ₹549/month with 6-month autopay, and a ₹500 one-time setup fee added to a restaurant's first PayU payment.
+
+1. Create a PayU business account and ask PayU to enable **Recurring Payments / Standing Instructions (SI)** for UPI Autopay and cards. Without SI, only the monthly plan works.
+2. Put the PayU **test** key and salt in `config.local.php` (`'mode' => 'test'`). `app_url` must be the real HTTPS address because PayU returns to `app_url/api/payu_return.php`.
+3. In the PayU dashboard, add the webhook URL `https://menu.yourdomain.com/api/payu_return.php?webhook=1` for payment success and failure. This settles payments even if the owner closes the browser.
+4. Hostinger hPanel → Advanced → Cron Jobs → add a daily job at about 07:00 (NPCI asks to avoid 10:00–13:00 and 17:00–21:30 for UPI autopay):
+   `php /home/YOUR_USER/public_html/public/api/payu_cron.php`
+   (If you uploaded only the contents of `public/`, the path is `.../public_html/api/payu_cron.php`.)
+   It sends the pre-debit notice about 3 days before each autopay month, charges the month and settles pending payments. Without it, autopay never charges.
+5. Test in PayU test mode: pay the monthly plan once, then the autopay plan, and check that Billing shows the payment and the new expiry. Then switch to live keys and `'mode' => 'live'`.
+
+The owner pays from **Billing** in their dashboard. Each successful payment adds one month after the current expiry. After 3 failed autopay attempts, autopay stops and the plan goes back to monthly. An owner can also stop autopay, which stops future charges; the mandate itself is revoked from their UPI app or bank.
+
+**Paid offline?** Super Admin → Restaurants → Manage → set **Active** and the expiry date, tick **Setup fee paid** if it was paid, and record the payment under Record Payment. Recording a payment by hand does not extend expiry; update it explicitly.
 
 ## 7. Safety and go-live test
 
@@ -88,6 +118,8 @@ This is small shared-hosting-friendly software, **not a guaranteed 50-restaurant
 | `403 config file` | This is correct — credentials must remain private |
 | QR opens wrong website | Change `app_url` in config and regenerate / reprint QR |
 | Uploaded photo fails | Check writable `uploads/`, 2.5 MB limit and `fileinfo` |
+| Billing says online payment is not set up | Add the `payu` key and salt to `config.local.php` |
+| Paid but expiry did not change | Check PHP error logs. The webhook or the daily cron settles it; make sure both are set up |
 | No Wikimedia suggestions | `curl` or outbound Wikimedia access unavailable; owner can upload original photo |
 | New orders not heard | Enable sound by clicking button and keep dashboard visible; browser background sound can be restricted |
 | Wrong colours | Settings → Save restaurant settings, then refresh customer screen |

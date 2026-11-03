@@ -15,13 +15,16 @@ CREATE TABLE IF NOT EXISTS restaurants (
  address VARCHAR(400) DEFAULT NULL,
  opening_hours VARCHAR(180) DEFAULT NULL,
  table_count INT NOT NULL DEFAULT 20,
- qr_mode ENUM('common','table') NOT NULL DEFAULT 'common',
+ qr_mode ENUM('common','table','counter') NOT NULL DEFAULT 'common',
  ordering_enabled TINYINT(1) NOT NULL DEFAULT 1,
  status ENUM('trial','active','suspended') NOT NULL DEFAULT 'trial',
  monthly_fee DECIMAL(10,2) NOT NULL DEFAULT 599.00,
+ setup_fee_paid TINYINT(1) NOT NULL DEFAULT 0,
  subscription_ends DATE NOT NULL,
  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
- INDEX idx_status (status,subscription_ends)
+ deleted_at DATETIME DEFAULT NULL,
+ INDEX idx_status (status,subscription_ends),
+ INDEX idx_deleted (deleted_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS users (
@@ -34,6 +37,25 @@ CREATE TABLE IF NOT EXISTS users (
  active TINYINT(1) NOT NULL DEFAULT 1,
  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
  CONSTRAINT fk_users_restaurant FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS token_counters (
+ restaurant_id BIGINT UNSIGNED NOT NULL,
+ day DATE NOT NULL,
+ last_no INT UNSIGNED NOT NULL,
+ PRIMARY KEY (restaurant_id,day),
+ CONSTRAINT fk_token_rest FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Which restaurants each owner/staff login can open (owners can have several outlets)
+CREATE TABLE IF NOT EXISTS restaurant_access (
+ user_id BIGINT UNSIGNED NOT NULL,
+ restaurant_id BIGINT UNSIGNED NOT NULL,
+ created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ PRIMARY KEY (user_id,restaurant_id),
+ INDEX idx_access_rest (restaurant_id),
+ CONSTRAINT fk_access_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+ CONSTRAINT fk_access_rest FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS categories (
@@ -72,7 +94,11 @@ CREATE TABLE IF NOT EXISTS orders (
  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
  restaurant_id BIGINT UNSIGNED NOT NULL,
  table_no INT NOT NULL,
+ token_no INT UNSIGNED DEFAULT NULL,
+ token_day DATE DEFAULT NULL,
  status ENUM('new','accepted','preparing','ready','served','rejected') NOT NULL DEFAULT 'new',
+ call_count TINYINT UNSIGNED NOT NULL DEFAULT 0,
+ called_at TIMESTAMP NULL DEFAULT NULL,
  total DECIMAL(12,2) NOT NULL,
  note VARCHAR(500) DEFAULT NULL,
  customer_name VARCHAR(60) DEFAULT NULL,
@@ -84,6 +110,7 @@ CREATE TABLE IF NOT EXISTS orders (
  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
  UNIQUE KEY uq_request (restaurant_id,client_request_id),
  UNIQUE KEY uq_tracking_key (tracking_key),
+ UNIQUE KEY uq_token (restaurant_id,token_day,token_no),
  INDEX idx_order_live (restaurant_id,status,created_at),
  INDEX idx_order_date (restaurant_id,created_at),
  CONSTRAINT fk_orders_rest FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
@@ -114,6 +141,48 @@ CREATE TABLE IF NOT EXISTS subscription_payments (
  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
  INDEX idx_payments (restaurant_id,paid_on),
  CONSTRAINT fk_payments_rest FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS autopay_mandates (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ restaurant_id BIGINT UNSIGNED NOT NULL,
+ authpayuid VARCHAR(40) NOT NULL,
+ mode VARCHAR(20) DEFAULT NULL,
+ amount DECIMAL(10,2) NOT NULL,
+ cycles_total TINYINT UNSIGNED NOT NULL DEFAULT 6,
+ cycles_done TINYINT UNSIGNED NOT NULL DEFAULT 1,
+ next_debit_date DATE NOT NULL,
+ predebit_debit_on DATE DEFAULT NULL,
+ invoice_no VARCHAR(40) DEFAULT NULL,
+ attempts TINYINT UNSIGNED NOT NULL DEFAULT 0,
+ last_attempt_on DATE DEFAULT NULL,
+ status ENUM('active','completed','cancelled','failed') NOT NULL DEFAULT 'active',
+ created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ INDEX idx_mandate_status (status,next_debit_date),
+ INDEX idx_mandate_rest (restaurant_id,id),
+ CONSTRAINT fk_mandate_rest FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+CREATE TABLE IF NOT EXISTS payu_transactions (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ restaurant_id BIGINT UNSIGNED NOT NULL,
+ mandate_id BIGINT UNSIGNED DEFAULT NULL,
+ txnid VARCHAR(40) NOT NULL UNIQUE,
+ kind ENUM('checkout','recurring') NOT NULL,
+ plan ENUM('monthly','autopay6') NOT NULL,
+ amount DECIMAL(10,2) NOT NULL,
+ setup_fee DECIMAL(10,2) NOT NULL DEFAULT 0,
+ status ENUM('initiated','pending','success','failed') NOT NULL DEFAULT 'initiated',
+ mihpayid VARCHAR(40) DEFAULT NULL,
+ mode VARCHAR(20) DEFAULT NULL,
+ created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ INDEX idx_payu_status (status,created_at),
+ INDEX idx_payu_rest (restaurant_id,created_at),
+ INDEX idx_payu_mandate (mandate_id,status),
+ CONSTRAINT fk_payu_rest FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE,
+ CONSTRAINT fk_payu_mandate FOREIGN KEY (mandate_id) REFERENCES autopay_mandates(id) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS audit_logs (
