@@ -311,6 +311,11 @@ select{appearance:auto}
 .admin-menu-row p{margin-top:4px;font-size:13px;color:var(--muted)}
 .admin-menu-row .row:last-child{flex-shrink:0}
 
+.upi-qr{display:grid;place-items:center;margin:6px auto;padding:10px;width:220px;border-radius:16px;background:#fff}
+.upi-qr svg{width:200px;height:200px}
+.upi-status.pending{border:1px solid #F1D79A;background:#FFF7E3}
+.upi-status.rejected{border:1px solid #F3C7C2;background:#FDECEA}
+.upi-status.approved{border:1px solid #BFE3CB;background:#EAF6EE}
 .danger-zone{border:1px solid #F3C7C2;background:color-mix(in srgb,#FDECEA 60%,var(--card))}
 .danger-zone .row{gap:8px}
 .options-group{display:grid;gap:12px;padding:16px;border:1px dashed var(--line-strong);border-radius:14px;background:var(--soft)}

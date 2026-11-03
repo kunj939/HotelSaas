@@ -146,7 +146,7 @@ try {
   $r=one('SELECT id,name,phone,status,subscription_ends,monthly_fee,setup_fee_paid FROM restaurants WHERE id=?',[$restaurantId]);
   $mandate=one('SELECT id,mode,amount,cycles_total,cycles_done,next_debit_date,predebit_debit_on,attempts,status,created_at FROM autopay_mandates WHERE restaurant_id=? ORDER BY id DESC LIMIT 1',[$restaurantId]);
   $payments=rows('SELECT amount,paid_on,method,reference_no,note FROM subscription_payments WHERE restaurant_id=? ORDER BY paid_on DESC,id DESC LIMIT 24',[$restaurantId]);
-  respond(['restaurant'=>$r,'mandate'=>$mandate,'payments'=>$payments,'quotes'=>['monthly'=>billingQuote($r,'monthly'),'autopay6'=>billingQuote($r,'autopay6')],'autopay_months'=>PLAN_AUTOPAY_MONTHS,'payu_ready'=>payuReady(),'can_pay'=>$a['role']==='owner']);
+  respond(['restaurant'=>$r,'mandate'=>$mandate,'payments'=>$payments,'quotes'=>['monthly'=>billingQuote($r,'monthly'),'autopay6'=>billingQuote($r,'autopay6')],'autopay_months'=>PLAN_AUTOPAY_MONTHS,'payu_ready'=>payuReady(),'upi'=>upiConf(),'upi_quotes'=>['monthly'=>upiQuote($r,'monthly'),'upfront6'=>upiQuote($r,'upfront6')],'upi_latest'=>one('SELECT plan,months,amount,utr,status,note,created_at FROM upi_payments WHERE restaurant_id=? AND created_at>DATE_SUB(NOW(),INTERVAL 30 DAY) ORDER BY id DESC LIMIT 1',[$restaurantId]),'slug'=>one('SELECT slug FROM restaurants WHERE id=?',[$restaurantId])['slug'],'can_pay'=>$a['role']==='owner']);
  }
  if($route==='owner/billing/checkout'){
   mutation();if($a['role']!=='owner')fail('Only the restaurant owner can pay the subscription',403);
@@ -157,6 +157,18 @@ try {
   if($plan==='autopay6'&&one('SELECT id FROM autopay_mandates WHERE restaurant_id=? AND status="active"',[$restaurantId]))fail('6-month autopay is already active for this restaurant');
   $r=one('SELECT * FROM restaurants WHERE id=?',[$restaurantId]);
   audit('subscription.checkout',$restaurantId,$plan);respond(payuCheckout($r,$a,$plan,$phone));
+ }
+ if($route==='owner/billing/upi'){
+  // Owner paid by UPI and sends the UTR; Super Admin checks the bank and approves it.
+  mutation();if($a['role']!=='owner')fail('Only the restaurant owner can pay the subscription',403);
+  $b=body();$plan=val($b['plan']??'',10);if(!in_array($plan,['monthly','upfront6'],true))fail('Choose a plan');
+  $utr=strtoupper(preg_replace('/\s+/','',val($b['utr']??'',60)));if(!preg_match('/^[A-Z0-9]{6,30}$/D',$utr))fail('Enter the UPI reference / UTR number from your payment app (usually 12 digits)');
+  if(!upiConf())fail('UPI payment is not set up yet. Contact TableBloom support.',503);
+  if(one('SELECT id FROM upi_payments WHERE restaurant_id=? AND status="pending"',[$restaurantId]))fail('Your last UPI payment is still waiting for approval');
+  $q=upiQuote(one('SELECT * FROM restaurants WHERE id=?',[$restaurantId]),$plan);
+  try{execq('INSERT INTO upi_payments(restaurant_id,plan,months,amount,setup_fee,monthly_fee,utr,submitted_by) VALUES(?,?,?,?,?,?,?,?)',[$restaurantId,$plan,$q['months'],$q['total'],$q['setup_fee'],$q['monthly'],$utr,$a['id']]);}
+  catch(PDOException $e){if($e->getCode()==='23000')fail('This UTR number was already submitted');throw $e;}
+  audit('subscription.upi.submit',$restaurantId,$utr.' '.$q['total']);respond(['ok'=>true]);
  }
  if($route==='owner/billing/stop-autopay'){
   mutation();if($a['role']!=='owner')fail('Only the restaurant owner can change autopay',403);
@@ -280,7 +292,7 @@ try {
   $orders=one('SELECT COUNT(*) AS all_orders,SUM(created_at>=DATE_FORMAT(NOW(),"%Y-%m-01")) AS this_month FROM orders');
   $collected=one('SELECT COALESCE(SUM(amount),0) AS amount FROM subscription_payments WHERE paid_on>=DATE_FORMAT(CURDATE(),"%Y-%m-01")');
   $growth=rows('SELECT DATE_FORMAT(created_at,"%Y-%m") AS month,COUNT(*) AS restaurants FROM restaurants WHERE created_at>=DATE_SUB(NOW(),INTERVAL 12 MONTH) GROUP BY DATE_FORMAT(created_at,"%Y-%m") ORDER BY month');
-  respond(['stats'=>$stats,'orders'=>$orders,'collected'=>$collected,'growth'=>$growth]);
+  respond(['stats'=>$stats,'orders'=>$orders,'collected'=>$collected,'growth'=>$growth,'upi_pending'=>(int)one('SELECT COUNT(*) AS n FROM upi_payments WHERE status="pending"')['n']]);
  }
  if($route==='admin/restaurants'){
   $list=rows('SELECT r.*, (SELECT COUNT(*) FROM orders o WHERE o.restaurant_id=r.id AND o.created_at>=DATE_FORMAT(NOW(),"%Y-%m-01")) AS month_orders,(SELECT COUNT(*) FROM menu_items m WHERE m.restaurant_id=r.id AND m.deleted_at IS NULL) AS menu_count,(SELECT email FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY id LIMIT 1) AS owner_email,(SELECT CONCAT(m.status," ",m.cycles_done,"/",m.cycles_total) FROM autopay_mandates m WHERE m.restaurant_id=r.id ORDER BY m.id DESC LIMIT 1) AS autopay,(SELECT GROUP_CONCAT(CONCAT(u.id,":",u.email) ORDER BY u.email SEPARATOR ",") FROM restaurant_access ra JOIN users u ON u.id=ra.user_id WHERE ra.restaurant_id=r.id AND u.role="owner" AND NOT (u.restaurant_id<=>r.id)) AS linked_owners,(SELECT COUNT(*) FROM restaurant_access ra WHERE ra.user_id=(SELECT u.id FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY u.id LIMIT 1)) AS owner_outlets FROM restaurants r ORDER BY r.created_at DESC LIMIT 1000');respond(['restaurants'=>$list]);
@@ -361,6 +373,35 @@ try {
   execq('DELETE FROM restaurants WHERE id=?',[$id]);
   foreach(array_unique(array_filter($files)) as $f)if(preg_match('~^/uploads/[a-f0-9]{32}\.(jpg|jpeg|png|webp)$~D',(string)$f)&&is_file(dirname(__DIR__).$f))unlink(dirname(__DIR__).$f);
   audit('restaurant.purge',null,$r['slug'].' · '.$r['name']);respond(['ok'=>true]);
+ }
+ if($route==='admin/settings')respond(['upi'=>upiConf()]);
+ if($route==='admin/settings/save'){
+  mutation();$b=body();$id=strtolower(val($b['upi_id']??'',100));$name=val($b['upi_name']??'',60);
+  if(!preg_match('/^[a-z0-9.\-_]{2,80}@[a-z0-9]{2,40}$/D',$id))fail('Enter a valid UPI ID, for example yourname@okaxis');
+  foreach(['upi_id'=>$id,'upi_name'=>$name?:'TableBloom'] as $k=>$v)execq('INSERT INTO platform_settings(k,v) VALUES(?,?) ON DUPLICATE KEY UPDATE v=VALUES(v)',[$k,$v]);
+  audit('settings.upi',null,$id);respond(['ok'=>true]);
+ }
+ if($route==='admin/upi-payments'){
+  respond(['payments'=>rows('SELECT p.*,r.name AS restaurant_name,r.slug,r.subscription_ends FROM upi_payments p JOIN restaurants r ON r.id=p.restaurant_id ORDER BY p.status="pending" DESC,p.id DESC LIMIT 60')]);
+ }
+ if($route==='admin/upi-payments/approve'){
+  // Extends the subscription by the paid months (after the current expiry) and records the receipt. Runs once per payment.
+  mutation();$b=body();$id=(int)($b['id']??0);
+  db()->beginTransaction();
+  try{
+   if(execq('UPDATE upi_payments SET status="approved",reviewed_at=NOW() WHERE id=? AND status="pending"',[$id])!==1)fail('Payment not found or already reviewed');
+   $p=one('SELECT * FROM upi_payments WHERE id=?',[$id]);
+   execq('UPDATE restaurants SET status=IF(status="suspended","suspended","active"),subscription_ends=DATE_ADD(GREATEST(subscription_ends,CURDATE()),INTERVAL ? MONTH),monthly_fee=?,setup_fee_paid=IF(?>0,1,setup_fee_paid) WHERE id=?',[(int)$p['months'],$p['monthly_fee'],$p['setup_fee'],$p['restaurant_id']]);
+   $note=((int)$p['months']>1?$p['months'].' months upfront':'Monthly plan').((float)$p['setup_fee']>0?' + one-time setup fee '.$p['setup_fee']:'');
+   execq('INSERT INTO subscription_payments(restaurant_id,amount,paid_on,method,reference_no,note) VALUES(?,?,CURDATE(),?,?,?)',[$p['restaurant_id'],$p['amount'],'UPI',$p['utr'],$note]);
+   db()->commit();
+  }catch(Throwable $e){if(db()->inTransaction())db()->rollBack();throw $e;}
+  audit('subscription.upi.approve',(int)$p['restaurant_id'],$p['utr']);respond(['ok'=>true]);
+ }
+ if($route==='admin/upi-payments/reject'){
+  mutation();$b=body();$id=(int)($b['id']??0);
+  if(!execq('UPDATE upi_payments SET status="rejected",reviewed_at=NOW(),note=? WHERE id=? AND status="pending"',[val($b['reason']??'',300)?:'Payment not found in bank statement',$id]))fail('Payment not found or already reviewed');
+  audit('subscription.upi.reject',null,(string)$id);respond(['ok'=>true]);
  }
  if($route==='admin/payment'){
   mutation();$b=body();$id=(int)($b['restaurant_id']??0);if(!one('SELECT id FROM restaurants WHERE id=?',[$id]))fail('Invalid restaurant');

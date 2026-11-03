@@ -31,6 +31,14 @@ function billingQuote(array $r,string $plan):array {
  $fee=(int)$r['setup_fee_paid']?0.0:PLAN_SETUP_FEE;$price=planPrice($plan);$n=extraOutlets((int)$r['id']);$extra=$n*EXTRA_OUTLET_FEE;
  return ['plan'=>$plan,'price'=>$price,'extra_outlets'=>$n,'extra_fee'=>$extra,'setup_fee'=>$fee,'total'=>$price+$extra+$fee];
 }
+// Manual UPI (works before PayU is ready): the platform UPI ID is stored by Super Admin in platform_settings.
+function setting(string $k):?string {$x=one('SELECT v FROM platform_settings WHERE k=?',[$k]);return $x?$x['v']:null;}
+function upiConf():?array {$id=setting('upi_id');return $id?['id'=>$id,'name'=>setting('upi_name')?:'TableBloom']:null;}
+// UPI plans: one month at the monthly price, or 6 months paid upfront at the autopay price.
+function upiQuote(array $r,string $plan):array {
+ $q=billingQuote($r,$plan==='upfront6'?'autopay6':'monthly');$months=$plan==='upfront6'?PLAN_AUTOPAY_MONTHS:1;$monthly=$q['price']+$q['extra_fee'];
+ return ['plan'=>$plan,'months'=>$months,'monthly'=>$monthly,'extra_outlets'=>$q['extra_outlets'],'setup_fee'=>$q['setup_fee'],'total'=>$monthly*$months+$q['setup_fee']];
+}
 function payuTxnid(string $prefix,int $rid):string {return $prefix.$rid.'X'.bin2hex(random_bytes(6));}
 
 // Server-to-server PayU API call (verify_payment, pre_debit_SI, si_transaction).

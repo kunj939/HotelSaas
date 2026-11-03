@@ -73,6 +73,12 @@ Super Admin → Restaurants → Manage → **Danger zone**:
 - **Delete restaurant:** hides it from customers and owners and stops autopay, but keeps every record. **Restore** brings it back.
 - **Delete permanently** (only after Delete): type the restaurant's URL slug to confirm. Erases its menu, orders, payments, uploaded photos and its own owner/staff logins. Cannot be undone.
 
+## 5c. Subscription payments by UPI (no PayU needed)
+
+1. Super Admin → **Subscriptions** → **UPI for subscription payments** → enter your UPI ID (e.g. `yourname@okaxis`) and the name to show → Save.
+2. Owners now see **Pay by UPI** in Billing: a QR with the exact amount (monthly ₹599, or 6 months upfront 6 × ₹549, plus the ₹500 setup fee the first time). They pay and enter the UTR.
+3. You get a "UPI payments waiting" alert on the Overview. Check the UTR and amount in your bank/UPI app, then **Approve** (extends the subscription and records the receipt) or **Reject** (the owner sees your reason).
+
 ## 6. Subscription payments (PayU)
 
 Prices are set in `api/payu.php`: ₹599/month without autopay, ₹549/month with 6-month autopay, and a ₹500 one-time setup fee added to a restaurant's first PayU payment.
