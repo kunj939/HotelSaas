@@ -10,6 +10,10 @@ DirectoryIndex index.html
  Header always set X-Content-Type-Options "nosniff"
  Header always set Referrer-Policy "strict-origin-when-cross-origin"
  Header always set X-Frame-Options "SAMEORIGIN"
+ # Always re-check the page so a new ?v= on app.js/styles.css reaches phones right after a deploy
+ <FilesMatch "^index\.html$">
+  Header set Cache-Control "no-cache"
+ </FilesMatch>
 </IfModule>
 <FilesMatch "\.(sql|bak|env|log|md)$">
  Require all denied
