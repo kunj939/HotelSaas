@@ -48,7 +48,7 @@ Open `https://menu.yourdomain.com/api/install_once.php` in your browser. Enter t
 
 `install_once.php` is no longer in the GitHub repo. Use the copy in the uploaded ZIP to create the admin. **Then delete `api/install_once.php` from the server** and clear `install_key` from `config.local.php`.
 
-Open `https://menu.yourdomain.com/index.html#/admin` and sign in.
+Open `https://menu.yourdomain.com/admin` and sign in. The home page has no Super Admin button, so type this URL directly.
 
 ## 5. Add a restaurant
 

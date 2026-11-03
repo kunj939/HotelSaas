@@ -28,7 +28,7 @@ The **demo** menu uses 15 real food photos and a real banner photo from Wikimedi
 
 - Customer: `https://YOURDOMAIN/index.html#/r/restaurant-slug`
 - Restaurant owner: `https://YOURDOMAIN/index.html#/owner`
-- Platform Super Admin: `https://YOURDOMAIN/index.html#/admin`
+- Platform Super Admin: `https://YOURDOMAIN/admin` (not linked from the home page; type it directly)
 
 QR settings generate the appropriate URL. Restaurant owner sees only their data. Account access created by Super Admin.
 
