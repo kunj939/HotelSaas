@@ -393,6 +393,113 @@ select{appearance:auto}
   .btn{padding:10px 14px}
 }
 
+/* ==========================================================================
+   Motion & polish
+   #app gets .enter for ~1.4s only when the screen changes (see app() in app.js),
+   so typing in search or the 8-second order refresh never replays animations.
+   ========================================================================== */
+:root{--ease-out:cubic-bezier(.2,.75,.25,1);--ease-spring:cubic-bezier(.3,1.5,.5,1)}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes zoomSlow{from{transform:scale(1)}to{transform:scale(1.09)}}
+@keyframes shine{0%,70%{transform:translateX(-120%) skewX(-20deg)}100%{transform:translateX(220%) skewX(-20deg)}}
+@keyframes twinkle{0%,100%{transform:rotate(0) scale(1);opacity:1}50%{transform:rotate(45deg) scale(1.15);opacity:.75}}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes cartIn{from{opacity:0;transform:translateX(-50%) translateY(40px)}to{opacity:1;transform:translateX(-50%)}}
+@keyframes cartBump{0%{transform:translateX(-50%) scale(1)}35%{transform:translateX(-50%) scale(1.045)}70%{transform:translateX(-50%) scale(.985)}100%{transform:translateX(-50%) scale(1)}}
+@keyframes countPop{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}
+@keyframes ripple{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--brand) 35%,transparent)}100%{box-shadow:0 0 0 34px transparent}}
+@keyframes newGlow{0%,100%{box-shadow:0 0 0 3px #F6E3B8}50%{box-shadow:0 0 0 7px rgba(246,227,184,.45)}}
+@keyframes arrive{0%{opacity:0;transform:translateY(-18px) scale(.97);background:#FFF6E2}60%{opacity:1;transform:none;background:#FFF6E2}100%{background:var(--card)}}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes pulseIcon{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+
+/* Screen entrance: customer steps, owner/admin tabs, login */
+.enter .customer-content>section,.enter .customer-content>div,
+.enter .admin-topbar,.enter .admin-main>*,
+.enter .login-card{animation:rise .55s var(--ease-out) backwards}
+.enter .admin-main>*:nth-child(2){animation-delay:.06s}
+.enter .admin-main>*:nth-child(3){animation-delay:.12s}
+.enter .admin-main>*:nth-child(4){animation-delay:.18s}
+.enter .admin-main>*:nth-child(n+5){animation-delay:.24s}
+.enter .grid4>.metric{animation:rise .5s var(--ease-out) backwards}
+.enter .grid4>.metric:nth-child(2){animation-delay:.1s}
+.enter .grid4>.metric:nth-child(3){animation-delay:.16s}
+.enter .grid4>.metric:nth-child(4){animation-delay:.22s}
+.enter .dish-card{animation:rise .5s var(--ease-out) backwards;animation-delay:calc(.12s + min(var(--i,0),10) * .05s)}
+.enter .cat-btn{animation:fadeIn .4s ease-out backwards}
+.enter .floating-cart{animation:cartIn .55s var(--ease-spring) .25s backwards}
+.enter .bar-chart .bar{animation:grow .8s var(--ease-out) .2s backwards;transform-origin:bottom}
+.enter .order-card{animation:rise .45s var(--ease-out) backwards}
+.boot .brand-icon,.login-card .brand-icon{animation:floaty 3.2s ease-in-out infinite}
+.modal-wrap{animation:fadeIn .2s ease-out}
+
+/* Welcome screen */
+.welcome-hero .hero-photo{animation:zoomSlow 18s ease-in-out infinite alternate;will-change:transform}
+.enter .welcome-content>*{animation:rise .7s var(--ease-out) backwards}
+.enter .welcome-content>*:nth-child(1){animation-delay:.15s}
+.enter .welcome-content>*:nth-child(2){animation-delay:.28s}
+.enter .welcome-content>*:nth-child(3){animation-delay:.4s}
+.enter .welcome-content>*:nth-child(4){animation-delay:.55s}
+.welcome-bottom .sparkle{display:inline-block;animation:twinkle 4s ease-in-out infinite}
+.btn.gold-btn{position:relative;overflow:hidden;box-shadow:0 10px 24px -8px color-mix(in srgb,var(--accent) 70%,transparent)}
+.btn.gold-btn::after{content:'';position:absolute;top:0;bottom:0;left:0;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:shine 3.6s ease-in-out infinite;pointer-events:none}
+
+/* Buttons and controls feel tactile */
+.btn{transition:background .15s,transform .15s var(--ease-out),box-shadow .2s}
+.btn:not(.ghost):not(.outline):not(.danger):not(.mini):hover{transform:translateY(-1px);box-shadow:0 10px 20px -10px color-mix(in srgb,var(--brand) 70%,transparent)}
+.btn:active,.add-btn:active,.cat-btn:active,.qty button:active,.qty-large button:active{transform:scale(.96)}
+.add-btn,.cat-btn,.qty button,.qty-large button{transition:background .15s,color .15s,border-color .15s,transform .12s var(--ease-out),box-shadow .2s}
+.cat-btn.selected{box-shadow:0 6px 16px -8px color-mix(in srgb,var(--brand) 80%,transparent)}
+.option{transition:border-color .15s,background .15s,transform .12s}
+.option:active{transform:scale(.99)}
+#reload{transition:background .15s,transform .4s var(--ease-out)}
+#reload:hover{transform:rotate(120deg)}
+.toast{transition:opacity .25s,transform .35s var(--ease-spring)}
+.badge{transition:background .3s,color .3s}
+
+/* Customer menu */
+.dish-card{transition:transform .25s var(--ease-out),box-shadow .25s,border-color .25s}
+.dish-image img{transition:transform .5s var(--ease-out)}
+.price{color:var(--brand-text)}
+@media(hover:hover){
+  .dish-card:not(.unavailable):hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--brand) 25%,var(--line));box-shadow:var(--shadow)}
+  .dish-card:not(.unavailable):hover .dish-image img{transform:scale(1.07)}
+}
+.floating-cart.bump{animation:cartBump .5s var(--ease-out)}
+.floating-cart.bump .cart-number{animation:countPop .5s var(--ease-spring)}
+.customer-card{transition:box-shadow .2s}
+
+/* Order placed */
+.thankyou>*{animation:rise .55s var(--ease-out) backwards}
+.thankyou>*:nth-child(2){animation-delay:.15s}
+.thankyou>*:nth-child(3){animation-delay:.22s}
+.thankyou>*:nth-child(4){animation-delay:.3s}
+.thankyou>*:nth-child(n+5){animation-delay:.38s}
+.thankyou>.success-illustration{animation:pop .5s var(--ease-spring),ripple 1.4s ease-out .3s 2}
+
+/* Restaurant studio */
+.app-layout{background:radial-gradient(1200px 400px at 85% -10%,color-mix(in srgb,var(--brand) 7%,transparent),transparent 70%),var(--app-bg)}
+.sidebar{background:linear-gradient(180deg,#163B2F 0%,#11291F 100%)}
+.nav-item{transition:background .15s,color .15s,transform .15s var(--ease-out)}
+.nav-item:hover{transform:translateX(3px)}
+.metric{position:relative;overflow:hidden;transition:transform .25s var(--ease-out),box-shadow .25s}
+.metric::after{content:'';position:absolute;top:-36px;right:-36px;width:104px;height:104px;border-radius:50%;background:color-mix(in srgb,var(--brand) 9%,var(--card));pointer-events:none}
+.metric .number{color:var(--brand-text)}
+.order-card{transition:transform .25s var(--ease-out),box-shadow .25s}
+@media(hover:hover){
+  .metric:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .order-card:not(.highlight):hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+  .qr-card:hover{box-shadow:var(--shadow)}
+}
+.order-card.highlight{animation:newGlow 2.2s ease-in-out infinite}
+.order-card.arrived{animation:arrive 1.2s var(--ease-out),newGlow 2.2s ease-in-out 1.2s infinite}
+.bar-chart .bar{transition:filter .2s}
+.bar-chart .bar-col:hover .bar{filter:brightness(1.12)}
+.mobile-menu button{transition:color .15s,transform .15s var(--ease-out)}
+.enter .mobile-menu button.active span{display:inline-block;animation:pulseIcon .4s var(--ease-spring)}
+.qr-card{transition:box-shadow .25s}
+
 @media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
