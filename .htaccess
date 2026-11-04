@@ -3,6 +3,10 @@
 Options -Indexes
 RewriteEngine On
 
+# One canonical address: www.tablebloom.in → tablebloom.in (keeps logins and QR links on one host)
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [R=301,L]
+
 # Hidden folders and project folders are never served
 RewriteRule ^(\.git|\.github|database|docs|catalog|tools|tests)(/|$) - [F,L]
 RewriteRule \.(md|sql|py|ps1|sh)$ - [F,L]

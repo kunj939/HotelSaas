@@ -159,6 +159,10 @@ select{appearance:auto}
 .welcome-bottom .sparkle{font-size:26px;color:var(--accent)}
 .welcome-bottom .serif{font-size:22px}
 .photo-credit{margin:0 0 14px;font-size:12px;color:var(--muted)}
+.rest-info{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 16px;margin-top:16px;font-size:13px;color:var(--muted)}
+.rest-info a{color:var(--brand-text);font-weight:700}
+.cat-row{padding:8px 0;border-bottom:1px solid var(--line)}
+.cat-row .icon-btn{width:36px;height:36px;font-size:15px}
 .photo-credit a{color:var(--brand-text);text-decoration:underline;text-underline-offset:2px}
 .welcome-bottom .photo-credit{margin:18px 0 0}
 

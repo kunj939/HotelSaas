@@ -5,6 +5,7 @@ ini_set('display_errors', '0');
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store, private');
 header('X-Content-Type-Options: nosniff');
+header_remove('X-Powered-By');
 $configFile = __DIR__.'/config.local.php';
 if (!is_file($configFile)) {
  http_response_code(503); echo json_encode(['error'=>'Setup required: copy api/config.example.php to api/config.local.php.']); exit;
@@ -14,6 +15,8 @@ if (!is_array($c)) { http_response_code(500); echo '{"error":"Invalid config"}';
 $secure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
 if (session_status() !== PHP_SESSION_ACTIVE) {
  session_name('rq_session');
+ // Keep dashboards signed in through a working day (PHP's default drops idle sessions after 24 minutes).
+ ini_set('session.gc_maxlifetime','43200');
  session_set_cookie_params(['lifetime'=>0,'path'=>'/','secure'=>$secure,'httponly'=>true,'samesite'=>'Lax']);
  session_start();
 }
@@ -65,7 +68,7 @@ try {
   if(count(rows('SELECT id FROM auth_attempts WHERE ip_hash=? AND attempted_at>DATE_SUB(NOW(),INTERVAL 15 MINUTE)',[iphash()]))>=8)fail('Too many attempts. Try again in 15 minutes.',429);
   $u=one('SELECT * FROM users WHERE email=? AND active=1',[$email]);
   if(!$u||!password_verify($password,$u['password_hash'])){
-   execq('INSERT INTO auth_attempts(ip_hash) VALUES(?)',[iphash()]);fail('Incorrect email or password',401);
+   execq('INSERT INTO auth_attempts(ip_hash) VALUES(?)',[iphash()]);if(random_int(1,50)===1)execq('DELETE FROM auth_attempts WHERE attempted_at<DATE_SUB(NOW(),INTERVAL 1 DAY)');fail('Incorrect email or password',401);
   }
   // Owners/staff need at least one restaurant that is not stopped or deleted.
   if($u['role']!=='super'&&!outlets($u))fail('Account suspended. Contact support.',403);
@@ -74,7 +77,7 @@ try {
  }
  if($route==='auth/logout'){mutation();$_SESSION=[];session_regenerate_id(true);$_SESSION['csrf']=bin2hex(random_bytes(24));respond(['ok'=>true,'csrf'=>$_SESSION['csrf']]);}
  if($route==='public/restaurant'){
-  $slug=val($_GET['slug']??'',90);$r=one('SELECT id,slug,name,tagline,welcome_message,logo_url,cover_url,primary_color,accent_color,theme_mode,menu_layout,table_count,qr_mode,ordering_enabled,status,subscription_ends,opening_hours FROM restaurants WHERE slug=? AND deleted_at IS NULL',[$slug]);
+  $slug=val($_GET['slug']??'',90);$r=one('SELECT id,slug,name,tagline,welcome_message,logo_url,cover_url,primary_color,accent_color,theme_mode,menu_layout,table_count,qr_mode,ordering_enabled,status,subscription_ends,opening_hours,phone,address FROM restaurants WHERE slug=? AND deleted_at IS NULL',[$slug]);
   if(!$r)fail('Restaurant not found',404);
   $categories=rows('SELECT id,name FROM categories WHERE restaurant_id=? ORDER BY sort_order,id',[$r['id']]);
   $items=rows('SELECT id,category_id,name,description,food_type,base_price,options_json,addons_json,image_url,image_credit,image_license,image_source_url,available FROM menu_items m WHERE restaurant_id=? AND deleted_at IS NULL ORDER BY (SELECT c.sort_order FROM categories c WHERE c.id=m.category_id),m.sort_order,m.name',[$r['id']]);
@@ -92,7 +95,8 @@ try {
   if($existing)respond(['order'=>$existing,'duplicate'=>true]);
   $lines=$b['items']??[];if(!is_array($lines)||count($lines)<1||count($lines)>30)fail('Cart must have 1–30 items');
   $recent=one('SELECT COUNT(*) AS n FROM orders WHERE restaurant_id=? AND ip_hash=? AND created_at>DATE_SUB(NOW(),INTERVAL 10 MINUTE)',[$r['id'],iphash()]);
-  if((int)$recent['n']>=8)fail('Too many recent orders. Please ask restaurant staff for help.',429);
+  // Guests on the restaurant's Wi-Fi share one IP, so the limit is per restaurant and generous; it only stops scripted floods.
+  if((int)$recent['n']>=30)fail('Too many recent orders. Please ask restaurant staff for help.',429);
   $prepared=[];$total=0;
   foreach($lines as $l){
    if(!is_array($l))fail('Invalid cart');$itemId=(int)($l['item_id']??0);$qty=(int)($l['quantity']??0);
@@ -177,13 +181,33 @@ try {
  }
  if($route==='owner/menu'){
   $cats=rows('SELECT * FROM categories WHERE restaurant_id=? ORDER BY sort_order,id',[$restaurantId]);
-  $items=rows('SELECT * FROM menu_items WHERE restaurant_id=? AND deleted_at IS NULL ORDER BY sort_order,id DESC',[$restaurantId]);
+  $items=rows('SELECT * FROM menu_items m WHERE restaurant_id=? AND deleted_at IS NULL ORDER BY (SELECT c.sort_order FROM categories c WHERE c.id=m.category_id),m.sort_order,m.id',[$restaurantId]);
   foreach($items as &$it){$it['options']=json_decode($it['options_json']??'[]',true)?:[];$it['addons']=json_decode($it['addons_json']??'[]',true)?:[];unset($it['options_json'],$it['addons_json']);}
   respond(['categories'=>$cats,'items'=>$items]);
  }
  if($route==='owner/category'){
   mutation();if($a['role']==='staff')fail('Owner permission required',403);$b=body();$name=val($b['name']??'',100);if(!$name)fail('Category name required');
-  execq('INSERT IGNORE INTO categories(restaurant_id,name) VALUES(?,?)',[$restaurantId,$name]);audit('category.save',$restaurantId,$name);respond(['ok'=>true]);
+  execq('INSERT IGNORE INTO categories(restaurant_id,name,sort_order) SELECT ?,?,COALESCE(MAX(sort_order),-1)+1 FROM categories WHERE restaurant_id=?',[$restaurantId,$name,$restaurantId]);audit('category.save',$restaurantId,$name);respond(['ok'=>true]);
+ }
+ if($route==='owner/category/rename'){
+  mutation();if($a['role']==='staff')fail('Owner permission required',403);$b=body();$id=(int)($b['id']??0);$name=val($b['name']??'',100);if(!$name)fail('Category name required');
+  try{if(!one('SELECT id FROM categories WHERE id=? AND restaurant_id=?',[$id,$restaurantId]))fail('Category not found',404);execq('UPDATE categories SET name=? WHERE id=? AND restaurant_id=?',[$name,$id,$restaurantId]);}
+  catch(PDOException $e){if($e->getCode()==='23000')fail('A category with this name already exists');throw $e;}
+  audit('category.rename',$restaurantId,$name);respond(['ok'=>true]);
+ }
+ if($route==='owner/category/delete'){
+  mutation();if($a['role']==='staff')fail('Owner permission required',403);$id=(int)(body()['id']??0);
+  $n=(int)one('SELECT COUNT(*) AS n FROM menu_items WHERE category_id=? AND restaurant_id=? AND deleted_at IS NULL',[$id,$restaurantId])['n'];
+  if($n)fail("Move or remove the $n dish".($n>1?'es':'')." in this category first");
+  execq('DELETE FROM categories WHERE id=? AND restaurant_id=?',[$id,$restaurantId]);audit('category.delete',$restaurantId,(string)$id);respond(['ok'=>true]);
+ }
+ if($route==='owner/category/move'){
+  // Moves a category one place up or down; the order is what customers see.
+  mutation();if($a['role']==='staff')fail('Owner permission required',403);$b=body();$id=(int)($b['id']??0);$dir=($b['dir']??'')==='up'?-1:1;
+  $ids=array_map(fn($c)=>(int)$c['id'],rows('SELECT id FROM categories WHERE restaurant_id=? ORDER BY sort_order,id',[$restaurantId]));
+  $i=array_search($id,$ids,true);if($i===false)fail('Category not found',404);$j=$i+$dir;
+  if($j>=0&&$j<count($ids)){[$ids[$i],$ids[$j]]=[$ids[$j],$ids[$i]];foreach($ids as $pos=>$cid)execq('UPDATE categories SET sort_order=? WHERE id=?',[$pos,$cid]);}
+  respond(['ok'=>true]);
  }
  if($route==='owner/menu/save'){
   mutation();if($a['role']==='staff')fail('Owner permission required',403);$b=body();$id=(int)($b['id']??0);$name=val($b['name']??'',160);if(!$name)fail('Dish name required');
@@ -310,7 +334,7 @@ try {
    execq('INSERT INTO restaurant_access(user_id,restaurant_id) VALUES(?,?)',[(int)db()->lastInsertId(),$id]);
    foreach(['Starters','Main Course','Breads & Rice','Beverages','Desserts'] as $pos=>$category)execq('INSERT INTO categories(restaurant_id,name,sort_order) VALUES(?,?,?)',[$id,$category,$pos]);
    db()->commit();
-  }catch(Throwable $e){db()->rollBack();throw $e;}
+  }catch(Throwable $e){db()->rollBack();if($e instanceof PDOException&&$e->getCode()==='23000')fail('That URL slug or owner email is already in use. Choose another.');throw $e;}
   audit('restaurant.create',$id,$slug);respond(['id'=>$id,'slug'=>$slug,'ok'=>true]);
  }
  if($route==='admin/restaurants/update'){
