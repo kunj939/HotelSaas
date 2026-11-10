@@ -60,6 +60,16 @@ SECURITY_AND_LIMITATIONS.md
 TEST_PLAN.md
 ```
 
+## Quick restaurant setup
+
+1. Follow `HOSTINGER_DEPLOY.md`: import the schema, configure the database, HTTPS URL and random secrets, then open `api/install_once.php` to create your administrator.
+2. Delete the installer and remove `install_key`. With terminal access, run `php tools/check_setup.php` to check runtime, database, schema and installation readiness.
+3. Add a restaurant in Super Admin. Choose common QR for guests to select tables, per-table QR for fixed table cards, or counter mode for token service without tables.
+4. Owner signs in, changes the temporary password in Settings, adds dishes and prices, and downloads QR codes.
+5. Scan the printed QR on a phone and place a test order. Accept, prepare, call its token and mark served from the owner dashboard before opening to guests.
+
+See `CODE_REVIEW.md` for identified issues, fixes and remaining coverage.
+
 ## Production installation
 
 See **HOSTINGER_DEPLOY.md**. In short: create a MySQL database; import schema; upload `public/*`; create `api/config.local.php`; visit the one-time installer to create the Super Admin; delete installer & demo; log in and create your first restaurant. Configure SSL/HTTPS, backups and monitoring. Do not deploy until checklist is done.

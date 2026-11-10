@@ -251,7 +251,7 @@ try {
   // "Call token": marks the order ready and makes the customer's phone ring. Calling again rings again.
   mutation();$b=body();$id=(int)($b['id']??0);$order=outletOrder($a,$id);if(!$order)fail('Order not found',404);
   if(!in_array($order['status'],['accepted','preparing','ready'],true))fail('Accept the order before calling its token');
-  execq('UPDATE orders SET status="ready",call_count=LEAST(call_count+1,250),called_at=NOW() WHERE id=?',[$id]);
+  if(!execq('UPDATE orders SET status="ready",call_count=LEAST(call_count+1,250),called_at=NOW() WHERE id=? AND status IN ("accepted","preparing","ready")',[$id]))fail('Order changed elsewhere. Refresh and retry.',409);
   audit('order.call',(int)$order['restaurant_id'],(string)$id);respond(['ok'=>true]);
  }
  if($route==='owner/analytics'){
@@ -273,13 +273,14 @@ try {
  if($route==='owner/settings')respond(['restaurant'=>one('SELECT * FROM restaurants WHERE id=?',[$restaurantId])]);
  if($route==='owner/settings/save'){
   mutation();if($a['role']==='staff')fail('Owner permission required',403);$b=body();$r=one('SELECT * FROM restaurants WHERE id=?',[$restaurantId]);
+  $name=val($b['name']??$r['name'],160);if($name==='')fail('Restaurant name required');
   $tables=(int)($b['table_count']??20);if($tables<1||$tables>500)fail('Table count must be 1–500');
   $mode=val($b['qr_mode']??'common',10);if(!in_array($mode,['common','table','counter'],true))fail('Invalid QR mode');
   $theme=val($b['theme_mode']??'light',10);if(!in_array($theme,['light','dark'],true))fail('Invalid theme');
   $layout=val($b['menu_layout']??'list',10);if(!in_array($layout,['list','grid'],true))fail('Invalid layout');
   $logo=val($b['logo_url']??'',500);$cover=val($b['cover_url']??'',500);if(!imagePath($logo)||!imagePath($cover))fail('Invalid image URL');
   execq('UPDATE restaurants SET name=?,tagline=?,welcome_message=?,logo_url=?,cover_url=?,primary_color=?,accent_color=?,theme_mode=?,menu_layout=?,phone=?,address=?,opening_hours=?,table_count=?,qr_mode=?,ordering_enabled=? WHERE id=?',[
-   val($b['name']??$r['name'],160),val($b['tagline']??'',250),val($b['welcome_message']??'',500),$logo?:null,$cover?:null,
+   $name,val($b['tagline']??'',250),val($b['welcome_message']??'',500),$logo?:null,$cover?:null,
    hexcolor($b['primary_color']??'','#186953'),hexcolor($b['accent_color']??'','#E4B866'),$theme,$layout,val($b['phone']??'',40),val($b['address']??'',400),val($b['opening_hours']??'',180),$tables,$mode,(int)!empty($b['ordering_enabled']),$restaurantId]);
   audit('settings.save',$restaurantId);respond(['ok'=>true]);
  }
@@ -326,10 +327,11 @@ try {
   if(!$name||!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D',$slug))fail('Name and valid URL slug required');
   if(!filter_var($email,FILTER_VALIDATE_EMAIL)||strlen($password)<12)fail('Valid email and password of at least 12 characters required');
   $tables=(int)($b['table_count']??20);if($tables<1||$tables>500)fail('1–500 tables allowed');
+  $mode=val($b['qr_mode']??'common',10);if(!in_array($mode,['common','table','counter'],true))fail('Invalid QR mode');
   $fee=num($b['monthly_fee']??599,0,100000);
   db()->beginTransaction();
   try {
-   execq('INSERT INTO restaurants(slug,name,table_count,monthly_fee,subscription_ends) VALUES(?,?,?,?,DATE_ADD(CURDATE(),INTERVAL 7 DAY))',[$slug,$name,$tables,$fee]);$id=(int)db()->lastInsertId();
+   execq('INSERT INTO restaurants(slug,name,table_count,monthly_fee,qr_mode,subscription_ends) VALUES(?,?,?,?,?,DATE_ADD(CURDATE(),INTERVAL 7 DAY))',[$slug,$name,$tables,$fee,$mode]);$id=(int)db()->lastInsertId();
    execq('INSERT INTO users(restaurant_id,role,full_name,email,password_hash) VALUES(?,?,?,?,?)',[$id,'owner',val($b['owner_name']??$name,120),$email,password_hash($password,PASSWORD_DEFAULT)]);
    execq('INSERT INTO restaurant_access(user_id,restaurant_id) VALUES(?,?)',[(int)db()->lastInsertId(),$id]);
    foreach(['Starters','Main Course','Breads & Rice','Beverages','Desserts'] as $pos=>$category)execq('INSERT INTO categories(restaurant_id,name,sort_order) VALUES(?,?,?)',[$id,$category,$pos]);

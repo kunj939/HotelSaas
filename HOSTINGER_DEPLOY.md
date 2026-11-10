@@ -49,13 +49,13 @@ Generate strong random secrets locally, e.g. run `python -c "import secrets; pri
 
 Open `https://menu.yourdomain.com/api/install_once.php` in your browser. Enter the installation key from config, admin name, email and a strong password of at least 14 characters. This only works if no Super Admin exists.
 
-`install_once.php` is no longer in the GitHub repo. Use the copy in the uploaded ZIP to create the admin. **Then delete `api/install_once.php` from the server** and clear `install_key` from `config.local.php`.
+The installer is included in this repository and refuses to run once a Super Admin exists. **Then delete `api/install_once.php` from the server** and clear `install_key` from `config.local.php`.
 
 Open `https://menu.yourdomain.com/admin` and sign in. The home page has no Super Admin button, so type this URL directly.
 
 ## 5. Add a restaurant
 
-Super Admin → Restaurants → Add Restaurant. Enter the restaurant name, owner email, temporary password (12+ characters), table count, monthly subscription fee (₹599 by default). A 7-day trial is created.
+Super Admin → Restaurants → Add Restaurant. Enter the restaurant name, owner email, temporary password (12+ characters), ordering setup (common QR, per-table QR, or counter tokens), table count, monthly subscription fee (₹599 by default). A 7-day trial is created.
 
 Restaurant owner signs in at `index.html#/owner` and changes their password under Settings. Owner adds menu categories and dishes, sizes, extras, their own photos or licensed photo suggestions. Owner sets their logo, cover, theme and number of tables. In Settings → QR Code Generator, choose Common QR or Table QR, print and place QR cards.
 
