@@ -94,6 +94,6 @@ Static checks passed: PHP syntax validation, JavaScript syntax validation, QR SV
 
 ## Dish photos
 
-In Owner → Menu → Add/Edit Dish, upload a JPG/PNG/WebP (up to 2.5 MB), paste a copied image into the editor, or paste a direct HTTPS image address and select **Use image link**. Review the preview, then save. Pasted image files use the same validated upload endpoint as file uploads. Image links are saved directly, without a server download; some external hosts block hotlinking or remove images. Broken links display the default food artwork. Use **Skip photo** to remove a photo.
+In Owner → Menu → Add/Edit Dish, upload a JPG/PNG/WebP (up to 2.5 MB), click **Paste image** to paste a copied image or image link, use Ctrl+V / Cmd+V in the editor, or paste a direct HTTPS image address and select **Use image link**. Review the preview, then save. Pasted image files use the same validated upload endpoint as file uploads. Image links are saved directly, without a server download; some external hosts block hotlinking or remove images. Broken links display the default food artwork. Use **Skip photo** to remove a photo.
 
 Local checks: `php tests/test_images.php` and `node tests/test_menu_images.js`. Clipboard support depends on the browser and source application; file upload remains available.
