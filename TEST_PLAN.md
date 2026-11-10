@@ -43,3 +43,12 @@ node --check public/assets/qr.js
 19. Upload a malicious disguised PHP/SVG or >2.5 MB: must reject. Config file must be web-inaccessible.
 20. Test mobile UI at 320, 375, 414 px width and on poor network; no invisible CTA, duplicate orders or lost cart.
 21. Do load test with representative 10/30/50 restaurants before promising shared-hosting capacity.
+
+## Dish photo sources
+
+- Upload valid JPG/PNG/WebP files and paste copied image files into the dish editor; verify previews, save, reopen and customer menu display.
+- Paste a direct HTTPS image URL (including query-string CDN URLs), preview, save, reopen and check customer display. Saving without pressing “Use image link” must still preserve the entered URL.
+- Reject HTTP, javascript/data URLs, credentials in URLs, oversized links, unsupported clipboard file types and files over 2.5 MB. Existing photos must survive failed selections/uploads.
+- Save is disabled during upload; after a failed upload it becomes available again. Close the editor during an upload and open another dish: the old result must not change the new dish.
+- Replace a licensed photo with an upload or link: previous credit fields must be cleared. Skip photo must clear the URL field and restore artwork after saving.
+- Use a broken image URL or a host blocking hotlinks: customer menu must show default artwork. A webpage URL is not a direct image URL and may show fallback artwork.

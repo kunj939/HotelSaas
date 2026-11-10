@@ -13,7 +13,7 @@ A ready-to-deploy PHP + MySQL + HTML/CSS/JavaScript project for Hostinger Premiu
 | QR modes | One restaurant-wide QR with manual table number, a unique QR for each configured table, or **Counter** mode for small places without tables (no table question, token only). Offline printable QR SVG |
 | Tokens | Every order gets a daily token number (1, 2, 3… restarting each day). Owner presses **📣 Call token**: the order is marked ready and the guest's phone shows the token with sound and vibration |
 | Multiple outlets | One owner login can open several restaurants: switch outlet from the top bar and see **All outlets** orders together. 2 outlets are included; each extra outlet adds ₹200/month to the owner's bill. Super Admin links outlets to an owner |
-| Restaurant owner | Login, self-service menu management, add/remove items, category creation, photo uploads, price edits, open/closed ordering, custom brand colors, cover, logo, QR download, profile, password change |
+| Restaurant owner | Login, self-service menu management, add/remove items, category creation, photo uploads, clipboard image paste, direct HTTPS image links, price edits, open/closed ordering, custom brand colors, cover, logo, QR download, profile, password change |
 | Orders | Live / Today / Past, notifications, accept → preparing → ready → served, rejection, table and order details |
 | Analytics | Monthly order counts, item popularity, top ordering hours, recorded order value (not verified cash collection) |
 | Billing | Owner pays from the Billing tab through PayU: ₹599/month without autopay, or ₹549/month with 6-month autopay (UPI/card mandate). A ₹500 one-time setup fee is added to the first payment. Each payment extends the subscription by one month. Until PayU is set up, owners can **Pay by UPI** (QR + UTR): monthly, or 6 months upfront at ₹549/month; Super Admin approves the UTR and the subscription extends |
@@ -91,3 +91,9 @@ PHP 8.2+; PDO MySQL; `mbstring` and `fileinfo`; PHP `curl` for Wikimedia suggest
 ## Current verification status
 
 Static checks passed: PHP syntax validation, JavaScript syntax validation, QR SVG code generation and QR image scanning decode, catalog size and assets count. **Database-backed end-to-end and Hostinger production testing were not possible in this environment.** Run the manual test plan with your actual Hostinger credentials before relying on real customer orders.
+
+## Dish photos
+
+In Owner → Menu → Add/Edit Dish, upload a JPG/PNG/WebP (up to 2.5 MB), paste a copied image into the editor, or paste a direct HTTPS image address and select **Use image link**. Review the preview, then save. Pasted image files use the same validated upload endpoint as file uploads. Image links are saved directly, without a server download; some external hosts block hotlinking or remove images. Broken links display the default food artwork. Use **Skip photo** to remove a photo.
+
+Local checks: `php tests/test_images.php` and `node tests/test_menu_images.js`. Clipboard support depends on the browser and source application; file upload remains available.

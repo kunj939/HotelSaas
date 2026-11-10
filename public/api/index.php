@@ -22,6 +22,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 if (!isset($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(24));
 require __DIR__.'/db.php';
+require __DIR__.'/images.php';
 require __DIR__.'/payu.php';
 function respond($data,int $status=200):never { http_response_code($status); echo json_encode($data,JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_SUBSTITUTE);exit; }
 function fail(string $message,int $code=400):never { respond(['error'=>$message],$code); }
@@ -214,7 +215,7 @@ try {
   $cat=(int)($b['category_id']??0);if($cat&&!one('SELECT id FROM categories WHERE restaurant_id=? AND id=?',[$restaurantId,$cat]))fail('Invalid category');
   $options=jsonOptions($b['options']??[]);$addons=jsonOptions($b['addons']??[]);$base=num($b['base_price']??0,0,50000);if($options==='[]'&&$base<=0)fail('Price must be greater than zero');
   $type=val($b['food_type']??'unspecified',20);if(!in_array($type,['veg','nonveg','egg','unspecified'],true))fail('Invalid food type');
-  $img=val($b['image_url']??'',800);if(!imagePath($img))fail('Only uploaded or Wikimedia Commons photos are allowed');
+  $img=val($b['image_url']??'',801);if(!dishImagePath($img))fail('Use an uploaded photo or a valid public HTTPS image URL (maximum 800 characters)');
   $data=[$cat?:null,$name,val($b['description']??'',500),$type,$base,$options,$addons,$img?:null,val($b['image_credit']??'',500)?:null,val($b['image_license']??'',100)?:null,val($b['image_source_url']??'',800)?:null,(int)!empty($b['available'])];
   if($id){if(!one('SELECT id FROM menu_items WHERE restaurant_id=? AND id=? AND deleted_at IS NULL',[$restaurantId,$id]))fail('Item not found',404);
    execq('UPDATE menu_items SET category_id=?,name=?,description=?,food_type=?,base_price=?,options_json=?,addons_json=?,image_url=?,image_credit=?,image_license=?,image_source_url=?,available=? WHERE id=? AND restaurant_id=?',[...$data,$id,$restaurantId]);
