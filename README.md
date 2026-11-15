@@ -6,10 +6,13 @@ A ready-to-deploy PHP + MySQL + HTML/CSS/JavaScript project for Hostinger Premiu
 
 ## What is included
 
+Owners can highlight **Chef's Specials**, configure checkout name/mobile as **off, optional or required**, and show location/menu/WhatsApp order/party/bulk-enquiry links. See [the demo and upgrade guide](DEMO_GUIDE.md). Existing databases require the two November 15 migrations before this API update.
+
 | Module | Included functionality |
 |---|---|
 | Customer | Welcome → premium menu → cart → table number only at checkout → final confirmation → order received → order tracking → order more |
 | Menu | Categories, veg/non-veg, search, photos or placeholders, sizes/portions, optional add-ons, notes, live availability |
+| Starting menu | Accounts start with an empty menu by default. For Kaku 2.0 onboarding, explicitly choose its prepared menu: 194 dishes in 28 categories with PDF prices, portions and representative food photos. Owners can edit, add, remove and mark dishes sold out. |
 | QR modes | One restaurant-wide QR with manual table number, a unique QR for each configured table, or **Counter** mode for small places without tables (no table question, token only). Offline printable QR SVG |
 | Tokens | Every order gets a daily token number (1, 2, 3… restarting each day). Owner presses **📣 Call token**: the order is marked ready and the guest's phone shows the token with sound and vibration |
 | Multiple outlets | One owner login can open several restaurants: switch outlet from the top bar and see **All outlets** orders together. 2 outlets are included; each extra outlet adds ₹200/month to the owner's bill. Super Admin links outlets to an owner |
@@ -25,7 +28,7 @@ A ready-to-deploy PHP + MySQL + HTML/CSS/JavaScript project for Hostinger Premiu
 
 **Do not mistake the 500 bundled illustrations for photographs.** We did not have access to a legitimate, verified collection of 500 accurately labelled and reuse-licensed food photographs, so the ZIP does **not** contain 500 real dish photos. It includes exactly 500 local generated SVG artwork thumbnails and 500 dish names, plus owner-uploaded photos and a live Wikimedia Commons photo suggestion integration. Never copy images from Google, Zomato, or Swiggy without permission. Owners should verify generic photos are representative of their dish.
 
-The **demo** menu uses 15 real food photos and a real banner photo from Wikimedia Commons, all CC BY-SA 4.0 or CC0. Photographer, licence and source page for each are in `public/assets/photos/credits.json`, and the customer app shows the credit beside each photo. Keep that credit visible if you reuse these images.
+The **Kaku 2.0 prepared menu** is an explicit onboarding option for Kaku's account, with real, licensed representative food photos bundled locally. It is not the default menu for other restaurants. Related dish variants may share a photo; these are not photographs taken at Kaku. Photographer, licence and source information are in `public/assets/photos/kaku/credits.json` and `public/assets/photos/credits.json`. Customer cards and dish details show attribution. Owners can upload their own photos. See [source and portion notes](catalog/KAKU_MENU.md).
 
 ## Three URLs after deployment
 
@@ -90,7 +93,7 @@ PHP 8.2+; PDO MySQL; `mbstring` and `fileinfo`; PHP `curl` for Wikimedia suggest
 
 ## Current verification status
 
-Static checks passed: PHP syntax validation, JavaScript syntax validation, QR SVG code generation and QR image scanning decode, catalog size and assets count. **Database-backed end-to-end and Hostinger production testing were not possible in this environment.** Run the manual test plan with your actual Hostinger credentials before relying on real customer orders.
+Static checks pass for PHP/JavaScript syntax, the 500-dish illustration catalog, and the 194-dish starter menu with local photo assets. Local **PHP 8.4 + MariaDB 11.4** API and Chrome browser tests cover account creation, tenant-isolated menus, photo-preserving edits, size pricing, sold-out rejection/restocking, add/delete persistence, transaction rollback and mobile layouts. **Hostinger production testing has not been performed.** Run the manual test plan on your deployment before relying on real customer orders.
 
 ## Dish photos
 

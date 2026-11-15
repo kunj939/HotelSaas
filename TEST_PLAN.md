@@ -6,14 +6,22 @@ Run:
 
 ```bash
 python tests/test_static.py
+python tests/test_starter_menu.py
 php -l public/api/index.php
+php -l public/api/menu_template.php
 node --check public/assets/app.js
 node --check public/assets/qr.js
 ```
 
+For a disposable MySQL-backed test installation, set `TABLEBLOOM_TEST_URL`, `TABLEBLOOM_TEST_EMAIL` and `TABLEBLOOM_TEST_PASSWORD` to its Super Admin account, then run `python tests/test_menu_api.py`. This creates test restaurants and orders; never run it against production. It checks empty default menus, explicitly selected Kaku menus, rejection of unknown templates, photo-preserving edits, ownership isolation, selected-size pricing, sold-out rejection/restocking, add/delete persistence and failed-account rollback.
+
+The Kaku update was also checked locally in Chrome at 375 px and 320 px: admin creates an account, signs out, owner signs in, searches and edits a seeded dish, marks it sold out/restocks it, and a customer selects the pizza size and adds it to the cart. No horizontal overflow or JavaScript errors were found. A missing final starter photo was tested on an isolated copy: account/menu creation rolled back completely and a retry succeeded after restoring the file. Hostinger itself remains untested.
+
 ## Manual end-to-end use cases
 
-1. Onboard two restaurants A and B. Owners cannot see or modify data from the other.
+Additional automated coverage: with the disposable test-site environment configured, run `python tests/test_demo_features.py`. It verifies independent checkout modes, mobile normalization, off fields being discarded, authenticated order details, absence of contacts in public order status, featured edits, contact settings and validation. Browser checks additionally cover the services links, special filter and phone-required/name-off checkout through successful order submission.
+
+1. Onboard a normal restaurant with the default selection: zero dishes and five categories. Onboard Kaku with its prepared menu selected: 194 dishes in 28 categories. Confirm unknown templates are rejected. Photos load locally, pizza sizes and roti Tawa/Tandoor prices match the PDF, and owners cannot modify another restaurant's data. Login or refresh must not re-seed deleted items or reset availability.
 2. Owner A adds dish with single price, Half/Full variants and custom extras. Customer sees exactly the configured options.
 3. Add dish without photo. Illustration appears; upload a real JPG and verify it replaces the fallback.
 4. Change each restaurant theme; ensure menus differ and are still legible on light/dark mode.

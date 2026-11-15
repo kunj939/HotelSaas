@@ -1,0 +1,803 @@
+{
+  "aloo-matar": {
+    "file": "assets/photos/kaku/aloo-matar.jpg",
+    "title": "File:Aloo Matar.JPG",
+    "artist": "Zeel Patel",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Aloo_Matar.JPG",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/94/Aloo_Matar.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "baingan": {
+    "file": "assets/photos/kaku/baingan.jpg",
+    "title": "File:Baingan Ka Bharta.JPG",
+    "artist": "Zeel Patel",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Baingan_Ka_Bharta.JPG",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Baingan_Ka_Bharta.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "banana-shake": {
+    "file": "assets/photos/kaku/banana-shake.jpg",
+    "title": "File:Banana Milkshake.jpg",
+    "artist": "Deepak Official Id",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Banana_Milkshake.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/41/Banana_Milkshake.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "bhindi": {
+    "file": "assets/photos/kaku/bhindi.jpg",
+    "title": "File:Bhindi Masala.jpg",
+    "artist": "Monali.mishra",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bhindi_Masala.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/2/22/Bhindi_Masala.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "bhurji": {
+    "file": "assets/photos/kaku/bhurji.jpg",
+    "title": "File:Homemade Paneer Bhurji.jpg",
+    "artist": "Maskaravivek",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Homemade_Paneer_Bhurji.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Homemade_Paneer_Bhurji.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "biryani": {
+    "file": "assets/photos/kaku/biryani.jpg",
+    "title": "File:Vegetable Biryani IMG 001.jpg",
+    "artist": "Phadke09",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Vegetable_Biryani_IMG_001.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/09/Vegetable_Biryani_IMG_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "black-coffee": {
+    "file": "assets/photos/kaku/black-coffee-cup.jpg",
+    "title": "File:Cup of black coffee.jpg",
+    "artist": "ସୁଭ ପା/Subhashish Panigrahi",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cup_of_black_coffee.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/fd/Cup_of_black_coffee.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "bread-pakora": {
+    "file": "assets/photos/kaku/bread-pakora.jpg",
+    "title": "File:Bread Pakora (Stuffed with Mashed-Spicy Potatoes).JPG",
+    "artist": "Mdsmds0",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bread_Pakora_(Stuffed_with_Mashed-Spicy_Potatoes).JPG",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Bread_Pakora_%28Stuffed_with_Mashed-Spicy_Potatoes%29.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "brownie": {
+    "file": "assets/photos/kaku/brownie.jpg",
+    "title": "File:Chocolate-brownie-hachatw.jpg",
+    "artist": "JefferySAC",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chocolate-brownie-hachatw.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Chocolate-brownie-hachatw.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "burger": {
+    "file": "assets/photos/kaku/burger.jpg",
+    "title": "File:Fancy Veggie Burger and Fries - Joe's Burger House 2024-07-07.jpg",
+    "artist": "Andy Li",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Fancy_Veggie_Burger_and_Fries_-_Joe%27s_Burger_House_2024-07-07.jpg",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/05/Fancy_Veggie_Burger_and_Fries_-_Joe%27s_Burger_House_2024-07-07.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "butter-naan": {
+    "file": "assets/photos/butter-naan.jpg",
+    "title": "File:Butter Naan With Paneer Butter Masala.jpg",
+    "artist": "K.Sreeram Wiki",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Butter_Naan_With_Paneer_Butter_Masala.jpg",
+    "source_thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Butter_Naan_With_Paneer_Butter_Masala.jpg/960px-Butter_Naan_With_Paneer_Butter_Masala.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "chaap": {
+    "file": "assets/photos/kaku/chaap.jpg",
+    "title": "File:Soya Chaap dish.jpg",
+    "artist": "Ravi Dwivedi",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Soya_Chaap_dish.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/9c/Soya_Chaap_dish.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "chana": {
+    "file": "assets/photos/kaku/chana.jpg",
+    "title": "File:Chana Masala - Mohammed - Spice Of Life 2024-05-27.jpg",
+    "artist": "Andy Li",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chana_Masala_-_Mohammed_-_Spice_Of_Life_2024-05-27.jpg",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/72/Chana_Masala_-_Mohammed_-_Spice_Of_Life_2024-05-27.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "chana-chaat": {
+    "file": "assets/photos/kaku/chana-chaat.jpg",
+    "title": "File:Chana chaat, Bengaluru (2026).jpg",
+    "artist": "Gpkp",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chana_chaat,_Bengaluru_(2026).jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Chana_chaat%2C_Bengaluru_%282026%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "chilla": {
+    "file": "assets/photos/kaku/chilla.jpg",
+    "title": "File:Chilla besan.JPG",
+    "artist": "Kamalsahansi",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chilla_besan.JPG",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Chilla_besan.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "chilli-paneer": {
+    "file": "assets/photos/kaku/chilli-paneer.jpg",
+    "title": "File:Chilly Paneer 01.jpg",
+    "artist": "Marajozkee",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chilly_Paneer_01.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Chilly_Paneer_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "chilli-potato": {
+    "file": "assets/photos/kaku/chilli-potato.jpg",
+    "title": "File:Honey chilli potato 2.jpg",
+    "artist": "Gannu03",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Honey_chilli_potato_2.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/96/Honey_chilli_potato_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "chocolate-shake": {
+    "file": "assets/photos/kaku/chocolate-shake.jpg",
+    "title": "File:Chocolate milkshake ... 😋.jpg",
+    "artist": "Bernard DUPONT",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chocolate_milkshake_..._%F0%9F%98%8B.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/06/Chocolate_milkshake_..._%F0%9F%98%8B.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "chole-bhature": {
+    "file": "assets/photos/kaku/chole-bhature.jpg",
+    "title": "File:Chole Bhature 6.jpg",
+    "artist": "Gannu03",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chole_Bhature_6.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/7c/Chole_Bhature_6.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "coffee": {
+    "file": "assets/photos/kaku/coffee.jpg",
+    "title": "File:Cappuccino-cup 20230110 103258.jpg",
+    "artist": "Ioacc1234red",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cappuccino-cup_20230110_103258.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Cappuccino-cup_20230110_103258.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "cold-coffee": {
+    "file": "assets/photos/kaku/cold-coffee.jpg",
+    "title": "File:Homemade Cold Coffee(Indian Style)- Kolkata.jpg",
+    "artist": "TAPAS KUMAR HALDER",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Homemade_Cold_Coffee(Indian_Style)-_Kolkata.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/6c/Homemade_Cold_Coffee%28Indian_Style%29-_Kolkata.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "corn": {
+    "file": "assets/photos/kaku/corn-chaat.jpg",
+    "title": "File:Cheesy Corn Chaat a 5 minute recipe - Gujarat - SHAILI 012.jpg",
+    "artist": "Shaili Sharma",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cheesy_Corn_Chaat_a_5_minute_recipe_-_Gujarat_-_SHAILI_012.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/91/Cheesy_Corn_Chaat_a_5_minute_recipe_-_Gujarat_-_SHAILI_012.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "dal": {
+    "file": "assets/photos/kaku/dal.jpg",
+    "title": "File:Dal Tadka-Delhi.jpg",
+    "artist": "AugustineKajur",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Dal_Tadka-Delhi.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Dal_Tadka-Delhi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "dal-makhani": {
+    "file": "assets/photos/dal-makhani.jpg",
+    "title": "File:Dal makhani.JPG",
+    "artist": "Nithyasrm",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Dal_makhani.JPG",
+    "source_thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Dal_makhani.JPG/960px-Dal_makhani.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "dum-aloo": {
+    "file": "assets/photos/kaku/dum-aloo.jpg",
+    "title": "File:Kashmiri Dum Aaloo.JPG",
+    "artist": "Miansari66",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kashmiri_Dum_Aaloo.JPG",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/e/ec/Kashmiri_Dum_Aaloo.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "fried-rice": {
+    "file": "assets/photos/kaku/fried-rice.jpg",
+    "title": "File:Vegetable fried rice from Kerala.jpg",
+    "artist": "Ganesh Mohan T",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Vegetable_fried_rice_from_Kerala.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Vegetable_fried_rice_from_Kerala.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "fries": {
+    "file": "assets/photos/kaku/fries.jpg",
+    "title": "File:Cajun fries from Popeyes Louisiana Kitchen, Stratford, Ontario, 2025-08-04.jpg",
+    "artist": "Chris Woodrich",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cajun_fries_from_Popeyes_Louisiana_Kitchen,_Stratford,_Ontario,_2025-08-04.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/19/Cajun_fries_from_Popeyes_Louisiana_Kitchen%2C_Stratford%2C_Ontario%2C_2025-08-04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "garlic-bread": {
+    "file": "assets/photos/kaku/garlic-bread.jpg",
+    "title": "File:Garlic bread - in pan, cooked.jpg",
+    "artist": "Infrogmation of New Orleans",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Garlic_bread_-_in_pan,_cooked.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/df/Garlic_bread_-_in_pan%2C_cooked.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "garlic-naan": {
+    "file": "assets/photos/garlic-naan.jpg",
+    "title": "File:Garlic Naan.JPG",
+    "artist": "Durvankur Patil",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Garlic_Naan.JPG",
+    "source_thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Garlic_Naan.JPG/960px-Garlic_Naan.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "gobi": {
+    "file": "assets/photos/kaku/gobi.jpg",
+    "title": "File:Aloo gobi.jpg",
+    "artist": "",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Aloo_gobi.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c8/Aloo_gobi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "gulab-jamun": {
+    "file": "assets/photos/gulab-jamun.jpg",
+    "title": "File:Gulab Jamun 1.jpg",
+    "artist": "Gaurav Dhwaj Khadka",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Gulab_Jamun_1.jpg",
+    "source_thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/Gulab_Jamun_1.jpg/960px-Gulab_Jamun_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "hot-chocolate": {
+    "file": "assets/photos/kaku/hot-chocolate.jpg",
+    "title": "File:Cup of Hot Chocolate.jpg",
+    "artist": "MochaMilk",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cup_of_Hot_Chocolate.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Cup_of_Hot_Chocolate.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "ice-cream": {
+    "file": "assets/photos/kaku/ice-cream-scoops.jpg",
+    "title": "File:Bowl ~ Ice cream.jpg",
+    "artist": "Mitchellhobbs",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bowl_~_Ice_cream.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Bowl_~_Ice_cream.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "jeera-aloo": {
+    "file": "assets/photos/kaku/jeera-aloo.jpg",
+    "title": "File:Jeera aloo.jpg",
+    "artist": "Gaurav Dhwaj Khadka",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Jeera_aloo.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Jeera_aloo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "jeera-rice": {
+    "file": "assets/photos/jeera-rice.jpg",
+    "title": "File:Jeera rice.jpg",
+    "artist": "Marajozkee",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Jeera_rice.jpg",
+    "source_thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Jeera_rice.jpg/960px-Jeera_rice.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "kadai-paneer": {
+    "file": "assets/photos/kadai-paneer.jpg",
+    "title": "File:Kadai Paneer With Gravy.jpg",
+    "artist": "Monali.mishra",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kadai_Paneer_With_Gravy.jpg",
+    "source_thumb": "https://upload.wikimedia.org/wikipedia/commons/2/2d/Kadai_Paneer_With_Gravy.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  },
+  "kadhi": {
+    "file": "assets/photos/kaku/kadhi.jpg",
+    "title": "File:Kadhi Pakora.jpg",
+    "artist": "Ams4wiki",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Kadhi_Pakora.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/67/Kadhi_Pakora.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "kheer": {
+    "file": "assets/photos/kaku/kheer.jpg",
+    "title": "File:Rice Kheer or Rice Pudding.JPG",
+    "artist": "Mdsmds0",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Rice_Kheer_or_Rice_Pudding.JPG",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/0a/Rice_Kheer_or_Rice_Pudding.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "khichdi": {
+    "file": "assets/photos/kaku/khichdi.jpg",
+    "title": "File:Masala Khichadi.jpg",
+    "artist": "Dkgohil",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Masala_Khichadi.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/10/Masala_Khichadi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "kofta": {
+    "file": "assets/photos/kaku/kofta.jpg",
+    "title": "File:Malai Kofta Curry.jpg",
+    "artist": "Mrudit161187",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Malai_Kofta_Curry.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/40/Malai_Kofta_Curry.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "lassi": {
+    "file": "assets/photos/kaku/lassi.jpg",
+    "title": "File:Lassi 1.jpg",
+    "artist": "Gaurav Dhwaj Khadka",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lassi_1.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/59/Lassi_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "lava-cake": {
+    "file": "assets/photos/kaku/lava-cake.jpg",
+    "title": "File:Vegan Flourless Swiss Chocolate Molten Lava Cake (4867538601).jpg",
+    "artist": "Vegan Feast Catering",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Vegan_Flourless_Swiss_Chocolate_Molten_Lava_Cake_(4867538601).jpg",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Vegan_Flourless_Swiss_Chocolate_Molten_Lava_Cake_%284867538601%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "maggi": {
+    "file": "assets/photos/kaku/maggi.jpg",
+    "title": "File:Veg Maggi 2.jpg",
+    "artist": "Gannu03",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Veg_Maggi_2.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/02/Veg_Maggi_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "makki-roti": {
+    "file": "assets/photos/kaku/makki-roti.jpg",
+    "title": "File:Makki ki Roti 04.jpg",
+    "artist": "Rigourfigure",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Makki_ki_Roti_04.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/0e/Makki_ki_Roti_04.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "manchow": {
+    "file": "assets/photos/kaku/manchow.jpg",
+    "title": "File:Veg Manchow Soup.jpg",
+    "artist": "Sumit Surai",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Veg_Manchow_Soup.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/4e/Veg_Manchow_Soup.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "manchurian": {
+    "file": "assets/photos/kaku/manchurian.jpg",
+    "title": "File:Veg manchurian Balls.jpg",
+    "artist": "Fatimahope",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Veg_manchurian_Balls.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Veg_manchurian_Balls.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "mango-shake": {
+    "file": "assets/photos/kaku/mango-shake.jpg",
+    "title": "File:Mango milkshake.jpg",
+    "artist": "Swathi sri srinivasa raghavan",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mango_milkshake.jpg",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/33/Mango_milkshake.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "margherita": {
+    "file": "assets/photos/kaku/margherita.jpg",
+    "title": "File:Margherita Originale.JPG",
+    "artist": "Mario56",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Margherita_Originale.JPG",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Margherita_Originale.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "masala-chai": {
+    "file": "assets/photos/masala-chai.jpg",
+    "title": "File:Masala Tea - 2.jpg",
+    "artist": "Sarkar Sayantan",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Masala_Tea_-_2.jpg",
+    "source_thumb": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Masala_Tea_-_2.jpg/960px-Masala_Tea_-_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "matar-paneer": {
+    "file": "assets/photos/kaku/matar-paneer.jpg",
+    "title": "File:Matar-Paneer.JPG",
+    "artist": "Mdsmds0",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Matar-Paneer.JPG",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Matar-Paneer.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "milk": {
+    "file": "assets/photos/kaku/milk.jpg",
+    "title": "File:Golden turmeric latte - Hello My Moon 2024-04-07.jpg",
+    "artist": "Andy Li",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Golden_turmeric_latte_-_Hello_My_Moon_2024-04-07.jpg",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/6d/Golden_turmeric_latte_-_Hello_My_Moon_2024-04-07.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "mixed-veg": {
+    "file": "assets/photos/kaku/mixed-veg.jpg",
+    "title": "File:Mixed vegetable curry 2.jpg",
+    "artist": "Dolon Prova",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mixed_vegetable_curry_2.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Mixed_vegetable_curry_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "mushroom": {
+    "file": "assets/photos/kaku/mushroom.jpg",
+    "title": "File:Mushroom Butter Masala (15914329462).jpg",
+    "artist": "Yummy O Yummy",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mushroom_Butter_Masala_(15914329462).jpg",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/54/Mushroom_Butter_Masala_%2815914329462%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "mushroom-tikka": {
+    "file": "assets/photos/kaku/mushroom-tikka.jpg",
+    "title": "File:Mushroom tikkā at Kitchen of Awadh, DLF Phase 4, Gurgaon (2025-09-28).jpg",
+    "artist": "Contrapunctus-1",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mushroom_tikk%C4%81_at_Kitchen_of_Awadh,_DLF_Phase_4,_Gurgaon_(2025-09-28).jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/e/e3/Mushroom_tikk%C4%81_at_Kitchen_of_Awadh%2C_DLF_Phase_4%2C_Gurgaon_%282025-09-28%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "noodles": {
+    "file": "assets/photos/kaku/noodles.jpg",
+    "title": "File:Hakka Noodles.JPG",
+    "artist": "Aparna Balasubramanian",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hakka_Noodles.JPG",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/13/Hakka_Noodles.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "pakora": {
+    "file": "assets/photos/kaku/pakora.jpg",
+    "title": "File:Pakoras in Jaipur.jpg",
+    "artist": "ampersandyslexia",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pakoras_in_Jaipur.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Pakoras_in_Jaipur.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "palak-paneer": {
+    "file": "assets/photos/kaku/palak-paneer.jpg",
+    "title": "File:Palak Paneer (Cottage cheese in spinach gravy).jpg",
+    "artist": "DreamyFlutura11",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Palak_Paneer_(Cottage_cheese_in_spinach_gravy).jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Palak_Paneer_%28Cottage_cheese_in_spinach_gravy%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "paneer-butter-masala": {
+    "file": "assets/photos/paneer-butter-masala.jpg",
+    "title": "File:Paneer Butter Masala - Garnished.jpg",
+    "artist": "Rohith Thulasidas",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Paneer_Butter_Masala_-_Garnished.jpg",
+    "source_thumb": "https://upload.wikimedia.org/wikipedia/commons/4/49/Paneer_Butter_Masala_-_Garnished.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  },
+  "paneer-tikka": {
+    "file": "assets/photos/kaku/paneer-tikka.jpg",
+    "title": "File:Paneer Tikka Shashlik PK012.jpg",
+    "artist": "PallaviKhale",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Paneer_Tikka_Shashlik_PK012.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Paneer_Tikka_Shashlik_PK012.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "paratha": {
+    "file": "assets/photos/kaku/paratha.jpg",
+    "title": "File:Aloo Paratha (96238).jpg",
+    "artist": "Gannu03",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/8/85/Aloo_Paratha_%2896238%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "pasta-red": {
+    "file": "assets/photos/kaku/pasta-red.jpg",
+    "title": "File:Penne Arrabbiata.jpg",
+    "artist": "Petar Milošević",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Penne_Arrabbiata.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Penne_Arrabbiata.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "pasta-white": {
+    "file": "assets/photos/kaku/pasta-white.jpg",
+    "title": "File:White Sauce Pasta at a restaurant in Kolkata, India.jpg",
+    "artist": "Ravi Dwivedi",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:White_Sauce_Pasta_at_a_restaurant_in_Kolkata,_India.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/4/47/White_Sauce_Pasta_at_a_restaurant_in_Kolkata%2C_India.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "pav-bhaji": {
+    "file": "assets/photos/kaku/pav-bhaji.jpg",
+    "title": "File:Pav bhaji SWW.jpg",
+    "artist": "Solowomanwalks",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pav_bhaji_SWW.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/2/21/Pav_bhaji_SWW.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "pizza": {
+    "file": "assets/photos/kaku/pizza.jpg",
+    "title": "File:Vegetarian-pizza-close-up.jpg",
+    "artist": "MartinThoma",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/3/33/Vegetarian-pizza-close-up.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "poha": {
+    "file": "assets/photos/kaku/poha.jpg",
+    "title": "File:Poha 4.jpg",
+    "artist": "Gannu03",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Poha_4.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/1/19/Poha_4.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "pulao": {
+    "file": "assets/photos/kaku/pulao-indian.jpg",
+    "title": "File:Matar Pulao - Mohali 2016-08-06 8222.JPG",
+    "artist": "Biswarup Ganguly",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Matar_Pulao_-_Mohali_2016-08-06_8222.JPG",
+    "license_url": "https://creativecommons.org/licenses/by/3.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Matar_Pulao_-_Mohali_2016-08-06_8222.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "puri": {
+    "file": "assets/photos/kaku/puri.jpg",
+    "title": "File:Puri Bhajji in Mumbai Restaurant.JPG",
+    "artist": "Ask27",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Puri_Bhajji_in_Mumbai_Restaurant.JPG",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/60/Puri_Bhajji_in_Mumbai_Restaurant.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "raita": {
+    "file": "assets/photos/kaku/raita.jpg",
+    "title": "File:Raita with cucumber and mint.jpg",
+    "artist": "Elisabeth Nara at English Wikipedia",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Raita_with_cucumber_and_mint.jpg",
+    "license_url": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/9/90/Raita_with_cucumber_and_mint.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "rajma": {
+    "file": "assets/photos/kaku/rajma-curry.jpg",
+    "title": "File:Rajma Chawal Thali.jpg",
+    "artist": "Medhi jyoti",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Rajma_Chawal_Thali.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Rajma_Chawal_Thali.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "rice": {
+    "file": "assets/photos/kaku/cooked-rice.jpg",
+    "title": "File:HK TKO 將軍澳 Tseung Kwan O 坑口 Hang Hau 南豐廣場 Nan Fung Plaza shop 稻香超級漁港 Tao Heung Chinese Restaurant food cooked white rice October 2026 N13P 01.jpg",
+    "artist": "Lsu MIN oTihew 338",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:HK_TKO_%E5%B0%87%E8%BB%8D%E6%BE%B3_Tseung_Kwan_O_%E5%9D%91%E5%8F%A3_Hang_Hau_%E5%8D%97%E8%B1%90%E5%BB%A3%E5%A0%B4_Nan_Fung_Plaza_shop_%E7%A8%BB%E9%A6%99%E8%B6%85%E7%B4%9A%E6%BC%81%E6%B8%AF_Tao_Heung_Chinese_Restaurant_food_cooked_white_rice_October_2026_N13P_01.jpg",
+    "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/53/HK_TKO_%E5%B0%87%E8%BB%8D%E6%BE%B3_Tseung_Kwan_O_%E5%9D%91%E5%8F%A3_Hang_Hau_%E5%8D%97%E8%B1%90%E5%BB%A3%E5%A0%B4_Nan_Fung_Plaza_shop_%E7%A8%BB%E9%A6%99%E8%B6%85%E7%B4%9A%E6%BC%81%E6%B8%AF_Tao_Heung_Chinese_Restaurant_food_cooked_white_rice_October_2026_N13P_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "roti": {
+    "file": "assets/photos/kaku/roti.jpg",
+    "title": "File:Chapati 1.jpg",
+    "artist": "Gaurav Dhwaj Khadka",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Chapati_1.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/a1/Chapati_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "saag": {
+    "file": "assets/photos/kaku/saag.jpg",
+    "title": "File:Sarson-Ka-Saag.jpg",
+    "artist": "Officialksv",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Sarson-Ka-Saag.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/52/Sarson-Ka-Saag.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "sandwich": {
+    "file": "assets/photos/kaku/sandwich.jpg",
+    "title": "File:A fresh sandwich filled with grilled vegetables.jpg",
+    "artist": "Shixart1985",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:A_fresh_sandwich_filled_with_grilled_vegetables.jpg",
+    "license_url": "https://creativecommons.org/licenses/by/2.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/5/5e/A_fresh_sandwich_filled_with_grilled_vegetables.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "sev": {
+    "file": "assets/photos/kaku/sev-curry.jpg",
+    "title": "File:Sev Tomato 2.jpg",
+    "artist": "Hemal0105",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Sev_Tomato_2.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Sev_Tomato_2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "strawberry-shake": {
+    "file": "assets/photos/kaku/strawberry-shake.jpg",
+    "title": "File:Strawberry milk shake (cropped).jpg",
+    "artist": "Renee Comet (Photographer)",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Strawberry_milk_shake_(cropped).jpg",
+    "license_url": "",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/6/68/Strawberry_milk_shake_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "thali": {
+    "file": "assets/photos/hero-thali.jpg",
+    "title": "File:Indian Thali Og.jpg",
+    "artist": "Hopeskilled",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg"
+  },
+  "toast": {
+    "file": "assets/photos/kaku/toast.jpg",
+    "title": "File:Butter Toast.jpg",
+    "artist": "Gannu03",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Butter_Toast.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/76/Butter_Toast.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "tomato-soup": {
+    "file": "assets/photos/kaku/tomato-soup.jpg",
+    "title": "File:Tomato soup.jpg",
+    "artist": "",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tomato_soup.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Tomato_soup.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "upma": {
+    "file": "assets/photos/kaku/upma.jpg",
+    "title": "File:Upma South India.JPG",
+    "artist": "Intodustin",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Upma_South_India.JPG",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/0/09/Upma_South_India.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "vegetable-soup": {
+    "file": "assets/photos/kaku/vegetable-soup.jpg",
+    "title": "File:Vegetable soup 6.jpg",
+    "artist": "Gannu03",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Vegetable_soup_6.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/72/Vegetable_soup_6.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "wrap": {
+    "file": "assets/photos/kaku/wrap.jpg",
+    "title": "File:Paneer kathi roll homemade.jpg",
+    "artist": "Shafana jasmine",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Paneer_kathi_roll_homemade.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/7/75/Paneer_kathi_roll_homemade.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  },
+  "yogurt": {
+    "file": "assets/photos/kaku/curd-bowl.jpg",
+    "title": "File:Curd in steel bowl.jpg",
+    "artist": "Netha Hussain",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Curd_in_steel_bowl.jpg",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0",
+    "original": "https://upload.wikimedia.org/wikipedia/commons/d/d4/Curd_in_steel_bowl.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+    "changes": "Resized and JPEG-compressed; representative food photo, not photographed at Kaku."
+  }
+}

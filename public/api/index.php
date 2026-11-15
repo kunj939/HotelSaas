@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__.'/menu_template.php';
 // Hostinger-compatible JSON API. Requires PHP 8.2+ and PDO MySQL.
 ini_set('display_errors', '0');
 header('Content-Type: application/json; charset=utf-8');
@@ -54,7 +55,7 @@ function mutation():void {if($_SERVER['REQUEST_METHOD']!=='POST')fail('Method no
 function audit(string $action,?int $rid=null,string $detail=''):void {$a=actor();execq('INSERT INTO audit_logs(user_id,restaurant_id,action,detail) VALUES(?,?,?,?)',[$a['id']??null,$rid,$action,substr($detail,0,400)]);}
 function statusActive(array $r):bool {return in_array($r['status'],['active','trial'],true) && $r['subscription_ends']>=date('Y-m-d') && (int)$r['ordering_enabled']===1;}
 function orderRow(array $o):array { $o['items']=rows('SELECT dish_name,variant_name,addons_json,quantity,unit_price,line_total FROM order_items WHERE order_id=?',[$o['id']]); foreach($o['items'] as &$item){$item['addons']=json_decode($item['addons_json']??'[]',true)?:[];unset($item['addons_json']);}return $o; }
-function imagePath($image):bool { $x=val($image,800);return !$x || preg_match('~^/uploads/[a-f0-9]{32}\.(jpg|jpeg|png|webp)$~',$x) || (str_starts_with($x,'https://upload.wikimedia.org/') && !str_contains($x,'"')); }
+function imagePath($image):bool { $x=val($image,800);return !$x || bundledMenuPhoto($x) || preg_match('~^/uploads/[a-f0-9]{32}\.(jpg|jpeg|png|webp)$~',$x) || (str_starts_with($x,'https://upload.wikimedia.org/') && !str_contains($x,'"')); }
 function jsonOptions($arr,int $max=15):string {
  if(!is_array($arr) || count($arr)>$max)fail('Too many item options');$out=[];
  foreach($arr as $a){if(!is_array($a))fail('Invalid item option');$name=val($a['name']??'',80);if(!$name)fail('Option name required');$out[]=['name'=>$name,'price'=>num($a['price']??0,0,50000)];}
@@ -78,10 +79,10 @@ try {
  }
  if($route==='auth/logout'){mutation();$_SESSION=[];session_regenerate_id(true);$_SESSION['csrf']=bin2hex(random_bytes(24));respond(['ok'=>true,'csrf'=>$_SESSION['csrf']]);}
  if($route==='public/restaurant'){
-  $slug=val($_GET['slug']??'',90);$r=one('SELECT id,slug,name,tagline,welcome_message,logo_url,cover_url,primary_color,accent_color,theme_mode,menu_layout,table_count,qr_mode,ordering_enabled,status,subscription_ends,opening_hours,phone,address FROM restaurants WHERE slug=? AND deleted_at IS NULL',[$slug]);
+  $slug=val($_GET['slug']??'',90);$r=one('SELECT id,slug,name,tagline,welcome_message,logo_url,cover_url,primary_color,accent_color,theme_mode,menu_layout,table_count,qr_mode,ordering_enabled,customer_name_mode,customer_phone_mode,status,subscription_ends,opening_hours,phone,address,whatsapp_number,contact_email,contact_options_enabled FROM restaurants WHERE slug=? AND deleted_at IS NULL',[$slug]);
   if(!$r)fail('Restaurant not found',404);
   $categories=rows('SELECT id,name FROM categories WHERE restaurant_id=? ORDER BY sort_order,id',[$r['id']]);
-  $items=rows('SELECT id,category_id,name,description,food_type,base_price,options_json,addons_json,image_url,image_credit,image_license,image_source_url,available FROM menu_items m WHERE restaurant_id=? AND deleted_at IS NULL ORDER BY (SELECT c.sort_order FROM categories c WHERE c.id=m.category_id),m.sort_order,m.name',[$r['id']]);
+  $items=rows('SELECT id,category_id,name,description,food_type,base_price,options_json,addons_json,image_url,image_credit,image_license,image_source_url,available,featured FROM menu_items m WHERE restaurant_id=? AND deleted_at IS NULL ORDER BY (SELECT c.sort_order FROM categories c WHERE c.id=m.category_id),m.sort_order,m.name',[$r['id']]);
   foreach($items as &$item){$item['options']=json_decode($item['options_json']??'[]',true)?:[];$item['addons']=json_decode($item['addons_json']??'[]',true)?:[];unset($item['options_json'],$item['addons_json']);}
   $r['can_order']=statusActive($r);unset($r['subscription_ends'],$r['status']);respond(['restaurant'=>$r,'categories'=>$categories,'items'=>$items]);
  }
@@ -113,8 +114,12 @@ try {
    $prepared[]=['item_id'=>$itemId,'name'=>$m['name'],'variant'=>$variant,'addons'=>$checked,'quantity'=>$qty,'unit'=>round($unit,2),'line'=>$line];
   }
   if($total<=0||$total>100000)fail('Invalid order amount');
-  $customerName=val($b['customer_name']??'',60);if(mb_strlen($customerName)<2)fail('Please enter your name so we can call you');
-  $phone=preg_replace('/\D+/','',val($b['customer_phone']??'',20));if(strlen($phone)===12&&str_starts_with($phone,'91'))$phone=substr($phone,2);
+  $nameMode=$r['customer_name_mode'];$phoneMode=$r['customer_phone_mode'];
+  $customerName=$nameMode==='off'?'':val($b['customer_name']??'',60);
+  if(($nameMode==='required'||$customerName!=='')&&mb_strlen($customerName)<2)fail('Please enter a name of at least 2 characters');
+  $customerName=$customerName===''?null:$customerName;
+  $phone=$phoneMode==='off'?'':preg_replace('/\D+/','',val($b['customer_phone']??'',20));if(strlen($phone)===12&&str_starts_with($phone,'91'))$phone=substr($phone,2);
+  if($phoneMode==='required'&&$phone==='')fail('Please enter your mobile number');
   if($phone!==''&&!preg_match('/^[6-9]\d{9}$/',$phone))fail('Enter a valid 10-digit mobile number, or leave it empty');
   $customerPhone=$phone===''?null:$phone;
   $track=bin2hex(random_bytes(32));$note=val($b['note']??'',500);
@@ -215,11 +220,12 @@ try {
   $cat=(int)($b['category_id']??0);if($cat&&!one('SELECT id FROM categories WHERE restaurant_id=? AND id=?',[$restaurantId,$cat]))fail('Invalid category');
   $options=jsonOptions($b['options']??[]);$addons=jsonOptions($b['addons']??[]);$base=num($b['base_price']??0,0,50000);if($options==='[]'&&$base<=0)fail('Price must be greater than zero');
   $type=val($b['food_type']??'unspecified',20);if(!in_array($type,['veg','nonveg','egg','unspecified'],true))fail('Invalid food type');
-  $img=val($b['image_url']??'',801);if(!dishImagePath($img))fail('Use an uploaded photo or a valid public HTTPS image URL (maximum 800 characters)');
+  $img=val($b['image_url']??'',801);if(!dishImagePath($img)&&!bundledMenuPhoto($img))fail('Use an uploaded photo or a valid public HTTPS image URL (maximum 800 characters)');
   $data=[$cat?:null,$name,val($b['description']??'',500),$type,$base,$options,$addons,$img?:null,val($b['image_credit']??'',500)?:null,val($b['image_license']??'',100)?:null,val($b['image_source_url']??'',800)?:null,(int)!empty($b['available'])];
   if($id){if(!one('SELECT id FROM menu_items WHERE restaurant_id=? AND id=? AND deleted_at IS NULL',[$restaurantId,$id]))fail('Item not found',404);
    execq('UPDATE menu_items SET category_id=?,name=?,description=?,food_type=?,base_price=?,options_json=?,addons_json=?,image_url=?,image_credit=?,image_license=?,image_source_url=?,available=? WHERE id=? AND restaurant_id=?',[...$data,$id,$restaurantId]);
   }else{execq('INSERT INTO menu_items(restaurant_id,category_id,name,description,food_type,base_price,options_json,addons_json,image_url,image_credit,image_license,image_source_url,available) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)',[$restaurantId,...$data]);$id=(int)db()->lastInsertId();}
+  if(array_key_exists('featured',$b))execq('UPDATE menu_items SET featured=? WHERE id=? AND restaurant_id=?',[(int)!empty($b['featured']),$id,$restaurantId]);
   audit('menu.save',$restaurantId,(string)$id);respond(['ok'=>true,'id'=>$id]);
  }
  if($route==='owner/menu/delete'){
@@ -279,10 +285,17 @@ try {
   $mode=val($b['qr_mode']??'common',10);if(!in_array($mode,['common','table','counter'],true))fail('Invalid QR mode');
   $theme=val($b['theme_mode']??'light',10);if(!in_array($theme,['light','dark'],true))fail('Invalid theme');
   $layout=val($b['menu_layout']??'list',10);if(!in_array($layout,['list','grid'],true))fail('Invalid layout');
+  $nameMode=val($b['customer_name_mode']??$r['customer_name_mode'],10);$phoneMode=val($b['customer_phone_mode']??$r['customer_phone_mode'],10);
+  if(!in_array($nameMode,['off','optional','required'],true)||!in_array($phoneMode,['off','optional','required'],true))fail('Invalid customer detail setting');
+  $whatsapp=preg_replace('/\D+/','',val($b['whatsapp_number']??$r['whatsapp_number'],30));
+  if(strlen($whatsapp)===10)$whatsapp='91'.$whatsapp;
+  $contactEnabled=(int)!empty($b['contact_options_enabled']);
+  if(($whatsapp!==''&&!preg_match('/^[1-9][0-9]{7,14}$/D',$whatsapp))||($contactEnabled&&!$whatsapp))fail('Enter a valid WhatsApp number with country code');
+  $contactEmail=val($b['contact_email']??$r['contact_email'],190);if($contactEmail!==''&&!filter_var($contactEmail,FILTER_VALIDATE_EMAIL))fail('Enter a valid contact email');
   $logo=val($b['logo_url']??'',500);$cover=val($b['cover_url']??'',500);if(!imagePath($logo)||!imagePath($cover))fail('Invalid image URL');
-  execq('UPDATE restaurants SET name=?,tagline=?,welcome_message=?,logo_url=?,cover_url=?,primary_color=?,accent_color=?,theme_mode=?,menu_layout=?,phone=?,address=?,opening_hours=?,table_count=?,qr_mode=?,ordering_enabled=? WHERE id=?',[
+  execq('UPDATE restaurants SET name=?,tagline=?,welcome_message=?,logo_url=?,cover_url=?,primary_color=?,accent_color=?,theme_mode=?,menu_layout=?,phone=?,address=?,opening_hours=?,table_count=?,qr_mode=?,ordering_enabled=?,customer_name_mode=?,customer_phone_mode=?,whatsapp_number=?,contact_email=?,contact_options_enabled=? WHERE id=?',[
    $name,val($b['tagline']??'',250),val($b['welcome_message']??'',500),$logo?:null,$cover?:null,
-   hexcolor($b['primary_color']??'','#186953'),hexcolor($b['accent_color']??'','#E4B866'),$theme,$layout,val($b['phone']??'',40),val($b['address']??'',400),val($b['opening_hours']??'',180),$tables,$mode,(int)!empty($b['ordering_enabled']),$restaurantId]);
+   hexcolor($b['primary_color']??'','#186953'),hexcolor($b['accent_color']??'','#E4B866'),$theme,$layout,val($b['phone']??'',40),val($b['address']??'',400),val($b['opening_hours']??'',180),$tables,$mode,(int)!empty($b['ordering_enabled']),$nameMode,$phoneMode,$whatsapp?:null,$contactEmail?:null,$contactEnabled,$restaurantId]);
   audit('settings.save',$restaurantId);respond(['ok'=>true]);
  }
  if($route==='owner/upload'){
@@ -313,6 +326,12 @@ try {
   respond(['photos'=>array_slice($photos,0,6),'message'=>count($photos)?'Check photo relevance before selecting.':'No suitable licensed photos found; use your own upload.']);
  }
  if(str_starts_with($route,'admin/'))$admin=requireRole('super');
+ if($route==='admin/pricing')respond(['default_monthly_fee'=>(one("SELECT v FROM platform_settings WHERE k='default_monthly_fee'")['v']??'599.00')]);
+ if($route==='admin/pricing/save'){
+  mutation();$fee=num(body()['default_monthly_fee']??null,0,100000);
+  execq("INSERT INTO platform_settings(k,v) VALUES('default_monthly_fee',?) ON DUPLICATE KEY UPDATE v=VALUES(v)",[$fee]);
+  audit('pricing.update',null,(string)$fee);respond(['ok'=>true,'default_monthly_fee'=>$fee]);
+ }
  if($route==='admin/overview'){
   $stats=one('SELECT COUNT(*) AS restaurants,SUM(status="active" AND subscription_ends>=CURDATE()) AS active,SUM(subscription_ends<CURDATE()) AS expired,COALESCE(SUM(CASE WHEN status="active" AND subscription_ends>=CURDATE() THEN monthly_fee ELSE 0 END),0) AS mrr FROM restaurants WHERE deleted_at IS NULL');
   $orders=one('SELECT COUNT(*) AS all_orders,SUM(created_at>=DATE_FORMAT(NOW(),"%Y-%m-01")) AS this_month FROM orders');
@@ -329,16 +348,25 @@ try {
   if(!filter_var($email,FILTER_VALIDATE_EMAIL)||strlen($password)<12)fail('Valid email and password of at least 12 characters required');
   $tables=(int)($b['table_count']??20);if($tables<1||$tables>500)fail('1–500 tables allowed');
   $mode=val($b['qr_mode']??'common',10);if(!in_array($mode,['common','table','counter'],true))fail('Invalid QR mode');
-  $fee=num($b['monthly_fee']??599,0,100000);
+  $fee=num($b['monthly_fee']??(one("SELECT v FROM platform_settings WHERE k='default_monthly_fee'")['v']??'599.00'),0,100000);
+  $template=val($b['menu_template']??'none',40);
+  if(!in_array($template,['none','kaku-v1'],true))fail('Choose a valid starting menu');
   db()->beginTransaction();
   try {
    execq('INSERT INTO restaurants(slug,name,table_count,monthly_fee,qr_mode,subscription_ends) VALUES(?,?,?,?,?,DATE_ADD(CURDATE(),INTERVAL 7 DAY))',[$slug,$name,$tables,$fee,$mode]);$id=(int)db()->lastInsertId();
    execq('INSERT INTO users(restaurant_id,role,full_name,email,password_hash) VALUES(?,?,?,?,?)',[$id,'owner',val($b['owner_name']??$name,120),$email,password_hash($password,PASSWORD_DEFAULT)]);
    execq('INSERT INTO restaurant_access(user_id,restaurant_id) VALUES(?,?)',[(int)db()->lastInsertId(),$id]);
-   foreach(['Starters','Main Course','Breads & Rice','Beverages','Desserts'] as $pos=>$category)execq('INSERT INTO categories(restaurant_id,name,sort_order) VALUES(?,?,?)',[$id,$category,$pos]);
+   if($template==='kaku-v1'){
+    $menu=seedStarterMenu(db(),$id);
+    execq('UPDATE restaurants SET phone=?,whatsapp_number=?,contact_email=?,address=?,contact_options_enabled=1 WHERE id=?',['+91 90535 73091','919053573091','kakupizza17@gmail.com','U6/01, U Block, DLF Phase III, Gurugram, Haryana 122002',$id]);
+   }else{
+    $categories=['Starters','Main Course','Breads & Rice','Beverages','Desserts'];
+    foreach($categories as $pos=>$category)execq('INSERT INTO categories(restaurant_id,name,sort_order) VALUES(?,?,?)',[$id,$category,$pos]);
+    $menu=['template'=>'none','items'=>0,'categories'=>count($categories)];
+   }
    db()->commit();
   }catch(Throwable $e){db()->rollBack();if($e instanceof PDOException&&$e->getCode()==='23000')fail('That URL slug or owner email is already in use. Choose another.');throw $e;}
-  audit('restaurant.create',$id,$slug);respond(['id'=>$id,'slug'=>$slug,'ok'=>true]);
+  audit('restaurant.create',$id,$slug);respond(['id'=>$id,'slug'=>$slug,'ok'=>true,'starter_menu'=>$menu]);
  }
  if($route==='admin/restaurants/update'){
   mutation();$b=body();$id=(int)($b['id']??0);if(!one('SELECT id FROM restaurants WHERE id=?',[$id]))fail('Not found',404);

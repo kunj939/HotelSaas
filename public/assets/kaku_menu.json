@@ -1,0 +1,3539 @@
+{
+  "id": "kaku-v1",
+  "name": "Kaku 2.0 Pizza & Restaurant",
+  "version": 1,
+  "categories": [
+    "Single Topping Pizzas",
+    "Multi Topping Pizzas",
+    "Bread Veg Appetizers",
+    "Burgers",
+    "Pasta",
+    "Maggi",
+    "Fries",
+    "Wraps",
+    "Tandoori Appetizers",
+    "Soups",
+    "Chinese Starters",
+    "Special Items",
+    "Indian Curries",
+    "Paneer Items",
+    "Aloo Items",
+    "Rice Items",
+    "Dal Items",
+    "Kofta",
+    "Mushroom Items",
+    "Soya Chaap",
+    "Chapati & Naan",
+    "Thali",
+    "Parathe",
+    "Rice Combos",
+    "Milkshakes",
+    "Coffee & Tea",
+    "Sweets",
+    "Dahi & Lassi"
+  ],
+  "items": [
+    {
+      "category": "Single Topping Pizzas",
+      "name": "Cheese Capsicum Pizza",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [
+        {
+          "name": "Small",
+          "price": 120
+        },
+        {
+          "name": "Medium",
+          "price": 210
+        },
+        {
+          "name": "Large",
+          "price": 280
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Single Topping Pizzas",
+      "name": "Cheese Corn Pizza",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [
+        {
+          "name": "Small",
+          "price": 120
+        },
+        {
+          "name": "Medium",
+          "price": 210
+        },
+        {
+          "name": "Large",
+          "price": 280
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Single Topping Pizzas",
+      "name": "Cheese Onion Pizza",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [
+        {
+          "name": "Small",
+          "price": 120
+        },
+        {
+          "name": "Medium",
+          "price": 210
+        },
+        {
+          "name": "Large",
+          "price": 280
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Single Topping Pizzas",
+      "name": "Cheese Tomato Pizza",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [
+        {
+          "name": "Small",
+          "price": 120
+        },
+        {
+          "name": "Medium",
+          "price": 210
+        },
+        {
+          "name": "Large",
+          "price": 280
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Single Topping Pizzas",
+      "name": "Cheese Margherita Pizza",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Small",
+          "price": 140
+        },
+        {
+          "name": "Medium",
+          "price": 230
+        },
+        {
+          "name": "Large",
+          "price": 300
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/margherita.jpg",
+      "image_credit": "Mario56",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Margherita_Originale.JPG",
+      "available": 1
+    },
+    {
+      "category": "Single Topping Pizzas",
+      "name": "Cheese Red Pepper Pizza",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Small",
+          "price": 140
+        },
+        {
+          "name": "Medium",
+          "price": 230
+        },
+        {
+          "name": "Large",
+          "price": 300
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Single Topping Pizzas",
+      "name": "Cheese Black Olive Pizza",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Small",
+          "price": 140
+        },
+        {
+          "name": "Medium",
+          "price": 230
+        },
+        {
+          "name": "Large",
+          "price": 300
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Single Topping Pizzas",
+      "name": "Cheese Paneer Pizza",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Small",
+          "price": 140
+        },
+        {
+          "name": "Medium",
+          "price": 230
+        },
+        {
+          "name": "Large",
+          "price": 300
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Single Topping Pizzas",
+      "name": "Cheese Mushroom Pizza",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Small",
+          "price": 140
+        },
+        {
+          "name": "Medium",
+          "price": 230
+        },
+        {
+          "name": "Large",
+          "price": 300
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Spicy Corn Pizza",
+      "description": "Golden corn and red pepper.",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Small",
+          "price": 150
+        },
+        {
+          "name": "Medium",
+          "price": 270
+        },
+        {
+          "name": "Large",
+          "price": 400
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Double Cheese Margherita Pizza",
+      "description": "Loaded with extra cheese.",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Small",
+          "price": 150
+        },
+        {
+          "name": "Medium",
+          "price": 270
+        },
+        {
+          "name": "Large",
+          "price": 400
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/margherita.jpg",
+      "image_credit": "Mario56",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Margherita_Originale.JPG",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Country Feast Pizza",
+      "description": "Onion, capsicum and fresh tomato.",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Small",
+          "price": 150
+        },
+        {
+          "name": "Medium",
+          "price": 270
+        },
+        {
+          "name": "Large",
+          "price": 400
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Farm Fresh Pizza",
+      "description": "Capsicum, fresh tomato, mushroom and jalapeno.",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [
+        {
+          "name": "Small",
+          "price": 160
+        },
+        {
+          "name": "Medium",
+          "price": 280
+        },
+        {
+          "name": "Large",
+          "price": 410
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Pepper Paneer Pizza",
+      "description": "Paneer, onion, capsicum and red pepper.",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [
+        {
+          "name": "Small",
+          "price": 160
+        },
+        {
+          "name": "Medium",
+          "price": 280
+        },
+        {
+          "name": "Large",
+          "price": 410
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Super Deluxe Pizza",
+      "description": "Onion, capsicum, paneer and corn.",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [
+        {
+          "name": "Small",
+          "price": 160
+        },
+        {
+          "name": "Medium",
+          "price": 280
+        },
+        {
+          "name": "Large",
+          "price": 410
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Deluxe Veggie Pizza",
+      "description": "Red pepper and capsicum.",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [
+        {
+          "name": "Small",
+          "price": 160
+        },
+        {
+          "name": "Medium",
+          "price": 280
+        },
+        {
+          "name": "Large",
+          "price": 410
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Veg Loaded Pizza",
+      "description": "Tomato, paneer, jalapeno and corn.",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [
+        {
+          "name": "Small",
+          "price": 160
+        },
+        {
+          "name": "Medium",
+          "price": 280
+        },
+        {
+          "name": "Large",
+          "price": 410
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Tandoori Paneer Pizza",
+      "description": "Tandoori sauce, paneer, capsicum and red paprika.",
+      "food_type": "veg",
+      "base_price": 200,
+      "options": [
+        {
+          "name": "Small",
+          "price": 200
+        },
+        {
+          "name": "Medium",
+          "price": 300
+        },
+        {
+          "name": "Large",
+          "price": 410
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Veg Pie Pizza",
+      "description": "Crispy onion, diced mozzarella and loaded veggies.",
+      "food_type": "veg",
+      "base_price": 200,
+      "options": [
+        {
+          "name": "Small",
+          "price": 200
+        },
+        {
+          "name": "Medium",
+          "price": 300
+        },
+        {
+          "name": "Large",
+          "price": 410
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "Maxicon Hunger Pizza",
+      "description": "Onion, tomato, capsicum and fresh mushroom.",
+      "food_type": "veg",
+      "base_price": 200,
+      "options": [
+        {
+          "name": "Small",
+          "price": 200
+        },
+        {
+          "name": "Medium",
+          "price": 300
+        },
+        {
+          "name": "Large",
+          "price": 410
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Multi Topping Pizzas",
+      "name": "All Topping Pizza",
+      "description": "Vegetable toppings with mozzarella. Mention your preferred toppings in the order note.",
+      "food_type": "veg",
+      "base_price": 250,
+      "options": [
+        {
+          "name": "Small",
+          "price": 250
+        },
+        {
+          "name": "Medium",
+          "price": 360
+        },
+        {
+          "name": "Large",
+          "price": 470
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pizza.jpg",
+      "image_credit": "MartinThoma",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian-pizza-close-up.jpg",
+      "available": 1
+    },
+    {
+      "category": "Bread Veg Appetizers",
+      "name": "Veg Grilled Sandwich",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/sandwich.jpg",
+      "image_credit": "Shixart1985",
+      "image_license": "CC BY 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:A_fresh_sandwich_filled_with_grilled_vegetables.jpg",
+      "available": 1
+    },
+    {
+      "category": "Bread Veg Appetizers",
+      "name": "Spicy Corn Sandwich",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/sandwich.jpg",
+      "image_credit": "Shixart1985",
+      "image_license": "CC BY 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:A_fresh_sandwich_filled_with_grilled_vegetables.jpg",
+      "available": 1
+    },
+    {
+      "category": "Bread Veg Appetizers",
+      "name": "Tandoori Paneer Sandwich",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/sandwich.jpg",
+      "image_credit": "Shixart1985",
+      "image_license": "CC BY 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:A_fresh_sandwich_filled_with_grilled_vegetables.jpg",
+      "available": 1
+    },
+    {
+      "category": "Bread Veg Appetizers",
+      "name": "Cheese Sandwich",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/sandwich.jpg",
+      "image_credit": "Shixart1985",
+      "image_license": "CC BY 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:A_fresh_sandwich_filled_with_grilled_vegetables.jpg",
+      "available": 1
+    },
+    {
+      "category": "Bread Veg Appetizers",
+      "name": "Butter Toast",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 60,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/toast.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Butter_Toast.jpg",
+      "available": 1
+    },
+    {
+      "category": "Bread Veg Appetizers",
+      "name": "Bread Butter",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 60,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/toast.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Butter_Toast.jpg",
+      "available": 1
+    },
+    {
+      "category": "Bread Veg Appetizers",
+      "name": "Stick Garlic Bread",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/garlic-bread.jpg",
+      "image_credit": "Infrogmation of New Orleans",
+      "image_license": "CC BY-SA 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Garlic_bread_-_in_pan,_cooked.jpg",
+      "available": 1
+    },
+    {
+      "category": "Bread Veg Appetizers",
+      "name": "Stuffed Garlic Bread",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/garlic-bread.jpg",
+      "image_credit": "Infrogmation of New Orleans",
+      "image_license": "CC BY-SA 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Garlic_bread_-_in_pan,_cooked.jpg",
+      "available": 1
+    },
+    {
+      "category": "Burgers",
+      "name": "Aloo Tikki Burger",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 60,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/burger.jpg",
+      "image_credit": "Andy Li",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Fancy_Veggie_Burger_and_Fries_-_Joe%27s_Burger_House_2024-07-07.jpg",
+      "available": 1
+    },
+    {
+      "category": "Burgers",
+      "name": "Veg Spicy Burger",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/burger.jpg",
+      "image_credit": "Andy Li",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Fancy_Veggie_Burger_and_Fries_-_Joe%27s_Burger_House_2024-07-07.jpg",
+      "available": 1
+    },
+    {
+      "category": "Burgers",
+      "name": "Delight Burger",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/burger.jpg",
+      "image_credit": "Andy Li",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Fancy_Veggie_Burger_and_Fries_-_Joe%27s_Burger_House_2024-07-07.jpg",
+      "available": 1
+    },
+    {
+      "category": "Burgers",
+      "name": "Cheese Slice Burger",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/burger.jpg",
+      "image_credit": "Andy Li",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Fancy_Veggie_Burger_and_Fries_-_Joe%27s_Burger_House_2024-07-07.jpg",
+      "available": 1
+    },
+    {
+      "category": "Burgers",
+      "name": "Paneer Burger",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/burger.jpg",
+      "image_credit": "Andy Li",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Fancy_Veggie_Burger_and_Fries_-_Joe%27s_Burger_House_2024-07-07.jpg",
+      "available": 1
+    },
+    {
+      "category": "Burgers",
+      "name": "King Burger",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/burger.jpg",
+      "image_credit": "Andy Li",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Fancy_Veggie_Burger_and_Fries_-_Joe%27s_Burger_House_2024-07-07.jpg",
+      "available": 1
+    },
+    {
+      "category": "Pasta",
+      "name": "White Pasta",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pasta-white.jpg",
+      "image_credit": "Ravi Dwivedi",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:White_Sauce_Pasta_at_a_restaurant_in_Kolkata,_India.jpg",
+      "available": 1
+    },
+    {
+      "category": "Pasta",
+      "name": "Red Pasta",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pasta-red.jpg",
+      "image_credit": "Petar Milošević",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Penne_Arrabbiata.jpg",
+      "available": 1
+    },
+    {
+      "category": "Pasta",
+      "name": "Mix Sauce Pasta",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pasta-red.jpg",
+      "image_credit": "Petar Milošević",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Penne_Arrabbiata.jpg",
+      "available": 1
+    },
+    {
+      "category": "Maggi",
+      "name": "Plain Maggi",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/maggi.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Veg_Maggi_2.jpg",
+      "available": 1
+    },
+    {
+      "category": "Maggi",
+      "name": "Veg Maggi",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/maggi.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Veg_Maggi_2.jpg",
+      "available": 1
+    },
+    {
+      "category": "Maggi",
+      "name": "Corn & Cheese Maggi",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/maggi.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Veg_Maggi_2.jpg",
+      "available": 1
+    },
+    {
+      "category": "Fries",
+      "name": "Salted Fries",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/fries.jpg",
+      "image_credit": "Chris Woodrich",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cajun_fries_from_Popeyes_Louisiana_Kitchen,_Stratford,_Ontario,_2025-08-04.jpg",
+      "available": 1
+    },
+    {
+      "category": "Fries",
+      "name": "Masala Fries",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/fries.jpg",
+      "image_credit": "Chris Woodrich",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cajun_fries_from_Popeyes_Louisiana_Kitchen,_Stratford,_Ontario,_2025-08-04.jpg",
+      "available": 1
+    },
+    {
+      "category": "Fries",
+      "name": "Peri Peri Fries",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/fries.jpg",
+      "image_credit": "Chris Woodrich",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cajun_fries_from_Popeyes_Louisiana_Kitchen,_Stratford,_Ontario,_2025-08-04.jpg",
+      "available": 1
+    },
+    {
+      "category": "Fries",
+      "name": "Cheesy Fries",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/fries.jpg",
+      "image_credit": "Chris Woodrich",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cajun_fries_from_Popeyes_Louisiana_Kitchen,_Stratford,_Ontario,_2025-08-04.jpg",
+      "available": 1
+    },
+    {
+      "category": "Wraps",
+      "name": "Veg Spicy Wrap",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/wrap.jpg",
+      "image_credit": "Shafana jasmine",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_kathi_roll_homemade.jpg",
+      "available": 1
+    },
+    {
+      "category": "Wraps",
+      "name": "Aloo Patty Wrap",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/wrap.jpg",
+      "image_credit": "Shafana jasmine",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_kathi_roll_homemade.jpg",
+      "available": 1
+    },
+    {
+      "category": "Wraps",
+      "name": "Paneer Wrap",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/wrap.jpg",
+      "image_credit": "Shafana jasmine",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_kathi_roll_homemade.jpg",
+      "available": 1
+    },
+    {
+      "category": "Tandoori Appetizers",
+      "name": "Malai Chaap",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Half",
+          "price": 140
+        },
+        {
+          "name": "Full",
+          "price": 210
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chaap.jpg",
+      "image_credit": "Ravi Dwivedi",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Soya_Chaap_dish.jpg",
+      "available": 1
+    },
+    {
+      "category": "Tandoori Appetizers",
+      "name": "Masala Chaap",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [
+        {
+          "name": "Half",
+          "price": 130
+        },
+        {
+          "name": "Full",
+          "price": 200
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chaap.jpg",
+      "image_credit": "Ravi Dwivedi",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Soya_Chaap_dish.jpg",
+      "available": 1
+    },
+    {
+      "category": "Tandoori Appetizers",
+      "name": "Malai Masala Chaap",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Half",
+          "price": 150
+        },
+        {
+          "name": "Full",
+          "price": 220
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chaap.jpg",
+      "image_credit": "Ravi Dwivedi",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Soya_Chaap_dish.jpg",
+      "available": 1
+    },
+    {
+      "category": "Tandoori Appetizers",
+      "name": "Afghani Chaap",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Half",
+          "price": 150
+        },
+        {
+          "name": "Full",
+          "price": 220
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chaap.jpg",
+      "image_credit": "Ravi Dwivedi",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Soya_Chaap_dish.jpg",
+      "available": 1
+    },
+    {
+      "category": "Tandoori Appetizers",
+      "name": "Achari Chaap",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Half",
+          "price": 140
+        },
+        {
+          "name": "Full",
+          "price": 220
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chaap.jpg",
+      "image_credit": "Ravi Dwivedi",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Soya_Chaap_dish.jpg",
+      "available": 1
+    },
+    {
+      "category": "Tandoori Appetizers",
+      "name": "Paneer Tikka",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 220,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paneer-tikka.jpg",
+      "image_credit": "PallaviKhale",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Tikka_Shashlik_PK012.jpg",
+      "available": 1
+    },
+    {
+      "category": "Tandoori Appetizers",
+      "name": "Mushroom Tikka",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 250,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/mushroom-tikka.jpg",
+      "image_credit": "Contrapunctus-1",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Mushroom_tikk%C4%81_at_Kitchen_of_Awadh,_DLF_Phase_4,_Gurgaon_(2025-09-28).jpg",
+      "available": 1
+    },
+    {
+      "category": "Tandoori Appetizers",
+      "name": "Paneer Malai Tikka",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 280,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paneer-tikka.jpg",
+      "image_credit": "PallaviKhale",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Tikka_Shashlik_PK012.jpg",
+      "available": 1
+    },
+    {
+      "category": "Soups",
+      "name": "Tomato Soup",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/tomato-soup.jpg",
+      "image_credit": "",
+      "image_license": "CC BY-SA 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Tomato_soup.jpg",
+      "available": 1
+    },
+    {
+      "category": "Soups",
+      "name": "Mix Veg Soup",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/vegetable-soup.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetable_soup_6.jpg",
+      "available": 1
+    },
+    {
+      "category": "Soups",
+      "name": "Hot & Sour Soup",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/manchow.jpg",
+      "image_credit": "Sumit Surai",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Veg_Manchow_Soup.jpg",
+      "available": 1
+    },
+    {
+      "category": "Soups",
+      "name": "Veg Manchow Soup",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/manchow.jpg",
+      "image_credit": "Sumit Surai",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Veg_Manchow_Soup.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chinese Starters",
+      "name": "Chilli Potato",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chilli-potato.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Honey_chilli_potato_2.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chinese Starters",
+      "name": "Honey Chilli Potato",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chilli-potato.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Honey_chilli_potato_2.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chinese Starters",
+      "name": "Chilli Paneer",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 200,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chilli-paneer.jpg",
+      "image_credit": "Marajozkee",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chilly_Paneer_01.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chinese Starters",
+      "name": "Veg Noodles",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/noodles.jpg",
+      "image_credit": "Aparna Balasubramanian",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Hakka_Noodles.JPG",
+      "available": 1
+    },
+    {
+      "category": "Chinese Starters",
+      "name": "Chilli Garlic Noodles",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/noodles.jpg",
+      "image_credit": "Aparna Balasubramanian",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Hakka_Noodles.JPG",
+      "available": 1
+    },
+    {
+      "category": "Chinese Starters",
+      "name": "Singapuri Noodles",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 180,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/noodles.jpg",
+      "image_credit": "Aparna Balasubramanian",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Hakka_Noodles.JPG",
+      "available": 1
+    },
+    {
+      "category": "Chinese Starters",
+      "name": "Hakka Noodles",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 180,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/noodles.jpg",
+      "image_credit": "Aparna Balasubramanian",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Hakka_Noodles.JPG",
+      "available": 1
+    },
+    {
+      "category": "Chinese Starters",
+      "name": "Manchurian",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 230,
+      "options": [
+        {
+          "name": "Gravy",
+          "price": 230
+        },
+        {
+          "name": "Dry",
+          "price": 230
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/manchurian.jpg",
+      "image_credit": "Fatimahope",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Veg_manchurian_Balls.jpg",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Chhole Bhature",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chole-bhature.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chole_Bhature_6.jpg",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Puri Sabji",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/puri.jpg",
+      "image_credit": "Ask27",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Puri_Bhajji_in_Mumbai_Restaurant.JPG",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Poha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/poha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Poha_4.jpg",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Sarson Saag",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [
+        {
+          "name": "Half",
+          "price": 130
+        },
+        {
+          "name": "Full",
+          "price": 200
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/saag.jpg",
+      "image_credit": "Officialksv",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Sarson-Ka-Saag.jpg",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Upma",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/upma.jpg",
+      "image_credit": "Intodustin",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Upma_South_India.JPG",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Khichdi",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/khichdi.jpg",
+      "image_credit": "Dkgohil",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Masala_Khichadi.jpg",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Mix Pakode",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pakora.jpg",
+      "image_credit": "ampersandyslexia",
+      "image_license": "CC BY-SA 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Pakoras_in_Jaipur.jpg",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Bread Pakode",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/bread-pakora.jpg",
+      "image_credit": "Mdsmds0",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Bread_Pakora_(Stuffed_with_Mashed-Spicy_Potatoes).JPG",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Pav Bhaji",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pav-bhaji.jpg",
+      "image_credit": "Solowomanwalks",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Pav_bhaji_SWW.jpg",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Channa Chaat",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chana-chaat.jpg",
+      "image_credit": "Gpkp",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chana_chaat,_Bengaluru_(2026).jpg",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Corn Chaat",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/corn-chaat.jpg",
+      "image_credit": "Shaili Sharma",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cheesy_Corn_Chaat_a_5_minute_recipe_-_Gujarat_-_SHAILI_012.jpg",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Sweet Corn",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/corn-chaat.jpg",
+      "image_credit": "Shaili Sharma",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cheesy_Corn_Chaat_a_5_minute_recipe_-_Gujarat_-_SHAILI_012.jpg",
+      "available": 1
+    },
+    {
+      "category": "Special Items",
+      "name": "Besan Chilla",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chilla.jpg",
+      "image_credit": "Kamalsahansi",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chilla_besan.JPG",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Channa Masala",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [
+        {
+          "name": "Half",
+          "price": 130
+        },
+        {
+          "name": "Full",
+          "price": 200
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chana.jpg",
+      "image_credit": "Andy Li",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chana_Masala_-_Mohammed_-_Spice_Of_Life_2024-05-27.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Chole",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [
+        {
+          "name": "Half",
+          "price": 110
+        },
+        {
+          "name": "Full",
+          "price": 170
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chana.jpg",
+      "image_credit": "Andy Li",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chana_Masala_-_Mohammed_-_Spice_Of_Life_2024-05-27.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Rajma Masala",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [
+        {
+          "name": "Half",
+          "price": 110
+        },
+        {
+          "name": "Full",
+          "price": 170
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/rajma-curry.jpg",
+      "image_credit": "Medhi jyoti",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Rajma_Chawal_Thali.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Bhindi Masala",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [
+        {
+          "name": "Half",
+          "price": 120
+        },
+        {
+          "name": "Full",
+          "price": 190
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/bhindi.jpg",
+      "image_credit": "Monali.mishra",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Bhindi_Masala.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Gobi Masala",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Half",
+          "price": 140
+        },
+        {
+          "name": "Full",
+          "price": 220
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/gobi.jpg",
+      "image_credit": "",
+      "image_license": "CC BY-SA 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_gobi.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Gobi Matar",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Half",
+          "price": 140
+        },
+        {
+          "name": "Full",
+          "price": 220
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/gobi.jpg",
+      "image_credit": "",
+      "image_license": "CC BY-SA 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_gobi.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Mix Veg",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Half",
+          "price": 140
+        },
+        {
+          "name": "Full",
+          "price": 220
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/mixed-veg.jpg",
+      "image_credit": "Dolon Prova",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Mixed_vegetable_curry_2.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Pindi Chana",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Half",
+          "price": 140
+        },
+        {
+          "name": "Full",
+          "price": 220
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chana.jpg",
+      "image_credit": "Andy Li",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chana_Masala_-_Mohammed_-_Spice_Of_Life_2024-05-27.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Kadi",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [
+        {
+          "name": "Half",
+          "price": 100
+        },
+        {
+          "name": "Full",
+          "price": 170
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/kadhi.jpg",
+      "image_credit": "Ams4wiki",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Kadhi_Pakora.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Kadi Pakoda",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [
+        {
+          "name": "Half",
+          "price": 110
+        },
+        {
+          "name": "Full",
+          "price": 180
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/kadhi.jpg",
+      "image_credit": "Ams4wiki",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Kadhi_Pakora.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Sev Bhaji",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [
+        {
+          "name": "Half",
+          "price": 130
+        },
+        {
+          "name": "Full",
+          "price": 200
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/sev-curry.jpg",
+      "image_credit": "Hemal0105",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Sev_Tomato_2.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Sev Tamatar",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [
+        {
+          "name": "Half",
+          "price": 130
+        },
+        {
+          "name": "Full",
+          "price": 200
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/sev-curry.jpg",
+      "image_credit": "Hemal0105",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Sev_Tomato_2.jpg",
+      "available": 1
+    },
+    {
+      "category": "Indian Curries",
+      "name": "Baingan Bharta",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [
+        {
+          "name": "Half",
+          "price": 130
+        },
+        {
+          "name": "Full",
+          "price": 200
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/baingan.jpg",
+      "image_credit": "Zeel Patel",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Baingan_Ka_Bharta.JPG",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Matar Paneer",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Half",
+          "price": 140
+        },
+        {
+          "name": "Full",
+          "price": 210
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/matar-paneer.jpg",
+      "image_credit": "Mdsmds0",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Matar-Paneer.JPG",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Shahi Paneer",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Half",
+          "price": 140
+        },
+        {
+          "name": "Full",
+          "price": 210
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/paneer-butter-masala.jpg",
+      "image_credit": "Rohith Thulasidas",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Butter_Masala_-_Garnished.jpg",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Kadai Paneer",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Half",
+          "price": 150
+        },
+        {
+          "name": "Full",
+          "price": 230
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kadai-paneer.jpg",
+      "image_credit": "Monali.mishra",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Kadai_Paneer_With_Gravy.jpg",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Paneer Do Pyaza",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Half",
+          "price": 150
+        },
+        {
+          "name": "Full",
+          "price": 230
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/paneer-butter-masala.jpg",
+      "image_credit": "Rohith Thulasidas",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Butter_Masala_-_Garnished.jpg",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Palak Paneer",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Half",
+          "price": 150
+        },
+        {
+          "name": "Full",
+          "price": 230
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/palak-paneer.jpg",
+      "image_credit": "DreamyFlutura11",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Palak_Paneer_(Cottage_cheese_in_spinach_gravy).jpg",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Chana Paneer",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Half",
+          "price": 150
+        },
+        {
+          "name": "Full",
+          "price": 230
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/matar-paneer.jpg",
+      "image_credit": "Mdsmds0",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Matar-Paneer.JPG",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Paneer Lababdar",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [
+        {
+          "name": "Half",
+          "price": 160
+        },
+        {
+          "name": "Full",
+          "price": 240
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/paneer-butter-masala.jpg",
+      "image_credit": "Rohith Thulasidas",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Butter_Masala_-_Garnished.jpg",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Paneer Bhurji",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [
+        {
+          "name": "Half",
+          "price": 160
+        },
+        {
+          "name": "Full",
+          "price": 240
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/bhurji.jpg",
+      "image_credit": "Maskaravivek",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Homemade_Paneer_Bhurji.jpg",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Paneer Malai",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [
+        {
+          "name": "Half",
+          "price": 160
+        },
+        {
+          "name": "Full",
+          "price": 240
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/paneer-butter-masala.jpg",
+      "image_credit": "Rohith Thulasidas",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Butter_Masala_-_Garnished.jpg",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Paneer Butter Masala",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 170,
+      "options": [
+        {
+          "name": "Half",
+          "price": 170
+        },
+        {
+          "name": "Full",
+          "price": 250
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/paneer-butter-masala.jpg",
+      "image_credit": "Rohith Thulasidas",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Butter_Masala_-_Garnished.jpg",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Paneer Malai Methi",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 170,
+      "options": [
+        {
+          "name": "Half",
+          "price": 170
+        },
+        {
+          "name": "Full",
+          "price": 250
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/paneer-butter-masala.jpg",
+      "image_credit": "Rohith Thulasidas",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Butter_Masala_-_Garnished.jpg",
+      "available": 1
+    },
+    {
+      "category": "Paneer Items",
+      "name": "Paneer Makhmali",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 170,
+      "options": [
+        {
+          "name": "Half",
+          "price": 170
+        },
+        {
+          "name": "Full",
+          "price": 250
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/paneer-butter-masala.jpg",
+      "image_credit": "Rohith Thulasidas",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Butter_Masala_-_Garnished.jpg",
+      "available": 1
+    },
+    {
+      "category": "Aloo Items",
+      "name": "Aloo Jeera",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [
+        {
+          "name": "Half",
+          "price": 110
+        },
+        {
+          "name": "Full",
+          "price": 170
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/jeera-aloo.jpg",
+      "image_credit": "Gaurav Dhwaj Khadka",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Jeera_aloo.jpg",
+      "available": 1
+    },
+    {
+      "category": "Aloo Items",
+      "name": "Aloo Matar",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [
+        {
+          "name": "Half",
+          "price": 100
+        },
+        {
+          "name": "Full",
+          "price": 160
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/aloo-matar.jpg",
+      "image_credit": "Zeel Patel",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Matar.JPG",
+      "available": 1
+    },
+    {
+      "category": "Aloo Items",
+      "name": "Aloo Dum Masala",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [
+        {
+          "name": "Half",
+          "price": 130
+        },
+        {
+          "name": "Full",
+          "price": 190
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/dum-aloo.jpg",
+      "image_credit": "Miansari66",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Kashmiri_Dum_Aaloo.JPG",
+      "available": 1
+    },
+    {
+      "category": "Aloo Items",
+      "name": "Aloo Dum Palak",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [
+        {
+          "name": "Half",
+          "price": 130
+        },
+        {
+          "name": "Full",
+          "price": 190
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/saag.jpg",
+      "image_credit": "Officialksv",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Sarson-Ka-Saag.jpg",
+      "available": 1
+    },
+    {
+      "category": "Aloo Items",
+      "name": "Aloo Palak",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [
+        {
+          "name": "Half",
+          "price": 100
+        },
+        {
+          "name": "Full",
+          "price": 160
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/saag.jpg",
+      "image_credit": "Officialksv",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Sarson-Ka-Saag.jpg",
+      "available": 1
+    },
+    {
+      "category": "Aloo Items",
+      "name": "Aloo Gobhi",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [
+        {
+          "name": "Half",
+          "price": 110
+        },
+        {
+          "name": "Full",
+          "price": 180
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/gobi.jpg",
+      "image_credit": "",
+      "image_license": "CC BY-SA 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_gobi.jpg",
+      "available": 1
+    },
+    {
+      "category": "Aloo Items",
+      "name": "Aloo Tamatar",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [
+        {
+          "name": "Half",
+          "price": 100
+        },
+        {
+          "name": "Full",
+          "price": 160
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/aloo-matar.jpg",
+      "image_credit": "Zeel Patel",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Matar.JPG",
+      "available": 1
+    },
+    {
+      "category": "Rice Items",
+      "name": "Plain Rice",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 60,
+      "options": [
+        {
+          "name": "Half",
+          "price": 60
+        },
+        {
+          "name": "Full",
+          "price": 90
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/cooked-rice.jpg",
+      "image_credit": "Lsu MIN oTihew 338",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:HK_TKO_%E5%B0%87%E8%BB%8D%E6%BE%B3_Tseung_Kwan_O_%E5%9D%91%E5%8F%A3_Hang_Hau_%E5%8D%97%E8%B1%90%E5%BB%A3%E5%A0%B4_Nan_Fung_Plaza_shop_%E7%A8%BB%E9%A6%99%E8%B6%85%E7%B4%9A%E6%BC%81%E6%B8%AF_Tao_Heung_Chinese_Restaurant_food_cooked_white_rice_October_2026_N13P_01.jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Items",
+      "name": "Jeera Rice",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/jeera-rice.jpg",
+      "image_credit": "Marajozkee",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Jeera_rice.jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Items",
+      "name": "Fried Rice",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [
+        {
+          "name": "Half",
+          "price": 70
+        },
+        {
+          "name": "Full",
+          "price": 120
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/fried-rice.jpg",
+      "image_credit": "Ganesh Mohan T",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetable_fried_rice_from_Kerala.jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Items",
+      "name": "Paneer Fried Rice",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/fried-rice.jpg",
+      "image_credit": "Ganesh Mohan T",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetable_fried_rice_from_Kerala.jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Items",
+      "name": "Veg Biryani",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/biryani.jpg",
+      "image_credit": "Phadke09",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetable_Biryani_IMG_001.jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Items",
+      "name": "Veg Pulao",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pulao-indian.jpg",
+      "image_credit": "Biswarup Ganguly",
+      "image_license": "CC BY 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Matar_Pulao_-_Mohali_2016-08-06_8222.JPG",
+      "available": 1
+    },
+    {
+      "category": "Rice Items",
+      "name": "Matar Pulao",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/pulao-indian.jpg",
+      "image_credit": "Biswarup Ganguly",
+      "image_license": "CC BY 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Matar_Pulao_-_Mohali_2016-08-06_8222.JPG",
+      "available": 1
+    },
+    {
+      "category": "Dal Items",
+      "name": "Dal Fry",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [
+        {
+          "name": "Half",
+          "price": 80
+        },
+        {
+          "name": "Full",
+          "price": 130
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/dal.jpg",
+      "image_credit": "AugustineKajur",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Dal_Tadka-Delhi.jpg",
+      "available": 1
+    },
+    {
+      "category": "Dal Items",
+      "name": "Dal Tadka",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [
+        {
+          "name": "Half",
+          "price": 100
+        },
+        {
+          "name": "Full",
+          "price": 150
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/dal.jpg",
+      "image_credit": "AugustineKajur",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Dal_Tadka-Delhi.jpg",
+      "available": 1
+    },
+    {
+      "category": "Dal Items",
+      "name": "Dal Butter Fry",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [
+        {
+          "name": "Half",
+          "price": 110
+        },
+        {
+          "name": "Full",
+          "price": 160
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/dal.jpg",
+      "image_credit": "AugustineKajur",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Dal_Tadka-Delhi.jpg",
+      "available": 1
+    },
+    {
+      "category": "Dal Items",
+      "name": "Arhar Dal Fry",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [
+        {
+          "name": "Half",
+          "price": 100
+        },
+        {
+          "name": "Full",
+          "price": 160
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/dal.jpg",
+      "image_credit": "AugustineKajur",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Dal_Tadka-Delhi.jpg",
+      "available": 1
+    },
+    {
+      "category": "Dal Items",
+      "name": "Dal Makhni",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 130,
+      "options": [
+        {
+          "name": "Half",
+          "price": 130
+        },
+        {
+          "name": "Full",
+          "price": 200
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/dal-makhani.jpg",
+      "image_credit": "Nithyasrm",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Dal_makhani.JPG",
+      "available": 1
+    },
+    {
+      "category": "Kofta",
+      "name": "Malai Kofta",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [
+        {
+          "name": "Half",
+          "price": 160
+        },
+        {
+          "name": "Full",
+          "price": 230
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/kofta.jpg",
+      "image_credit": "Mrudit161187",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Malai_Kofta_Curry.jpg",
+      "available": 1
+    },
+    {
+      "category": "Kofta",
+      "name": "Angoori Kofta",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 170,
+      "options": [
+        {
+          "name": "Half",
+          "price": 170
+        },
+        {
+          "name": "Full",
+          "price": 250
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/kofta.jpg",
+      "image_credit": "Mrudit161187",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Malai_Kofta_Curry.jpg",
+      "available": 1
+    },
+    {
+      "category": "Kofta",
+      "name": "Palak Kofta",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [
+        {
+          "name": "Half",
+          "price": 160
+        },
+        {
+          "name": "Full",
+          "price": 230
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/kofta.jpg",
+      "image_credit": "Mrudit161187",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Malai_Kofta_Curry.jpg",
+      "available": 1
+    },
+    {
+      "category": "Mushroom Items",
+      "name": "Matar Mushroom",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Half",
+          "price": 150
+        },
+        {
+          "name": "Full",
+          "price": 220
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/mushroom.jpg",
+      "image_credit": "Yummy O Yummy",
+      "image_license": "CC BY 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Mushroom_Butter_Masala_(15914329462).jpg",
+      "available": 1
+    },
+    {
+      "category": "Mushroom Items",
+      "name": "Kadai Mushroom",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 170,
+      "options": [
+        {
+          "name": "Half",
+          "price": 170
+        },
+        {
+          "name": "Full",
+          "price": 240
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/mushroom.jpg",
+      "image_credit": "Yummy O Yummy",
+      "image_license": "CC BY 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Mushroom_Butter_Masala_(15914329462).jpg",
+      "available": 1
+    },
+    {
+      "category": "Mushroom Items",
+      "name": "Mushroom Masala",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 180,
+      "options": [
+        {
+          "name": "Half",
+          "price": 180
+        },
+        {
+          "name": "Full",
+          "price": 230
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/mushroom.jpg",
+      "image_credit": "Yummy O Yummy",
+      "image_license": "CC BY 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Mushroom_Butter_Masala_(15914329462).jpg",
+      "available": 1
+    },
+    {
+      "category": "Soya Chaap",
+      "name": "Chaap Gravy",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 140,
+      "options": [
+        {
+          "name": "Half",
+          "price": 140
+        },
+        {
+          "name": "Full",
+          "price": 200
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chaap.jpg",
+      "image_credit": "Ravi Dwivedi",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Soya_Chaap_dish.jpg",
+      "available": 1
+    },
+    {
+      "category": "Soya Chaap",
+      "name": "Kadi Chaap",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [
+        {
+          "name": "Half",
+          "price": 150
+        },
+        {
+          "name": "Full",
+          "price": 210
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chaap.jpg",
+      "image_credit": "Ravi Dwivedi",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Soya_Chaap_dish.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Plain Roti",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 8,
+      "options": [
+        {
+          "name": "Tawa",
+          "price": 8
+        },
+        {
+          "name": "Tandoor",
+          "price": 12
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/roti.jpg",
+      "image_credit": "Gaurav Dhwaj Khadka",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chapati_1.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Butter Roti",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 10,
+      "options": [
+        {
+          "name": "Tawa",
+          "price": 10
+        },
+        {
+          "name": "Tandoor",
+          "price": 14
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/roti.jpg",
+      "image_credit": "Gaurav Dhwaj Khadka",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chapati_1.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Plain Naan",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 40,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/butter-naan.jpg",
+      "image_credit": "K.Sreeram Wiki",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Butter_Naan_With_Paneer_Butter_Masala.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Butter Naan",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 60,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/butter-naan.jpg",
+      "image_credit": "K.Sreeram Wiki",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Butter_Naan_With_Paneer_Butter_Masala.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Garlic Naan",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/garlic-naan.jpg",
+      "image_credit": "Durvankur Patil",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Garlic_Naan.JPG",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Aloo Naan",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/butter-naan.jpg",
+      "image_credit": "K.Sreeram Wiki",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Butter_Naan_With_Paneer_Butter_Masala.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Paneer Naan",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/butter-naan.jpg",
+      "image_credit": "K.Sreeram Wiki",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Butter_Naan_With_Paneer_Butter_Masala.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Chur Chur Naan",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/butter-naan.jpg",
+      "image_credit": "K.Sreeram Wiki",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Butter_Naan_With_Paneer_Butter_Masala.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Missi Roti",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 40,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/roti.jpg",
+      "image_credit": "Gaurav Dhwaj Khadka",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chapati_1.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Makka Roti",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 40,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/makki-roti.jpg",
+      "image_credit": "Rigourfigure",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Makki_ki_Roti_04.jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Lachha Paratha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 40,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paratha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+      "available": 1
+    },
+    {
+      "category": "Chapati & Naan",
+      "name": "Pyaz Roti",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 20,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/roti.jpg",
+      "image_credit": "Gaurav Dhwaj Khadka",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chapati_1.jpg",
+      "available": 1
+    },
+    {
+      "category": "Thali",
+      "name": "Base Thali",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Thali",
+      "name": "Matar Paneer Thali",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Thali",
+      "name": "Shahi Paneer Thali",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 160,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Thali",
+      "name": "Lachha Thali",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 230,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Thali",
+      "name": "Naan Thali",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 190,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Thali",
+      "name": "Churchur Naan Thali",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 230,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Thali",
+      "name": "Kaku Spl. Thali",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 210,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Thali",
+      "name": "Kaku Maharaja Thali",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 330,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Parathe",
+      "name": "Plain Paratha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 30,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paratha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+      "available": 1
+    },
+    {
+      "category": "Parathe",
+      "name": "Ajwain Paratha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 40,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paratha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+      "available": 1
+    },
+    {
+      "category": "Parathe",
+      "name": "Aloo Paratha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 60,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paratha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+      "available": 1
+    },
+    {
+      "category": "Parathe",
+      "name": "Onion Paratha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 60,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paratha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+      "available": 1
+    },
+    {
+      "category": "Parathe",
+      "name": "Aloo Onion Paratha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paratha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+      "available": 1
+    },
+    {
+      "category": "Parathe",
+      "name": "Gobi Paratha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paratha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+      "available": 1
+    },
+    {
+      "category": "Parathe",
+      "name": "Mix Paratha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paratha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+      "available": 1
+    },
+    {
+      "category": "Parathe",
+      "name": "Paneer Paratha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paratha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+      "available": 1
+    },
+    {
+      "category": "Parathe",
+      "name": "Paneer Onion Paratha",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/paratha.jpg",
+      "image_credit": "Gannu03",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Paratha_(96238).jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Combos",
+      "name": "Kadi + Rice",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Combos",
+      "name": "Dal + Rice",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Combos",
+      "name": "Rajma + Rice",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Combos",
+      "name": "Chole + Rice",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Combos",
+      "name": "Manchurian + Rice",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/fried-rice.jpg",
+      "image_credit": "Ganesh Mohan T",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetable_fried_rice_from_Kerala.jpg",
+      "available": 1
+    },
+    {
+      "category": "Rice Combos",
+      "name": "Dal Makhani + Rice",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 150,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/hero-thali.jpg",
+      "image_credit": "Hopeskilled",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_Og.jpg",
+      "available": 1
+    },
+    {
+      "category": "Milkshakes",
+      "name": "Mango Milkshake",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/mango-shake.jpg",
+      "image_credit": "Swathi sri srinivasa raghavan",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Mango_milkshake.jpg",
+      "available": 1
+    },
+    {
+      "category": "Milkshakes",
+      "name": "Banana Milkshake",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/banana-shake.jpg",
+      "image_credit": "Deepak Official Id",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Banana_Milkshake.jpg",
+      "available": 1
+    },
+    {
+      "category": "Milkshakes",
+      "name": "Strawberry Milkshake",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 80,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/strawberry-shake.jpg",
+      "image_credit": "Renee Comet (Photographer)",
+      "image_license": "Public domain",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Strawberry_milk_shake_(cropped).jpg",
+      "available": 1
+    },
+    {
+      "category": "Milkshakes",
+      "name": "Butterscotch Milkshake",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/banana-shake.jpg",
+      "image_credit": "Deepak Official Id",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Banana_Milkshake.jpg",
+      "available": 1
+    },
+    {
+      "category": "Milkshakes",
+      "name": "Chocolate Milkshake",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chocolate-shake.jpg",
+      "image_credit": "Bernard DUPONT",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chocolate_milkshake_..._%F0%9F%98%8B.jpg",
+      "available": 1
+    },
+    {
+      "category": "Milkshakes",
+      "name": "Oreo Milkshake",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chocolate-shake.jpg",
+      "image_credit": "Bernard DUPONT",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chocolate_milkshake_..._%F0%9F%98%8B.jpg",
+      "available": 1
+    },
+    {
+      "category": "Milkshakes",
+      "name": "KitKat Milkshake",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/chocolate-shake.jpg",
+      "image_credit": "Bernard DUPONT",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chocolate_milkshake_..._%F0%9F%98%8B.jpg",
+      "available": 1
+    },
+    {
+      "category": "Coffee & Tea",
+      "name": "Kaku Spl. Tea",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 25,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/masala-chai.jpg",
+      "image_credit": "Sarkar Sayantan",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Masala_Tea_-_2.jpg",
+      "available": 1
+    },
+    {
+      "category": "Coffee & Tea",
+      "name": "Kaku Spl. Kulhad Tea",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 35,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/masala-chai.jpg",
+      "image_credit": "Sarkar Sayantan",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Masala_Tea_-_2.jpg",
+      "available": 1
+    },
+    {
+      "category": "Coffee & Tea",
+      "name": "Hot Coffee",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 50,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/coffee.jpg",
+      "image_credit": "Ioacc1234red",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cappuccino-cup_20230110_103258.jpg",
+      "available": 1
+    },
+    {
+      "category": "Coffee & Tea",
+      "name": "Black Coffee",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 50,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/black-coffee-cup.jpg",
+      "image_credit": "ସୁଭ ପା/Subhashish Panigrahi",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cup_of_black_coffee.jpg",
+      "available": 1
+    },
+    {
+      "category": "Coffee & Tea",
+      "name": "Hot Chocolate",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 120,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/hot-chocolate.jpg",
+      "image_credit": "MochaMilk",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cup_of_Hot_Chocolate.jpg",
+      "available": 1
+    },
+    {
+      "category": "Coffee & Tea",
+      "name": "Haldi & Elaichi Milk",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/milk.jpg",
+      "image_credit": "Andy Li",
+      "image_license": "CC0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Golden_turmeric_latte_-_Hello_My_Moon_2024-04-07.jpg",
+      "available": 1
+    },
+    {
+      "category": "Coffee & Tea",
+      "name": "Cold Coffee",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/cold-coffee.jpg",
+      "image_credit": "TAPAS KUMAR HALDER",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Homemade_Cold_Coffee(Indian_Style)-_Kolkata.jpg",
+      "available": 1
+    },
+    {
+      "category": "Sweets",
+      "name": "Vanilla Ice Cream",
+      "description": "3 scoops.",
+      "food_type": "veg",
+      "base_price": 50,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/ice-cream-scoops.jpg",
+      "image_credit": "Mitchellhobbs",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Bowl_~_Ice_cream.jpg",
+      "available": 1
+    },
+    {
+      "category": "Sweets",
+      "name": "Chocolate Brownie",
+      "description": "1 piece (80 g).",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/brownie.jpg",
+      "image_credit": "JefferySAC",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chocolate-brownie-hachatw.jpg",
+      "available": 1
+    },
+    {
+      "category": "Sweets",
+      "name": "Gulab Jamun",
+      "description": "2 pieces.",
+      "food_type": "veg",
+      "base_price": 50,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/gulab-jamun.jpg",
+      "image_credit": "Gaurav Dhwaj Khadka",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Gulab_Jamun_1.jpg",
+      "available": 1
+    },
+    {
+      "category": "Sweets",
+      "name": "Kheer",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 60,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/kheer.jpg",
+      "image_credit": "Mdsmds0",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Rice_Kheer_or_Rice_Pudding.JPG",
+      "available": 1
+    },
+    {
+      "category": "Sweets",
+      "name": "Chocolava Cake",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/lava-cake.jpg",
+      "image_credit": "Vegan Feast Catering",
+      "image_license": "CC BY 2.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegan_Flourless_Swiss_Chocolate_Molten_Lava_Cake_(4867538601).jpg",
+      "available": 1
+    },
+    {
+      "category": "Dahi & Lassi",
+      "name": "Salt Lassi",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 60,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/lassi.jpg",
+      "image_credit": "Gaurav Dhwaj Khadka",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Lassi_1.jpg",
+      "available": 1
+    },
+    {
+      "category": "Dahi & Lassi",
+      "name": "Sweet Lassi",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 70,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/lassi.jpg",
+      "image_credit": "Gaurav Dhwaj Khadka",
+      "image_license": "CC BY-SA 4.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Lassi_1.jpg",
+      "available": 1
+    },
+    {
+      "category": "Dahi & Lassi",
+      "name": "Boondi Raita",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/raita.jpg",
+      "image_credit": "Elisabeth Nara at English Wikipedia",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Raita_with_cucumber_and_mint.jpg",
+      "available": 1
+    },
+    {
+      "category": "Dahi & Lassi",
+      "name": "Jeera Raita",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 90,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/raita.jpg",
+      "image_credit": "Elisabeth Nara at English Wikipedia",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Raita_with_cucumber_and_mint.jpg",
+      "available": 1
+    },
+    {
+      "category": "Dahi & Lassi",
+      "name": "Aloo Raita",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 100,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/raita.jpg",
+      "image_credit": "Elisabeth Nara at English Wikipedia",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Raita_with_cucumber_and_mint.jpg",
+      "available": 1
+    },
+    {
+      "category": "Dahi & Lassi",
+      "name": "Mix Raita",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 110,
+      "options": [],
+      "addons": [],
+      "image_url": "assets/photos/kaku/raita.jpg",
+      "image_credit": "Elisabeth Nara at English Wikipedia",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Raita_with_cucumber_and_mint.jpg",
+      "available": 1
+    },
+    {
+      "category": "Dahi & Lassi",
+      "name": "Dahi",
+      "description": "",
+      "food_type": "veg",
+      "base_price": 60,
+      "options": [
+        {
+          "name": "Half",
+          "price": 60
+        },
+        {
+          "name": "Full",
+          "price": 100
+        }
+      ],
+      "addons": [],
+      "image_url": "assets/photos/kaku/curd-bowl.jpg",
+      "image_credit": "Netha Hussain",
+      "image_license": "CC BY-SA 3.0",
+      "image_source_url": "https://commons.wikimedia.org/wiki/File:Curd_in_steel_bowl.jpg",
+      "available": 1
+    }
+  ]
+}

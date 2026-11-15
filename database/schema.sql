@@ -12,11 +12,16 @@ CREATE TABLE IF NOT EXISTS restaurants (
  theme_mode ENUM('light','dark') NOT NULL DEFAULT 'light',
  menu_layout ENUM('grid','list') NOT NULL DEFAULT 'list',
  phone VARCHAR(40) DEFAULT NULL,
+ whatsapp_number VARCHAR(15) DEFAULT NULL,
+ contact_email VARCHAR(190) DEFAULT NULL,
+ contact_options_enabled TINYINT(1) NOT NULL DEFAULT 0,
  address VARCHAR(400) DEFAULT NULL,
  opening_hours VARCHAR(180) DEFAULT NULL,
  table_count INT NOT NULL DEFAULT 20,
  qr_mode ENUM('common','table','counter') NOT NULL DEFAULT 'common',
  ordering_enabled TINYINT(1) NOT NULL DEFAULT 1,
+ customer_name_mode ENUM('off','optional','required') NOT NULL DEFAULT 'optional',
+ customer_phone_mode ENUM('off','optional','required') NOT NULL DEFAULT 'optional',
  status ENUM('trial','active','suspended') NOT NULL DEFAULT 'trial',
  monthly_fee DECIMAL(10,2) NOT NULL DEFAULT 599.00,
  setup_fee_paid TINYINT(1) NOT NULL DEFAULT 0,
@@ -82,6 +87,7 @@ CREATE TABLE IF NOT EXISTS menu_items (
  image_license VARCHAR(100) DEFAULT NULL,
  image_source_url VARCHAR(800) DEFAULT NULL,
  available TINYINT(1) NOT NULL DEFAULT 1,
+ featured TINYINT(1) NOT NULL DEFAULT 0,
  deleted_at DATETIME DEFAULT NULL,
  sort_order INT NOT NULL DEFAULT 0,
  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -190,6 +196,7 @@ CREATE TABLE IF NOT EXISTS platform_settings (
  v VARCHAR(500) NOT NULL,
  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT IGNORE INTO platform_settings(k,v) VALUES('default_monthly_fee','599.00');
 
 CREATE TABLE IF NOT EXISTS upi_payments (
  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,

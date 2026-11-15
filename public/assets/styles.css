@@ -184,6 +184,15 @@ select{appearance:auto}
 .dish-card .dish-image{width:116px;aspect-ratio:1;flex-shrink:0;overflow:hidden;border-radius:14px;background:var(--soft)}
 .dish-image img{width:100%;height:100%}
 .dish-body{display:flex;flex-direction:column;gap:6px;min-width:0;flex:1;padding:2px 0}
+.special-badge{align-self:flex-start;background:#fff2ce;color:#684600;border:1px solid #e9ce85;border-radius:20px;padding:4px 9px;font-size:11px;font-weight:700}
+.restaurant-services{padding:28px 0;text-align:left}
+.service-links{display:grid;gap:10px}
+.service-link{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);font:inherit;font-size:14px;font-weight:600;text-decoration:none;text-align:left;cursor:pointer}
+.service-link:hover{border-color:var(--brand)}
+.poster-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}
+#poster-preview canvas{display:block;width:100%;height:auto;border-radius:14px;box-shadow:var(--shadow-sm)}
+@media(max-width:660px){.poster-layout{grid-template-columns:minmax(0,1fr)}.mobile-menu{overflow-x:auto!important;justify-content:flex-start!important}.mobile-menu button{min-width:60px}}
+.dish-body .photo-credit{margin:0;font-size:10px;line-height:1.4;overflow-wrap:anywhere}
 .dish-body h3{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:16px;font-weight:700;line-height:1.3}
 .dish-desc{display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;line-height:1.5;color:var(--muted)}
 .price{font-size:16px;font-weight:700}
@@ -379,6 +388,9 @@ select{appearance:auto}
   .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media(max-width:660px){
+  .admin-menu-row{flex-wrap:wrap}
+  .admin-menu-row .grow{min-width:120px}
+  .admin-menu-row .row:last-child{flex-basis:100%;justify-content:flex-end}
   .sidebar{display:none}
   .app-layout{display:block;padding-bottom:88px}
   .admin-main{padding:22px 16px 40px}
@@ -398,6 +410,8 @@ select{appearance:auto}
 
   .customer-content{padding:0 16px 140px}
   .customer-header{padding:10px 16px}
+  .customer-header:has(.table-chip){flex-wrap:wrap}
+  .customer-header:has(.table-chip) .grow{flex-basis:calc(100% - 60px)}
   .category-scroll{margin:14px -16px 20px;padding:4px 16px 6px}
   .welcome-hero{min-height:380px;margin:0 -16px}
   .welcome-content{padding:96px 22px 32px}
