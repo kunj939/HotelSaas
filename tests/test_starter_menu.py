@@ -61,13 +61,37 @@ class StarterMenuTest(unittest.TestCase):
             self.assertEqual(item['image_credit'],credit['artist'])
             self.assertEqual(item['image_license'],credit['license'])
             self.assertEqual(item['image_source_url'],credit['source'])
-            self.assertIn(urlparse(credit['source']).hostname,('commons.wikimedia.org','www.pexels.com','www.flickr.com','wordpress.org'))
-            self.assertTrue(credit['license'].startswith('CC BY') or credit['license'] in ('CC0','Public domain','Pexels License'))
             self.assertTrue(credit['artist'])
-            self.assertTrue(credit['license_url'].startswith('https://'))
-            sources.add(credit['source'])
+            if credit['license']=='AI-generated representative image':
+                self.assertEqual(credit['artist'],'AI-generated')
+                self.assertEqual(credit['source'],'')
+                self.assertEqual(credit['license_url'],'')
+                self.assertEqual(credit['generation_tool'],'built-in image_gen')
+                self.assertTrue(credit['prompt'])
+                sources.add(credit['file'])
+            else:
+                self.assertIn(urlparse(credit['source']).hostname,('commons.wikimedia.org','www.pexels.com','www.flickr.com','wordpress.org'))
+                self.assertTrue(credit['license'].startswith('CC BY') or credit['license'] in ('CC0','Public domain','Pexels License'))
+                self.assertTrue(credit['license_url'].startswith('https://'))
+                sources.add(credit['source'])
         self.assertEqual(len(hashes),194,'Every dish needs a different photo, not renamed duplicate bytes')
         self.assertEqual(len(sources),194,'Do not reuse one source photo across different dishes')
+
+    def test_reviewed_replacements_and_retained_photos(self):
+        audit=json.loads((ROOT/'catalog/kaku_photo_audit.json').read_text(encoding='utf-8'))
+        previous=json.loads((ROOT/'catalog/kaku_photo_upgrade_v2.json').read_text(encoding='utf-8'))
+        self.assertEqual({r['name'] for r in audit['items']},set(self.items))
+        self.assertEqual(audit['reviewed_count'],194)
+        self.assertEqual(audit['replacement_count'],sum(r['decision']=='replace' for r in audit['items']))
+        for review in audit['items']:
+            name=review['name']
+            self.assertTrue(review['reason'])
+            if review['decision']=='replace':
+                self.assertEqual(self.items[name]['image_url'],review['output'])
+                self.assertEqual(self.credits[name]['prompt'],review['prompt'])
+            else:
+                for field,value in previous[name].items():
+                    self.assertEqual(self.items[name][field],value)
 
 
 if __name__ == '__main__':

@@ -260,13 +260,15 @@ def build():
     assert len({item['name'] for item in items}) == len(items)
     if len(premium)!=len(items):
         raise ValueError(f'Complete all {len(items)} distinct dish images before publishing ({len(premium)} ready)')
-    data = dict(id='kaku-v1', name='Kaku 2.0 Pizza & Restaurant', version=2,
+    data = dict(id='kaku-v1', name='Kaku 2.0 Pizza & Restaurant', version=3,
                 categories=categories, items=items)
     path=ROOT/'public/assets/kaku_menu.json'
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
     legacy=json.loads((ROOT/'catalog/kaku_photo_upgrade_legacy.json').read_text(encoding='utf-8'))
     fields=['image_url','image_credit','image_license','image_source_url']
-    upgrades={i['name']:{'previous':legacy[i['name']], 'current':{k:i[k] for k in fields}} for i in items}
+    second=json.loads((ROOT/'catalog/kaku_photo_upgrade_v2.json').read_text(encoding='utf-8'))
+    upgrades={i['name']:{'previous':legacy[i['name']], 'previous_versions':[second[i['name']]],
+                         'current':{k:i[k] for k in fields}} for i in items}
     (ROOT/'public/assets/kaku_photo_upgrade.json').write_text(json.dumps(upgrades,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(f'Built {len(items)} dishes in {len(categories)} categories: {path}')
 

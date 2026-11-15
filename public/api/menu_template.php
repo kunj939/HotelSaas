@@ -19,9 +19,15 @@ function refreshedStarterPhotos(array $items): array {
  foreach($items as &$item){
   $upgrade=$upgrades[$item['name']]??null;
   if(!$upgrade)continue;
-  foreach($upgrade['previous'] as $field=>$value){
-   if(($item[$field]??'')!==$value)continue 2;
+  $matched=false;
+  foreach(array_merge([$upgrade['previous']],$upgrade['previous_versions']??[]) as $previous){
+   $same=true;
+   foreach(['image_url','image_credit','image_license','image_source_url'] as $field){
+    if(!array_key_exists($field,$previous)||($item[$field]??'')!==$previous[$field]){$same=false;break;}
+   }
+   if($same){$matched=true;break;}
   }
+  if(!$matched)continue;
   // A partial file upload must not replace a working old image with a broken URL.
   if(!bundledMenuPhoto($upgrade['current']['image_url']))continue;
   $item=array_replace($item,$upgrade['current']);

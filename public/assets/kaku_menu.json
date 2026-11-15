@@ -1,7 +1,7 @@
 {
   "id": "kaku-v1",
   "name": "Kaku 2.0 Pizza & Restaurant",
-  "version": 2,
+  "version": 3,
   "categories": [
     "Single Topping Pizzas",
     "Multi Topping Pizzas",
@@ -54,10 +54,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-cheese-capsicum-pizza.jpg",
-      "image_credit": "Leon Brooks",
-      "image_license": "Public domain",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Pizza_with_feta_olives_capsicum.jpg",
+      "image_url": "assets/photos/kaku/ai-cheese-capsicum-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -81,10 +81,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-cheese-corn-pizza.jpg",
-      "image_credit": "pedro furtado",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/delicious-corn-and-cheese-pizza-on-rustic-surface-31450844/",
+      "image_url": "assets/photos/kaku/ai-cheese-corn-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -108,10 +108,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-cheese-onion-pizza.jpg",
-      "image_credit": "thebittenword.com",
-      "image_license": "CC BY 2.0",
-      "image_source_url": "https://www.flickr.com/photos/22198928@N00/2595279180",
+      "image_url": "assets/photos/kaku/ai-cheese-onion-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -189,10 +189,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-cheese-red-pepper-pizza.jpg",
-      "image_credit": "OakleyOriginals",
-      "image_license": "CC BY 2.0",
-      "image_source_url": "https://www.flickr.com/photos/47264866@N00/22771212046",
+      "image_url": "assets/photos/kaku/ai-cheese-red-pepper-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -216,10 +216,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-cheese-black-olive-pizza.jpg",
-      "image_credit": "Shameel mukkath",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/pizza-with-mushrooms-and-olives-5639971/",
+      "image_url": "assets/photos/kaku/ai-cheese-black-olive-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -243,10 +243,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-cheese-paneer-pizza.jpg",
-      "image_credit": "Barthateslisa",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Malai_Paneer_Pizaa_frm_India.jpg",
+      "image_url": "assets/photos/kaku/ai-cheese-paneer-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -297,10 +297,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-spicy-corn-pizza.jpg",
-      "image_credit": "Missvain",
-      "image_license": "CC BY 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cultivo_-_June_2023_-_Sarah_Stierch_05.jpg",
+      "image_url": "assets/photos/kaku/ai-spicy-corn-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -324,10 +324,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-double-cheese-margherita-pizza.jpg",
-      "image_credit": "DinaBenedettoFerrandina",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Pizza_Margherita_Fatta_In_Casa.jpg",
+      "image_url": "assets/photos/kaku/ai-double-cheese-margherita-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -378,10 +378,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-farm-fresh-pizza.jpg",
-      "image_credit": "Piotr Arnoldes",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/delicious-pizza-with-champignon-slices-on-melted-cheese-6493561/",
+      "image_url": "assets/photos/kaku/ai-farm-fresh-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -405,10 +405,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-pepper-paneer-pizza.jpg",
-      "image_credit": "Milton Das",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/delicious-paneer-pizza-slice-on-black-tray-35123976/",
+      "image_url": "assets/photos/kaku/ai-pepper-paneer-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -432,10 +432,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-super-deluxe-pizza.jpg",
-      "image_credit": "Gwasheya",
-      "image_license": "CC0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetarian_pizza_platter.jpg",
+      "image_url": "assets/photos/kaku/ai-super-deluxe-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -459,10 +459,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-deluxe-veggie-pizza.jpg",
-      "image_credit": "apertur2.8",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/freshly-baked-veggie-pizza-in-kitchen-setting-35731444/",
+      "image_url": "assets/photos/kaku/ai-deluxe-veggie-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -486,10 +486,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-veg-loaded-pizza.jpg",
-      "image_credit": "Pranjall Kumar",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/close-up-shot-of-a-yummy-pizza-8611553/",
+      "image_url": "assets/photos/kaku/ai-veg-loaded-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -513,10 +513,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-tandoori-paneer-pizza.jpg",
-      "image_credit": "Barthateslisa",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Tandoori_Paneer_Pizza_from_India.jpg",
+      "image_url": "assets/photos/kaku/ai-tandoori-paneer-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -540,10 +540,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-veg-pie-pizza.jpg",
-      "image_credit": "Melissa Ayala",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/pizza-served-in-a-restaurant-20300404/",
+      "image_url": "assets/photos/kaku/ai-veg-pie-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -567,10 +567,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-maxicon-hunger-pizza.jpg",
-      "image_credit": "Luca Volpe Productions",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/delicious-homemade-veggie-pizza-with-fresh-ingredients-37616287/",
+      "image_url": "assets/photos/kaku/ai-maxicon-hunger-pizza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -622,10 +622,10 @@
       "base_price": 90,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-spicy-corn-sandwich.jpg",
-      "image_credit": "Gpkp",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Corn_veg_sandwich_(2026).jpg",
+      "image_url": "assets/photos/kaku/ai-spicy-corn-sandwich.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -636,10 +636,10 @@
       "base_price": 110,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-tandoori-paneer-sandwich.jpg",
-      "image_credit": "Kunal Lakhotia",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/grilled-paneer-corn-sandwich-with-sauces-36268517/",
+      "image_url": "assets/photos/kaku/ai-tandoori-paneer-sandwich.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -650,10 +650,10 @@
       "base_price": 120,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-cheese-sandwich.jpg",
-      "image_credit": "jeffreyw",
-      "image_license": "CC BY 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Grilled_cheese_sandwich_with_roasted_tomato_soup.jpg",
+      "image_url": "assets/photos/kaku/ai-cheese-sandwich.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -692,10 +692,10 @@
       "base_price": 120,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-stick-garlic-bread.jpg",
-      "image_credit": "Famartin",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:2023-03-15_12_01_22_Garlic_breadsticks_at_Clayton_Hall_on_the_campus_of_the_University_of_Delaware_in_Newark,_New_Castle_County,_Delaware.jpg",
+      "image_url": "assets/photos/kaku/ai-stick-garlic-bread.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -706,10 +706,10 @@
       "base_price": 150,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-stuffed-garlic-bread.jpg",
-      "image_credit": "Vinodbharani27",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Garlic_stuffed_bread.jpg",
+      "image_url": "assets/photos/kaku/ai-stuffed-garlic-bread.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -720,10 +720,10 @@
       "base_price": 60,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-aloo-tikki-burger.jpg",
-      "image_credit": "Vikramdewangan22889",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Tikki_Burger.jpg",
+      "image_url": "assets/photos/kaku/ai-aloo-tikki-burger.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -734,10 +734,10 @@
       "base_price": 70,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-veg-spicy-burger.jpg",
-      "image_credit": "Denis Liendo",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/close-up-shot-of-a-burger-12336023/",
+      "image_url": "assets/photos/kaku/ai-veg-spicy-burger.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -748,10 +748,10 @@
       "base_price": 90,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-delight-burger.jpg",
-      "image_credit": "Cup of Couple",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/a-plate-of-delicious-burger-and-fries-8472241/",
+      "image_url": "assets/photos/kaku/ai-delight-burger.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -762,10 +762,10 @@
       "base_price": 100,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-cheese-slice-burger.jpg",
-      "image_credit": "Ewan Munro from London, UK",
-      "image_license": "CC BY-SA 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Eat_and_Two_Veg_EatV_vegetarian_cheeseburger.jpg",
+      "image_url": "assets/photos/kaku/ai-cheese-slice-burger.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -776,10 +776,10 @@
       "base_price": 110,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-paneer-burger.jpg",
-      "image_credit": "Shweta1389",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Tikka_paneer_burger_-_by_Shweta_Kushwaha_-_Chhattisgarh_-_18.jpg",
+      "image_url": "assets/photos/kaku/ai-paneer-burger.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -790,10 +790,10 @@
       "base_price": 140,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-king-burger.jpg",
-      "image_credit": "Edsel L",
-      "image_license": "CC BY-SA 2.0",
-      "image_source_url": "https://www.flickr.com/photos/27119975@N00/5350431251",
+      "image_url": "assets/photos/kaku/ai-king-burger.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -832,10 +832,10 @@
       "base_price": 150,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-mix-sauce-pasta.jpg",
-      "image_credit": "Change C.C",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/delicious-penne-pasta-with-vegetables-on-plate-31261505/",
+      "image_url": "assets/photos/kaku/ai-mix-sauce-pasta.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -846,10 +846,10 @@
       "base_price": 70,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-plain-maggi.jpg",
-      "image_credit": "Mokansu",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Hostel_Maggi.jpg",
+      "image_url": "assets/photos/kaku/ai-plain-maggi.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -860,10 +860,10 @@
       "base_price": 80,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-veg-maggi.jpg",
-      "image_credit": "M N Swarna",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetable_Maggi_Noodles-Home-AndhraPradesh-010.jpg",
+      "image_url": "assets/photos/kaku/ai-veg-maggi.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -874,10 +874,10 @@
       "base_price": 100,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-corn-cheese-maggi.jpg",
-      "image_credit": "Charlie4404",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/w/index.php?curid=115738924",
+      "image_url": "assets/photos/kaku/ai-corn-cheese-maggi.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -888,10 +888,10 @@
       "base_price": 100,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-salted-fries.jpg",
-      "image_credit": "Acabashi",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Plate_of_chips_at_the_Chalet_Cafe,_Cowfold,_West_Sussex,_England.jpg",
+      "image_url": "assets/photos/kaku/ai-salted-fries.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -902,10 +902,10 @@
       "base_price": 110,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-masala-fries.jpg",
-      "image_credit": "Chris Woodrich",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Cajun_fries_from_Popeyes_Louisiana_Kitchen,_Stratford,_Ontario,_2025-08-04.jpg",
+      "image_url": "assets/photos/kaku/ai-masala-fries.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -916,10 +916,10 @@
       "base_price": 130,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-peri-peri-fries.jpg",
-      "image_credit": "Gpkp",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Fries_(Peri_Peri)_2026.jpg",
+      "image_url": "assets/photos/kaku/ai-peri-peri-fries.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -944,10 +944,10 @@
       "base_price": 90,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-veg-spicy-wrap.jpg",
-      "image_credit": "Andy Li",
-      "image_license": "CC0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetable_Wrap_(toasted)_-_The_naan_hut_2023-12-22.jpg",
+      "image_url": "assets/photos/kaku/ai-veg-spicy-wrap.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -958,10 +958,10 @@
       "base_price": 100,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-aloo-patty-wrap.jpg",
-      "image_credit": "Karina Ustiuzhanina",
-      "image_license": "Pexels License",
-      "image_source_url": "https://www.pexels.com/photo/taco-wrap-wit-assorted-fillings-13778563/",
+      "image_url": "assets/photos/kaku/ai-aloo-patty-wrap.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -995,10 +995,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-malai-chaap.jpg",
-      "image_credit": "Anoop dlf",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Malaai_chaap.jpg",
+      "image_url": "assets/photos/kaku/ai-malai-chaap.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1041,10 +1041,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-malai-masala-chaap.jpg",
-      "image_credit": "Pooja Jadhav",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:%E0%A4%B8%E0%A5%8B%E0%A4%AF%E0%A4%BE%E0%A4%AC%E0%A5%80%E0%A4%A8_%E0%A4%9A%E0%A4%BE%E0%A4%AA.jpg",
+      "image_url": "assets/photos/kaku/ai-malai-masala-chaap.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1129,10 +1129,10 @@
       "base_price": 280,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-paneer-malai-tikka.jpg",
-      "image_credit": "PallaviKhale",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Malai_Paneer_Tikka,_PK_007.jpg",
+      "image_url": "assets/photos/kaku/ai-paneer-malai-tikka.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1157,10 +1157,10 @@
       "base_price": 70,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-mix-veg-soup.jpg",
-      "image_credit": "Gannu03",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegetable_soup_9.jpg",
+      "image_url": "assets/photos/kaku/ai-mix-veg-soup.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1413,10 +1413,10 @@
       "base_price": 90,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-mix-pakode.jpg",
-      "image_credit": "ampersandyslexia",
-      "image_license": "CC BY-SA 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Pakoras_in_Jaipur.jpg",
+      "image_url": "assets/photos/kaku/ai-mix-pakode.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1483,10 +1483,10 @@
       "base_price": 70,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-sweet-corn.jpg",
-      "image_credit": "T.Tseng",
-      "image_license": "CC BY 2.0",
-      "image_source_url": "https://www.flickr.com/photos/68147320@N02/15625011630",
+      "image_url": "assets/photos/kaku/ai-sweet-corn.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1520,10 +1520,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-channa-masala.jpg",
-      "image_credit": "Andy Li",
-      "image_license": "CC0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chana_Masala_-_Mohammed_-_Spice_Of_Life_2024-05-27.jpg",
+      "image_url": "assets/photos/kaku/ai-channa-masala.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1681,10 +1681,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-pindi-chana.jpg",
-      "image_credit": "Miansari66",
-      "image_license": "CC0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Pindi_Chana..JPG",
+      "image_url": "assets/photos/kaku/ai-pindi-chana.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1704,10 +1704,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-kadi.jpg",
-      "image_credit": "Mowglee",
-      "image_license": "Public domain",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Gujaratikadhi.jpg",
+      "image_url": "assets/photos/kaku/ai-kadi.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1888,10 +1888,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-paneer-do-pyaza.jpg",
-      "image_credit": "AlekhyaDas",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Do_Pyaza.jpg",
+      "image_url": "assets/photos/kaku/ai-paneer-do-pyaza.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1911,10 +1911,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-palak-paneer.jpg",
-      "image_credit": "Lopanayak",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Palakpaneer_Rayagada_Odisha_0009.jpg",
+      "image_url": "assets/photos/kaku/ai-palak-paneer.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1934,10 +1934,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-chana-paneer.jpg",
-      "image_credit": "Dev Jadiya",
-      "image_license": "CC BY 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_and_Chole_Kulche.jpg",
+      "image_url": "assets/photos/kaku/ai-chana-paneer.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -1957,10 +1957,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-paneer-lababdar.jpg",
-      "image_credit": "Biswarup Ganguly",
-      "image_license": "CC BY 3.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Gobi_And_Paneer_Lababdar_-_The_Indismart_Hotel_-_Salt_Lake_City_-_Kolkata_2023-09-10_5205.jpg",
+      "image_url": "assets/photos/kaku/ai-paneer-lababdar.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2003,10 +2003,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-paneer-malai.jpg",
-      "image_credit": "Prads2189",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Malai_Paneer.jpg",
+      "image_url": "assets/photos/kaku/ai-paneer-malai.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2072,10 +2072,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-paneer-makhmali.jpg",
-      "image_credit": "Vis M",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Shahi_paneer_roll_with_Makhmali_gravy_2.jpg",
+      "image_url": "assets/photos/kaku/ai-paneer-makhmali.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2164,10 +2164,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-aloo-dum-palak.jpg",
-      "image_credit": "CNEcija12345",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Aloo_Palak_potato.jpg",
+      "image_url": "assets/photos/kaku/ai-aloo-dum-palak.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2270,10 +2270,10 @@
       "base_price": 110,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-jeera-rice.jpg",
-      "image_credit": "Sonia Goyal",
-      "image_license": "CC BY-SA 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Jeera-rice.JPG",
+      "image_url": "assets/photos/kaku/ai-jeera-rice.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2307,10 +2307,10 @@
       "base_price": 160,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-paneer-fried-rice.jpg",
-      "image_credit": "Senjuti Dey",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_tikka_with_fried_rice_and_hara_chatni.jpg",
+      "image_url": "assets/photos/kaku/ai-paneer-fried-rice.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2510,10 +2510,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-angoori-kofta.jpg",
-      "image_credit": "avinashbhat",
-      "image_license": "CC BY-SA 2.0",
-      "image_source_url": "https://www.flickr.com/photos/68177867@N00/7193659692",
+      "image_url": "assets/photos/kaku/ai-angoori-kofta.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2556,10 +2556,10 @@
         }
       ],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-matar-mushroom.jpg",
-      "image_credit": "Hrishikes",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Matar_mushroom.jpg",
+      "image_url": "assets/photos/kaku/ai-matar-mushroom.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2722,10 +2722,10 @@
       "base_price": 60,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-butter-naan.jpg",
-      "image_credit": "Ravi Dwivedi",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Butter_Naan_Flatbread_from_North_India.jpg",
+      "image_url": "assets/photos/kaku/ai-butter-naan.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2736,10 +2736,10 @@
       "base_price": 70,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-garlic-naan.jpg",
-      "image_credit": "Joy",
-      "image_license": "CC BY 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Garlic_naan_1.jpg",
+      "image_url": "assets/photos/kaku/ai-garlic-naan.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2750,10 +2750,10 @@
       "base_price": 70,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-aloo-naan.jpg",
-      "image_credit": "Rupamguptaom",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Dum_aloo_and_naan.jpg",
+      "image_url": "assets/photos/kaku/ai-aloo-naan.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2764,10 +2764,10 @@
       "base_price": 80,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-paneer-naan.jpg",
-      "image_credit": "Abhishek Chaurasiya",
-      "image_license": "CC0",
-      "image_source_url": "https://wordpress.org/photos/photo/557674ab20/",
+      "image_url": "assets/photos/kaku/ai-paneer-naan.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2778,10 +2778,10 @@
       "base_price": 90,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-chur-chur-naan.jpg",
-      "image_credit": "Vipul7229",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Stuffed_aloo_naan_chur_chur_ke.jpg",
+      "image_url": "assets/photos/kaku/ai-chur-chur-naan.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2834,10 +2834,10 @@
       "base_price": 20,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-pyaz-roti.jpg",
-      "image_credit": "Subrata Ghose",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Staffed_Paratha_with_Chopped_Onion.jpg",
+      "image_url": "assets/photos/kaku/ai-pyaz-roti.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2848,10 +2848,10 @@
       "base_price": 120,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-base-thali.jpg",
-      "image_credit": "Rajeeb Dutta",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:North_Indian_Vegetarian_Thali-MB51.jpg",
+      "image_url": "assets/photos/kaku/ai-base-thali.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2862,10 +2862,10 @@
       "base_price": 150,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-matar-paneer-thali.jpg",
-      "image_credit": "03Ani03",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Indian_Thali_2024.jpg",
+      "image_url": "assets/photos/kaku/ai-matar-paneer-thali.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2876,10 +2876,10 @@
       "base_price": 160,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-shahi-paneer-thali.jpg",
-      "image_credit": "Utkarshkmr27",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Special_thaal_-_Harikanth_Restaurant_-_Lucknow_-_Uttar_Pradesh_-_DSC_002.jpg",
+      "image_url": "assets/photos/kaku/ai-shahi-paneer-thali.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2890,10 +2890,10 @@
       "base_price": 230,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-lachha-thali.jpg",
-      "image_credit": "Satpal Dandiwal",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Thali_with_Mint_Paratha.jpg",
+      "image_url": "assets/photos/kaku/ai-lachha-thali.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2904,10 +2904,10 @@
       "base_price": 190,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-naan-thali.jpg",
-      "image_credit": "Baap8969",
-      "image_license": "CC0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Rajasthani_Thali_with_Naan.jpg",
+      "image_url": "assets/photos/kaku/ai-naan-thali.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2918,10 +2918,10 @@
       "base_price": 230,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-churchur-naan-thali.jpg",
-      "image_credit": "Simrankaurarora26",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chur-Chur_Naan_Thali.jpg",
+      "image_url": "assets/photos/kaku/ai-churchur-naan-thali.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2932,10 +2932,10 @@
       "base_price": 210,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-kaku-spl-thali.jpg",
-      "image_credit": "LuckyRani2990",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Delicious_North_Indian_Thali.jpg",
+      "image_url": "assets/photos/kaku/ai-kaku-spl-thali.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2946,10 +2946,10 @@
       "base_price": 330,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-kaku-maharaja-thali.jpg",
-      "image_credit": "Raveesh",
-      "image_license": "CC BY-SA 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Rajasthanthali.jpg",
+      "image_url": "assets/photos/kaku/ai-kaku-maharaja-thali.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -2974,10 +2974,10 @@
       "base_price": 40,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-ajwain-paratha.jpg",
-      "image_credit": "Fatimahope",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Nawabi_Gobhi_With_ajwain_Paratha_by_Fatima.jpg",
+      "image_url": "assets/photos/kaku/ai-ajwain-paratha.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3044,10 +3044,10 @@
       "base_price": 80,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-mix-paratha.jpg",
-      "image_credit": "DIVYALAKSHWIN",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Foods,.,.jpg",
+      "image_url": "assets/photos/kaku/ai-mix-paratha.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3072,10 +3072,10 @@
       "base_price": 80,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-paneer-onion-paratha.jpg",
-      "image_credit": "Akshay Sanjay Agrawal",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Paneer_Paratha.jpg",
+      "image_url": "assets/photos/kaku/ai-paneer-onion-paratha.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3100,10 +3100,10 @@
       "base_price": 110,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-dal-rice.jpg",
-      "image_credit": "Gaurav Dhwaj Khadka",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Dal_bhat.jpg",
+      "image_url": "assets/photos/kaku/ai-dal-rice.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3142,10 +3142,10 @@
       "base_price": 150,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-manchurian-rice.jpg",
-      "image_credit": "HungryKya",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:IndianPlatedVegManchurianCurry.jpg",
+      "image_url": "assets/photos/kaku/ai-manchurian-rice.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3254,10 +3254,10 @@
       "base_price": 100,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-kitkat-milkshake.jpg",
-      "image_credit": "fifikins",
-      "image_license": "CC BY 2.0",
-      "image_source_url": "https://www.flickr.com/photos/25925793@N00/30243319844",
+      "image_url": "assets/photos/kaku/ai-kitkat-milkshake.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3282,10 +3282,10 @@
       "base_price": 35,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-kaku-spl-kulhad-tea.jpg",
-      "image_credit": "Gannu03",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Kulhad_Chai.jpg",
+      "image_url": "assets/photos/kaku/ai-kaku-spl-kulhad-tea.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3324,10 +3324,10 @@
       "base_price": 120,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-hot-chocolate.jpg",
-      "image_credit": "Personal Creations",
-      "image_license": "CC BY 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Hot_cocoa_in_a_mug_with_a_hand_sprinkling_chili_pepper_flakes_onto_the_whipped_cream_(15852162626).jpg",
+      "image_url": "assets/photos/kaku/ai-hot-chocolate.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3338,10 +3338,10 @@
       "base_price": 70,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-haldi-elaichi-milk.jpg",
-      "image_credit": "Andy Li",
-      "image_license": "CC0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Golden_turmeric_latte_-_Hello_My_Moon_2024-04-07.jpg",
+      "image_url": "assets/photos/kaku/ai-haldi-elaichi-milk.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3352,10 +3352,10 @@
       "base_price": 90,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-cold-coffee.jpg",
-      "image_credit": "TAPAS KUMAR HALDER",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Homemade_Cold_Coffee(Indian_Style)-_Kolkata.jpg",
+      "image_url": "assets/photos/kaku/ai-cold-coffee.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3366,10 +3366,10 @@
       "base_price": 50,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-vanilla-ice-cream.jpg",
-      "image_credit": "UnknownNet Photography",
-      "image_license": "CC BY-SA 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Day_354_-_Photo365_-_White_(23766206842).jpg",
+      "image_url": "assets/photos/kaku/ai-vanilla-ice-cream.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3380,10 +3380,10 @@
       "base_price": 70,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-chocolate-brownie.jpg",
-      "image_credit": "JefferySAC",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Chocolate-brownie-hachatw.jpg",
+      "image_url": "assets/photos/kaku/ai-chocolate-brownie.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3422,10 +3422,10 @@
       "base_price": 70,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-chocolava-cake.jpg",
-      "image_credit": "Vegan Feast Catering",
-      "image_license": "CC BY 2.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Vegan_Flourless_Swiss_Chocolate_Molten_Lava_Cake_(4865230792).jpg",
+      "image_url": "assets/photos/kaku/ai-chocolava-cake.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {
@@ -3450,10 +3450,10 @@
       "base_price": 70,
       "options": [],
       "addons": [],
-      "image_url": "assets/photos/kaku/dish-sweet-lassi.jpg",
-      "image_credit": "Nivasdurai",
-      "image_license": "CC BY-SA 4.0",
-      "image_source_url": "https://commons.wikimedia.org/wiki/File:Lassi_(Sweet).JPG",
+      "image_url": "assets/photos/kaku/ai-sweet-lassi.jpg",
+      "image_credit": "AI-generated",
+      "image_license": "AI-generated representative image",
+      "image_source_url": "",
       "available": 1
     },
     {

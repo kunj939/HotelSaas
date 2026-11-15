@@ -18,4 +18,15 @@ checkPhoto($result[0]===array_replace($original,$upgrade['current']),'Only start
 foreach([1,2,3,4,5,6] as $index)checkPhoto($result[$index]===$input[$index],'Preserve owner edit '.$index);
 checkPhoto($input[0]===$original,'Read-only refresh must not mutate caller data');
 foreach($upgrades as $dish=>$row)checkPhoto(bundledMenuPhoto($row['current']['image_url']),'Missing dish image: '.$dish);
+// Accounts created with either earlier catalog version must receive the latest art.
+foreach($upgrades as $dish=>$row){
+ foreach($row['previous_versions']??[] as $previous){
+  $saved=array_merge(['name'=>$dish,'base_price'=>199,'available'=>0,'featured'=>1],$previous);
+  checkPhoto(refreshedStarterPhotos([$saved])[0]===array_replace($saved,$row['current']),'Refresh second-version image: '.$dish);
+  foreach(['image_url','image_credit','image_license','image_source_url'] as $field){
+   $custom=array_replace($saved,[$field=>$field==='image_url'?'':'Owner edit']);
+   checkPhoto(refreshedStarterPhotos([$custom])[0]===$custom,'Preserve customized second-version field: '.$field);
+  }
+ }
+}
 echo "PASS: existing-menu photo refresh, independent owner edits, prices, sold-out status and all assets\n";

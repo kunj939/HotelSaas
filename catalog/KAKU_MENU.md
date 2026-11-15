@@ -22,9 +22,11 @@ The PDFs contain photographs of the printed menu. Their Google Maps headers, del
 
 ## Photos
 
-The menu contains **194 distinct internet-sourced food photos**, one local JPEG per dish. These are representative photos from Wikimedia Commons, Pexels, Flickr and the WordPress Photo Directory, **not photos taken at Kaku**. Similar recipes and house specials use representative servings; plating, garnishes and exact ingredients can differ. Owners can replace them with actual dish photos.
+The menu contains **194 distinct locally hosted food images**. All were visually reviewed against dish names and the supplied menu. **84 mismatched or unclear images were replaced with individually generated AI food images; 110 matching internet photos were retained.** These are representative illustrations/photos, not photographs taken at Kaku. House recipes and actual presentation can differ. Owners can replace them with their own dish photos.
 
-`public/assets/photos/kaku/premium.json` records each dish's source page, original image, photographer, licence, licence URL and resizing notice. Customer cards and details show attribution and source links. The resized photos retain their source licence. No AI-generated food images are included. The older assets and `credits.json` remain available for existing saved URLs.
+`catalog/kaku_photo_audit.json` records a decision and reason for all 194 dishes, plus the exact generation prompts and output paths for replacements. Images were generated with the built-in `image_gen` tool and converted to optimized JPEGs. Each replacement has its own image; no image is reused for another dish. The photos follow the named toppings and visible printed thali components without changing menu descriptions, prices or portions.
+
+`public/assets/photos/kaku/premium.json` records current photo provenance. Retained photos keep their photographer, source and licence. AI images carry `AI-generated representative image` metadata, no fabricated photographer/source link or Creative Commons claim, and a visible customer-facing AI label. Historical internet-photo credits remain in `catalog/kaku_photo_sources_v2.json` and `credits.json`; older assets remain available for existing saved URLs.
 
 ## Implementation and updates
 
@@ -33,6 +35,6 @@ The menu contains **194 distinct internet-sourced food photos**, one local JPEG 
 - The creation API seeds this menu only when `menu_template` is explicitly `kaku-v1`. Omitted values and `none` create an empty menu; unknown template values are rejected before creating any records.
 - Seed insertion is restricted to an empty menu and never runs on login or menu reads.
 - Each account has its own menu and category IDs; only the static photo files are shared.
-- Existing Kaku starter photos refresh on menu reads using `public/assets/kaku_photo_upgrade.json`. All four original photo fields must still match `catalog/kaku_photo_upgrade_legacy.json`. Uploaded, linked, removed, renamed or custom-credited photos are preserved. This only changes returned photo metadata; it never writes to the database or resets prices, availability, specials or deleted dishes.
-- Photo assets use a consistent card frame and an uncropped detail preview. The menu builder requires all 194 photo assignments; tests reject duplicate files and source URLs.
+- Existing Kaku starter photos refresh on menu reads using `public/assets/kaku_photo_upgrade.json`. All four photo fields must still match a known starter version from `catalog/kaku_photo_upgrade_legacy.json` or `catalog/kaku_photo_upgrade_v2.json`. Uploaded, linked, removed, renamed or custom-credited photos are preserved. This only changes returned photo metadata; it never writes to the database or resets prices, availability, specials or deleted dishes.
+- Photo assets use a consistent card frame and an uncropped detail preview. The menu builder requires all 194 photo assignments; tests reject duplicate image files and reused internet source URLs, and require honest AI provenance.
 - No database migration is required. Upload the updated API, frontend, JSON and photo assets together.

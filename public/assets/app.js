@@ -30,8 +30,9 @@ function remoteImageUrl(value){
  try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password&&u.hostname.includes('.')&&u.hostname!=='localhost'&&!u.hostname.endsWith('.localhost')}catch(e){return false}
 }
 function photo(item){let url=item?.image_url||'';if(url.startsWith('/uploads/'))return url;if(remoteImageUrl(url))return url;if(url.startsWith('/assets/dishes/')||url.startsWith('assets/photos/'))return url;const key=slug(item?.name||'');return key&&S.catalog.some(d=>d.slug===key)?`assets/dishes/${key}.svg`:'assets/food-default.svg';}
-const image=(item,cls='')=>`<img class="${cls}${item?.image_url?.startsWith('assets/photos/kaku/dish-')?' curated-dish-photo':''}" src="${esc(photo(item))}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${esc(item?.name||'Food artwork')}" onerror="this.onerror=null;this.src='assets/food-default.svg'">`;
+const image=(item,cls='')=>`<img class="${cls}${/^assets\/photos\/kaku\/(?:dish|ai)-/.test(item?.image_url||'')?' curated-dish-photo':''}" src="${esc(photo(item))}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${esc(item?.name||'Food artwork')}" onerror="this.onerror=null;this.src='assets/food-default.svg'">`;
 function photoCredit(item){
+ if(item.image_license==='AI-generated representative image')return '<p class="caption photo-credit">AI-generated image · Actual presentation may vary.</p>';
  if(!item.image_credit)return '';
  const source=/^https:\/\/(commons\.wikimedia\.org|www\.pexels\.com|www\.flickr\.com|wordpress\.org)\//.test(item.image_source_url||'')?item.image_source_url:'';
  const cc=/^CC (BY(?:-SA)?) ([234]\.0)$/.exec(item.image_license||'');
