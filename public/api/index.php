@@ -36,9 +36,7 @@ function requireRole(string ...$roles):array {$a=actor();if(!$a||!in_array($a['r
 // Restaurants this owner/staff login may open. users.restaurant_id is the home restaurant; owners can be linked to more.
 function outlets(array $a):array {
  if($a['role']==='super')return [];
- $list=rows('SELECT r.id,r.name,r.slug FROM restaurant_access ra JOIN restaurants r ON r.id=ra.restaurant_id WHERE ra.user_id=? AND r.status<>"suspended" AND r.deleted_at IS NULL ORDER BY r.id=? DESC,r.name',[$a['id'],(int)$a['restaurant_id']]);
- if(!$list&&$a['restaurant_id'])$list=rows('SELECT id,name,slug FROM restaurants WHERE id=? AND status<>"suspended" AND deleted_at IS NULL',[$a['restaurant_id']]);
- return $list;
+ return rows('SELECT r.id,r.name,r.slug,r.address,r.qr_mode FROM restaurants r LEFT JOIN restaurant_access ra ON ra.restaurant_id=r.id AND ra.user_id=? WHERE (ra.user_id IS NOT NULL OR r.id=?) AND r.status<>"suspended" AND r.deleted_at IS NULL ORDER BY r.id=? DESC,r.name,r.id',[$a['id'],(int)$a['restaurant_id'],(int)$a['restaurant_id']]);
 }
 function outletIds(array $a):array {return array_map(fn($o)=>(int)$o['id'],outlets($a));}
 function placeholders(array $ids):string {return implode(',',array_fill(0,count($ids),'?'));}
@@ -143,6 +141,7 @@ try {
  }
  // All routes below require authentication.
  if(str_starts_with($route,'owner/')){$a=requireRole('owner','staff');$restaurantId=rid($a);}
+ if($route==='owner/outlets')respond(['actor'=>actorInfo()]);
  if($route==='owner/switch'){
   mutation();$b=body();$id=(int)($b['restaurant_id']??0);if(!in_array($id,outletIds($a),true))fail('You do not have access to this restaurant',403);
   $_SESSION['rid']=$id;respond(['actor'=>actorInfo()]);

@@ -8,6 +8,12 @@
 
 Kaku's prepared account uses the supplied WhatsApp number `+91 90535 73091`, email `kakupizza17@gmail.com`, and menu address. Every owner can change the contact details or hide the service panel in Settings. Other accounts have this panel off by default.
 
+## Switching restaurants
+
+Super Admin → Restaurants → Manage the second restaurant → Other owner logins with access: link the first owner's login email. The owner opens **My outlets** or the current restaurant button at the top, searches by name/address, and selects **Manage this outlet**. The selected restaurant is highlighted, and switching returns to the previous page with that restaurant's data. Menu filters and the orders scope reset on switching. New links appear on refresh without another login; unlinked or suspended restaurants cannot be selected.
+
+This selector uses the existing multi-outlet tables and needs no new SQL migration on an already updated installation.
+
 ## Existing-site upgrade
 
 **Party posters:** Dashboard → Download party poster creates a 1080 × 1350 PNG with the restaurant name, contact, address and menu QR in one click. Posters opens birthday, group-party and corporate templates with editable heading, details and offer text. Preview before sharing; no paid image service or automatic publishing is involved.
