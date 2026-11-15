@@ -183,7 +183,7 @@ try {
  if($route==='owner/billing/stop-autopay'){
   mutation();if($a['role']!=='owner')fail('Only the restaurant owner can change autopay',403);
   if(!execq('UPDATE autopay_mandates SET status="cancelled" WHERE restaurant_id=? AND status="active"',[$restaurantId]))fail('No active autopay');
-  execq('UPDATE restaurants SET monthly_fee=? WHERE id=?',[monthlyFee($restaurantId),$restaurantId]);audit('subscription.autopay.stop',$restaurantId);respond(['ok'=>true]);
+  audit('subscription.autopay.stop',$restaurantId);respond(['ok'=>true]);
  }
  if($route==='owner/menu'){
   $cats=rows('SELECT * FROM categories WHERE restaurant_id=? ORDER BY sort_order,id',[$restaurantId]);
@@ -326,11 +326,11 @@ try {
   respond(['photos'=>array_slice($photos,0,6),'message'=>count($photos)?'Check photo relevance before selecting.':'No suitable licensed photos found; use your own upload.']);
  }
  if(str_starts_with($route,'admin/'))$admin=requireRole('super');
- if($route==='admin/pricing')respond(['default_monthly_fee'=>(one("SELECT v FROM platform_settings WHERE k='default_monthly_fee'")['v']??'599.00')]);
+ if($route==='admin/pricing')respond(['default_monthly_fee'=>planPrice('monthly'),'default_autopay_fee'=>planPrice('autopay6')]);
  if($route==='admin/pricing/save'){
-  mutation();$fee=num(body()['default_monthly_fee']??null,0,100000);
-  execq("INSERT INTO platform_settings(k,v) VALUES('default_monthly_fee',?) ON DUPLICATE KEY UPDATE v=VALUES(v)",[$fee]);
-  audit('pricing.update',null,(string)$fee);respond(['ok'=>true,'default_monthly_fee'=>$fee]);
+  mutation();$b=body();$fee=num($b['default_monthly_fee']??null,0,100000);$autopay=num($b['default_autopay_fee']??planPrice('autopay6'),0,100000);
+  execq("INSERT INTO platform_settings(k,v) VALUES('default_monthly_fee',?),('default_autopay_fee',?) ON DUPLICATE KEY UPDATE v=VALUES(v)",[$fee,$autopay]);
+  audit('pricing.update',null,json_encode(['monthly'=>$fee,'autopay'=>$autopay]));respond(['ok'=>true,'default_monthly_fee'=>$fee,'default_autopay_fee'=>$autopay]);
  }
  if($route==='admin/overview'){
   $stats=one('SELECT COUNT(*) AS restaurants,SUM(status="active" AND subscription_ends>=CURDATE()) AS active,SUM(subscription_ends<CURDATE()) AS expired,COALESCE(SUM(CASE WHEN status="active" AND subscription_ends>=CURDATE() THEN monthly_fee ELSE 0 END),0) AS mrr FROM restaurants WHERE deleted_at IS NULL');
@@ -446,7 +446,7 @@ try {
   try{
    if(execq('UPDATE upi_payments SET status="approved",reviewed_at=NOW() WHERE id=? AND status="pending"',[$id])!==1)fail('Payment not found or already reviewed');
    $p=one('SELECT * FROM upi_payments WHERE id=?',[$id]);
-   execq('UPDATE restaurants SET status=IF(status="suspended","suspended","active"),subscription_ends=DATE_ADD(GREATEST(subscription_ends,CURDATE()),INTERVAL ? MONTH),monthly_fee=?,setup_fee_paid=IF(?>0,1,setup_fee_paid) WHERE id=?',[(int)$p['months'],$p['monthly_fee'],$p['setup_fee'],$p['restaurant_id']]);
+   execq('UPDATE restaurants SET status=IF(status="suspended","suspended","active"),subscription_ends=DATE_ADD(GREATEST(subscription_ends,CURDATE()),INTERVAL ? MONTH),setup_fee_paid=IF(?>0,1,setup_fee_paid) WHERE id=?',[(int)$p['months'],$p['setup_fee'],$p['restaurant_id']]);
    $note=((int)$p['months']>1?$p['months'].' months upfront':'Monthly plan').((float)$p['setup_fee']>0?' + one-time setup fee '.$p['setup_fee']:'');
    execq('INSERT INTO subscription_payments(restaurant_id,amount,paid_on,method,reference_no,note) VALUES(?,?,CURDATE(),?,?,?)',[$p['restaurant_id'],$p['amount'],'UPI',$p['utr'],$note]);
    db()->commit();

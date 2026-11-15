@@ -2,7 +2,7 @@
 
 ## 0. Choose a website location
 
-**Demo-feature upgrade for existing sites:** see `DEMO_GUIDE.md`. Run `2026-11-15_demo_features.sql` and `2026-11-15_contact_options.sql` once before uploading this API. The starter menu itself needs no schema change; configurable customer details, Chef's Specials and contact options do.
+**Demo-feature upgrade for existing sites:** see `DEMO_GUIDE.md`. Run `2026-11-15_demo_features.sql`, `2026-11-15_contact_options.sql` and `2026-11-15_plan_pricing.sql` once before uploading this API. The starter menu itself needs no schema change; configurable customer details, Chef's Specials and contact options do.
 
 Create a dedicated domain or subdomain for the QR SaaS (for example `menu.yourdomain.com`). **Do not overwrite Yaitro or any existing website.** Point that site's document root to its own `public_html` folder.
 
@@ -59,7 +59,7 @@ Open `https://menu.yourdomain.com/admin` and sign in. The home page has no Super
 
 Super Admin → Restaurants → Add Restaurant. Enter the restaurant name, owner email, temporary password (12+ characters), ordering setup (common QR, per-table QR, or counter tokens), table count, monthly subscription fee (₹599 by default). A 7-day trial is created.
 
-The **Starting menu** field defaults to an empty menu with five editable categories. For Kaku 2.0's account, select **Kaku 2.0 — prepared menu with photos** to add its **194 dishes in 28 categories**, prices, size/portion choices and bundled food photos. This option also fills Kaku's restaurant name if the name field is empty. Other restaurants do not receive Kaku's menu automatically. Restaurant and selected menu creation happen in one transaction. Upload `api/menu_template.php`, `assets/kaku_menu.json` and the complete `assets/photos/` directory along with the updated API and frontend; missing template photos cause Kaku menu creation to fail instead of leaving a partial account. No database migration is needed. Existing accounts are unchanged.
+The **Starting menu** field defaults to an empty menu with five editable categories. For Kaku 2.0's account, select **Kaku 2.0 — prepared menu with photos** to add its **194 dishes in 28 categories**, prices, size/portion choices and bundled food photos. This option also fills Kaku's restaurant name if the name field is empty. Other restaurants do not receive Kaku's menu automatically. Restaurant and selected menu creation happen in one transaction. Upload `api/menu_template.php`, `assets/kaku_menu.json` and the complete `assets/photos/` directory along with the updated API and frontend; missing template photos cause Kaku menu creation to fail instead of leaving a partial account. The starter menu itself needs no migration; the other features require the migrations listed above. Existing menus are unchanged.
 
 Restaurant owner signs in at `index.html#/owner` and changes their password under Settings. In Menu, search or filter categories to edit dishes, prices and photos, add more dishes, or choose **Mark sold out / Make available**. Review the starter prices and portions before sharing the QR; generic photos can be replaced with the owner's dish photos. The source uses unlabelled slash prices for tandoori chaap and Dahi; the template uses Half / Full pending owner review (see `catalog/KAKU_MENU.md`). Owner sets their logo, cover, theme and number of tables. In Settings → QR Code Generator, choose Common QR or Table QR, print and place QR cards.
 

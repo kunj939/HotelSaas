@@ -50,5 +50,10 @@ class DemoFeaturesTest(unittest.TestCase):
         self.assertEqual(customer.call('public/restaurant',query={'slug':slug})['restaurant']['contact_options_enabled'],0)
         item['featured']=0;owner.call('owner/menu/save',item)
         self.assertEqual(next(i for i in owner.call('owner/menu')['items'] if i['id']==item['id'])['featured'],0)
+        settings['qr_mode']='counter';mode('off','required')
+        self.assertEqual(order()[0],400)
+        code,data=order(customer_phone='9876543210');self.assertEqual(code,201)
+        self.assertEqual(data['order']['table_no'],0)
+        self.assertGreater(data['order']['token_no'],0)
 
 if __name__=='__main__':unittest.main()

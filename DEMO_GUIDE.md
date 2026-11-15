@@ -12,7 +12,7 @@ Kaku's prepared account uses the supplied WhatsApp number `+91 90535 73091`, ema
 
 **Party posters:** Dashboard → Download party poster creates a 1080 × 1350 PNG with the restaurant name, contact, address and menu QR in one click. Posters opens birthday, group-party and corporate templates with editable heading, details and offer text. Preview before sharing; no paid image service or automatic publishing is involved.
 
-**Plan pricing:** Super Admin → Plan Pricing changes the default monthly fee for new accounts. Restaurants → Manage changes an individual restaurant's agreed fee. Existing fees and recorded receipts are not changed by editing the default.
+**Plan pricing:** Super Admin → Plan Pricing changes the default monthly fee for new accounts. Restaurants → Manage changes an individual restaurant's agreed fee. Monthly billing uses each restaurant?s agreed fee. Admin can also change the per-month price for new 6-month autopay registrations and upfront UPI purchases. Active mandates, pending payments and recorded receipts keep their original amounts. Setup and extra-outlet charges remain separate.
 
 Run these migrations **once** in the application's database before uploading the updated API:
 
@@ -20,6 +20,6 @@ Run these migrations **once** in the application's database before uploading the
 - `database/migrations/2026-11-15_contact_options.sql`
 - `database/migrations/2026-11-15_plan_pricing.sql`
 
-If orders do not yet have customer name/mobile columns, first apply `2026-11-02_customer_details.sql`. Fresh installations use the updated `database/schema.sql` and skip migrations.
+First apply any outstanding earlier migrations (November 2 through November 6) in date order; these add customer details, billing, tokens, outlets and UPI. Fresh installations use the updated `database/schema.sql` and skip migrations.
 
 Then upload the contents of the package's `public/` folder to the existing restaurant website root. Preserve `api/config.local.php`; the package contains no credentials. Existing menus are not replaced. This update has been tested locally; Hostinger deployment has not been performed.

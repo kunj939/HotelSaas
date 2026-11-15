@@ -7,15 +7,19 @@ Run:
 ```bash
 python tests/test_static.py
 python tests/test_starter_menu.py
+python tests/test_plan_pricing.py
 php -l public/api/index.php
 php -l public/api/menu_template.php
 node --check public/assets/app.js
 node --check public/assets/qr.js
+node --check public/assets/poster.js
 ```
 
 For a disposable MySQL-backed test installation, set `TABLEBLOOM_TEST_URL`, `TABLEBLOOM_TEST_EMAIL` and `TABLEBLOOM_TEST_PASSWORD` to its Super Admin account, then run `python tests/test_menu_api.py`. This creates test restaurants and orders; never run it against production. It checks empty default menus, explicitly selected Kaku menus, rejection of unknown templates, photo-preserving edits, ownership isolation, selected-size pricing, sold-out rejection/restocking, add/delete persistence and failed-account rollback.
 
 The Kaku update was also checked locally in Chrome at 375 px and 320 px: admin creates an account, signs out, owner signs in, searches and edits a seeded dish, marks it sold out/restocks it, and a customer selects the pizza size and adds it to the cart. No horizontal overflow or JavaScript errors were found. A missing final starter photo was tested on an isolated copy: account/menu creation rolled back completely and a retry succeeded after restoring the file. Hostinger itself remains untested.
+
+Pricing tests check monthly and 6-month quotes, UPI payment snapshots, approval without overwriting agreed rates, admin permissions and preservation of existing accounts. They create test payments and configure a test UPI ID on the disposable site. Set `TABLEBLOOM_TEST_CONFIG` to that site's local config and run `php tests/test_billing_prices.php` to check PayU settlement and failed-mandate handling without contacting PayU. Live gateway payments are not covered.
 
 ## Manual end-to-end use cases
 

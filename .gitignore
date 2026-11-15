@@ -5,6 +5,8 @@ public/api/config.local.php
 # Build and upload artefacts
 *.zip
 node_modules/
+__pycache__/
+*.pyc
 
 # OS and editor files
 .DS_Store

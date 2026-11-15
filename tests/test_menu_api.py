@@ -101,7 +101,7 @@ class MenuApiTest(unittest.TestCase):
         self.assertEqual(len(a.call('owner/menu')['items']),193)
         self.assertEqual(len(b.call('owner/menu')['items']),194)
         duplicate=dict(payloads[0],slug=f'kaku-test-{token}-rollback')
-        self.assertEqual(admin.request('admin/restaurants/create',duplicate)[0],500)
+        self.assertEqual(admin.request('admin/restaurants/create',duplicate)[0],400)
         self.assertEqual(customer.request('public/restaurant',query={'slug':duplicate['slug']})[0],404)
         print('PASS: blank default menus; explicit Kaku selection; invalid template rejection; independent menus; photo-preserving edits; tenant isolation; size pricing; sold-out/restock; persistence; rollback')
 

@@ -22,15 +22,14 @@ function payuLive():bool {return (payuConf()['mode']??'test')==='live';}
 function payuPayUrl():string {return payuLive()?'https://secure.payu.in/_payment':'https://test.payu.in/_payment';}
 function payuApiUrl():string {return payuLive()?'https://info.payu.in/merchant/postservice.php?form=2':'https://test.payu.in/merchant/postservice.php?form=2';}
 function money2(float $n):string {return number_format($n,2,'.','');}
-function planPrice(string $plan):float {return $plan==='autopay6'?PLAN_AUTOPAY:PLAN_MONTHLY;}
+function planPrice(string $plan):float {return (float)(setting($plan==='autopay6'?'default_autopay_fee':'default_monthly_fee')??($plan==='autopay6'?PLAN_AUTOPAY:PLAN_MONTHLY));}
 // Extra outlets are billed on the owner's home restaurant (users.restaurant_id), not on the linked ones.
 function extraOutlets(int $rid):int {
  $n=one('SELECT COUNT(*) AS n FROM restaurant_access WHERE user_id=(SELECT id FROM users WHERE restaurant_id=? AND role="owner" ORDER BY id LIMIT 1)',[$rid]);
  return max(0,(int)($n['n']??0)-OUTLETS_INCLUDED);
 }
-function monthlyFee(int $rid):float {return PLAN_MONTHLY+extraOutlets($rid)*EXTRA_OUTLET_FEE;}
 function billingQuote(array $r,string $plan):array {
- $fee=(int)$r['setup_fee_paid']?0.0:PLAN_SETUP_FEE;$price=planPrice($plan);$n=extraOutlets((int)$r['id']);$extra=$n*EXTRA_OUTLET_FEE;
+ $fee=(int)$r['setup_fee_paid']?0.0:PLAN_SETUP_FEE;$price=$plan==='monthly'?(float)$r['monthly_fee']:planPrice($plan);$n=extraOutlets((int)$r['id']);$extra=$n*EXTRA_OUTLET_FEE;
  return ['plan'=>$plan,'price'=>$price,'extra_outlets'=>$n,'extra_fee'=>$extra,'setup_fee'=>$fee,'total'=>$price+$extra+$fee];
 }
 // Manual UPI (works before PayU is ready): the platform UPI ID is stored by Super Admin in platform_settings.
@@ -105,7 +104,8 @@ function payuApplySuccess(array $t,string $mihpayid,string $mode):void {
  try {
   if(execq('UPDATE payu_transactions SET status="success",mihpayid=?,mode=? WHERE id=? AND status<>"success"',[$mihpayid,$mode,$t['id']])!==1){db()->commit();return;}
   $monthly=(float)$t['amount']-(float)$t['setup_fee']; // plan price plus any extra-outlet fee
-  execq('UPDATE restaurants SET status=IF(status="suspended","suspended","active"),subscription_ends=DATE_ADD(GREATEST(subscription_ends,CURDATE()),INTERVAL 1 MONTH),monthly_fee=?,setup_fee_paid=IF(?>0,1,setup_fee_paid) WHERE id=?',[$monthly,$t['setup_fee'],$rid]);
+  // The agreed base monthly rate belongs to the admin. Receipts and mandates retain the paid price separately.
+  execq('UPDATE restaurants SET status=IF(status="suspended","suspended","active"),subscription_ends=DATE_ADD(GREATEST(subscription_ends,CURDATE()),INTERVAL 1 MONTH),setup_fee_paid=IF(?>0,1,setup_fee_paid) WHERE id=?',[$t['setup_fee'],$rid]);
   $ends=(string)one('SELECT subscription_ends FROM restaurants WHERE id=?',[$rid])['subscription_ends'];
   // Debit one day before expiry so a slow UPI debit does not interrupt ordering.
   $nextDebit=date('Y-m-d',strtotime($ends.' -1 day'));
@@ -116,7 +116,6 @@ function payuApplySuccess(array $t,string $mihpayid,string $mode):void {
   } elseif($t['kind']==='recurring'){
    $m=one('SELECT * FROM autopay_mandates WHERE id=?',[$t['mandate_id']]);$done=(int)$m['cycles_done']+1;$finished=$done>=(int)$m['cycles_total'];
    execq('UPDATE autopay_mandates SET cycles_done=?,next_debit_date=?,predebit_debit_on=NULL,invoice_no=NULL,attempts=0,status=? WHERE id=?',[$done,$nextDebit,$finished?'completed':'active',$m['id']]);
-   if($finished)execq('UPDATE restaurants SET monthly_fee=? WHERE id=?',[monthlyFee($rid),$rid]);
    $note='Autopay month '.$done.' of '.$m['cycles_total'];
   } else $note='Monthly plan';
   if((float)$t['setup_fee']>0)$note.=' + one-time setup fee '.money2((float)$t['setup_fee']);
@@ -131,7 +130,6 @@ function autopayFailedAttempt(int $mandateId):void {
  $m=one('SELECT restaurant_id,attempts FROM autopay_mandates WHERE id=?',[$mandateId]);
  if($m&&(int)$m['attempts']>=AUTOPAY_MAX_ATTEMPTS){
   execq('UPDATE autopay_mandates SET status="failed" WHERE id=? AND status="active"',[$mandateId]);
-  execq('UPDATE restaurants SET monthly_fee=? WHERE id=?',[monthlyFee((int)$m['restaurant_id']),$m['restaurant_id']]);
  }
 }
 

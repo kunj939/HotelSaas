@@ -6,7 +6,7 @@ A ready-to-deploy PHP + MySQL + HTML/CSS/JavaScript project for Hostinger Premiu
 
 ## What is included
 
-Owners can highlight **Chef's Specials**, configure checkout name/mobile as **off, optional or required**, and show location/menu/WhatsApp order/party/bulk-enquiry links. See [the demo and upgrade guide](DEMO_GUIDE.md). Existing databases require the two November 15 migrations before this API update.
+Owners can highlight **Chef's Specials**, configure checkout name/mobile as **off, optional or required**, and show location/menu/WhatsApp order/party/bulk-enquiry links. See [the demo and upgrade guide](DEMO_GUIDE.md). Existing databases require all three November 15 migrations before this API update.
 
 | Module | Included functionality |
 |---|---|

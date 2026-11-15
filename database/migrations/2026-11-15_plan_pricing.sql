@@ -4,4 +4,4 @@ CREATE TABLE IF NOT EXISTS platform_settings (
  v VARCHAR(500) NOT NULL,
  updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-INSERT IGNORE INTO platform_settings(k,v) VALUES('default_monthly_fee','599.00');
+INSERT IGNORE INTO platform_settings(k,v) VALUES('default_monthly_fee','599.00'),('default_autopay_fee','549.00');
