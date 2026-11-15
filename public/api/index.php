@@ -84,7 +84,7 @@ try {
   $categories=rows('SELECT id,name FROM categories WHERE restaurant_id=? ORDER BY sort_order,id',[$r['id']]);
   $items=rows('SELECT id,category_id,name,description,food_type,base_price,options_json,addons_json,image_url,image_credit,image_license,image_source_url,available,featured FROM menu_items m WHERE restaurant_id=? AND deleted_at IS NULL ORDER BY (SELECT c.sort_order FROM categories c WHERE c.id=m.category_id),m.sort_order,m.name',[$r['id']]);
   foreach($items as &$item){$item['options']=json_decode($item['options_json']??'[]',true)?:[];$item['addons']=json_decode($item['addons_json']??'[]',true)?:[];unset($item['options_json'],$item['addons_json']);}
-  $r['can_order']=statusActive($r);unset($r['subscription_ends'],$r['status']);respond(['restaurant'=>$r,'categories'=>$categories,'items'=>$items]);
+  $r['can_order']=statusActive($r);unset($r['subscription_ends'],$r['status']);respond(['restaurant'=>$r,'categories'=>$categories,'items'=>refreshedStarterPhotos($items)]);
  }
  if($route==='public/order'){
   mutation();$b=body();$slug=val($b['slug']??'',90);$r=one('SELECT * FROM restaurants WHERE slug=? AND deleted_at IS NULL',[$slug]);if(!$r)fail('Restaurant unavailable',404);
@@ -189,7 +189,7 @@ try {
   $cats=rows('SELECT * FROM categories WHERE restaurant_id=? ORDER BY sort_order,id',[$restaurantId]);
   $items=rows('SELECT * FROM menu_items m WHERE restaurant_id=? AND deleted_at IS NULL ORDER BY (SELECT c.sort_order FROM categories c WHERE c.id=m.category_id),m.sort_order,m.id',[$restaurantId]);
   foreach($items as &$it){$it['options']=json_decode($it['options_json']??'[]',true)?:[];$it['addons']=json_decode($it['addons_json']??'[]',true)?:[];unset($it['options_json'],$it['addons_json']);}
-  respond(['categories'=>$cats,'items'=>$items]);
+  respond(['categories'=>$cats,'items'=>refreshedStarterPhotos($items)]);
  }
  if($route==='owner/category'){
   mutation();if($a['role']==='staff')fail('Owner permission required',403);$b=body();$name=val($b['name']??'',100);if(!$name)fail('Category name required');

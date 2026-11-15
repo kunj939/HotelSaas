@@ -1,5 +1,7 @@
 """Validate the shipped menu, photo licences and important printed price options."""
 import json
+import hashlib
+from urllib.parse import urlparse
 from pathlib import Path
 import unittest
 
@@ -11,7 +13,7 @@ class StarterMenuTest(unittest.TestCase):
     def setUpClass(cls):
         cls.menu = json.loads((ROOT/'public/assets/kaku_menu.json').read_text(encoding='utf-8'))
         cls.items = {item['name']: item for item in cls.menu['items']}
-        cls.credits = json.loads((ROOT/'public/assets/photos/kaku/credits.json').read_text(encoding='utf-8'))
+        cls.credits = json.loads((ROOT/'public/assets/photos/kaku/premium.json').read_text(encoding='utf-8'))
 
     def test_complete_menu_and_categories(self):
         self.assertEqual(len(self.menu['categories']), 28)
@@ -45,17 +47,27 @@ class StarterMenuTest(unittest.TestCase):
 
     def test_photos_are_local_and_credited(self):
         credits_by_file={c['file']:c for c in self.credits.values()}
+        self.assertEqual(set(self.credits),set(self.items))
+        self.assertEqual(len(credits_by_file),194)
+        hashes=set()
+        sources=set()
         for item in self.items.values():
             path=ROOT/'public'/item['image_url']
             self.assertTrue(path.is_file(),path)
             self.assertGreater(path.stat().st_size,2000,path)
             self.assertEqual(path.read_bytes()[:2],b'\xff\xd8',path)
+            hashes.add(hashlib.sha256(path.read_bytes()).hexdigest())
             credit=credits_by_file[item['image_url']]
             self.assertEqual(item['image_credit'],credit['artist'])
             self.assertEqual(item['image_license'],credit['license'])
             self.assertEqual(item['image_source_url'],credit['source'])
-            self.assertTrue(credit['source'].startswith('https://commons.wikimedia.org/'))
-            self.assertTrue(credit['license'].startswith('CC BY') or credit['license'] in ('CC0','Public domain'))
+            self.assertIn(urlparse(credit['source']).hostname,('commons.wikimedia.org','www.pexels.com','www.flickr.com','wordpress.org'))
+            self.assertTrue(credit['license'].startswith('CC BY') or credit['license'] in ('CC0','Public domain','Pexels License'))
+            self.assertTrue(credit['artist'])
+            self.assertTrue(credit['license_url'].startswith('https://'))
+            sources.add(credit['source'])
+        self.assertEqual(len(hashes),194,'Every dish needs a different photo, not renamed duplicate bytes')
+        self.assertEqual(len(sources),194,'Do not reuse one source photo across different dishes')
 
 
 if __name__ == '__main__':

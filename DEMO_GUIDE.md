@@ -23,3 +23,5 @@ Run these migrations **once** in the application's database before uploading the
 First apply any outstanding earlier migrations (November 2 through November 6) in date order; these add customer details, billing, tokens, outlets and UPI. Fresh installations use the updated `database/schema.sql` and skip migrations.
 
 Then upload the contents of the package's `public/` folder to the existing restaurant website root. Preserve `api/config.local.php`; the package contains no credentials. Existing menus are not replaced. This update has been tested locally; Hostinger deployment has not been performed.
+
+Kaku photo refresh: all 194 dishes now have different locally hosted representative internet photos, with source credits. Upload the updated API, frontend, menu/upgrade JSON files and `assets/photos/kaku/` together. No new SQL file is needed for this photo update; existing unchanged starter photos update automatically, and owner-uploaded photos remain intact.

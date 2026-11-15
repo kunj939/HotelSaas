@@ -236,7 +236,7 @@ Dahi|60,100|yogurt
 """
 
 def build():
-    credits = json.loads((ROOT/'public/assets/photos/kaku/credits.json').read_text(encoding='utf-8'))
+    premium = json.loads((ROOT/'public/assets/photos/kaku/premium.json').read_text(encoding='utf-8'))
     categories, items = [], []
     for line in SOURCE.strip().splitlines():
         fields = line.split('|')
@@ -248,8 +248,7 @@ def build():
             continue
         name, prices, *extras = fields
         prices = [int(price) for price in prices.split(',')]
-        photo_key = extras[0] if extras and extras[0] else default_photo
-        credit = credits[photo_key]
+        credit = premium[name]
         options = []
         if len(prices) > 1:
             assert len(labels) == len(prices), name
@@ -259,10 +258,16 @@ def build():
                           image_url=credit['file'], image_credit=credit['artist'],
                           image_license=credit['license'], image_source_url=credit['source'], available=1))
     assert len({item['name'] for item in items}) == len(items)
-    data = dict(id='kaku-v1', name='Kaku 2.0 Pizza & Restaurant', version=1,
+    if len(premium)!=len(items):
+        raise ValueError(f'Complete all {len(items)} distinct dish images before publishing ({len(premium)} ready)')
+    data = dict(id='kaku-v1', name='Kaku 2.0 Pizza & Restaurant', version=2,
                 categories=categories, items=items)
     path=ROOT/'public/assets/kaku_menu.json'
     path.write_text(json.dumps(data, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+    legacy=json.loads((ROOT/'catalog/kaku_photo_upgrade_legacy.json').read_text(encoding='utf-8'))
+    fields=['image_url','image_credit','image_license','image_source_url']
+    upgrades={i['name']:{'previous':legacy[i['name']], 'current':{k:i[k] for k in fields}} for i in items}
+    (ROOT/'public/assets/kaku_photo_upgrade.json').write_text(json.dumps(upgrades,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
     print(f'Built {len(items)} dishes in {len(categories)} categories: {path}')
 
 if __name__ == '__main__':

@@ -6,6 +6,30 @@ function bundledMenuPhoto(string $path): bool {
   && is_file(dirname(__DIR__).'/'.$path);
 }
 
+/** Present refreshed art only for an unchanged Kaku starter photo.
+ * No writes, schema migration or changes to owner uploads, prices or availability.
+ */
+function refreshedStarterPhotos(array $items): array {
+ static $upgrades=null;
+ if($upgrades===null){
+  $file=dirname(__DIR__).'/assets/kaku_photo_upgrade.json';
+  $upgrades=is_file($file)?json_decode(file_get_contents($file),true):[];
+  if(!is_array($upgrades))$upgrades=[];
+ }
+ foreach($items as &$item){
+  $upgrade=$upgrades[$item['name']]??null;
+  if(!$upgrade)continue;
+  foreach($upgrade['previous'] as $field=>$value){
+   if(($item[$field]??'')!==$value)continue 2;
+  }
+  // A partial file upload must not replace a working old image with a broken URL.
+  if(!bundledMenuPhoto($upgrade['current']['image_url']))continue;
+  $item=array_replace($item,$upgrade['current']);
+ }
+ unset($item);
+ return $items;
+}
+
 /** Seed the explicitly selected Kaku menu inside the account-creation transaction. */
 function seedStarterMenu(PDO $db, int $restaurantId): array {
  if (!$db->inTransaction()) throw new LogicException('Starter menu requires the account transaction');

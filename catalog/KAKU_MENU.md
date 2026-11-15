@@ -1,6 +1,6 @@
 # Kaku starter menu
 
-This is **Kaku 2.0's prepared starting menu**, not a universal restaurant default. During Kaku account creation, explicitly select **Kaku 2.0 — prepared menu with photos**. That account receives **194 dishes in 28 categories**, with INR prices, portions, vegetarian labels and bundled representative food photos. The default for other accounts is an empty menu with five categories. Owners use the normal menu editor to change prices, replace photos, add/remove dishes, and mark items sold out or available. Existing restaurants are not modified, and logging in never re-seeds a menu.
+This is **Kaku 2.0's prepared starting menu**, not a universal restaurant default. During Kaku account creation, explicitly select **Kaku 2.0 — prepared menu with photos**. That account receives **194 dishes in 28 categories**, with INR prices, portions, vegetarian labels and bundled representative food photos. The default for other accounts is an empty menu with five categories. Owners use the normal menu editor to change prices, replace photos, add/remove dishes, and mark items sold out or available. Existing menu contents are never re-seeded, and logging in does not restore deleted dishes.
 
 ## Sources and transcription
 
@@ -22,7 +22,9 @@ The PDFs contain photographs of the printed menu. Their Google Maps headers, del
 
 ## Photos
 
-Food photos are representative Wikimedia Commons images, **not photos taken at Kaku**. Related variants may share a photo. The owner can replace them with actual dish photos. Customer cards and dish details show the photographer, licence, source link and representative-photo label. The originals' authorship and licences are retained in `public/assets/photos/kaku/credits.json`; resized JPEG derivatives retain the original licence. Existing bundled photos are referenced without duplicating files.
+The menu contains **194 distinct internet-sourced food photos**, one local JPEG per dish. These are representative photos from Wikimedia Commons, Pexels, Flickr and the WordPress Photo Directory, **not photos taken at Kaku**. Similar recipes and house specials use representative servings; plating, garnishes and exact ingredients can differ. Owners can replace them with actual dish photos.
+
+`public/assets/photos/kaku/premium.json` records each dish's source page, original image, photographer, licence, licence URL and resizing notice. Customer cards and details show attribution and source links. The resized photos retain their source licence. No AI-generated food images are included. The older assets and `credits.json` remain available for existing saved URLs.
 
 ## Implementation and updates
 
@@ -31,4 +33,6 @@ Food photos are representative Wikimedia Commons images, **not photos taken at K
 - The creation API seeds this menu only when `menu_template` is explicitly `kaku-v1`. Omitted values and `none` create an empty menu; unknown template values are rejected before creating any records.
 - Seed insertion is restricted to an empty menu and never runs on login or menu reads.
 - Each account has its own menu and category IDs; only the static photo files are shared.
+- Existing Kaku starter photos refresh on menu reads using `public/assets/kaku_photo_upgrade.json`. All four original photo fields must still match `catalog/kaku_photo_upgrade_legacy.json`. Uploaded, linked, removed, renamed or custom-credited photos are preserved. This only changes returned photo metadata; it never writes to the database or resets prices, availability, specials or deleted dishes.
+- Photo assets use a consistent card frame and an uncropped detail preview. The menu builder requires all 194 photo assignments; tests reject duplicate files and source URLs.
 - No database migration is required. Upload the updated API, frontend, JSON and photo assets together.

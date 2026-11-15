@@ -30,8 +30,15 @@ function remoteImageUrl(value){
  try{const u=new URL(value);return u.protocol==='https:'&&!u.username&&!u.password&&u.hostname.includes('.')&&u.hostname!=='localhost'&&!u.hostname.endsWith('.localhost')}catch(e){return false}
 }
 function photo(item){let url=item?.image_url||'';if(url.startsWith('/uploads/'))return url;if(remoteImageUrl(url))return url;if(url.startsWith('/assets/dishes/')||url.startsWith('assets/photos/'))return url;const key=slug(item?.name||'');return key&&S.catalog.some(d=>d.slug===key)?`assets/dishes/${key}.svg`:'assets/food-default.svg';}
-const image=(item,cls='')=>`<img class="${cls}" src="${esc(photo(item))}" loading="lazy" referrerpolicy="no-referrer" alt="${esc(item?.name||'Food artwork')}" onerror="this.onerror=null;this.src='assets/food-default.svg'">`;
-function photoCredit(item){if(!item.image_credit)return '';const source=/^https:\/\/commons\.wikimedia\.org\//.test(item.image_source_url||'')?item.image_source_url:'';return `<p class="caption photo-credit">${item.image_url?.startsWith('assets/photos/')?'Representative photo':'Photo'}: ${esc(item.image_credit)} · ${esc(item.image_license)}${source?` · <a href="${esc(source)}" target="_blank" rel="noopener">Source</a>`:''}</p>`;}
+const image=(item,cls='')=>`<img class="${cls}${item?.image_url?.startsWith('assets/photos/kaku/dish-')?' curated-dish-photo':''}" src="${esc(photo(item))}" loading="lazy" decoding="async" referrerpolicy="no-referrer" alt="${esc(item?.name||'Food artwork')}" onerror="this.onerror=null;this.src='assets/food-default.svg'">`;
+function photoCredit(item){
+ if(!item.image_credit)return '';
+ const source=/^https:\/\/(commons\.wikimedia\.org|www\.pexels\.com|www\.flickr\.com|wordpress\.org)\//.test(item.image_source_url||'')?item.image_source_url:'';
+ const cc=/^CC (BY(?:-SA)?) ([234]\.0)$/.exec(item.image_license||'');
+ const licenseUrl=cc?`https://creativecommons.org/licenses/${cc[1].toLowerCase()}/${cc[2]}/`:item.image_license==='CC0'?'https://creativecommons.org/publicdomain/zero/1.0/':item.image_license==='Pexels License'?'https://www.pexels.com/license/':'';
+ const license=licenseUrl?`<a href="${licenseUrl}" target="_blank" rel="noopener">${esc(item.image_license)}</a>`:esc(item.image_license);
+ return `<p class="caption photo-credit">${item.image_url?.startsWith('assets/photos/')?'Representative photo':'Photo'}: ${esc(item.image_credit)} · ${license}${source?` · <a href="${esc(source)}" target="_blank" rel="noopener">Source</a>`:''}</p>`;
+}
 function resetTimer(){if(S.timer){clearInterval(S.timer);S.timer=null}clearInterval(S.trackTimer);S.trackTimer=null}
 const isCounter=()=>S.restaurant?.qr_mode==='counter';
 function app(html,key){const el=$('#app');el.innerHTML=html;if(key===undefined||key!==S.screen){S.screen=key;el.classList.add('enter');clearTimeout(S.enterTimer);S.enterTimer=setTimeout(()=>el.classList.remove('enter'),1400)}}

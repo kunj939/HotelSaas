@@ -7,6 +7,7 @@ Run:
 ```bash
 python tests/test_static.py
 python tests/test_starter_menu.py
+php tests/test_photo_refresh.php
 python tests/test_plan_pricing.py
 php -l public/api/index.php
 php -l public/api/menu_template.php
@@ -58,9 +59,14 @@ Additional automated coverage: with the disposable test-site environment configu
 
 ## Dish photo sources
 
+- Kaku's 194 photos must have distinct file hashes and source URLs, local JPEG assets and matching photographer/licence metadata. Inspect both list and grid layouts at 320 px and 375 px and open a dish to check its full photo.
+- Existing starter images refresh without a SQL migration. Verify unchanged original photo metadata upgrades, while uploaded/linked/removed photos, edited credits, renamed dishes, prices, featured flags and sold-out status remain unchanged. Missing replacement image files retain the original image.
+
 - Upload valid JPG/PNG/WebP files and paste copied image files into the dish editor; verify previews, save, reopen and customer menu display.
 - Paste a direct HTTPS image URL (including query-string CDN URLs), preview, save, reopen and check customer display. Saving without pressing “Use image link” must still preserve the entered URL.
 - Reject HTTP, javascript/data URLs, credentials in URLs, oversized links, unsupported clipboard file types and files over 2.5 MB. Existing photos must survive failed selections/uploads.
 - Save is disabled during upload; after a failed upload it becomes available again. Close the editor during an upload and open another dish: the old result must not change the new dish.
 - Replace a licensed photo with an upload or link: previous credit fields must be cleared. Skip photo must clear the URL field and restore artwork after saving.
 - Use a broken image URL or a host blocking hotlinks: customer menu must show default artwork. A webpage URL is not a direct image URL and may show fallback artwork.
+
+Photo refresh validation: 194 unique source URLs and image hashes; all JPEGs decoded; existing-account public API upgrade and partial-upload fallback passed on the disposable test site. Chrome list/grid layouts passed at 320, 375 and 1280 px, including uncropped detail previews and no horizontal overflow or JavaScript errors.

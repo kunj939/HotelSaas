@@ -205,6 +205,10 @@ select{appearance:auto}
 .dish-grid .dish-image{width:100%;aspect-ratio:4/3}
 .dish-grid .dish-body{padding:2px 4px 4px}
 .dish-grid .dish-desc{min-height:2.9em}
+.dish-card .dish-image:has(.curated-dish-photo){width:clamp(112px,30vw,160px);aspect-ratio:4/3;background:#efe5d7}
+.dish-grid .dish-card .dish-image{width:100%;aspect-ratio:4/3}
+.dish-image .curated-dish-photo{object-fit:cover}
+.modal-photo.curated-dish-photo{aspect-ratio:4/3;max-height:none;object-fit:contain;background:#efe5d7}
 
 .food-dot{display:inline-grid;place-items:center;flex-shrink:0;width:14px;height:14px;border:1.5px solid #0D9A53;border-radius:3px}
 .food-dot:after{content:'';width:6px;height:6px;border-radius:50%;background:#0D9A53}
