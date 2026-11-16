@@ -23,6 +23,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 }
 if (!isset($_SESSION['csrf'])) $_SESSION['csrf'] = bin2hex(random_bytes(24));
 require __DIR__.'/db.php';
+require __DIR__.'/admin_accounts.php';
 require __DIR__.'/images.php';
 require __DIR__.'/payu.php';
 function respond($data,int $status=200):never { http_response_code($status); echo json_encode($data,JSON_UNESCAPED_UNICODE|JSON_INVALID_UTF8_SUBSTITUTE);exit; }
@@ -31,11 +32,17 @@ function body():array { $x=json_decode(file_get_contents('php://input') ?: '{}',
 function val($v,int $max=200):string { return trim(mb_substr((string)($v??''),0,$max)); }
 function hexcolor($v,string $default):string {$x=val($v,7);return preg_match('/^#[0-9a-fA-F]{6}$/D',$x)?$x:$default;}
 function num($v,float $min=0,float $max=999999):float {if(!is_numeric($v)||!is_finite((float)$v)) fail('Invalid numeric value');$n=(float)$v;if($n<$min||$n>$max) fail('Value out of range');return round($n,2);}
-function actor():?array {if(!isset($_SESSION['uid']))return null;$a=one('SELECT id,restaurant_id,role,full_name,email,active FROM users WHERE id=?',[(int)$_SESSION['uid']]);return $a&&$a['active'] ? $a:null;}
+function actor():?array {
+ if(!isset($_SESSION['uid']))return null;
+ $extra=adminAccountsReady()?'username,auth_version,':'';
+ $a=one('SELECT id,restaurant_id,role,full_name,email,'.$extra.'active FROM users WHERE id=?',[(int)$_SESSION['uid']]);
+ if(!$a||!$a['active']||(int)($a['auth_version']??0)!==(int)($_SESSION['auth_version']??0))return null;
+ unset($a['auth_version']);return $a;
+}
 function requireRole(string ...$roles):array {$a=actor();if(!$a||!in_array($a['role'],$roles,true))fail('Please sign in with the required account',401);return $a;}
 // Restaurants this owner/staff login may open. users.restaurant_id is the home restaurant; owners can be linked to more.
 function outlets(array $a):array {
- if($a['role']==='super')return [];
+ if(in_array($a['role'],['super','admin'],true))return [];
  return rows('SELECT r.id,r.name,r.slug,r.address,r.qr_mode FROM restaurants r LEFT JOIN restaurant_access ra ON ra.restaurant_id=r.id AND ra.user_id=? WHERE (ra.user_id IS NOT NULL OR r.id=?) AND r.status<>"suspended" AND r.deleted_at IS NULL ORDER BY r.id=? DESC,r.name,r.id',[$a['id'],(int)$a['restaurant_id'],(int)$a['restaurant_id']]);
 }
 function outletIds(array $a):array {return array_map(fn($o)=>(int)$o['id'],outlets($a));}
@@ -45,7 +52,7 @@ function rid(array $a):int {
  $ids=outletIds($a);if(!$ids)fail('This restaurant account is stopped. Contact TableBloom support.',403);$sel=(int)($_SESSION['rid']??0);
  return in_array($sel,$ids,true)?$sel:(in_array((int)$a['restaurant_id'],$ids,true)?(int)$a['restaurant_id']:$ids[0]);
 }
-function actorInfo():?array {$a=actor();if(!$a||$a['role']==='super')return $a;$a['outlets']=outlets($a);$a['active_restaurant_id']=$a['outlets']?rid($a):null;return $a;}
+function actorInfo():?array {$a=actor();if(!$a||in_array($a['role'],['super','admin'],true))return $a;$a['outlets']=outlets($a);$a['active_restaurant_id']=$a['outlets']?rid($a):null;return $a;}
 // Self-created outlets share an existing owner login rather than creating a second account.
 function restaurantOwner(int $id):?array {
  return one('SELECT u.id,u.email FROM users u LEFT JOIN restaurant_access ra ON ra.user_id=u.id AND ra.restaurant_id=? WHERE u.role="owner" AND (u.restaurant_id=? OR ra.user_id IS NOT NULL) ORDER BY (u.restaurant_id=?) DESC,u.id LIMIT 1',[$id,$id,$id]);
@@ -73,13 +80,15 @@ try {
  if($route==='auth/login') {
   mutation();$b=body();$email=strtolower(val($b['email']??'',190));$password=(string)($b['password']??'');
   if(count(rows('SELECT id FROM auth_attempts WHERE ip_hash=? AND attempted_at>DATE_SUB(NOW(),INTERVAL 15 MINUTE)',[iphash()]))>=8)fail('Too many attempts. Try again in 15 minutes.',429);
-  $u=one('SELECT * FROM users WHERE email=? AND active=1',[$email]);
+  $field=!str_contains($email,'@')&&adminAccountsReady()?'username':'email';
+  $u=one('SELECT * FROM users WHERE '.$field.'=? AND active=1',[$email]);
   if(!$u||!password_verify($password,$u['password_hash'])){
-   execq('INSERT INTO auth_attempts(ip_hash) VALUES(?)',[iphash()]);if(random_int(1,50)===1)execq('DELETE FROM auth_attempts WHERE attempted_at<DATE_SUB(NOW(),INTERVAL 1 DAY)');fail('Incorrect email or password',401);
+   execq('INSERT INTO auth_attempts(ip_hash) VALUES(?)',[iphash()]);if(random_int(1,50)===1)execq('DELETE FROM auth_attempts WHERE attempted_at<DATE_SUB(NOW(),INTERVAL 1 DAY)');fail('Incorrect username, email or password',401);
   }
   // Owners/staff need at least one restaurant that is not stopped or deleted.
-  if($u['role']!=='super'&&!outlets($u))fail('Account suspended. Contact support.',403);
+  if(in_array($u['role'],['owner','staff'],true)&&!outlets($u))fail('Account suspended. Contact support.',403);
   session_regenerate_id(true);unset($_SESSION['rid']);$_SESSION['uid']=(int)$u['id'];$_SESSION['csrf']=bin2hex(random_bytes(24));
+  $_SESSION['auth_version']=(int)($u['auth_version']??0);
   respond(['actor'=>actorInfo(),'csrf'=>$_SESSION['csrf']]);
  }
  if($route==='auth/logout'){mutation();$_SESSION=[];session_regenerate_id(true);$_SESSION['csrf']=bin2hex(random_bytes(24));respond(['ok'=>true,'csrf'=>$_SESSION['csrf']]);}
@@ -89,7 +98,7 @@ try {
   $categories=rows('SELECT id,name FROM categories WHERE restaurant_id=? ORDER BY sort_order,id',[$r['id']]);
   $items=rows('SELECT id,category_id,name,description,food_type,base_price,options_json,addons_json,image_url,image_credit,image_license,image_source_url,available,featured FROM menu_items m WHERE restaurant_id=? AND deleted_at IS NULL ORDER BY (SELECT c.sort_order FROM categories c WHERE c.id=m.category_id),m.sort_order,m.name',[$r['id']]);
   foreach($items as &$item){$item['options']=json_decode($item['options_json']??'[]',true)?:[];$item['addons']=json_decode($item['addons_json']??'[]',true)?:[];unset($item['options_json'],$item['addons_json']);}
-  $r['can_order']=statusActive($r);unset($r['subscription_ends'],$r['status']);respond(['restaurant'=>$r,'categories'=>$categories,'items'=>refreshedStarterPhotos($items)]);
+  $r['order_today']=date('Y-m-d');$r['can_order']=statusActive($r);unset($r['subscription_ends'],$r['status']);respond(['restaurant'=>$r,'categories'=>$categories,'items'=>refreshedStarterPhotos($items)]);
  }
  if($route==='public/order'){
   mutation();$b=body();$slug=val($b['slug']??'',90);$r=one('SELECT * FROM restaurants WHERE slug=? AND deleted_at IS NULL',[$slug]);if(!$r)fail('Restaurant unavailable',404);
@@ -98,7 +107,7 @@ try {
   $table=$counter?0:(int)($b['table_no']??0);if(!$counter&&($table<1||$table>(int)$r['table_count']))fail('Please select a valid table number');
   if($r['qr_mode']==='table'){$expected=(int)($b['qr_table']??0);if($expected!==$table)fail('Table does not match the scanned QR');}
   $token=val($b['client_request_id']??'',80);if(!preg_match('/^[a-zA-Z0-9-]{16,80}$/D',$token))fail('Invalid order request');
-  $existing=one('SELECT id,tracking_key,table_no,token_no,total,status FROM orders WHERE restaurant_id=? AND client_request_id=?',[$r['id'],$token]);
+  $existing=one('SELECT id,tracking_key,table_no,token_no,token_day,total,status FROM orders WHERE restaurant_id=? AND client_request_id=?',[$r['id'],$token]);
   if($existing)respond(['order'=>$existing,'duplicate'=>true]);
   $lines=$b['items']??[];if(!is_array($lines)||count($lines)<1||count($lines)>30)fail('Cart must have 1–30 items');
   $recent=one('SELECT COUNT(*) AS n FROM orders WHERE restaurant_id=? AND ip_hash=? AND created_at>DATE_SUB(NOW(),INTERVAL 10 MINUTE)',[$r['id'],iphash()]);
@@ -138,14 +147,15 @@ try {
    $oid=(int)db()->lastInsertId();
    foreach($prepared as $p)execq('INSERT INTO order_items(order_id,item_id,dish_name,variant_name,addons_json,quantity,unit_price,line_total) VALUES(?,?,?,?,?,?,?,?)',[$oid,$p['item_id'],$p['name'],$p['variant'],json_encode($p['addons'],JSON_UNESCAPED_UNICODE),$p['quantity'],$p['unit'],$p['line']]);
    db()->commit();
-  } catch(PDOException $e){if(db()->inTransaction())db()->rollBack();if($e->getCode()==='23000'){$existing=one('SELECT id,tracking_key,table_no,token_no,total,status FROM orders WHERE restaurant_id=? AND client_request_id=?',[$r['id'],$token]);if($existing)respond(['order'=>$existing,'duplicate'=>true]);}throw $e;}
-  respond(['order'=>['id'=>$oid,'tracking_key'=>$track,'table_no'=>$table,'token_no'=>$tokenNo,'status'=>'new','total'=>round($total,2)]],201);
+  } catch(PDOException $e){if(db()->inTransaction())db()->rollBack();if($e->getCode()==='23000'){$existing=one('SELECT id,tracking_key,table_no,token_no,token_day,total,status FROM orders WHERE restaurant_id=? AND client_request_id=?',[$r['id'],$token]);if($existing)respond(['order'=>$existing,'duplicate'=>true]);}throw $e;}
+  respond(['order'=>['id'=>$oid,'tracking_key'=>$track,'table_no'=>$table,'token_no'=>$tokenNo,'token_day'=>$day,'status'=>'new','total'=>round($total,2)]],201);
  }
  if($route==='public/status'){
   $id=(int)($_GET['id']??0);$key=val($_GET['key']??'',64);
   if(!preg_match('/^[a-f0-9]{64}$/D',$key))fail('Invalid tracking link',403);
-  $o=one('SELECT id,table_no,token_no,status,call_count,called_at,total,created_at,updated_at FROM orders WHERE id=? AND tracking_key=?',[$id,$key]);if(!$o)fail('Order not found',404);respond(['order'=>$o]);
+  $o=one('SELECT id,table_no,token_no,token_day,status,call_count,called_at,total,created_at,updated_at FROM orders WHERE id=? AND tracking_key=?',[$id,$key]);if(!$o)fail('Order not found',404);respond(['order'=>$o]);
  }
+ require __DIR__.'/order_tracking.php';
  // All routes below require authentication.
  if(str_starts_with($route,'owner/')){$a=requireRole('owner','staff');$restaurantId=rid($a);}
  if($route==='owner/outlets'){
@@ -371,6 +381,8 @@ try {
   respond(['photos'=>array_slice($photos,0,6),'message'=>count($photos)?'Check photo relevance before selecting.':'No suitable licensed photos found; use your own upload.']);
  }
  if(str_starts_with($route,'admin/'))$admin=requireRole('super');
+ if(str_starts_with($route,'agent/'))$agent=requireRole('admin');
+ require __DIR__.'/admin_routes.php';
  if($route==='admin/pricing')respond(['default_monthly_fee'=>planPrice('monthly'),'default_autopay_fee'=>planPrice('autopay6')]);
  if($route==='admin/pricing/save'){
   mutation();$b=body();$fee=num($b['default_monthly_fee']??null,0,100000);$autopay=num($b['default_autopay_fee']??planPrice('autopay6'),0,100000);
@@ -393,13 +405,15 @@ try {
  if($route==='admin/restaurants'){
   $list=rows('SELECT r.*, (SELECT COUNT(*) FROM orders o WHERE o.restaurant_id=r.id AND o.created_at>=DATE_FORMAT(NOW(),"%Y-%m-01")) AS month_orders,(SELECT COUNT(*) FROM menu_items m WHERE m.restaurant_id=r.id AND m.deleted_at IS NULL) AS menu_count,(SELECT email FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY id LIMIT 1) AS owner_email,(SELECT CONCAT(m.status," ",m.cycles_done,"/",m.cycles_total) FROM autopay_mandates m WHERE m.restaurant_id=r.id ORDER BY m.id DESC LIMIT 1) AS autopay,(SELECT GROUP_CONCAT(CONCAT(u.id,":",u.email) ORDER BY u.email SEPARATOR ",") FROM restaurant_access ra JOIN users u ON u.id=ra.user_id WHERE ra.restaurant_id=r.id AND u.role="owner" AND NOT (u.restaurant_id<=>r.id)) AS linked_owners,(SELECT COUNT(*) FROM restaurant_access ra WHERE ra.user_id=(SELECT u.id FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY u.id LIMIT 1)) AS owner_outlets FROM restaurants r ORDER BY r.created_at DESC LIMIT 1000');foreach($list as &$restaurant){if(!$restaurant['owner_email'])$restaurant['owner_email']=restaurantOwner((int)$restaurant['id'])['email']??null;$restaurant=restaurantSubscription($restaurant);$restaurant['owner_outlets']=$restaurant['billing_shared']?0:count(billingOutlets((int)$restaurant['id']));}unset($restaurant);respond(['restaurants'=>$list,'extra_outlet_fee'=>EXTRA_OUTLET_FEE,'included_outlets'=>OUTLETS_INCLUDED]);
  }
- if($route==='admin/restaurants/create'){
+ if($route==='admin/restaurants/create'||$route==='agent/restaurants/create'){
   mutation();$b=body();$name=val($b['name']??'',160);$slug=strtolower(val($b['slug']??'',90));$email=strtolower(val($b['email']??'',190));$password=(string)($b['password']??'');
+  $creator=$route==='agent/restaurants/create'?$agent:$admin;$limited=$creator['role']==='admin';
+  if($limited&&array_diff(array_keys($b),['name','slug','owner_name','email','password','table_count','qr_mode','menu_template']))fail('Admin accounts can add restaurant details only. Plan settings are controlled by the Super Admin.',403);
   if(!$name||!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D',$slug))fail('Name and valid URL slug required');
-  if(!filter_var($email,FILTER_VALIDATE_EMAIL)||strlen($password)<12)fail('Valid email and password of at least 12 characters required');
+  if(!filter_var($email,FILTER_VALIDATE_EMAIL)||strlen($password)<12||strlen($password)>72||str_contains($password,"\0"))fail('Valid email and password of 12–72 characters required');
   $tables=(int)($b['table_count']??20);if($tables<1||$tables>500)fail('1–500 tables allowed');
   $mode=val($b['qr_mode']??'common',10);if(!in_array($mode,['common','table','counter'],true))fail('Invalid QR mode');
-  $fee=num($b['monthly_fee']??(one("SELECT v FROM platform_settings WHERE k='default_monthly_fee'")['v']??'599.00'),0,100000);
+  $fee=$limited?planPrice('monthly'):num($b['monthly_fee']??planPrice('monthly'),0,100000);
   $template=val($b['menu_template']??'none',40);
   if(!in_array($template,['none','kaku-v1'],true))fail('Choose a valid starting menu');
   db()->beginTransaction();
@@ -415,9 +429,10 @@ try {
     foreach($categories as $pos=>$category)execq('INSERT INTO categories(restaurant_id,name,sort_order) VALUES(?,?,?)',[$id,$category,$pos]);
     $menu=['template'=>'none','items'=>0,'categories'=>count($categories)];
    }
-   db()->commit();
-  }catch(Throwable $e){db()->rollBack();if($e instanceof PDOException&&$e->getCode()==='23000')fail('That URL slug or owner email is already in use. Choose another.');throw $e;}
-  audit('restaurant.create',$id,$slug);respond(['id'=>$id,'slug'=>$slug,'ok'=>true,'starter_menu'=>$menu]);
+   if(adminAccountsReady())execq('INSERT INTO restaurant_onboardings(restaurant_id,admin_user_id,restaurant_name,restaurant_slug) VALUES(?,?,?,?)',[$id,$creator['id'],$name,$slug]);
+   audit('restaurant.create',$id,$slug);db()->commit();
+  }catch(Throwable $e){if(db()->inTransaction())db()->rollBack();if($e instanceof PDOException&&$e->getCode()==='23000')fail('That URL slug or owner email is already in use. Choose another.');throw $e;}
+  respond(['id'=>$id,'slug'=>$slug,'ok'=>true,'starter_menu'=>$menu]);
  }
  if($route==='admin/restaurants/update'){
   mutation();$b=body();$id=(int)($b['id']??0);if(!one('SELECT id FROM restaurants WHERE id=?',[$id]))fail('Not found',404);

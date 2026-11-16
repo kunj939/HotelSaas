@@ -24,6 +24,18 @@ Pricing tests check monthly and 6-month quotes, UPI payment snapshots, approval 
 
 ## Manual end-to-end use cases
 
+Limited admins and token recovery have automated coverage on the same disposable test installation:
+
+```bash
+python tests/test_admin_accounts.py
+python tests/test_token_recovery.py
+node tests/test_admin_and_tracking_ui.js
+```
+
+For the browser suite set `PLAYWRIGHT_MODULE` if Playwright is outside the project and `TABLEBLOOM_ARTIFACTS` for screenshots. For the duplicate-token/different-date database fixture, also set `TABLEBLOOM_PHP` to the PHP executable and `TABLEBLOOM_TEST_CONFIG` to the disposable site's config. The API suites cover server role restrictions, price/attribution spoofing, separate admin counts, rollback, counts after deletion, session revocation, sessionless public receipts, date and restaurant isolation, and exclusion of private fields. The browser suite covers admin creation and username login, restricted navigation, restaurant creation, token confirmation/copy, recovery in a new browser context, live token calls, persisted recovery, invalid tokens, unavailable/corrupt storage and 320/375/1280 layouts. They create test accounts and restaurants: never target production.
+
+On an existing installation, confirm that owner/Super Admin logins work before the admin-schema upgrade, create the first admin, run `php tools/upgrade_admin_accounts.php` twice, and confirm existing logins still work. From the Super Admin's Admins screen, verify Disable access and Reset password sign out the targeted admin. A normal admin must not gain pricing/payment/owner controls by changing the URL.
+
 Additional automated coverage: with the disposable test-site environment configured, run `python tests/test_demo_features.py`. It verifies independent checkout modes, mobile normalization, off fields being discarded, authenticated order details, absence of contacts in public order status, featured edits, contact settings and validation. Browser checks additionally cover the services links, special filter and phone-required/name-off checkout through successful order submission.
 
 1. Onboard a normal restaurant with the default selection: zero dishes and five categories. Onboard Kaku with its prepared menu selected: 194 dishes in 28 categories. Confirm unknown templates are rejected. Photos load locally, pizza sizes and roti Tawa/Tandoor prices match the PDF, and owners cannot modify another restaurant's data. Login or refresh must not re-seed deleted items or reset availability.

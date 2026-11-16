@@ -25,6 +25,8 @@ if(is_file($file)){
     check(true,'Schema: '.$table);
    }
    $installed=(bool)one('SELECT id FROM users WHERE role="super" LIMIT 1');
+   require $root.'/public/api/admin_accounts.php';
+   echo adminAccountsReady()?"PASS Admin account schema ready\n":"INFO Admin account schema installs on Super Admin -> Add admin (or run tools/upgrade_admin_accounts.php)\n";
    check($installed,'Super Admin exists (use api/install_once.php for first setup)');
    if($installed){check(empty($c['install_key']),'Installation key removed');check(!is_file($root.'/public/api/install_once.php'),'Web installer deleted after setup');}
   }catch(Throwable $e){check(false,'Database or schema check failed; check credentials and import schema / required migrations. Details are intentionally omitted to protect secrets.');}

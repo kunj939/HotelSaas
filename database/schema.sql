@@ -35,13 +35,28 @@ CREATE TABLE IF NOT EXISTS restaurants (
 CREATE TABLE IF NOT EXISTS users (
  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
  restaurant_id BIGINT UNSIGNED DEFAULT NULL,
- role ENUM('super','owner','staff') NOT NULL,
+ role ENUM('super','owner','staff','admin') NOT NULL,
  full_name VARCHAR(120) NOT NULL,
  email VARCHAR(190) NOT NULL UNIQUE,
+ username VARCHAR(40) DEFAULT NULL UNIQUE,
  password_hash VARCHAR(255) NOT NULL,
+ auth_version INT UNSIGNED NOT NULL DEFAULT 0,
  active TINYINT(1) NOT NULL DEFAULT 1,
  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
  CONSTRAINT fk_users_restaurant FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Attribution survives restaurant deletion so an admin's onboarding count stays accurate.
+CREATE TABLE IF NOT EXISTS restaurant_onboardings (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ restaurant_id BIGINT UNSIGNED DEFAULT NULL UNIQUE,
+ admin_user_id BIGINT UNSIGNED NOT NULL,
+ restaurant_name VARCHAR(160) NOT NULL,
+ restaurant_slug VARCHAR(90) NOT NULL,
+ created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ INDEX idx_onboarding_admin (admin_user_id,created_at),
+ CONSTRAINT fk_onboarding_rest FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE SET NULL,
+ CONSTRAINT fk_onboarding_admin FOREIGN KEY (admin_user_id) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE IF NOT EXISTS token_counters (

@@ -148,6 +148,19 @@ select{appearance:auto}
 .rest-name{font-family:var(--font-display);font-size:17px;font-weight:600;line-height:1.25}
 .customer-header .table-chip{margin-left:auto;padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--soft);font-size:13px;font-weight:700;white-space:nowrap}
 .customer-content{padding:0 20px 140px}
+.customer-track-link{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:12px 20px;border-bottom:1px solid var(--line);background:var(--card)}
+.tracking-page{padding-top:28px}
+.token-lookup-fields{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:14px}
+.token-lookup-fields .field{min-width:0}
+.token-lookup-fields input{min-width:0;width:100%;color-scheme:inherit}
+.token-receipt-number{font-size:42px;line-height:1.2;margin:4px 0;color:var(--brand-text)}
+.token-items{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0;margin-top:18px;display:grid;gap:12px;font-size:14px}
+.token-items .row{align-items:flex-start;gap:16px}
+.token-items .row>span{min-width:0;overflow-wrap:anywhere}
+.token-items b{white-space:nowrap}
+.lookup-error{margin-top:14px;color:var(--ink);padding:12px;border:1px solid var(--line-strong);border-radius:12px;background:var(--soft)}
+.order-number .small{max-width:36ch;margin:8px 0}
+.order-number .btn{margin-top:12px}
 
 /* Welcome */
 .welcome-hero{position:relative;min-height:420px;margin:0 -20px;overflow:hidden;border-radius:0 0 32px 32px;background:#153D30;color:#fff}
@@ -279,7 +292,7 @@ select{appearance:auto}
 .qty-large b{min-width:24px;text-align:center;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
 .qty-large button:hover:not(:disabled),.qty button:hover:not(:disabled){border-color:var(--control);background:var(--soft)}
 .qty-large button:disabled{opacity:1;color:var(--muted);border-color:var(--line);background:transparent}
-.dish-actions{position:sticky;bottom:-24px;padding:16px 0 4px;border-top:1px solid var(--line);background:var(--bg);gap:16px;z-index:1}
+#dish-wrap .dish-actions{position:sticky;bottom:-24px;padding:16px 0 4px;border-top:1px solid var(--line);background:var(--bg);gap:16px;z-index:1}
 .dish-actions #add-dish{flex:1;min-height:54px;background:var(--action);color:var(--onaction);border-color:var(--action);box-shadow:0 5px 18px -9px var(--control)}
 .dish-actions #add-dish:hover{background:var(--action);filter:brightness(1.04)}
 #dish-wrap.updated,#dish-wrap.updated .modal{animation:none}

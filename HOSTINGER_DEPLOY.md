@@ -20,6 +20,8 @@ Open phpMyAdmin for this database and import `database/schema.sql` (bundled insi
 
 **Upgrading an existing database?** Don't re-import `schema.sql`. Run each file in `database/migrations/` that you have not run yet, oldest first, in phpMyAdmin → SQL.
 
+**Limited admin accounts:** the first Super Admin → Admins → Add admin action installs the new `admin` role, username/session-version columns and `restaurant_onboardings` table. The database user needs ALTER/CREATE privileges for this one-time upgrade. With a full project checkout you can instead run `php tools/upgrade_admin_accounts.php`; rerunning it is safe. Existing email logins work before the upgrade. Token-based guest order recovery needs no schema change.
+
 ## 2. Upload files
 
 Unzip locally. Upload **the contents inside `public/`**, not the parent folder, to the target website's `public_html/`. The web root should contain `index.html`, `api/`, `assets/` and `uploads/`. Preserve `.htaccess` hidden files and the `uploads/` directory.

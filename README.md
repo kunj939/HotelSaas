@@ -30,17 +30,24 @@ Owners can highlight **Chef's Specials**, configure checkout name/mobile as **of
 
 The **Kaku 2.0 prepared menu** is an explicit onboarding option for Kaku's account, not the default for other restaurants. Its 194 distinct local images were reviewed: 110 representative internet photos retain their source credits, and 84 mismatched or unclear images were replaced with dish-specific AI images. These are not photographs taken at Kaku. Customer cards and details show source attribution or an AI-generated label. `public/assets/photos/kaku/premium.json` records provenance; `catalog/kaku_photo_audit.json` records all review decisions and generation prompts. Unchanged starter photos from either earlier version refresh automatically on menu reads; owner replacements, prices and availability are preserved, with no new SQL migration. See [source and portion notes](catalog/KAKU_MENU.md).
 
-## Three URLs after deployment
+## Login and menu URLs after deployment
 
 - Customer: `https://YOURDOMAIN/r/restaurant-slug`
 - Restaurant owner: `https://YOURDOMAIN/index.html#/owner`
 - Platform Super Admin: `https://YOURDOMAIN/admin` (not linked from the home page; type it directly)
+- Limited restaurant admin: `https://YOURDOMAIN/#/agent` (username and password created by Super Admin)
 
-QR settings generate a clean `/r/restaurant-slug` link, adding `?table=1` for table-specific cards. Existing `index.html#/r/...` QR links remain supported. Cards include the restaurant name, green-and-gold styling and downloadable print-ready SVGs. Upload `public/.htaccess` with the updated HTML/JS so direct links and reloads work on Apache/Hostinger. No new database migration is needed for this update. Initial owner access is created by Super Admin; owners can add their own outlets.
+QR settings generate a clean `/r/restaurant-slug` link, adding `?table=1` for table-specific cards. Existing `index.html#/r/...` QR links remain supported. Cards include the restaurant name, green-and-gold styling and downloadable print-ready SVGs. Upload `public/.htaccess` with the updated HTML/JS so direct links and reloads work on Apache/Hostinger. QR links and owner-created outlets need no additional database migration. Owner accounts can be created by Super Admin or a limited admin; owners can add their own outlets.
 
 Existing owner-created outlets automatically use the shared plan through their `owner.outlet.create` records; retain those records in `audit_logs`. Stopped/deleted outlets are excluded from extra-outlet charges. Already recorded payments keep their amounts. The billing cron stops separate legacy outlet mandates, and verified old outlet payments credit the shared subscription. The main billing restaurant cannot be permanently deleted while its outlets still exist.
 
 Dark customer themes now use consistent surfaces and readable controls, with highlighted portions and a contrasting Add button. Local checks include `tests/test_shared_billing.php`, `tests/test_outlets_api.py`, and `tests/test_theme_contrast.js` (10 brand palettes and 320/375/1280 layouts).
+
+Super Admin → **Admins → Add admin** creates a username/password account for restaurant onboarding. Each admin can create restaurants with the platform's default pricing and view only their own list and counts. Pricing, payments, owner dashboards and other accounts are blocked by the API as well as omitted from navigation. Super Admin can disable access or reset the password; both revoke existing sessions. Restaurant attribution survives deletion so the historical onboarding count stays accurate. Counts are for referral tracking; commission amounts and payouts are not calculated.
+
+Existing installations install the additional admin role, username/session-version columns and attribution table automatically on the first authenticated **Add admin** action. The database user needs ALTER/CREATE privileges for that one-time operation. Alternatively run `php tools/upgrade_admin_accounts.php` with the site's configuration. The upgrade is idempotent; existing owner and Super Admin email logins keep working before and after it. Fresh installations include these additions in `database/schema.sql`.
+
+Every order confirmation shows its **token number and order date**, with a button to copy the token and restaurant link. Returning guests select **Track my order** from the restaurant menu and enter the token, even after closing the browser or losing their session. Today is preselected; earlier orders require their date because tokens restart daily. The public receipt shows items, total and live status, including token calls, without exposing customer names, phones, private notes or private tracking keys. Saved receipts remain available when browser storage is allowed; blocked/corrupt storage does not prevent checkout or token lookup. Token lookup itself needs no database migration.
 
 ## Files
 
