@@ -2,7 +2,8 @@
 declare(strict_types=1);
 // PayU subscription billing shared by index.php, payu_return.php and payu_cron.php.
 // Expects $c (config) and db.php to be loaded. Prices are decided here, never by the browser.
-const PLAN_SETUP_FEE=500.00;       // one time, charged with the first PayU payment
+const PLAN_SETUP_FEE=350.00;       // discounted one-time fee for new payments
+const PLAN_SETUP_FEE_LIST=500.00;  // previous price displayed alongside the offer
 const PLAN_MONTHLY=599.00;         // pay every month yourself, no autopay
 const PLAN_AUTOPAY=549.00;         // per month with 6-month autopay
 const PLAN_AUTOPAY_MONTHS=6;
@@ -30,7 +31,7 @@ function extraOutlets(int $rid):int {
 }
 function billingQuote(array $r,string $plan):array {
  $fee=(int)$r['setup_fee_paid']?0.0:PLAN_SETUP_FEE;$price=$plan==='monthly'?(float)$r['monthly_fee']:planPrice($plan);$n=extraOutlets((int)$r['id']);$extra=$n*EXTRA_OUTLET_FEE;
- return ['plan'=>$plan,'price'=>$price,'extra_outlets'=>$n,'extra_fee'=>$extra,'setup_fee'=>$fee,'total'=>$price+$extra+$fee];
+ return ['plan'=>$plan,'price'=>$price,'extra_outlets'=>$n,'extra_fee'=>$extra,'setup_fee'=>$fee,'setup_fee_list'=>$fee>0?PLAN_SETUP_FEE_LIST:0.0,'total'=>$price+$extra+$fee];
 }
 // Manual UPI (works before PayU is ready): the platform UPI ID is stored by Super Admin in platform_settings.
 function setting(string $k):?string {$x=one('SELECT v FROM platform_settings WHERE k=?',[$k]);return $x?$x['v']:null;}

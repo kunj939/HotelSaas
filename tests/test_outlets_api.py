@@ -7,6 +7,77 @@ from test_menu_api import Client
 
 @unittest.skipUnless(os.getenv('TABLEBLOOM_TEST_URL'), 'Disposable test site required')
 class OutletSelectionTest(unittest.TestCase):
+    def test_owner_creates_outlets_and_copies_menu_independently(self):
+        base = os.environ['TABLEBLOOM_TEST_URL']
+        admin = Client(base)
+        admin.login(os.environ['TABLEBLOOM_TEST_EMAIL'], os.environ['TABLEBLOOM_TEST_PASSWORD'])
+        key = uuid.uuid4().hex[:12]
+        password = uuid.uuid4().hex
+        created = []
+        try:
+            def account(suffix):
+                slug = f'self-outlet-{key}-{suffix}'
+                email = slug+'@example.test'
+                r = admin.call('admin/restaurants/create', dict(name='Outlet '+suffix, slug=slug, email=email, password=password))
+                created.append((r['id'], slug))
+                client = Client(base)
+                client.login(email, password)
+                return r['id'], client, email
+            home, owner, email = account('home')
+            foreign, other, _ = account('other')
+            cat = owner.call('owner/menu')['categories'][0]
+            owner.call('owner/menu/save', dict(name='House pizza', category_id=cat['id'], base_price=199,
+                food_type='veg', options=[dict(name='Large', price=299)], addons=[], available=1))
+            price = owner.call('owner/outlets')['pricing']
+            payload = dict(name='City Centre', slug=f'self-outlet-{key}-city', address='City Centre, Gurugram',
+                qr_mode='table', table_count=6, copy_menu_from=home, monthly_fee=1, setup_fee_paid=1)
+            before = len(owner.call('owner/outlets')['actor']['outlets'])
+            self.assertEqual(Client(base).request('owner/outlets/create', payload)[0], 401)
+            token = owner.csrf
+            owner.csrf = 'invalid'
+            self.assertEqual(owner.request('owner/outlets/create', payload)[0], 419)
+            owner.csrf = token
+            self.assertEqual(owner.request('owner/outlets/create', dict(payload, copy_menu_from=foreign))[0], 403)
+            for invalid in [dict(slug='bad/link'), dict(slug='a'*91), dict(qr_mode='bad'), dict(table_count=0), dict(name='')]:
+                self.assertEqual(owner.request('owner/outlets/create', dict(payload, **invalid))[0], 400)
+            result = owner.call('owner/outlets/create', payload)
+            created.append((result['id'], payload['slug']))
+            self.assertEqual(result['copied_items'], 1)
+            self.assertEqual(len(result['actor']['outlets']), before+1)
+            listing = next(r for r in admin.call('admin/restaurants')['restaurants'] if int(r['id']) == int(result['id']))
+            self.assertEqual(listing['owner_email'], email)
+            self.assertEqual(owner.request('owner/outlets/create', payload)[0], 400)
+            self.assertEqual(len(owner.call('owner/outlets')['actor']['outlets']), before+1)
+            self.assertEqual(other.request('owner/switch', dict(restaurant_id=result['id']))[0], 403)
+            owner.call('owner/switch', dict(restaurant_id=result['id']))
+            settings = owner.call('owner/settings')['restaurant']
+            self.assertEqual(settings['address'], payload['address'])
+            self.assertEqual(float(settings['monthly_fee']), float(price['monthly_fee']))
+            self.assertEqual(int(settings['setup_fee_paid']), 0)
+            copied = owner.call('owner/menu')['items'][0]
+            self.assertEqual(copied['name'], 'House pizza')
+            self.assertEqual(copied['options'], [dict(name='Large', price=299)])
+            copied.update(name='City pizza', base_price=249)
+            owner.call('owner/menu/save', copied)
+            owner.call('owner/switch', dict(restaurant_id=home))
+            self.assertEqual(owner.call('owner/menu')['items'][0]['name'], 'House pizza')
+            empty = owner.call('owner/outlets/create', dict(name='Counter', slug=f'self-outlet-{key}-counter', qr_mode='counter'))
+            created.append((empty['id'], empty['slug']))
+            billing = owner.call('owner/billing')['quotes']['monthly']
+            self.assertEqual(int(billing['extra_outlets']), 1)
+            self.assertEqual(float(billing['extra_fee']), float(price['extra_outlet_fee']))
+            owner.call('owner/switch', dict(restaurant_id=empty['id']))
+            self.assertEqual(owner.call('owner/menu')['items'], [])
+            self.assertEqual(len(owner.call('owner/menu')['categories']), 5)
+            new_password = uuid.uuid4().hex
+            admin.call('admin/password', dict(restaurant_id=result['id'], password=new_password))
+            owner.login(email, new_password)
+            self.assertEqual(len(owner.call('owner/outlets')['actor']['outlets']), 3)
+        finally:
+            for rid, slug in reversed(created):
+                admin.call('admin/restaurants/delete', dict(id=rid))
+                admin.call('admin/restaurants/purge', dict(id=rid, confirm_slug=slug))
+
     def test_link_switch_revoke_and_isolate(self):
         base = os.environ['TABLEBLOOM_TEST_URL']
         admin = Client(base)

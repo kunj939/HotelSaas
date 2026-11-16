@@ -12,7 +12,11 @@ execq('INSERT INTO restaurants(slug,name,monthly_fee,subscription_ends) VALUES(?
 $rid=(int)db()->lastInsertId();
 try{
  $r=one('SELECT * FROM restaurants WHERE id=?',[$rid]);
- check(billingQuote($r,'monthly')['total']===1299.5,'Monthly quote must use the agreed rate plus setup');
+ check(billingQuote($r,'monthly')['total']===1149.5,'Monthly quote must use the agreed rate plus discounted setup');
+ check(billingQuote($r,'monthly')['setup_fee']===350.0,'New payments must charge the discounted setup fee');
+ check(billingQuote($r,'monthly')['setup_fee_list']===500.0,'Show the previous fee for comparison');
+ check(upiQuote($r,'monthly')['total']===1149.5,'UPI must use the same discounted setup fee');
+ // A checkout created before the offer retains its original setup fee on settlement.
  execq('INSERT INTO payu_transactions(restaurant_id,txnid,kind,plan,amount,setup_fee) VALUES(?,?,?,?,?,?)',[$rid,$slug,'checkout','autopay6',1199.25,500]);
  $t=one('SELECT * FROM payu_transactions WHERE id=?',[(int)db()->lastInsertId()]);
  payuApplySuccess($t,'test-payment','UPI');

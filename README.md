@@ -15,11 +15,11 @@ Owners can highlight **Chef's Specials**, configure checkout name/mobile as **of
 | Starting menu | Accounts start with an empty menu by default. For Kaku 2.0 onboarding, explicitly choose its prepared menu: 194 dishes in 28 categories with PDF prices, portions and representative food photos. Owners can edit, add, remove and mark dishes sold out. |
 | QR modes | One restaurant-wide QR with manual table number, a unique QR for each configured table, or **Counter** mode for small places without tables (no table question, token only). Offline printable QR SVG |
 | Tokens | Every order gets a daily token number (1, 2, 3… restarting each day). Owner presses **📣 Call token**: the order is marked ready and the guest's phone shows the token with sound and vibration |
-| Multiple outlets | One owner login can open several restaurants: use the current restaurant button or **My outlets**, search by name/address, and select a restaurant card. The current outlet stays highlighted; menus, settings and orders follow the selection. **All outlets** combines orders. 2 outlets are included; each extra outlet adds ₹200/month to the owner's bill. Super Admin links outlets to an owner |
+| Multiple outlets | Owners can **Add outlet** from **My outlets**, choose a menu link, address and ordering style, and start empty or copy an accessible menu. Copies can be edited independently. Switch restaurants from the header; menus, settings and orders follow the selection. **All outlets** combines orders. Each restaurant has its own subscription and starts a 7-day trial. Linking 2 outlets is included; each additional outlet adds ₹200/month to the home restaurant's bill. Super Admin can also link existing accounts. |
 | Restaurant owner | Login, self-service menu management, add/remove items, category creation, photo uploads, clipboard image paste, direct HTTPS image links, price edits, open/closed ordering, custom brand colors, cover, logo, QR download, profile, password change |
 | Orders | Live / Today / Past, notifications, accept → preparing → ready → served, rejection, table and order details |
 | Analytics | Monthly order counts, item popularity, top ordering hours, recorded order value (not verified cash collection) |
-| Billing | Owner pays from the Billing tab through PayU: ₹599/month without autopay, or ₹549/month with 6-month autopay (UPI/card mandate). A ₹500 one-time setup fee is added to the first payment. Each payment extends the subscription by one month. Until PayU is set up, owners can **Pay by UPI** (QR + UTR): monthly, or 6 months upfront at ₹549/month; Super Admin approves the UTR and the subscription extends |
+| Billing | Owner pays from the Billing tab through PayU: ₹599/month without autopay, or ₹549/month with 6-month autopay (UPI/card mandate). A discounted ₹350 one-time setup fee (₹500 crossed out, 30% OFF) is added to the first payment. Previously created payments retain their recorded amounts. Each payment extends the subscription by one month. Until PayU is set up, owners can **Pay by UPI** (QR + UTR): monthly, or 6 months upfront at ₹549/month; Super Admin approves the UTR and the subscription extends |
 | SaaS admin | Create restaurant + owner, 7-day trial, subscription status/expiry, fees, setup-fee status, autopay status, **stop/resume, download all data, delete (restorable) and permanent delete** per restaurant, monthly recurring revenue, paid-subscription receipts, restaurant-wide platform analysis, password resets |
 | Security | Server-priced orders, session/CSRF auth, role checks, MySQL prepared statements, tenant-scoped operations, rate limits, idempotency keys, non-executable uploads, password hashing |
 | Image starters | Exactly 500 Indian dish names and 500 original **illustrated SVG placeholders**, not 500 real photographs. Photo suggestion fetches suitable Wikimedia Commons results with license attribution; owner chooses image. |
@@ -32,11 +32,11 @@ The **Kaku 2.0 prepared menu** is an explicit onboarding option for Kaku's accou
 
 ## Three URLs after deployment
 
-- Customer: `https://YOURDOMAIN/index.html#/r/restaurant-slug`
+- Customer: `https://YOURDOMAIN/r/restaurant-slug`
 - Restaurant owner: `https://YOURDOMAIN/index.html#/owner`
 - Platform Super Admin: `https://YOURDOMAIN/admin` (not linked from the home page; type it directly)
 
-QR settings generate the appropriate URL. Restaurant owner sees only their data. Account access created by Super Admin.
+QR settings generate a clean `/r/restaurant-slug` link, adding `?table=1` for table-specific cards. Existing `index.html#/r/...` QR links remain supported. Cards include the restaurant name, green-and-gold styling and downloadable print-ready SVGs. Upload `public/.htaccess` with the updated HTML/JS so direct links and reloads work on Apache/Hostinger. No new database migration is needed for this update. Initial owner access is created by Super Admin; owners can add their own outlets.
 
 ## Files
 

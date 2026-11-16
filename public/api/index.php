@@ -46,6 +46,10 @@ function rid(array $a):int {
  return in_array($sel,$ids,true)?$sel:(in_array((int)$a['restaurant_id'],$ids,true)?(int)$a['restaurant_id']:$ids[0]);
 }
 function actorInfo():?array {$a=actor();if(!$a||$a['role']==='super')return $a;$a['outlets']=outlets($a);$a['active_restaurant_id']=$a['outlets']?rid($a):null;return $a;}
+// Self-created outlets share an existing owner login rather than creating a second account.
+function restaurantOwner(int $id):?array {
+ return one('SELECT u.id,u.email FROM users u LEFT JOIN restaurant_access ra ON ra.user_id=u.id AND ra.restaurant_id=? WHERE u.role="owner" AND (u.restaurant_id=? OR ra.user_id IS NOT NULL) ORDER BY (u.restaurant_id=?) DESC,u.id LIMIT 1',[$id,$id,$id]);
+}
 // Orders of any outlet this login can open; used so the combined order view can act on every outlet's orders.
 function outletOrder(array $a,int $id):?array {$ids=outletIds($a);return $ids?one('SELECT id,restaurant_id,status FROM orders WHERE id=? AND restaurant_id IN ('.placeholders($ids).')',array_merge([$id],$ids)):null;}
 function csrf():void {if(!hash_equals($_SESSION['csrf'],(string)($_SERVER['HTTP_X_CSRF_TOKEN']??'')))fail('Session expired. Refresh and retry.',419);}
@@ -141,7 +145,38 @@ try {
  }
  // All routes below require authentication.
  if(str_starts_with($route,'owner/')){$a=requireRole('owner','staff');$restaurantId=rid($a);}
- if($route==='owner/outlets')respond(['actor'=>actorInfo()]);
+ if($route==='owner/outlets')respond(['actor'=>actorInfo(),'pricing'=>['monthly_fee'=>planPrice('monthly'),'setup_fee'=>PLAN_SETUP_FEE,'setup_fee_list'=>PLAN_SETUP_FEE_LIST,'included'=>OUTLETS_INCLUDED,'extra_outlet_fee'=>EXTRA_OUTLET_FEE]]);
+ if($route==='owner/outlets/create'){
+  mutation();if($a['role']!=='owner')fail('Only restaurant owners can add outlets',403);
+  $b=body();$name=val($b['name']??'',160);$slug=strtolower(trim((string)($b['slug']??'')));
+  if(!$name||strlen($slug)>90||!preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/D',$slug))fail('Enter a restaurant name and a valid menu link (letters, numbers and hyphens)');
+  $mode=val($b['qr_mode']??'common',10);if(!in_array($mode,['common','table','counter'],true))fail('Invalid QR mode');
+  $tables=(int)num($b['table_count']??20,1,500);
+  $source=(int)($b['copy_menu_from']??0);
+  if($source&&!in_array($source,outletIds($a),true))fail('You do not have access to that menu',403);
+  $fee=planPrice('monthly');$copied=0;
+  db()->beginTransaction();
+  try{
+   execq('INSERT INTO restaurants(slug,name,address,phone,table_count,qr_mode,monthly_fee,subscription_ends) VALUES(?,?,?,?,?,?,?,DATE_ADD(CURDATE(),INTERVAL 7 DAY))',[$slug,$name,val($b['address']??'',400),val($b['phone']??'',40),$tables,$mode,$fee]);
+   $id=(int)db()->lastInsertId();
+   execq('INSERT INTO restaurant_access(user_id,restaurant_id) VALUES(?,?)',[$a['id'],$id]);
+   if($source){
+    $categories=[];
+    foreach(rows('SELECT id,name,sort_order FROM categories WHERE restaurant_id=?',[$source]) as $cat){
+     execq('INSERT INTO categories(restaurant_id,name,sort_order) VALUES(?,?,?)',[$id,$cat['name'],$cat['sort_order']]);$categories[(int)$cat['id']]=(int)db()->lastInsertId();
+    }
+    $fields=['name','description','food_type','base_price','options_json','addons_json','image_url','image_credit','image_license','image_source_url','available','featured','sort_order'];
+    foreach(rows('SELECT * FROM menu_items WHERE restaurant_id=? AND deleted_at IS NULL',[$source]) as $item){
+     $values=[$id,$categories[(int)$item['category_id']]??null];foreach($fields as $field)$values[]=$item[$field];
+     execq('INSERT INTO menu_items(restaurant_id,category_id,'.implode(',',$fields).') VALUES('.placeholders($values).')',$values);$copied++;
+    }
+   }else{
+    foreach(['Starters','Main Course','Breads & Rice','Beverages','Desserts'] as $pos=>$category)execq('INSERT INTO categories(restaurant_id,name,sort_order) VALUES(?,?,?)',[$id,$category,$pos]);
+   }
+   audit('owner.outlet.create',$id,$slug);db()->commit();
+  }catch(Throwable $e){if(db()->inTransaction())db()->rollBack();if($e instanceof PDOException&&$e->getCode()==='23000')fail('That menu link is already taken. Choose another.');throw $e;}
+  respond(['ok'=>true,'id'=>$id,'slug'=>$slug,'copied_items'=>$copied,'actor'=>actorInfo()],201);
+ }
  if($route==='owner/switch'){
   mutation();$b=body();$id=(int)($b['restaurant_id']??0);if(!in_array($id,outletIds($a),true))fail('You do not have access to this restaurant',403);
   $_SESSION['rid']=$id;respond(['actor'=>actorInfo()]);
@@ -339,7 +374,7 @@ try {
   respond(['stats'=>$stats,'orders'=>$orders,'collected'=>$collected,'growth'=>$growth,'upi_pending'=>(int)one('SELECT COUNT(*) AS n FROM upi_payments WHERE status="pending"')['n']]);
  }
  if($route==='admin/restaurants'){
-  $list=rows('SELECT r.*, (SELECT COUNT(*) FROM orders o WHERE o.restaurant_id=r.id AND o.created_at>=DATE_FORMAT(NOW(),"%Y-%m-01")) AS month_orders,(SELECT COUNT(*) FROM menu_items m WHERE m.restaurant_id=r.id AND m.deleted_at IS NULL) AS menu_count,(SELECT email FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY id LIMIT 1) AS owner_email,(SELECT CONCAT(m.status," ",m.cycles_done,"/",m.cycles_total) FROM autopay_mandates m WHERE m.restaurant_id=r.id ORDER BY m.id DESC LIMIT 1) AS autopay,(SELECT GROUP_CONCAT(CONCAT(u.id,":",u.email) ORDER BY u.email SEPARATOR ",") FROM restaurant_access ra JOIN users u ON u.id=ra.user_id WHERE ra.restaurant_id=r.id AND u.role="owner" AND NOT (u.restaurant_id<=>r.id)) AS linked_owners,(SELECT COUNT(*) FROM restaurant_access ra WHERE ra.user_id=(SELECT u.id FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY u.id LIMIT 1)) AS owner_outlets FROM restaurants r ORDER BY r.created_at DESC LIMIT 1000');respond(['restaurants'=>$list]);
+  $list=rows('SELECT r.*, (SELECT COUNT(*) FROM orders o WHERE o.restaurant_id=r.id AND o.created_at>=DATE_FORMAT(NOW(),"%Y-%m-01")) AS month_orders,(SELECT COUNT(*) FROM menu_items m WHERE m.restaurant_id=r.id AND m.deleted_at IS NULL) AS menu_count,(SELECT email FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY id LIMIT 1) AS owner_email,(SELECT CONCAT(m.status," ",m.cycles_done,"/",m.cycles_total) FROM autopay_mandates m WHERE m.restaurant_id=r.id ORDER BY m.id DESC LIMIT 1) AS autopay,(SELECT GROUP_CONCAT(CONCAT(u.id,":",u.email) ORDER BY u.email SEPARATOR ",") FROM restaurant_access ra JOIN users u ON u.id=ra.user_id WHERE ra.restaurant_id=r.id AND u.role="owner" AND NOT (u.restaurant_id<=>r.id)) AS linked_owners,(SELECT COUNT(*) FROM restaurant_access ra WHERE ra.user_id=(SELECT u.id FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY u.id LIMIT 1)) AS owner_outlets FROM restaurants r ORDER BY r.created_at DESC LIMIT 1000');foreach($list as &$restaurant)if(!$restaurant['owner_email'])$restaurant['owner_email']=restaurantOwner((int)$restaurant['id'])['email']??null;unset($restaurant);respond(['restaurants'=>$list]);
  }
  if($route==='admin/restaurants/create'){
   mutation();$b=body();$name=val($b['name']??'',160);$slug=strtolower(val($b['slug']??'',90));$email=strtolower(val($b['email']??'',190));$password=(string)($b['password']??'');
@@ -425,7 +460,10 @@ try {
   if(val($b['confirm_slug']??'',90)!==$r['slug'])fail('Type the restaurant URL slug exactly to confirm');
   $files=array_column(rows('SELECT image_url FROM menu_items WHERE restaurant_id=?',[$id]),'image_url');$files[]=$r['logo_url'];$files[]=$r['cover_url'];
   execq('DELETE FROM restaurants WHERE id=?',[$id]);
-  foreach(array_unique(array_filter($files)) as $f)if(preg_match('~^/uploads/[a-f0-9]{32}\.(jpg|jpeg|png|webp)$~D',(string)$f)&&is_file(dirname(__DIR__).$f))unlink(dirname(__DIR__).$f);
+  // A copied outlet menu may still use this upload. Keep files referenced by any restaurant.
+  foreach(array_unique(array_filter($files)) as $f)if(preg_match('~^/uploads/[a-f0-9]{32}\.(jpg|jpeg|png|webp)$~D',(string)$f)&&is_file(dirname(__DIR__).$f)){
+   if(!one('SELECT id FROM menu_items WHERE image_url=? LIMIT 1',[$f])&&!one('SELECT id FROM restaurants WHERE logo_url=? OR cover_url=? LIMIT 1',[$f,$f]))unlink(dirname(__DIR__).$f);
+  }
   audit('restaurant.purge',null,$r['slug'].' · '.$r['name']);respond(['ok'=>true]);
  }
  if($route==='admin/settings')respond(['upi'=>upiConf()]);
@@ -464,7 +502,8 @@ try {
  }
  if($route==='admin/password'){
   mutation();$b=body();$id=(int)($b['restaurant_id']??0);$pw=(string)($b['password']??'');if(strlen($pw)<12)fail('Use at least 12 characters');
-  execq('UPDATE users SET password_hash=? WHERE restaurant_id=? AND role="owner"',[password_hash($pw,PASSWORD_DEFAULT),$id]);audit('owner.password.reset',$id);respond(['ok'=>true]);
+  $owner=restaurantOwner($id);if(!$owner)fail('No owner login is linked to this restaurant',404);
+  execq('UPDATE users SET password_hash=? WHERE id=?',[password_hash($pw,PASSWORD_DEFAULT),$owner['id']]);audit('owner.password.reset',$id);respond(['ok'=>true]);
  }
  fail('Unknown API route',404);
 } catch(PDOException $e){error_log('Restaurant SaaS DB failure: '.$e->getMessage());fail('Database request failed. Check server logs.',500);}

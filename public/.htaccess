@@ -5,6 +5,8 @@ DirectoryIndex index.html
 <IfModule mod_rewrite.c>
  RewriteEngine On
  RewriteRule ^admin/?$ /#/admin [R=302,NE,L]
+ # Human-readable customer links; old index.html#/r/... QR codes still work.
+ RewriteRule ^r/[a-z0-9]+(?:-[a-z0-9]+)*/?$ index.html [END]
 </IfModule>
 <IfModule mod_headers.c>
  Header always set X-Content-Type-Options "nosniff"

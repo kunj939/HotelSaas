@@ -1259,5 +1259,21 @@ module.exports = QRCode;
 };
 const cache={};function req(path){const id=path.replace(/^\.\//,'');if(cache[id])return cache[id].exports;if(!sources[id])throw Error('Unknown module '+id);const mod={exports:{}};cache[id]=mod;sources[id](req,mod,mod.exports);return mod.exports;}
 const QRCode=req('index'), levels=req('QRErrorCorrectLevel');
-global.LocalQR={svg:function(data){const q=new QRCode(-1,levels.L);q.addData(data);q.make();let n=q.getModuleCount(),border=4,size=n+border*2,path='';for(let y=0;y<n;y++){for(let x=0;x<n;x++){if(q.isDark(y,x))path+='M'+(x+border)+' '+(y+border)+'h1v1h-1z';}}return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+size+' '+size+'" role="img" aria-label="Scan this QR code"><rect width="'+size+'" height="'+size+'" fill="white"/><path d="'+path+'" fill="black"/></svg>';}};
+function qrSvg(data,styled=false){
+ const q=new QRCode(-1,styled?levels.M:levels.L);q.addData(data);q.make();
+ const n=q.getModuleCount(),border=4,size=n+border*2;let path='';
+ // Keep every module and a full four-module quiet zone; decoration sits outside it.
+ for(let y=0;y<n;y++)for(let x=0;x<n;x++)if(q.isDark(y,x))path+='M'+(x+border)+' '+(y+border)+'h1v1h-1z';
+ return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 '+size+' '+size+'" role="img" aria-label="Scan this QR code"><rect width="'+size+'" height="'+size+'" fill="white"/><path d="'+path+'" fill="'+(styled?'#143f35':'black')+'"/></svg>';
+}
+const xml=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
+function qrCard(data,{name='Our restaurant',table=0,counter=false}={}){
+ const words=String(name).split(/\s+/);const lines=[''];for(const word of words){if((lines[lines.length-1]+' '+word).trim().length>25&&lines[lines.length-1])lines.push('');lines[lines.length-1]=(lines[lines.length-1]+' '+word).trim();}
+ const title=lines.slice(0,2).map((line,i)=>xml(line.length>28?line.slice(0,27)+'…':i===1&&lines.length>2?line.slice(0,26)+'…':line));
+ const short=String(data).replace(/^https?:\/\//,'').replace(/\?table=\d+$/,'');
+ const label=table?'TABLE '+Number(table):counter?'COUNTER & TAKEAWAY':'YOUR TABLE. YOUR FAVOURITES.';
+ const qr=qrSvg(data,true).replace('<svg ','<svg x="36" y="143" width="248" height="248" ');
+ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 470" role="img" aria-label="${xml(name)} — ${xml(table?'Table '+table:'Scan to order')}" font-family="Arial, sans-serif"><title>${xml(name)} · ${xml(data)}</title><rect x="1" y="1" width="318" height="468" rx="24" fill="#fffdf8" stroke="#dfd4bb" stroke-width="2"/><path d="M25 1H295Q319 1 319 25V99H1V25Q1 1 25 1Z" fill="#143f35"/><circle cx="28" cy="26" r="5" fill="#e4b866"/><path d="M38 26H78M242 26H292" stroke="#e4b866" opacity=".65"/><text x="160" y="30" text-anchor="middle" fill="#e4b866" font-size="9" letter-spacing="3">WELCOME TO</text>${title.map((line,i)=>`<text x="160" y="${title.length===1?69:59+i*23}" text-anchor="middle" fill="white" font-size="18" font-weight="700">${line}</text>`).join('')}<rect x="38" y="110" width="244" height="25" rx="12.5" fill="#f1e5ca"/><text x="160" y="126" text-anchor="middle" fill="#143f35" font-size="9" font-weight="700" letter-spacing="1">${xml(label)}</text>${qr}<text x="160" y="411" text-anchor="middle" fill="#143f35" font-size="21" font-weight="700">Scan. Choose. Enjoy.</text><text x="160" y="431" text-anchor="middle" fill="#65746b" font-size="10">${table?'Order for your table':counter?'Fresh food. Your own order token.':'Explore the menu & order from your seat'}</text><text x="160" y="453" text-anchor="middle" fill="#65746b" font-size="9">${xml(short.length>51?short.slice(0,48)+'…':short)}</text></svg>`;
+}
+global.LocalQR={svg:qrSvg,card:qrCard};
 })(window);

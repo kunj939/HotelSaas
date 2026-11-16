@@ -388,8 +388,8 @@ select{appearance:auto}
 .bar-chart .bar-col small{position:absolute;bottom:-22px;left:50%;transform:translateX(-50%);font-size:11px;color:var(--muted);white-space:nowrap}
 
 .qr-sheet{display:flex;flex-wrap:wrap;gap:16px}
-.qr-card{width:220px;padding:18px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:16px}
-.qr-card svg{width:170px;height:170px;display:block;margin:12px auto}
+.qr-card{width:280px;max-width:100%;padding:10px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:22px}
+.qr-card>svg{width:100%;height:auto;display:block;margin:0 auto 12px}
 .qr-card p{font-size:12px;color:var(--muted);word-break:break-all}
 
 /* Login */
@@ -562,3 +562,12 @@ select{appearance:auto}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
 }
+
+.setup-fee-was{font-size:.72em;font-weight:400;color:var(--muted);text-decoration-thickness:2px;margin-right:6px}
+.setup-offer .number{display:flex;align-items:baseline;gap:5px;flex-wrap:wrap}
+.setup-offer-badge{display:inline-block;position:relative;padding:5px 9px;border-radius:6px;background:#f5e8c9;color:#624617;font-size:11px;font-weight:700}
+.menu-link-box{display:grid;gap:8px;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
+.menu-link-text{overflow-wrap:anywhere;font-size:14px;color:var(--brand)}
+.field{min-width:0}
+.field input[type="file"]{width:100%;min-width:0;max-width:100%}
+@media(max-width:600px){.qr-sheet{justify-content:center}.outlet-intro>.stack-sm{width:100%}}

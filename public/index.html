@@ -3,11 +3,16 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#143F35"><meta name="description" content="Beautiful, effortless QR restaurant ordering.">
 <title>TableBloom • Restaurant Ordering</title>
-<link rel="stylesheet" href="assets/styles.css?v=1.10.0">
+<script>
+// Resolve assets/API from the app root, including /r/name and subfolder installs.
+const appPath=location.pathname.replace(/\/r\/[^/]+\/?$/, '/').replace(/\/index\.html$/, '/');
+const appBase=document.createElement('base');appBase.href=location.origin+(appPath.endsWith('/')?appPath:appPath+'/');document.head.append(appBase);
+</script>
+<link rel="stylesheet" href="assets/styles.css?v=1.13.0">
 </head><body>
 <div id="app" aria-live="polite"><div class="boot"><div class="brand-icon">✳</div><h2>Preparing your experience...</h2></div></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
-<script defer src="assets/qr.js"></script>
+<script defer src="assets/qr.js?v=1.13.0"></script>
 <script defer src="assets/poster.js?v=1.8.0"></script>
-<script defer src="assets/app.js?v=1.11.0"></script>
+<script defer src="assets/app.js?v=1.13.0"></script>
 </body></html>
