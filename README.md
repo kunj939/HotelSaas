@@ -15,7 +15,7 @@ Owners can highlight **Chef's Specials**, configure checkout name/mobile as **of
 | Starting menu | Accounts start with an empty menu by default. For Kaku 2.0 onboarding, explicitly choose its prepared menu: 194 dishes in 28 categories with PDF prices, portions and representative food photos. Owners can edit, add, remove and mark dishes sold out. |
 | QR modes | One restaurant-wide QR with manual table number, a unique QR for each configured table, or **Counter** mode for small places without tables (no table question, token only). Offline printable QR SVG |
 | Tokens | Every order gets a daily token number (1, 2, 3… restarting each day). Owner presses **📣 Call token**: the order is marked ready and the guest's phone shows the token with sound and vibration |
-| Multiple outlets | Owners can **Add outlet** from **My outlets**, choose a menu link, address and ordering style, and start empty or copy an accessible menu. Copies can be edited independently. Switch restaurants from the header; menus, settings and orders follow the selection. **All outlets** combines orders. Each restaurant has its own subscription and starts a 7-day trial. Linking 2 outlets is included; each additional outlet adds ₹200/month to the home restaurant's bill. Super Admin can also link existing accounts. |
+| Multiple outlets | Owners can **Add outlet** from **My outlets**, choose a menu link, address and ordering style, and start empty or copy an accessible menu. Copies can be edited independently. **The second outlet is free; from the third, each extra outlet costs ₹250/month.** Owner-created outlets share the main restaurant's subscription, renewal date and payment history, with no separate base plan or extra setup fee. **All outlets** combines orders. Admin-linked, independently owned accounts keep their own billing. |
 | Restaurant owner | Login, self-service menu management, add/remove items, category creation, photo uploads, clipboard image paste, direct HTTPS image links, price edits, open/closed ordering, custom brand colors, cover, logo, QR download, profile, password change |
 | Orders | Live / Today / Past, notifications, accept → preparing → ready → served, rejection, table and order details |
 | Analytics | Monthly order counts, item popularity, top ordering hours, recorded order value (not verified cash collection) |
@@ -37,6 +37,10 @@ The **Kaku 2.0 prepared menu** is an explicit onboarding option for Kaku's accou
 - Platform Super Admin: `https://YOURDOMAIN/admin` (not linked from the home page; type it directly)
 
 QR settings generate a clean `/r/restaurant-slug` link, adding `?table=1` for table-specific cards. Existing `index.html#/r/...` QR links remain supported. Cards include the restaurant name, green-and-gold styling and downloadable print-ready SVGs. Upload `public/.htaccess` with the updated HTML/JS so direct links and reloads work on Apache/Hostinger. No new database migration is needed for this update. Initial owner access is created by Super Admin; owners can add their own outlets.
+
+Existing owner-created outlets automatically use the shared plan through their `owner.outlet.create` records; retain those records in `audit_logs`. Stopped/deleted outlets are excluded from extra-outlet charges. Already recorded payments keep their amounts. The billing cron stops separate legacy outlet mandates, and verified old outlet payments credit the shared subscription. The main billing restaurant cannot be permanently deleted while its outlets still exist.
+
+Dark customer themes now use consistent surfaces and readable controls, with highlighted portions and a contrasting Add button. Local checks include `tests/test_shared_billing.php`, `tests/test_outlets_api.py`, and `tests/test_theme_contrast.js` (10 brand palettes and 320/375/1280 layouts).
 
 ## Files
 

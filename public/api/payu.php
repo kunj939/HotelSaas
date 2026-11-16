@@ -9,7 +9,7 @@ const PLAN_AUTOPAY=549.00;         // per month with 6-month autopay
 const PLAN_AUTOPAY_MONTHS=6;
 const AUTOPAY_MAX_ATTEMPTS=3;      // failed debits/pre-debits before autopay is stopped
 const OUTLETS_INCLUDED=2;          // restaurants one owner login can open on the normal plan
-const EXTRA_OUTLET_FEE=200.00;     // per month, for each restaurant beyond OUTLETS_INCLUDED
+const EXTRA_OUTLET_FEE=250.00;     // per month, for each restaurant beyond OUTLETS_INCLUDED
 
 function payuConf():array {
  global $c;$p=$c['payu']??[];
@@ -24,12 +24,31 @@ function payuPayUrl():string {return payuLive()?'https://secure.payu.in/_payment
 function payuApiUrl():string {return payuLive()?'https://info.payu.in/merchant/postservice.php?form=2':'https://test.payu.in/merchant/postservice.php?form=2';}
 function money2(float $n):string {return number_format($n,2,'.','');}
 function planPrice(string $plan):float {return (float)(setting($plan==='autopay6'?'default_autopay_fee':'default_monthly_fee')??($plan==='autopay6'?PLAN_AUTOPAY:PLAN_MONTHLY));}
-// Extra outlets are billed on the owner's home restaurant (users.restaurant_id), not on the linked ones.
+// Owner-created outlets already have a durable creation record. Use it to share the
+// creator's home subscription, including outlets created before this pricing change.
+// Linking an independently owned restaurant grants access, not ownership of its bill.
+function billingRestaurantId(int $rid):int {
+ if(one('SELECT id FROM users WHERE restaurant_id=? AND role="owner" LIMIT 1',[$rid]))return $rid;
+ $owner=one('SELECT u.restaurant_id FROM audit_logs l JOIN users u ON u.id=l.user_id AND u.role="owner" WHERE l.restaurant_id=? AND l.action="owner.outlet.create" ORDER BY l.id LIMIT 1',[$rid]);
+ return (int)($owner['restaurant_id']??$rid);
+}
+function billingRestaurant(int $rid):?array {return one('SELECT * FROM restaurants WHERE id=?',[billingRestaurantId($rid)]);}
+function billingOutlets(int $rid):array {
+ $candidates=rows('SELECT r.id FROM restaurants r WHERE r.deleted_at IS NULL AND r.status<>"suspended" AND (r.id=? OR EXISTS (SELECT 1 FROM audit_logs l JOIN users u ON u.id=l.user_id AND u.role="owner" WHERE l.restaurant_id=r.id AND l.action="owner.outlet.create" AND u.restaurant_id=?)) ORDER BY r.id',[$rid,$rid]);
+ return array_values(array_filter(array_map(fn($r)=>(int)$r['id'],$candidates),fn($id)=>billingRestaurantId($id)===$rid));
+}
+function restaurantSubscription(array $r):array {
+ $b=billingRestaurant((int)$r['id']);$shared=$b&&(int)$b['id']!==(int)$r['id'];
+ $r['billing_restaurant_id']=(int)($b['id']??$r['id']);$r['billing_name']=$b['name']??$r['name'];$r['billing_shared']=$shared;
+ if($shared){$r['monthly_fee']=0;$r['setup_fee_paid']=1;$r['subscription_ends']=$b['subscription_ends'];if($r['status']!=='suspended')$r['status']=$b['status'];if($b['deleted_at'])$r['status']='suspended';}
+ return $r;
+}
+// Base plan covers the home restaurant and second outlet. Further outlets cost ₹250 each.
 function extraOutlets(int $rid):int {
- $n=one('SELECT COUNT(*) AS n FROM restaurant_access WHERE user_id=(SELECT id FROM users WHERE restaurant_id=? AND role="owner" ORDER BY id LIMIT 1)',[$rid]);
- return max(0,(int)($n['n']??0)-OUTLETS_INCLUDED);
+ return max(0,count(billingOutlets(billingRestaurantId($rid)))-OUTLETS_INCLUDED);
 }
 function billingQuote(array $r,string $plan):array {
+ $billingId=billingRestaurantId((int)$r['id']);if($billingId!==(int)$r['id'])$r=billingRestaurant($billingId);
  $fee=(int)$r['setup_fee_paid']?0.0:PLAN_SETUP_FEE;$price=$plan==='monthly'?(float)$r['monthly_fee']:planPrice($plan);$n=extraOutlets((int)$r['id']);$extra=$n*EXTRA_OUTLET_FEE;
  return ['plan'=>$plan,'price'=>$price,'extra_outlets'=>$n,'extra_fee'=>$extra,'setup_fee'=>$fee,'setup_fee_list'=>$fee>0?PLAN_SETUP_FEE_LIST:0.0,'total'=>$price+$extra+$fee];
 }
@@ -58,6 +77,7 @@ function payuApi(string $command,string $var1):array {
 
 // Builds the hosted-checkout form the browser posts to PayU. Autopay also registers a monthly mandate (SI).
 function payuCheckout(array $r,array $owner,string $plan,string $phone):array {
+ $r=billingRestaurant((int)$r['id']);
  global $c;$p=payuConf();$q=billingQuote($r,$plan);
  $txnid=payuTxnid('TB',(int)$r['id']);
  $return=rtrim((string)$c['app_url'],'/').'/api/payu_return.php';
@@ -100,7 +120,7 @@ function payuMarkFailed(array $t):void {
 
 // Extends the subscription by one month and records the receipt. Safe to call twice: only the first call changes anything.
 function payuApplySuccess(array $t,string $mihpayid,string $mode):void {
- $rid=(int)$t['restaurant_id'];
+ $rid=billingRestaurantId((int)$t['restaurant_id']);
  db()->beginTransaction();
  try {
   if(execq('UPDATE payu_transactions SET status="success",mihpayid=?,mode=? WHERE id=? AND status<>"success"',[$mihpayid,$mode,$t['id']])!==1){db()->commit();return;}
@@ -110,12 +130,12 @@ function payuApplySuccess(array $t,string $mihpayid,string $mode):void {
   $ends=(string)one('SELECT subscription_ends FROM restaurants WHERE id=?',[$rid])['subscription_ends'];
   // Debit one day before expiry so a slow UPI debit does not interrupt ordering.
   $nextDebit=date('Y-m-d',strtotime($ends.' -1 day'));
-  if($t['kind']==='checkout'&&$t['plan']==='autopay6'){
+  if($t['kind']==='checkout'&&$t['plan']==='autopay6'&&(int)$t['restaurant_id']===$rid){
    execq('UPDATE autopay_mandates SET status="cancelled" WHERE restaurant_id=? AND status="active"',[$rid]);
    execq('INSERT INTO autopay_mandates(restaurant_id,authpayuid,mode,amount,cycles_total,cycles_done,next_debit_date) VALUES(?,?,?,?,?,1,?)',[$rid,$mihpayid,$mode,$monthly,PLAN_AUTOPAY_MONTHS,$nextDebit]);
    $note='Autopay month 1 of '.PLAN_AUTOPAY_MONTHS;
   } elseif($t['kind']==='recurring'){
-   $m=one('SELECT * FROM autopay_mandates WHERE id=?',[$t['mandate_id']]);$done=(int)$m['cycles_done']+1;$finished=$done>=(int)$m['cycles_total'];
+   $m=one('SELECT * FROM autopay_mandates WHERE id=?',[$t['mandate_id']]);$done=(int)$m['cycles_done']+1;$finished=$done>=(int)$m['cycles_total']||(int)$t['restaurant_id']!==$rid;
    execq('UPDATE autopay_mandates SET cycles_done=?,next_debit_date=?,predebit_debit_on=NULL,invoice_no=NULL,attempts=0,status=? WHERE id=?',[$done,$nextDebit,$finished?'completed':'active',$m['id']]);
    $note='Autopay month '.$done.' of '.$m['cycles_total'];
   } else $note='Monthly plan';

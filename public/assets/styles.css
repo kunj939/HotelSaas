@@ -8,6 +8,9 @@
 :root{
   --brand:#186953;
   --onbrand:#FFFFFF;
+  --control:var(--brand);
+  --action:var(--brand);
+  --onaction:var(--onbrand);
   --accent:#E4B866;
   --bg:#FBFAF7;
   --ink:#1F302C;
@@ -52,7 +55,7 @@ h1,h2,h3,h4,p{margin:0}
 h1,h2,h3{line-height:1.2;letter-spacing:-.01em}
 small{font-size:12px}
 svg{flex-shrink:0}
-:focus-visible{outline:3px solid color-mix(in srgb,var(--brand) 60%,transparent);outline-offset:2px}
+:focus-visible{outline:3px solid var(--control);outline-offset:3px}
 
 /* ==========================================================================
    Utilities
@@ -232,8 +235,8 @@ select{appearance:auto}
 .cart-item{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
 .cart-item:last-child{border-bottom:0}
 .qty{display:flex;align-items:center;gap:6px;padding:4px;border-radius:999px;background:var(--soft)}
-.qty button{width:36px;height:36px;border:0;border-radius:50%;background:var(--card);color:var(--brand-text);font-size:18px;font-weight:700;box-shadow:var(--shadow-sm)}
-.qty b{min-width:26px;text-align:center}
+.qty button{width:36px;height:36px;border:1px solid var(--line);border-radius:50%;background:var(--card);color:var(--ink);font-size:18px;font-weight:700;box-shadow:var(--shadow-sm)}
+.qty b{min-width:26px;text-align:center;color:var(--ink)}
 .light-panel{padding:16px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
 
 /* Confirmation */
@@ -265,15 +268,21 @@ select{appearance:auto}
 .modal h2{font-size:30px}
 
 .option{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:52px;margin:8px 0;padding:12px 14px;border:1px solid var(--line-strong);border-radius:14px;background:var(--card);cursor:pointer;transition:border-color .15s,background .15s}
-.option:hover{border-color:var(--brand)}
-.option.selected{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 9%,var(--card))}
+.option:hover{border-color:var(--control)}
+.option.selected,.option:has(input:checked){border-color:var(--control);background:color-mix(in srgb,var(--control) 12%,var(--card));box-shadow:inset 0 0 0 1px var(--control)}
 .option span{display:flex;align-items:center;gap:10px;font-size:15px}
-.option input{width:18px;height:18px;margin:0;accent-color:var(--brand)}
+.option input{width:18px;height:18px;margin:0;accent-color:var(--control)}
 .option b{white-space:nowrap}
 
-.qty-large{display:flex;align-items:center;gap:12px;padding:4px;border-radius:999px;background:var(--soft)}
-.qty-large button{width:44px;height:44px;border:0;border-radius:50%;background:var(--card);color:var(--brand-text);font-size:22px;box-shadow:var(--shadow-sm)}
-.qty-large b{min-width:24px;text-align:center;font-size:17px}
+.qty-large{display:flex;align-items:center;gap:8px;padding:4px;border:1px solid var(--line);border-radius:999px;background:var(--soft);color:var(--ink)}
+.qty-large button{width:44px;height:44px;border:1px solid var(--line-strong);border-radius:50%;background:var(--card);color:var(--ink);font-size:22px;box-shadow:var(--shadow-sm)}
+.qty-large b{min-width:24px;text-align:center;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
+.qty-large button:hover:not(:disabled),.qty button:hover:not(:disabled){border-color:var(--control);background:var(--soft)}
+.qty-large button:disabled{opacity:1;color:var(--muted);border-color:var(--line);background:transparent}
+.dish-actions{position:sticky;bottom:-24px;padding:16px 0 4px;border-top:1px solid var(--line);background:var(--bg);gap:16px;z-index:1}
+.dish-actions #add-dish{flex:1;min-height:54px;background:var(--action);color:var(--onaction);border-color:var(--action);box-shadow:0 5px 18px -9px var(--control)}
+.dish-actions #add-dish:hover{background:var(--action);filter:brightness(1.04)}
+#dish-wrap.updated,#dish-wrap.updated .modal{animation:none}
 
 /* ==========================================================================
    Owner & super-admin studio (sidebar layout)

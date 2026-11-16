@@ -55,7 +55,10 @@ function outletOrder(array $a,int $id):?array {$ids=outletIds($a);return $ids?on
 function csrf():void {if(!hash_equals($_SESSION['csrf'],(string)($_SERVER['HTTP_X_CSRF_TOKEN']??'')))fail('Session expired. Refresh and retry.',419);}
 function mutation():void {if($_SERVER['REQUEST_METHOD']!=='POST')fail('Method not allowed',405);csrf();}
 function audit(string $action,?int $rid=null,string $detail=''):void {$a=actor();execq('INSERT INTO audit_logs(user_id,restaurant_id,action,detail) VALUES(?,?,?,?)',[$a['id']??null,$rid,$action,substr($detail,0,400)]);}
-function statusActive(array $r):bool {return in_array($r['status'],['active','trial'],true) && $r['subscription_ends']>=date('Y-m-d') && (int)$r['ordering_enabled']===1;}
+function statusActive(array $r):bool {
+ $b=billingRestaurant((int)$r['id']);
+ return $b&&!$b['deleted_at']&&in_array($r['status'],['active','trial'],true)&&in_array($b['status'],['active','trial'],true)&&$b['subscription_ends']>=date('Y-m-d')&&(int)$r['ordering_enabled']===1;
+}
 function orderRow(array $o):array { $o['items']=rows('SELECT dish_name,variant_name,addons_json,quantity,unit_price,line_total FROM order_items WHERE order_id=?',[$o['id']]); foreach($o['items'] as &$item){$item['addons']=json_decode($item['addons_json']??'[]',true)?:[];unset($item['addons_json']);}return $o; }
 function imagePath($image):bool { $x=val($image,800);return !$x || bundledMenuPhoto($x) || preg_match('~^/uploads/[a-f0-9]{32}\.(jpg|jpeg|png|webp)$~',$x) || (str_starts_with($x,'https://upload.wikimedia.org/') && !str_contains($x,'"')); }
 function jsonOptions($arr,int $max=15):string {
@@ -145,7 +148,10 @@ try {
  }
  // All routes below require authentication.
  if(str_starts_with($route,'owner/')){$a=requireRole('owner','staff');$restaurantId=rid($a);}
- if($route==='owner/outlets')respond(['actor'=>actorInfo(),'pricing'=>['monthly_fee'=>planPrice('monthly'),'setup_fee'=>PLAN_SETUP_FEE,'setup_fee_list'=>PLAN_SETUP_FEE_LIST,'included'=>OUTLETS_INCLUDED,'extra_outlet_fee'=>EXTRA_OUTLET_FEE]]);
+ if($route==='owner/outlets'){
+  $home=one('SELECT id,name,monthly_fee FROM restaurants WHERE id=?',[(int)$a['restaurant_id']]);$count=$home?count(billingOutlets((int)$home['id'])):0;
+  respond(['actor'=>actorInfo(),'pricing'=>['monthly_fee'=>(float)($home['monthly_fee']??PLAN_MONTHLY),'setup_fee'=>0,'included'=>OUTLETS_INCLUDED,'extra_outlet_fee'=>EXTRA_OUTLET_FEE,'outlet_count'=>$count,'next_outlet_fee'=>$count>=OUTLETS_INCLUDED?EXTRA_OUTLET_FEE:0,'billing_name'=>$home['name']??'your main restaurant']]);
+ }
  if($route==='owner/outlets/create'){
   mutation();if($a['role']!=='owner')fail('Only restaurant owners can add outlets',403);
   $b=body();$name=val($b['name']??'',160);$slug=strtolower(trim((string)($b['slug']??'')));
@@ -154,10 +160,11 @@ try {
   $tables=(int)num($b['table_count']??20,1,500);
   $source=(int)($b['copy_menu_from']??0);
   if($source&&!in_array($source,outletIds($a),true))fail('You do not have access to that menu',403);
-  $fee=planPrice('monthly');$copied=0;
+  $home=one('SELECT * FROM restaurants WHERE id=? AND deleted_at IS NULL AND status<>"suspended"',[(int)$a['restaurant_id']]);
+  if(!$home)fail('Your main restaurant must be active before adding an outlet',403);$copied=0;
   db()->beginTransaction();
   try{
-   execq('INSERT INTO restaurants(slug,name,address,phone,table_count,qr_mode,monthly_fee,subscription_ends) VALUES(?,?,?,?,?,?,?,DATE_ADD(CURDATE(),INTERVAL 7 DAY))',[$slug,$name,val($b['address']??'',400),val($b['phone']??'',40),$tables,$mode,$fee]);
+   execq('INSERT INTO restaurants(slug,name,address,phone,table_count,qr_mode,monthly_fee,setup_fee_paid,status,subscription_ends) VALUES(?,?,?,?,?,?,0,1,?,?)',[$slug,$name,val($b['address']??'',400),val($b['phone']??'',40),$tables,$mode,$home['status'],$home['subscription_ends']]);
    $id=(int)db()->lastInsertId();
    execq('INSERT INTO restaurant_access(user_id,restaurant_id) VALUES(?,?)',[$a['id'],$id]);
    if($source){
@@ -182,15 +189,19 @@ try {
   $_SESSION['rid']=$id;respond(['actor'=>actorInfo()]);
  }
  if($route==='owner/overview'){
-  $restaurant=one('SELECT * FROM restaurants WHERE id=?',[$restaurantId]);
+  $restaurant=restaurantSubscription(one('SELECT * FROM restaurants WHERE id=?',[$restaurantId]));
   $stats=one('SELECT COUNT(*) AS today_orders,COALESCE(SUM(CASE WHEN status NOT IN ("rejected") THEN total ELSE 0 END),0) AS order_value, SUM(CASE WHEN status IN ("new","accepted","preparing","ready") THEN 1 ELSE 0 END) AS live_orders FROM orders WHERE restaurant_id=? AND DATE(created_at)=CURDATE()',[$restaurantId]);
   respond(['restaurant'=>$restaurant,'stats'=>$stats]);
+ }
+ if(str_starts_with($route,'owner/billing')){
+  $selectedOutletId=$restaurantId;$restaurantId=billingRestaurantId($restaurantId);
+  if(!in_array($restaurantId,outletIds($a),true))fail('Only a login with access to the main restaurant can manage this shared subscription',403);
  }
  if($route==='owner/billing'){
   $r=one('SELECT id,name,phone,status,subscription_ends,monthly_fee,setup_fee_paid FROM restaurants WHERE id=?',[$restaurantId]);
   $mandate=one('SELECT id,mode,amount,cycles_total,cycles_done,next_debit_date,predebit_debit_on,attempts,status,created_at FROM autopay_mandates WHERE restaurant_id=? ORDER BY id DESC LIMIT 1',[$restaurantId]);
   $payments=rows('SELECT amount,paid_on,method,reference_no,note FROM subscription_payments WHERE restaurant_id=? ORDER BY paid_on DESC,id DESC LIMIT 24',[$restaurantId]);
-  respond(['restaurant'=>$r,'mandate'=>$mandate,'payments'=>$payments,'quotes'=>['monthly'=>billingQuote($r,'monthly'),'autopay6'=>billingQuote($r,'autopay6')],'autopay_months'=>PLAN_AUTOPAY_MONTHS,'payu_ready'=>payuReady(),'payu_merchant'=>payuMerchantName(),'upi'=>upiConf(),'upi_quotes'=>['monthly'=>upiQuote($r,'monthly'),'upfront6'=>upiQuote($r,'upfront6')],'upi_latest'=>one('SELECT plan,months,amount,utr,status,note,created_at FROM upi_payments WHERE restaurant_id=? AND created_at>DATE_SUB(NOW(),INTERVAL 30 DAY) ORDER BY id DESC LIMIT 1',[$restaurantId]),'slug'=>one('SELECT slug FROM restaurants WHERE id=?',[$restaurantId])['slug'],'can_pay'=>$a['role']==='owner']);
+  respond(['selected_outlet_id'=>$selectedOutletId,'outlet_count'=>count(billingOutlets($restaurantId)),'included_outlets'=>OUTLETS_INCLUDED,'extra_outlet_fee'=>EXTRA_OUTLET_FEE,'restaurant'=>$r,'mandate'=>$mandate,'payments'=>$payments,'quotes'=>['monthly'=>billingQuote($r,'monthly'),'autopay6'=>billingQuote($r,'autopay6')],'autopay_months'=>PLAN_AUTOPAY_MONTHS,'payu_ready'=>payuReady(),'payu_merchant'=>payuMerchantName(),'upi'=>upiConf(),'upi_quotes'=>['monthly'=>upiQuote($r,'monthly'),'upfront6'=>upiQuote($r,'upfront6')],'upi_latest'=>one('SELECT plan,months,amount,utr,status,note,created_at FROM upi_payments WHERE restaurant_id=? AND created_at>DATE_SUB(NOW(),INTERVAL 30 DAY) ORDER BY id DESC LIMIT 1',[$restaurantId]),'slug'=>one('SELECT slug FROM restaurants WHERE id=?',[$restaurantId])['slug'],'can_pay'=>$a['role']==='owner']);
  }
  if($route==='owner/billing/checkout'){
   mutation();if($a['role']!=='owner')fail('Only the restaurant owner can pay the subscription',403);
@@ -311,7 +322,7 @@ try {
   if(!$u||!password_verify($old,$u['password_hash']))fail('Current password is incorrect',403);
   execq('UPDATE users SET password_hash=? WHERE id=?',[password_hash($new,PASSWORD_DEFAULT),$a['id']]);audit('account.password.change',$restaurantId);respond(['ok'=>true]);
  }
- if($route==='owner/settings')respond(['restaurant'=>one('SELECT * FROM restaurants WHERE id=?',[$restaurantId])]);
+ if($route==='owner/settings')respond(['restaurant'=>restaurantSubscription(one('SELECT * FROM restaurants WHERE id=?',[$restaurantId]))]);
  if($route==='owner/settings/save'){
   mutation();if($a['role']==='staff')fail('Owner permission required',403);$b=body();$r=one('SELECT * FROM restaurants WHERE id=?',[$restaurantId]);
   $name=val($b['name']??$r['name'],160);if($name==='')fail('Restaurant name required');
@@ -369,12 +380,18 @@ try {
  if($route==='admin/overview'){
   $stats=one('SELECT COUNT(*) AS restaurants,SUM(status="active" AND subscription_ends>=CURDATE()) AS active,SUM(subscription_ends<CURDATE()) AS expired,COALESCE(SUM(CASE WHEN status="active" AND subscription_ends>=CURDATE() THEN monthly_fee ELSE 0 END),0) AS mrr FROM restaurants WHERE deleted_at IS NULL');
   $orders=one('SELECT COUNT(*) AS all_orders,SUM(created_at>=DATE_FORMAT(NOW(),"%Y-%m-01")) AS this_month FROM orders');
+  $stats['active']=0;$stats['expired']=0;$stats['mrr']=0;
+  foreach(rows('SELECT * FROM restaurants WHERE deleted_at IS NULL') as $account){
+   if(billingRestaurantId((int)$account['id'])!==(int)$account['id'])continue;
+   if($account['subscription_ends']<date('Y-m-d'))$stats['expired']++;
+   elseif($account['status']==='active'){$stats['active']++;$stats['mrr']+=(float)$account['monthly_fee']+extraOutlets((int)$account['id'])*EXTRA_OUTLET_FEE;}
+  }
   $collected=one('SELECT COALESCE(SUM(amount),0) AS amount FROM subscription_payments WHERE paid_on>=DATE_FORMAT(CURDATE(),"%Y-%m-01")');
   $growth=rows('SELECT DATE_FORMAT(created_at,"%Y-%m") AS month,COUNT(*) AS restaurants FROM restaurants WHERE created_at>=DATE_SUB(NOW(),INTERVAL 12 MONTH) GROUP BY DATE_FORMAT(created_at,"%Y-%m") ORDER BY month');
   respond(['stats'=>$stats,'orders'=>$orders,'collected'=>$collected,'growth'=>$growth,'upi_pending'=>(int)one('SELECT COUNT(*) AS n FROM upi_payments WHERE status="pending"')['n']]);
  }
  if($route==='admin/restaurants'){
-  $list=rows('SELECT r.*, (SELECT COUNT(*) FROM orders o WHERE o.restaurant_id=r.id AND o.created_at>=DATE_FORMAT(NOW(),"%Y-%m-01")) AS month_orders,(SELECT COUNT(*) FROM menu_items m WHERE m.restaurant_id=r.id AND m.deleted_at IS NULL) AS menu_count,(SELECT email FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY id LIMIT 1) AS owner_email,(SELECT CONCAT(m.status," ",m.cycles_done,"/",m.cycles_total) FROM autopay_mandates m WHERE m.restaurant_id=r.id ORDER BY m.id DESC LIMIT 1) AS autopay,(SELECT GROUP_CONCAT(CONCAT(u.id,":",u.email) ORDER BY u.email SEPARATOR ",") FROM restaurant_access ra JOIN users u ON u.id=ra.user_id WHERE ra.restaurant_id=r.id AND u.role="owner" AND NOT (u.restaurant_id<=>r.id)) AS linked_owners,(SELECT COUNT(*) FROM restaurant_access ra WHERE ra.user_id=(SELECT u.id FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY u.id LIMIT 1)) AS owner_outlets FROM restaurants r ORDER BY r.created_at DESC LIMIT 1000');foreach($list as &$restaurant)if(!$restaurant['owner_email'])$restaurant['owner_email']=restaurantOwner((int)$restaurant['id'])['email']??null;unset($restaurant);respond(['restaurants'=>$list]);
+  $list=rows('SELECT r.*, (SELECT COUNT(*) FROM orders o WHERE o.restaurant_id=r.id AND o.created_at>=DATE_FORMAT(NOW(),"%Y-%m-01")) AS month_orders,(SELECT COUNT(*) FROM menu_items m WHERE m.restaurant_id=r.id AND m.deleted_at IS NULL) AS menu_count,(SELECT email FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY id LIMIT 1) AS owner_email,(SELECT CONCAT(m.status," ",m.cycles_done,"/",m.cycles_total) FROM autopay_mandates m WHERE m.restaurant_id=r.id ORDER BY m.id DESC LIMIT 1) AS autopay,(SELECT GROUP_CONCAT(CONCAT(u.id,":",u.email) ORDER BY u.email SEPARATOR ",") FROM restaurant_access ra JOIN users u ON u.id=ra.user_id WHERE ra.restaurant_id=r.id AND u.role="owner" AND NOT (u.restaurant_id<=>r.id)) AS linked_owners,(SELECT COUNT(*) FROM restaurant_access ra WHERE ra.user_id=(SELECT u.id FROM users u WHERE u.restaurant_id=r.id AND u.role="owner" ORDER BY u.id LIMIT 1)) AS owner_outlets FROM restaurants r ORDER BY r.created_at DESC LIMIT 1000');foreach($list as &$restaurant){if(!$restaurant['owner_email'])$restaurant['owner_email']=restaurantOwner((int)$restaurant['id'])['email']??null;$restaurant=restaurantSubscription($restaurant);$restaurant['owner_outlets']=$restaurant['billing_shared']?0:count(billingOutlets((int)$restaurant['id']));}unset($restaurant);respond(['restaurants'=>$list,'extra_outlet_fee'=>EXTRA_OUTLET_FEE,'included_outlets'=>OUTLETS_INCLUDED]);
  }
  if($route==='admin/restaurants/create'){
   mutation();$b=body();$name=val($b['name']??'',160);$slug=strtolower(val($b['slug']??'',90));$email=strtolower(val($b['email']??'',190));$password=(string)($b['password']??'');
@@ -405,6 +422,7 @@ try {
  if($route==='admin/restaurants/update'){
   mutation();$b=body();$id=(int)($b['id']??0);if(!one('SELECT id FROM restaurants WHERE id=?',[$id]))fail('Not found',404);
   $status=val($b['status']??'',15);if(!in_array($status,['trial','active','suspended'],true))fail('Invalid status');
+  if(billingRestaurantId($id)!==$id){execq('UPDATE restaurants SET status=? WHERE id=?',[$status,$id]);audit('outlet.status.update',$id,$status);respond(['ok'=>true]);}
   $date=val($b['subscription_ends']??'',10);if(!preg_match('/^\d{4}-\d{2}-\d{2}$/D',$date)||!checkdate((int)substr($date,5,2),(int)substr($date,8,2),(int)substr($date,0,4)))fail('Invalid date');
   execq('UPDATE restaurants SET status=?,subscription_ends=?,monthly_fee=?,setup_fee_paid=? WHERE id=?',[$status,$date,num($b['monthly_fee']??599,0,100000),empty($b['setup_fee_paid'])?0:1,$id]);audit('subscription.update',$id,$status.' to '.$date);respond(['ok'=>true]);
  }
@@ -418,6 +436,7 @@ try {
  if($route==='admin/restaurants/unlink'){
   mutation();$b=body();$id=(int)($b['restaurant_id']??0);$uid=(int)($b['user_id']??0);
   if(one('SELECT id FROM users WHERE id=? AND restaurant_id=?',[$uid,$id]))fail('This is the owner\'s own restaurant and cannot be unlinked');
+  if(one('SELECT id FROM audit_logs WHERE restaurant_id=? AND user_id=? AND action="owner.outlet.create" LIMIT 1',[$id,$uid]))fail('This owner manages the shared subscription and cannot be unlinked from their outlet');
   execq('DELETE FROM restaurant_access WHERE user_id=? AND restaurant_id=?',[$uid,$id]);audit('owner.outlet.unlink',$id,(string)$uid);respond(['ok'=>true]);
  }
  if($route==='admin/restaurants/stop'){
@@ -458,6 +477,7 @@ try {
   mutation();$b=body();$id=(int)($b['id']??0);$r=one('SELECT * FROM restaurants WHERE id=? AND deleted_at IS NOT NULL',[$id]);
   if(!$r)fail('Only a deleted restaurant can be removed permanently. Delete it first.');
   if(val($b['confirm_slug']??'',90)!==$r['slug'])fail('Type the restaurant URL slug exactly to confirm');
+  if(one('SELECT l.id FROM audit_logs l JOIN users u ON u.id=l.user_id JOIN restaurants child ON child.id=l.restaurant_id WHERE l.action="owner.outlet.create" AND u.restaurant_id=? AND child.id<>? LIMIT 1',[$id,$id]))fail('Permanently remove the remaining outlets before deleting their main billing restaurant');
   $files=array_column(rows('SELECT image_url FROM menu_items WHERE restaurant_id=?',[$id]),'image_url');$files[]=$r['logo_url'];$files[]=$r['cover_url'];
   execq('DELETE FROM restaurants WHERE id=?',[$id]);
   // A copied outlet menu may still use this upload. Keep files referenced by any restaurant.
@@ -482,7 +502,7 @@ try {
   db()->beginTransaction();
   try{
    if(execq('UPDATE upi_payments SET status="approved",reviewed_at=NOW() WHERE id=? AND status="pending"',[$id])!==1)fail('Payment not found or already reviewed');
-   $p=one('SELECT * FROM upi_payments WHERE id=?',[$id]);
+   $p=one('SELECT * FROM upi_payments WHERE id=?',[$id]);$p['restaurant_id']=billingRestaurantId((int)$p['restaurant_id']);
    execq('UPDATE restaurants SET status=IF(status="suspended","suspended","active"),subscription_ends=DATE_ADD(GREATEST(subscription_ends,CURDATE()),INTERVAL ? MONTH),setup_fee_paid=IF(?>0,1,setup_fee_paid) WHERE id=?',[(int)$p['months'],$p['setup_fee'],$p['restaurant_id']]);
    $note=((int)$p['months']>1?$p['months'].' months upfront':'Monthly plan').((float)$p['setup_fee']>0?' + one-time setup fee '.$p['setup_fee']:'');
    execq('INSERT INTO subscription_payments(restaurant_id,amount,paid_on,method,reference_no,note) VALUES(?,?,CURDATE(),?,?,?)',[$p['restaurant_id'],$p['amount'],'UPI',$p['utr'],$note]);

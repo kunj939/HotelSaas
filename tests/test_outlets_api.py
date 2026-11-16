@@ -24,7 +24,7 @@ class OutletSelectionTest(unittest.TestCase):
                 client.login(email, password)
                 return r['id'], client, email
             home, owner, email = account('home')
-            foreign, other, _ = account('other')
+            foreign, other, other_email = account('other')
             cat = owner.call('owner/menu')['categories'][0]
             owner.call('owner/menu/save', dict(name='House pizza', category_id=cat['id'], base_price=199,
                 food_type='veg', options=[dict(name='Large', price=299)], addons=[], available=1))
@@ -32,6 +32,9 @@ class OutletSelectionTest(unittest.TestCase):
             payload = dict(name='City Centre', slug=f'self-outlet-{key}-city', address='City Centre, Gurugram',
                 qr_mode='table', table_count=6, copy_menu_from=home, monthly_fee=1, setup_fee_paid=1)
             before = len(owner.call('owner/outlets')['actor']['outlets'])
+            initial_bill = owner.call('owner/billing')['quotes']['monthly']
+            self.assertEqual(float(price['next_outlet_fee']), 0)
+            self.assertEqual(float(price['extra_outlet_fee']), 250)
             self.assertEqual(Client(base).request('owner/outlets/create', payload)[0], 401)
             token = owner.csrf
             owner.csrf = 'invalid'
@@ -49,11 +52,21 @@ class OutletSelectionTest(unittest.TestCase):
             self.assertEqual(owner.request('owner/outlets/create', payload)[0], 400)
             self.assertEqual(len(owner.call('owner/outlets')['actor']['outlets']), before+1)
             self.assertEqual(other.request('owner/switch', dict(restaurant_id=result['id']))[0], 403)
+            admin.call('admin/restaurants/link', dict(restaurant_id=result['id'], email=other_email))
+            other.call('owner/switch', dict(restaurant_id=result['id']))
+            self.assertEqual(other.request('owner/billing')[0], 403)
+            self.assertEqual(other.request('owner/billing/upi', dict(plan='monthly', utr='123456789123'))[0], 403)
+            self.assertEqual(int(owner.call('owner/billing')['restaurant']['id']), int(home))
             owner.call('owner/switch', dict(restaurant_id=result['id']))
             settings = owner.call('owner/settings')['restaurant']
             self.assertEqual(settings['address'], payload['address'])
-            self.assertEqual(float(settings['monthly_fee']), float(price['monthly_fee']))
-            self.assertEqual(int(settings['setup_fee_paid']), 0)
+            self.assertEqual(float(settings['monthly_fee']), 0)
+            self.assertEqual(int(settings['setup_fee_paid']), 1)
+            self.assertTrue(settings['billing_shared'])
+            shared_bill = owner.call('owner/billing')
+            self.assertEqual(int(shared_bill['restaurant']['id']), int(home))
+            self.assertEqual(shared_bill['quotes']['monthly'], initial_bill)
+            self.assertEqual(float(owner.call('owner/outlets')['pricing']['next_outlet_fee']), 250)
             copied = owner.call('owner/menu')['items'][0]
             self.assertEqual(copied['name'], 'House pizza')
             self.assertEqual(copied['options'], [dict(name='Large', price=299)])
@@ -66,9 +79,24 @@ class OutletSelectionTest(unittest.TestCase):
             billing = owner.call('owner/billing')['quotes']['monthly']
             self.assertEqual(int(billing['extra_outlets']), 1)
             self.assertEqual(float(billing['extra_fee']), float(price['extra_outlet_fee']))
+            self.assertEqual(float(billing['total']), float(initial_bill['total'])+250)
             owner.call('owner/switch', dict(restaurant_id=empty['id']))
             self.assertEqual(owner.call('owner/menu')['items'], [])
             self.assertEqual(len(owner.call('owner/menu')['categories']), 5)
+            self.assertEqual(owner.call('owner/billing')['quotes']['monthly'], billing)
+            home_row = next(r for r in admin.call('admin/restaurants')['restaurants'] if int(r['id']) == int(home))
+            admin.call('admin/restaurants/update', dict(id=home, status='active', subscription_ends='2000-01-01', monthly_fee=home_row['monthly_fee'], setup_fee_paid=1))
+            public = Client(base)
+            self.assertFalse(public.call('public/restaurant', query={'slug':payload['slug']})['restaurant']['can_order'])
+            admin.call('admin/restaurants/update', dict(id=home, status='active', subscription_ends=home_row['subscription_ends'], monthly_fee=home_row['monthly_fee'], setup_fee_paid=1))
+            self.assertTrue(public.call('public/restaurant', query={'slug':payload['slug']})['restaurant']['can_order'])
+            self.assertEqual(owner.call('owner/settings')['restaurant']['subscription_ends'], home_row['subscription_ends'])
+            self.assertEqual(float(owner.call('owner/billing')['quotes']['monthly']['setup_fee']), 0)
+            admin.call('admin/restaurants/stop', dict(id=empty['id'], stop=True))
+            owner.call('owner/switch', dict(restaurant_id=home))
+            self.assertEqual(float(owner.call('owner/billing')['quotes']['monthly']['extra_fee']), 0)
+            admin.call('admin/restaurants/stop', dict(id=empty['id'], stop=False))
+            self.assertEqual(float(owner.call('owner/billing')['quotes']['monthly']['extra_fee']), 250)
             new_password = uuid.uuid4().hex
             admin.call('admin/password', dict(restaurant_id=result['id'], password=new_password))
             owner.login(email, new_password)

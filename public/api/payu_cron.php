@@ -10,6 +10,7 @@ require __DIR__.'/payu.php';
 payuConf();
 $mandates=rows('SELECT m.*,(SELECT email FROM users u WHERE u.restaurant_id=m.restaurant_id AND u.role="owner" ORDER BY id LIMIT 1) AS email FROM autopay_mandates m JOIN restaurants r ON r.id=m.restaurant_id WHERE m.status="active" AND r.status<>"suspended" AND r.deleted_at IS NULL');
 foreach($mandates as $m){
+ if(billingRestaurantId((int)$m['restaurant_id'])!==(int)$m['restaurant_id']){execq('UPDATE autopay_mandates SET status="cancelled" WHERE id=?',[$m['id']]);echo 'Outlet mandate '.$m['id'].' stopped: covered by the main subscription'.PHP_EOL;continue;}
  try { echo 'Mandate '.$m['id'].' (restaurant '.$m['restaurant_id'].'): '.autopayStep($m).PHP_EOL; }
  catch(Throwable $e){error_log('Autopay mandate '.$m['id'].': '.$e->getMessage());echo 'Mandate '.$m['id'].' error: '.$e->getMessage().PHP_EOL;}
 }
