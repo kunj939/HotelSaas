@@ -92,7 +92,6 @@ Run `database/migrations/2026-11-18_table_bills.sql` once on an existing databas
 - Print preview: the 80mm thermal layout shows restaurant name, address, phone, GSTIN when set, table, bill number, date, tokens, items with extras, subtotal, tax line only when tax% is above zero, and total. A4 layout prints the same content.
 - Settings: GSTIN must be exactly 15 letters or numbers; tax above 28% is refused. Closed bills keep the tax they were closed with after the setting changes.
 - WhatsApp/phone order: create a takeaway order with an address in the note, and a table order with a size and extras. Prices come from the server, the token appears in Orders with the WhatsApp label, and table orders join that table's bill. Double-clicking Send creates one order.
-- Menu tab and dashboard: "WhatsApp menu" copies or shares the available dishes grouped by category; sold-out dishes are left out.
 - Rejected orders are excluded from bill totals. A menu price change after an order does not change that bill.
 - Keep the owner dashboard open on the Tables or Orders tab for over 30 minutes without touching it, then click: still signed in. Sign out in another tab, then click: login screen.
 - Staff role can take orders and close bills; staff cannot change settings or menu.
@@ -102,7 +101,7 @@ Run `database/migrations/2026-11-18_table_bills.sql` once on an existing databas
 Run `database/migrations/2026-11-18_order_delivery.sql` after the table bills migration on an existing database.
 
 - The plain link (`/r/<slug>`, used by table and common QR codes) is dine-in only, as before: it asks for a table and has no takeaway option.
-- The online link (`/r/<slug>?via=whatsapp`) opens a separate "Order online" landing page with no table question. It is generated and copied from Settings → WhatsApp order link. The restaurant page's "Order food on WhatsApp" button and the WhatsApp menu share use the same link.
+- The online link (`/r/<slug>?via=whatsapp`) opens a separate "Order online" landing page with no table question. It is generated and copied from Settings → WhatsApp order link. The restaurant page's "Order food on WhatsApp" button uses the same link.
 - Take a delivery order: the name, a 10-digit mobile and an address of 10+ characters are required; the server refuses an incomplete one. Dine-in needs a table; takeaway needs neither a table nor an address.
 - After saving, the message shows the token, items, total, the delivery address and a tracking link. "Send on WhatsApp" opens WhatsApp to the customer's number with that text ready; without a mobile number, only Copy appears.
 - Open the tracking link on a phone that has never ordered there: the order is looked up at once, showing its status. A wrong token shows the usual "No order found" message.

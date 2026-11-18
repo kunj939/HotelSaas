@@ -1,4 +1,4 @@
-/* Owner dashboard: table bills, staff-entered WhatsApp/phone orders, delivery details, tracking messages and the WhatsApp menu text.
+/* Owner dashboard: table bills, staff-entered WhatsApp/phone orders, delivery details, tracking messages.
    Loaded before app.js and uses its helpers (api, S, esc, money, dateText, opts, card, metric, adminLayout, run, toast, posterMenuUrl, trackingLink). */
 'use strict';
 const SOURCE_LABEL={qr:'Table QR',whatsapp:'WhatsApp',phone:'Phone',walkin:'Walk-in'};
@@ -212,39 +212,6 @@ function showOrderConfirmation(res,d){
  wrap.querySelector('#conf-close').onclick=close;
  wrap.onclick=e=>{if(e.target===wrap)close()};
  wrap.querySelector('#conf-copy').onclick=async()=>{try{await navigator.clipboard.writeText(text);toast('Message copied')}catch(e){const box=wrap.querySelector('#conf-text');box.focus();box.select();toast('Select the message and copy it')}};
-}
-
-// ---- WhatsApp menu ----
-// Plain-text menu for WhatsApp: available dishes only, grouped by category, with veg/non-veg marks and prices.
-function menuWhatsAppText(menu,r){
- const live=menu.items.filter(i=>Number(i.available)===1);
- const sections=menu.categories.map(c=>({name:c.name,items:live.filter(i=>String(i.category_id)===String(c.id))}));
- const loose=live.filter(i=>!menu.categories.some(c=>String(c.id)===String(i.category_id)));
- if(loose.length)sections.push({name:'More',items:loose});
- const out=[`*${r.name}* · Menu`,''];
- for(const sec of sections){
-  if(!sec.items.length)continue;
-  out.push(`*${sec.name}*`);
-  for(const it of sec.items)out.push(`${FOOD_MARK[it.food_type]||'•'} ${it.name} — ${priceText(it)}`);
-  out.push('');
- }
- out.push(`Order online (takeaway / delivery): ${posterMenuUrl(r)}?via=whatsapp`);
- return out.join('\n');
-}
-async function shareMenuForWhatsApp(){
- const [settings,menu]=await Promise.all([api('owner/settings'),api('owner/menu')]);
- const text=menuWhatsAppText(menu,settings.restaurant);
- if(navigator.share){try{await navigator.share({title:`${settings.restaurant.name} menu`,text});return}catch(e){if(e.name==='AbortError')return}}
- try{await navigator.clipboard.writeText(text);toast('Menu copied. Paste it into your WhatsApp chat.')}
- catch(e){showCopyBox(text)}
-}
-function showCopyBox(text){
- const wrap=document.createElement('div');wrap.className='modal-wrap';
- wrap.innerHTML=`<div class="modal" style="max-width:600px"><div class="row between"><h2 class="serif">Copy menu</h2><button class="icon-btn" id="copy-close" type="button" aria-label="Close">×</button></div><p class="caption mt10">Select all the text below, copy it and paste it into your WhatsApp chat.</p><textarea id="copy-text" class="mt10" rows="14" readonly>${esc(text)}</textarea></div>`;
- document.body.append(wrap);
- wrap.querySelector('#copy-close').onclick=()=>wrap.remove();
- wrap.onclick=e=>{if(e.target===wrap)wrap.remove()};
- const box=wrap.querySelector('#copy-text');box.focus();box.select();
 }
 
 // ---- One order's bill (from its token), from the order card or the new-order prompt ----
