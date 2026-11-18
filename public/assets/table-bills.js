@@ -40,7 +40,7 @@ async function ownerTables(){
  const newTotal=open.reduce((n,t)=>n+(t.session.new_orders||0),0);
  const billValue=open.reduce((n,t)=>n+Number(t.session.total||0),0);
  // Ring the bell (and show a toast) when a new order lands while this board is open.
- if(S.tablesPrimed&&newTotal>(S.tablesSeenNew||0)){toast('🔔 New order received!');if(S.sound)playSound()}
+ if(S.tablesPrimed&&newTotal>(S.tablesSeenNew||0)){toast('🔔 New order received!')}
  S.tablesSeenNew=newTotal;S.tablesPrimed=true;
  const tiles=tables.map(t=>{const s=t.session;
   if(!s)return `<button class="table-tile" data-table-new="${t.table_no}" aria-label="Table ${t.table_no} is free. Take an order"><span class="table-no">${t.table_no}</span><span class="caption">Free · tap to take order</span></button>`;
@@ -236,21 +236,21 @@ async function openOrderBill(id,autoPrint=false){
 // ---- Voice alerts: the browser speaks each new order (Chrome needs one click on the page first; the toggle is that click) ----
 function loadVoicePref(){try{return localStorage.getItem('rq_voice')==='1'}catch(e){return false}}
 function orderVoiceText(o){
- const token=o.token_no?` टोकन ${o.token_no}.`:'';
- const kind=o.fulfilment==='delivery'?'होम डिलीवरी':o.fulfilment==='takeaway'?'टेकअवे':'';
- let from;
- if(+o.table_no)from=`टेबल ${o.table_no} से`;
- else if(o.source==='whatsapp')from='व्हाट्सऐप से'+(kind?`, ${kind}`:'');
- else from=kind||'काउंटर';
- return `नया ऑर्डर, ${from}.${token}`;
+ const token=o.token_no?` Token ${o.token_no}.`:'';
+ const kind=o.fulfilment==='delivery'?'Home delivery':o.fulfilment==='takeaway'?'Takeaway':'';
+ if(+o.table_no)return `New order placed. Table ${o.table_no}.${token}`;
+ if(o.source==='whatsapp')return `New order placed from WhatsApp${kind?`. ${kind}`:''}.${token}`;
+ return `New order placed${kind?`. ${kind}`:''}.${token}`;
 }
+// Three chimes (about 3 seconds) for each batch of new orders. Plays only when sound is enabled on this dashboard.
+function ringNewOrder(){if(!S.sound)return;[0,1100,2200].forEach(t=>setTimeout(()=>{if(typeof chime==='function')chime()},t))}
 function speakText(text){
  if(!('speechSynthesis' in window))return;
  try{
   const u=new SpeechSynthesisUtterance(text);
-  const voices=speechSynthesis.getVoices();const v=voices.find(x=>/^hi[-_]IN/i.test(x.lang))||voices.find(x=>/^en[-_]IN/i.test(x.lang))||voices.find(x=>/^en/i.test(x.lang));
+  const voices=speechSynthesis.getVoices();const v=voices.find(x=>/^en[-_]IN/i.test(x.lang))||voices.find(x=>/^en/i.test(x.lang));
   if(v)u.voice=v;
-  u.lang=v?v.lang:'hi-IN';u.rate=0.95;u.volume=1;
+  u.lang=v?v.lang:'en-IN';u.rate=0.95;u.volume=1;
   speechSynthesis.speak(u);
  }catch(e){console.warn(e)}
 }
@@ -258,7 +258,7 @@ function speakOrder(o){if(S.voice)speakText(orderVoiceText(o))}
 function toggleVoice(){
  S.voice=!S.voice;
  try{localStorage.setItem('rq_voice',S.voice?'1':'0')}catch(e){}
- if(S.voice)speakText('वॉइस अलर्ट चालू है। हर नया ऑर्डर बताया जाएगा।');
+ if(S.voice)speakText('Voice alerts are on. You will hear each new order.');
  else if('speechSynthesis' in window)speechSynthesis.cancel();
  return S.voice;
 }
@@ -274,6 +274,7 @@ async function checkNewOrders(){
  w.previous=new Set(orders.map(o=>o.id));
  // The first check after sign-in only learns what is already open; it never asks about old orders.
  if(!w.primed){w.primed=true;return}
+ if(fresh.length)ringNewOrder();
  for(const o of fresh){speakOrder(o);askPrintBill(o)}
 }
 const printAskQueue=[];let printAskOpen=false;

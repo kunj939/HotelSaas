@@ -101,8 +101,7 @@ Run `database/migrations/2026-11-18_table_bills.sql` once on an existing databas
 Run `database/migrations/2026-11-18_order_delivery.sql` after the table bills migration on an existing database.
 
 - The plain link (`/r/<slug>`, used by table and common QR codes) is dine-in only, as before: it asks for a table and has no takeaway option.
-- The online link (`/r/<slug>?via=whatsapp`) opens a separate "Order online" landing page with no table question. It is generated and copied from Settings → WhatsApp order link. The restaurant page's "Order food on WhatsApp" button uses the same link.
-- Take a delivery order: the name, a 10-digit mobile and an address of 10+ characters are required; the server refuses an incomplete one. Dine-in needs a table; takeaway needs neither a table nor an address.
+- The online link (`/r/<slug>?via=whatsapp`) opens a separate "Order online" landing page with no table question. It is generated and copied from Settings → WhatsApp order link.- Take a delivery order: the name, a 10-digit mobile and an address of 10+ characters are required; the server refuses an incomplete one. Dine-in needs a table; takeaway needs neither a table nor an address.
 - After saving, the message shows the token, items, total, the delivery address and a tracking link. "Send on WhatsApp" opens WhatsApp to the customer's number with that text ready; without a mobile number, only Copy appears.
 - Open the tracking link on a phone that has never ordered there: the order is looked up at once, showing its status. A wrong token shows the usual "No order found" message.
 - Orders card: delivery shows "Deliver to" with the address; "Send token & tracking link" appears when a mobile and token exist. The button reads "Mark delivered" for delivery orders.

@@ -53,9 +53,9 @@ assert.doesNotMatch(orderBill,/Tokens:/);
 assert.match(orderBill,/TOTAL/);
 
 // Voice alerts: short sentences that say where the order came from and its token.
-assert.equal(orderVoiceText({source:'whatsapp',fulfilment:'delivery',table_no:0,token_no:12}),'नया ऑर्डर, व्हाट्सऐप से, होम डिलीवरी. टोकन 12.');
-assert.equal(orderVoiceText({source:'qr',fulfilment:'dine_in',table_no:8,token_no:12}),'नया ऑर्डर, टेबल 8 से. टोकन 12.');
-assert.equal(orderVoiceText({source:'qr',fulfilment:'takeaway',table_no:0,token_no:3}),'नया ऑर्डर, टेकअवे. टोकन 3.');
-assert.equal(orderVoiceText({source:'qr',fulfilment:'takeaway',table_no:0,token_no:null}),'नया ऑर्डर, टेकअवे.');
+assert.equal(orderVoiceText({source:'whatsapp',fulfilment:'delivery',table_no:0,token_no:12}),'New order placed from WhatsApp. Home delivery. Token 12.');
+assert.equal(orderVoiceText({source:'qr',fulfilment:'dine_in',table_no:8,token_no:12}),'New order placed. Table 8. Token 12.');
+assert.equal(orderVoiceText({source:'qr',fulfilment:'takeaway',table_no:0,token_no:3}),'New order placed. Takeaway. Token 3.');
+assert.equal(orderVoiceText({source:'qr',fulfilment:'takeaway',table_no:0,token_no:null}),'New order placed. Takeaway.');
 
 console.log('PASS: table bill line amounts, order labels, WhatsApp links, order messages, order bills and voice alerts');
