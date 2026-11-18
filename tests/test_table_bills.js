@@ -1,0 +1,64 @@
+// Pure-logic checks for the table bills and order messages (no browser or database needed).
+// Run: node tests/test_table_bills.js
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
+const code=fs.readFileSync(path.join(__dirname,'..','public','assets','table-bills.js'),'utf8');
+// table-bills.js uses helpers from app.js; stub only what the pure functions call.
+const sandbox={money:n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2,minimumFractionDigits:0}),posterMenuUrl:r=>'https://tablebloom.example/r/'+r.slug,trackingLink:(r,token,day)=>'https://tablebloom.example/r/'+r.slug+'?track='+token+'&day='+day,esc:x=>String(x??'')};
+vm.createContext(sandbox);
+vm.runInContext(code+'\n;this.exported={menuWhatsAppText,lineAmount,fulfilLabel,whatsappLink,confirmationMessage};',sandbox);
+const {menuWhatsAppText,lineAmount,fulfilLabel,whatsappLink,confirmationMessage}=sandbox.exported;
+
+// Line amounts: the selected size plus chosen extras, times quantity.
+assert.equal(lineAmount({item:{base_price:100,options:[{name:'Half',price:60},{name:'Full',price:110}],addons:[{name:'Cheese',price:20},{name:'Butter',price:10}]},variant:'Full',addons:new Set(['Cheese']),qty:2}),260);
+assert.equal(lineAmount({item:{base_price:150,options:[],addons:[]},variant:'',addons:new Set(),qty:1}),150);
+// A dish without a chosen size falls back to its base price (the server still validates the real order).
+assert.equal(lineAmount({item:{base_price:80,options:[{name:'Small',price:60}],addons:[]},variant:'',addons:new Set(),qty:3}),240);
+
+// WhatsApp menu text: available dishes only, grouped by category, loose dishes under "More".
+const menu={
+ categories:[{id:1,name:'Starters'},{id:2,name:'Drinks'}],
+ items:[
+  {id:1,name:'Paneer Tikka',category_id:1,food_type:'veg',base_price:200,options:[],available:1},
+  {id:2,name:'Sold Out Soup',category_id:1,food_type:'veg',base_price:90,options:[],available:0},
+  {id:3,name:'Lassi',category_id:2,food_type:'veg',base_price:80,options:[{name:'Small',price:60},{name:'Large',price:90}],available:1},
+  {id:4,name:'Chicken Roll',category_id:99,food_type:'nonveg',base_price:250,options:[],available:1},
+ ],
+};
+const text=menuWhatsAppText(menu,{name:'Kaku',slug:'kaku'});
+assert.match(text,/^\*Kaku\* · Menu/);
+assert.match(text,/\*Starters\*\n🟢 Paneer Tikka — ₹200/);
+assert.match(text,/🟢 Lassi — Small ₹60 \/ Large ₹90/);
+assert.match(text,/\*More\*\n🔴 Chicken Roll — ₹250/);
+assert.doesNotMatch(text,/Sold Out Soup/);
+assert.match(text,/Order here: https:\/\/tablebloom\.example\/r\/kaku$/);
+
+// Order labels: delivery, table, takeaway and counter.
+assert.equal(fulfilLabel({fulfilment:'delivery',table_no:0}),'Delivery');
+assert.equal(fulfilLabel({fulfilment:'dine_in',table_no:4}),'Table 4');
+assert.equal(fulfilLabel({fulfilment:'takeaway',table_no:0}),'Takeaway');
+assert.equal(fulfilLabel({fulfilment:'dine_in',table_no:0}),'Counter');
+
+// WhatsApp links: a 10-digit Indian mobile, with or without the country code, and the message encoded.
+assert.equal(whatsappLink('+91 90535 73091','Hi there'),'https://wa.me/919053573091?text=Hi%20there');
+assert.equal(whatsappLink('919053573091','A'),'https://wa.me/919053573091?text=A');
+assert.equal(whatsappLink('12345','A'),'');
+assert.equal(whatsappLink('',"A"),'');
+
+// The message after an order: token, items, delivery address and the tracking link.
+const delivery=confirmationMessage({restaurant:'Kaku',name:'Rahul',token:24,fulfilment:'delivery',tableNo:0,address:'Flat 4B, DLF Phase 3',total:470,items:[{quantity:2,name:'Paneer Tikka (Half)'},{quantity:1,name:'Lassi'}],link:'https://tablebloom.example/r/kaku?track=24&day=2026-11-18'});
+assert.match(delivery,/^Hi Rahul! Your order at Kaku is confirmed\./);
+assert.match(delivery,/Token: #24/);
+assert.match(delivery,/Type: Home delivery/);
+assert.match(delivery,/2 x Paneer Tikka \(Half\)\n1 x Lassi/);
+assert.match(delivery,/Total: ₹470/);
+assert.match(delivery,/Deliver to: Flat 4B, DLF Phase 3/);
+assert.match(delivery,/Track your order: https:\/\/tablebloom\.example\/r\/kaku\?track=24&day=2026-11-18$/);
+
+// Table and takeaway messages never include a delivery address line.
+const table=confirmationMessage({restaurant:'Kaku',token:7,fulfilment:'dine_in',tableNo:5,address:'ignored',total:100,items:[],link:'L'});
+assert.match(table,/Type: Table 5/);
+assert.doesNotMatch(table,/Deliver to/);
+assert.match(confirmationMessage({restaurant:'Kaku',token:8,fulfilment:'takeaway',tableNo:0,items:[],link:'L'}),/^Hi! Your order at Kaku is confirmed\.\nToken: #8\nType: Takeaway/);
+
+console.log('PASS: table bill line amounts, WhatsApp menu text, order labels, WhatsApp links and order messages');

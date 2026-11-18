@@ -82,3 +82,29 @@ Additional automated coverage: with the disposable test-site environment configu
 - Use a broken image URL or a host blocking hotlinks: customer menu must show default artwork. A webpage URL is not a direct image URL and may show fallback artwork.
 
 Photo refresh validation: 194 unique source URLs and image hashes; all JPEGs decoded; existing-account public API upgrade and partial-upload fallback passed on the disposable test site. Chrome list/grid layouts passed at 320, 375 and 1280 px, including uncropped detail previews and no horizontal overflow or JavaScript errors.
+
+## Table bills, staff-entered orders and dashboard sign-in
+
+Run `database/migrations/2026-11-18_table_bills.sql` once on an existing database (new installs get it from `schema.sql`). Then, on a disposable restaurant:
+
+- Two QR orders from Table 4 share one open bill; a third order from Table 5 gets a separate bill. Tables tab totals and "new" badges match the orders.
+- Closing a bill is refused while any order from it is still new, accepted, preparing or ready; after serving or rejecting them it closes, and a later order at that table opens a new bill.
+- Print preview: the 80mm thermal layout shows restaurant name, address, phone, GSTIN when set, table, bill number, date, tokens, items with extras, subtotal, tax line only when tax% is above zero, and total. A4 layout prints the same content.
+- Settings: GSTIN must be exactly 15 letters or numbers; tax above 28% is refused. Closed bills keep the tax they were closed with after the setting changes.
+- WhatsApp/phone order: create a takeaway order with an address in the note, and a table order with a size and extras. Prices come from the server, the token appears in Orders with the WhatsApp label, and table orders join that table's bill. Double-clicking Send creates one order.
+- Menu tab and dashboard: "WhatsApp menu" copies or shares the available dishes grouped by category; sold-out dishes are left out.
+- Rejected orders are excluded from bill totals. A menu price change after an order does not change that bill.
+- Keep the owner dashboard open on the Tables or Orders tab for over 30 minutes without touching it, then click: still signed in. Sign out in another tab, then click: login screen.
+- Staff role can take orders and close bills; staff cannot change settings or menu.
+
+## WhatsApp links, order tokens and delivery
+
+Run `database/migrations/2026-11-18_order_delivery.sql` after the table bills migration on an existing database.
+
+- Tap "Order food on WhatsApp" on the public page: the opened chat text ends with the restaurant's menu & order link.
+- Take a delivery order: the name, a 10-digit mobile and an address of 10+ characters are required; the server refuses an incomplete one. Dine-in needs a table; takeaway needs neither a table nor an address.
+- After saving, the message shows the token, items, total, the delivery address and a tracking link. "Send on WhatsApp" opens WhatsApp to the customer's number with that text ready; without a mobile number, only Copy appears.
+- Open the tracking link on a phone that has never ordered there: the order is looked up at once, showing its status. A wrong token shows the usual "No order found" message.
+- Orders card: delivery shows "Deliver to" with the address; "Send token & tracking link" appears when a mobile and token exist. The button reads "Mark delivered" for delivery orders.
+- The public tracking response does not include the delivery address or phone number.
+- A QR order's "Copy token & link" copies the tracking link with the token filled in.
