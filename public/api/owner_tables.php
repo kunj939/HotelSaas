@@ -113,3 +113,33 @@ if($route==='owner/order/manual'){
  audit('order.manual',$restaurantId,$source.' token '.$order['token_no']);
  respond(['ok'=>true,'order'=>$order,'restaurant'=>$shop,'fulfilment'=>$fulfilment],201);
 }
+
+// One order's bill, printed from its token. Works for table, common-QR, counter, WhatsApp and delivery orders.
+// Rejected lines are left out. Prices are the ones saved when the order was placed.
+function orderBillFor(int $restaurantId,array $o):array {
+ $restaurant=one('SELECT name,address,phone,gstin,tax_percent FROM restaurants WHERE id=?',[$restaurantId])?:[];
+ $lines=[];$subtotal=0.0;
+ if($o['status']!=='rejected'){
+  foreach(rows('SELECT dish_name,variant_name,addons_json,quantity,unit_price,line_total FROM order_items WHERE order_id=? ORDER BY id',[(int)$o['id']]) as $it){
+   $extras=array_map(fn($x)=>(string)($x['name']??''),json_decode($it['addons_json']??'[]',true)?:[]);
+   $label=$it['dish_name'].($it['variant_name']?' ('.$it['variant_name'].')':'');
+   $lines[]=['name'=>$label,'extras'=>$extras,'unit'=>round((float)$it['unit_price'],2),'quantity'=>(int)$it['quantity'],'amount'=>round((float)$it['line_total'],2)];
+   $subtotal+=(float)$it['line_total'];
+  }
+ }
+ $subtotal=round($subtotal,2);
+ $tax=round($subtotal*(float)($restaurant['tax_percent']??0)/100,2);
+ return [
+  'kind'=>'order','id'=>(int)$o['id'],'table_no'=>(int)$o['table_no'],'token_no'=>(int)$o['token_no'],'token_day'=>$o['token_day'],
+  'fulfilment'=>(string)$o['fulfilment'],'status'=>(string)$o['status'],'opened_at'=>$o['created_at'],'closed_at'=>null,
+  'customer_name'=>$o['customer_name'],'customer_phone'=>$o['customer_phone'],'delivery_address'=>$o['delivery_address'],
+  'restaurant'=>['name'=>$restaurant['name']??'','address'=>$restaurant['address']??null,'phone'=>$restaurant['phone']??null,'gstin'=>$restaurant['gstin']??null],
+  'lines'=>$lines,'orders'=>[['id'=>(int)$o['id'],'token_no'=>(int)$o['token_no'],'status'=>(string)$o['status']]],
+  'subtotal'=>$subtotal,'tax_percent'=>$subtotal>0?round($tax*100/$subtotal,2):0.0,'tax'=>$tax,'total'=>round($subtotal+$tax,2),
+ ];
+}
+if($route==='owner/order/bill'){
+ $id=(int)($_GET['id']??0);$o=one('SELECT * FROM orders WHERE id=? AND restaurant_id=?',[$id,$restaurantId]);
+ if(!$o)fail('Order not found',404);
+ respond(['bill'=>orderBillFor($restaurantId,$o)]);
+}

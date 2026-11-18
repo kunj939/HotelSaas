@@ -1,13 +1,13 @@
-// Pure-logic checks for the table bills and order messages (no browser or database needed).
+// Pure-logic checks for the table bills, order bills and order messages (no browser or database needed).
 // Run: node tests/test_table_bills.js
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const code=fs.readFileSync(path.join(__dirname,'..','public','assets','table-bills.js'),'utf8');
 // table-bills.js uses helpers from app.js; stub only what the pure functions call.
-const sandbox={money:n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2,minimumFractionDigits:0}),posterMenuUrl:r=>'https://tablebloom.example/r/'+r.slug,trackingLink:(r,token,day)=>'https://tablebloom.example/r/'+r.slug+'?track='+token+'&day='+day,esc:x=>String(x??'')};
+const sandbox={money:n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2,minimumFractionDigits:0}),posterMenuUrl:r=>'https://tablebloom.example/r/'+r.slug,trackingLink:(r,token,day)=>'https://tablebloom.example/r/'+r.slug+'?track='+token+'&day='+day,esc:x=>String(x??''),dateText:s=>String(s||'')};
 vm.createContext(sandbox);
-vm.runInContext(code+'\n;this.exported={menuWhatsAppText,lineAmount,fulfilLabel,whatsappLink,confirmationMessage};',sandbox);
-const {menuWhatsAppText,lineAmount,fulfilLabel,whatsappLink,confirmationMessage}=sandbox.exported;
+vm.runInContext(code+'\n;this.exported={menuWhatsAppText,lineAmount,fulfilLabel,whatsappLink,confirmationMessage,billHtml};',sandbox);
+const {menuWhatsAppText,lineAmount,fulfilLabel,whatsappLink,confirmationMessage,billHtml}=sandbox.exported;
 
 // Line amounts: the selected size plus chosen extras, times quantity.
 assert.equal(lineAmount({item:{base_price:100,options:[{name:'Half',price:60},{name:'Full',price:110}],addons:[{name:'Cheese',price:20},{name:'Butter',price:10}]},variant:'Full',addons:new Set(['Cheese']),qty:2}),260);
@@ -15,7 +15,7 @@ assert.equal(lineAmount({item:{base_price:150,options:[],addons:[]},variant:'',a
 // A dish without a chosen size falls back to its base price (the server still validates the real order).
 assert.equal(lineAmount({item:{base_price:80,options:[{name:'Small',price:60}],addons:[]},variant:'',addons:new Set(),qty:3}),240);
 
-// WhatsApp menu text: available dishes only, grouped by category, loose dishes under "More".
+// WhatsApp menu text: available dishes only, grouped by category, loose dishes under "More", order link opens WhatsApp mode.
 const menu={
  categories:[{id:1,name:'Starters'},{id:2,name:'Drinks'}],
  items:[
@@ -31,7 +31,7 @@ assert.match(text,/\*Starters\*\n🟢 Paneer Tikka — ₹200/);
 assert.match(text,/🟢 Lassi — Small ₹60 \/ Large ₹90/);
 assert.match(text,/\*More\*\n🔴 Chicken Roll — ₹250/);
 assert.doesNotMatch(text,/Sold Out Soup/);
-assert.match(text,/Order here: https:\/\/tablebloom\.example\/r\/kaku$/);
+assert.match(text,/Order online \(takeaway \/ delivery\): https:\/\/tablebloom\.example\/r\/kaku\?via=whatsapp$/);
 
 // Order labels: delivery, table, takeaway and counter.
 assert.equal(fulfilLabel({fulfilment:'delivery',table_no:0}),'Delivery');
@@ -61,4 +61,13 @@ assert.match(table,/Type: Table 5/);
 assert.doesNotMatch(table,/Deliver to/);
 assert.match(confirmationMessage({restaurant:'Kaku',token:8,fulfilment:'takeaway',tableNo:0,items:[],link:'L'}),/^Hi! Your order at Kaku is confirmed\.\nToken: #8\nType: Takeaway/);
 
-console.log('PASS: table bill line amounts, WhatsApp menu text, order labels, WhatsApp links and order messages');
+// Order bill (from a token): shows the token, customer and delivery details, and no table-bill footer.
+const orderBill=billHtml({kind:'order',id:16,token_no:24,fulfilment:'delivery',table_no:0,status:'new',opened_at:'2026-11-18 19:09:00',customer_name:'Rahul',customer_phone:'9053573091',delivery_address:'Flat 4B, DLF Phase 3',restaurant:{name:'Kaku',address:'U Block',phone:'',gstin:null},lines:[{name:'Lassi',extras:[],unit:80,quantity:2,amount:160}],orders:[{id:16,token_no:24,status:'new'}],subtotal:160,tax_percent:0,tax:0,total:160});
+assert.match(orderBill,/Token #24/);
+assert.match(orderBill,/Deliver to: Flat 4B, DLF Phase 3/);
+assert.match(orderBill,/Mobile: 9053573091/);
+assert.match(orderBill,/Order bill/);
+assert.doesNotMatch(orderBill,/Tokens:/);
+assert.match(orderBill,/TOTAL/);
+
+console.log('PASS: table bill line amounts, WhatsApp menu text, order labels, WhatsApp links, order messages and order bills');

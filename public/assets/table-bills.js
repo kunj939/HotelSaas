@@ -64,10 +64,10 @@ function billHtml(bill){
  const tokens=bill.orders.filter(o=>o.status!=='rejected').map(o=>`#${o.token_no}`).join(', ');
  return `<article class="bill-paper" id="bill-print">
   <header class="bill-head"><b class="bill-name">${esc(r.name)}</b>${r.address?`<div>${esc(r.address)}</div>`:''}${r.phone?`<div>Ph: ${esc(r.phone)}</div>`:''}${r.gstin?`<div>GSTIN: ${esc(r.gstin)}</div>`:''}</header>
-  <div class="bill-meta"><div><b>${bill.table_no?`Table ${esc(bill.table_no)}`:'Takeaway'}</b> · Bill #${esc(bill.id)}</div><div>${esc(dateText(bill.opened_at))}</div>${tokens?`<div>Tokens: ${esc(tokens)}</div>`:''}</div>
+  ${bill.kind==='order'?`<div class="bill-meta"><div><b>Token #${esc(bill.token_no)}</b> · ${esc(fulfilLabel(bill))}</div><div>Order #${esc(bill.id)} · ${esc(dateText(bill.opened_at))}</div>${bill.customer_name?`<div>${esc(bill.customer_name)}</div>`:''}${bill.customer_phone?`<div>Mobile: ${esc(bill.customer_phone)}</div>`:''}${bill.delivery_address?`<div>Deliver to: ${esc(bill.delivery_address)}</div>`:''}</div>`:`<div class="bill-meta"><div><b>${bill.table_no?`Table ${esc(bill.table_no)}`:'Takeaway'}</b> · Bill #${esc(bill.id)}</div><div>${esc(dateText(bill.opened_at))}</div>${tokens?`<div>Tokens: ${esc(tokens)}</div>`:''}</div>`}
   <table class="bill-table"><thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Rate</th><th class="num">Amt</th></tr></thead><tbody>${rows||'<tr><td colspan="4">No items on this bill</td></tr>'}</tbody></table>
   <div class="bill-totals"><div><span>Subtotal</span><span>${money(bill.subtotal)}</span></div>${bill.tax>0?`<div><span>Tax (${esc(bill.tax_percent)}%)</span><span>${money(bill.tax)}</span></div>`:''}<div class="bill-grand"><span>TOTAL</span><span>${money(bill.total)}</span></div></div>
-  <p class="bill-foot">${open?'Draft bill. Final once the table is closed.':`Paid and closed ${esc(dateText(bill.closed_at))}`}</p>
+  <p class="bill-foot">${bill.kind==='order'?'Order bill':(open?'Draft bill. Final once the table is closed.':`Paid and closed ${esc(dateText(bill.closed_at))}`)}</p>
   <p class="bill-foot">Thank you. Please visit again.</p>
  </article>`;
 }
@@ -216,7 +216,7 @@ function menuWhatsAppText(menu,r){
   for(const it of sec.items)out.push(`${FOOD_MARK[it.food_type]||'•'} ${it.name} — ${priceText(it)}`);
   out.push('');
  }
- out.push(`Order here: ${posterMenuUrl(r)}`);
+ out.push(`Order online (takeaway / delivery): ${posterMenuUrl(r)}?via=whatsapp`);
  return out.join('\n');
 }
 async function shareMenuForWhatsApp(){
@@ -233,4 +233,59 @@ function showCopyBox(text){
  wrap.querySelector('#copy-close').onclick=()=>wrap.remove();
  wrap.onclick=e=>{if(e.target===wrap)wrap.remove()};
  const box=wrap.querySelector('#copy-text');box.focus();box.select();
+}
+
+// ---- One order's bill (from its token), from the order card or the new-order prompt ----
+async function openOrderBill(id,autoPrint=false){
+ const {bill}=await api('owner/order/bill','GET',{id});
+ const wrap=document.createElement('div');wrap.className='modal-wrap';
+ wrap.innerHTML=`<div class="modal" style="max-width:460px;max-height:92vh;overflow:auto" role="dialog" aria-modal="true" aria-label="Order bill">
+  <div class="row between"><h2 class="serif">Token #${esc(bill.token_no)} bill</h2><button class="icon-btn" id="ob-close" type="button" aria-label="Close">×</button></div>
+  <div class="row wrap mt10 bill-toolbar no-print"><label class="field bill-paper-select"><span>Paper</span><select id="ob-paper" class="input">${opts([['thermal','Thermal 80mm'],['a4','A4 page']],S.billPaper||'thermal')}</select></label><button class="btn" id="ob-print" type="button">🖨 Print bill</button></div>
+  <div class="bill-wrap mt10">${billHtml(bill)}</div>
+ </div>`;
+ document.body.append(wrap);
+ const close=()=>wrap.remove();
+ wrap.querySelector('#ob-close').onclick=close;
+ wrap.onclick=e=>{if(e.target===wrap)close()};
+ wrap.querySelector('#ob-paper').onchange=e=>{S.billPaper=e.target.value};
+ wrap.querySelector('#ob-print').onclick=()=>printBill();
+ if(autoPrint)setTimeout(printBill,150);
+}
+
+// ---- New-order watch: any owner tab, every 10 seconds, asks "Print the bill now?" for each new order ----
+function startOrderWatch(){clearInterval(S.orderWatch);S.watch={outlet:null,previous:new Set(),primed:false};S.orderWatch=setInterval(()=>checkNewOrders().catch(e=>console.warn(e)),10e3)}
+async function checkNewOrders(){
+ if(!S.actor||!['owner','staff'].includes(S.actor.role)||document.visibilityState!=='visible')return;
+ const outlet=S.actor.active_restaurant_id,w=S.watch;
+ if(!w)return;
+ if(w.outlet!==outlet){w.outlet=outlet;w.previous=new Set();w.primed=false}
+ const {orders}=await api('owner/orders','GET',{range:'live'});
+ if(S.watch!==w||S.actor?.active_restaurant_id!==outlet)return;
+ const fresh=orders.filter(o=>o.status==='new'&&!w.previous.has(o.id));
+ w.previous=new Set(orders.map(o=>o.id));
+ // The first check after sign-in only learns what is already open; it never asks about old orders.
+ if(!w.primed){w.primed=true;return}
+ for(const o of fresh)askPrintBill(o);
+}
+const printAskQueue=[];let printAskOpen=false;
+function askPrintBill(o){printAskQueue.push(o);if(!printAskOpen)nextPrintAsk()}
+function nextPrintAsk(){
+ const o=printAskQueue.shift();
+ if(!o){printAskOpen=false;return}
+ printAskOpen=true;
+ const wrap=document.createElement('div');wrap.className='modal-wrap';
+ wrap.innerHTML=`<div class="modal" style="max-width:460px" role="alertdialog" aria-modal="true" aria-labelledby="ask-title">
+  <div class="eyebrow">New order</div><h2 id="ask-title" class="serif mt10">Token #${esc(o.token_no)} · ${esc(fulfilLabel(o))}</h2>
+  <p class="small mt10">${o.items.map(it=>`${Number(it.quantity)} × ${esc(it.dish_name)}`).join('<br>')}</p>
+  <p class="small mt10"><b>${money(o.total)}</b>${o.customer_name?` · ${esc(o.customer_name)}`:''}</p>
+  <p class="bold mt20">Print the bill now?</p>
+  <div class="row wrap mt10"><button class="btn" id="ask-yes" type="button">Yes, print bill</button><button class="btn ghost" id="ask-no" type="button">No</button></div>
+  ${orderSendLink(o)?`<a class="btn outline full mt10" id="ask-send" target="_blank" rel="noopener" href="${esc(orderSendLink(o))}">💬 Send token & tracking link to customer</a>`:''}
+ </div>`;
+ document.body.append(wrap);
+ const done=()=>{wrap.remove();nextPrintAsk()};
+ wrap.querySelector('#ask-yes').onclick=()=>{run(()=>openOrderBill(o.id,true));done()};
+ wrap.querySelector('#ask-no').onclick=done;
+ wrap.onclick=e=>{if(e.target===wrap)done()};
 }

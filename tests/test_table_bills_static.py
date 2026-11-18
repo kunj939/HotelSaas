@@ -57,4 +57,14 @@ assert "['tables','🪑','Tables & bills']" in app
 assert 'table-bills.js' in index_html and index_html.index('table-bills.js') < index_html.index('app.js?v=')
 assert re.search(r"function (ownerTables|ownerBill|openManualOrder)\b", bills)
 
+# WhatsApp-order mode on the guest route, and the order bill route.
+assert "$channel=val($b['channel']??'',10)==='whatsapp'" in api and "$source=val($b['from']??'',10)==='whatsapp'?'whatsapp':'qr';$fulfilmentType=$fulfil;" in api
+assert "owner/order/bill" in owner and 'function orderBillFor(' in owner
+# Front end: WhatsApp-link ordering, the order-card bill button and the new-order prompt.
+assert "trackLink.get('via')==='whatsapp'" in app and 'function whatsappFields(' in app and 'channelWaLink' not in app
+assert 'Send token & tracking link to customer' in bills
+assert "data-order-bill" in app and 'startOrderWatch();' in app and 'clearInterval(S.orderWatch)' in app
+assert 'function openOrderBill(' in bills and 'function checkNewOrders(' in bills and 'Print the bill now?' in bills
+assert 'Order online (takeaway / delivery): ' in bills and 'onlineLanding(' in app and 'data-order-channel' in app and 'modeTabs' not in app
+
 print('PASS: table bill and delivery schema, migrations, owner routes, tracking links and dashboard wiring')
