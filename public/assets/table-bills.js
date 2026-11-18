@@ -1,4 +1,4 @@
-/* Owner dashboard: table bills, staff-entered WhatsApp/phone orders, delivery details, tracking messages and the WhatsApp menu text.
+/* Owner dashboard: table bills, staff-entered WhatsApp/phone orders, delivery details, tracking messages.
    Loaded before app.js and uses its helpers (api, S, esc, money, dateText, opts, card, metric, adminLayout, run, toast, posterMenuUrl, trackingLink). */
 'use strict';
 const SOURCE_LABEL={qr:'Table QR',whatsapp:'WhatsApp',phone:'Phone',walkin:'Walk-in'};
@@ -40,7 +40,7 @@ async function ownerTables(){
  const newTotal=open.reduce((n,t)=>n+(t.session.new_orders||0),0);
  const billValue=open.reduce((n,t)=>n+Number(t.session.total||0),0);
  // Ring the bell (and show a toast) when a new order lands while this board is open.
- if(S.tablesPrimed&&newTotal>(S.tablesSeenNew||0)){toast('🔔 New order received!');if(S.sound)playSound()}
+ if(S.tablesPrimed&&newTotal>(S.tablesSeenNew||0)){toast('🔔 New order received!')}
  S.tablesSeenNew=newTotal;S.tablesPrimed=true;
  const tiles=tables.map(t=>{const s=t.session;
   if(!s)return `<button class="table-tile" data-table-new="${t.table_no}" aria-label="Table ${t.table_no} is free. Take an order"><span class="table-no">${t.table_no}</span><span class="caption">Free · tap to take order</span></button>`;
@@ -58,17 +58,29 @@ async function ownerTables(){
 }
 
 // ---- Printable bill ----
+// Bill layout for table bills and single-order bills. Fixed columns, clear sections, print-friendly.
 function billHtml(bill){
- const r=bill.restaurant,open=bill.status==='open';
- const rows=bill.lines.map(l=>`<tr><td>${esc(l.name)}${l.extras.length?`<div class="bill-extra">+ ${l.extras.map(x=>esc(x)).join(', ')}</div>`:''}</td><td class="num">${Number(l.quantity)}</td><td class="num">${money(l.unit)}</td><td class="num">${money(l.amount)}</td></tr>`).join('');
+ const r=bill.restaurant,open=bill.status==='open',isOrder=bill.kind==='order';
+ const qty=bill.lines.reduce((n,l)=>n+Number(l.quantity),0);
+ const mobile=d=>{const x=String(d||'').replace(/\D/g,'').slice(-10);return x.length===10?`+91 ${x.slice(0,5)} ${x.slice(5)}`:esc(d)};
+ const items=bill.lines.map(l=>`<tr><td><div class="bill-name">${esc(l.name)}</div>${l.extras.length?`<div class="bill-extra">+ ${l.extras.map(x=>esc(x)).join(', ')}</div>`:''}</td><td class="num">${Number(l.quantity)}</td><td class="num">${money(l.unit)}</td><td class="num">${money(l.amount)}</td></tr>`).join('');
  const tokens=bill.orders.filter(o=>o.status!=='rejected').map(o=>`#${o.token_no}`).join(', ');
+ const info=isOrder
+  ? [['Token',`<b class="bill-token">#${esc(bill.token_no)}</b>`],['Type',esc(fulfilLabel(bill))],['Order',`#${esc(bill.id)}`],['Date',esc(dateText(bill.opened_at))],...(bill.customer_name?[['Name',esc(bill.customer_name)]]:[]),...(bill.customer_phone?[['Mobile',mobile(bill.customer_phone)]]:[])]
+  : [['Table',bill.table_no?esc(bill.table_no):'Takeaway'],['Bill',`#${esc(bill.id)}`],['Date',esc(dateText(bill.opened_at))],...(tokens?[['Tokens',esc(tokens)]]:[])];
+ const row=([k,v])=>`<div class="bill-row"><span>${k}</span><span>${v}</span></div>`;
+ const address=isOrder&&bill.delivery_address?`<div class="bill-address"><span>Deliver to</span><p>${esc(bill.delivery_address)}</p></div>`:'';
  return `<article class="bill-paper" id="bill-print">
-  <header class="bill-head"><b class="bill-name">${esc(r.name)}</b>${r.address?`<div>${esc(r.address)}</div>`:''}${r.phone?`<div>Ph: ${esc(r.phone)}</div>`:''}${r.gstin?`<div>GSTIN: ${esc(r.gstin)}</div>`:''}</header>
-  <div class="bill-meta"><div><b>${bill.table_no?`Table ${esc(bill.table_no)}`:'Takeaway'}</b> · Bill #${esc(bill.id)}</div><div>${esc(dateText(bill.opened_at))}</div>${tokens?`<div>Tokens: ${esc(tokens)}</div>`:''}</div>
-  <table class="bill-table"><thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Rate</th><th class="num">Amt</th></tr></thead><tbody>${rows||'<tr><td colspan="4">No items on this bill</td></tr>'}</tbody></table>
-  <div class="bill-totals"><div><span>Subtotal</span><span>${money(bill.subtotal)}</span></div>${bill.tax>0?`<div><span>Tax (${esc(bill.tax_percent)}%)</span><span>${money(bill.tax)}</span></div>`:''}<div class="bill-grand"><span>TOTAL</span><span>${money(bill.total)}</span></div></div>
-  <p class="bill-foot">${open?'Draft bill. Final once the table is closed.':`Paid and closed ${esc(dateText(bill.closed_at))}`}</p>
-  <p class="bill-foot">Thank you. Please visit again.</p>
+  <header class="bill-head"><div class="bill-brand">${esc(r.name)}</div>${r.address?`<div class="bill-sub">${esc(r.address)}</div>`:''}${r.phone?`<div class="bill-sub">Ph: ${esc(r.phone)}</div>`:''}${r.gstin?`<div class="bill-sub">GSTIN: ${esc(r.gstin)}</div>`:''}</header>
+  <div class="bill-rule"></div>
+  <section class="bill-info">${info.map(row).join('')}${address}</section>
+  <div class="bill-rule"></div>
+  <table class="bill-table"><colgroup><col class="c-item"><col class="c-qty"><col class="c-rate"><col class="c-amt"></colgroup><thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Rate</th><th class="num">Amount</th></tr></thead><tbody>${items||'<tr><td colspan="4">No items on this bill</td></tr>'}</tbody></table>
+  <div class="bill-rule"></div>
+  <div class="bill-totals"><div><span>Items</span><span>${qty}</span></div><div><span>Subtotal</span><span>${money(bill.subtotal)}</span></div>${bill.tax>0?`<div><span>Tax (${esc(bill.tax_percent)}%)</span><span>${money(bill.tax)}</span></div>`:''}<div class="bill-grand"><span>TOTAL</span><span>${money(bill.total)}</span></div></div>
+  <div class="bill-rule"></div>
+  <p class="bill-foot">${isOrder?'Order bill':(open?'Draft bill. Final once the table is closed.':`Paid and closed ${esc(dateText(bill.closed_at))}`)}</p>
+  <p class="bill-foot strong">Thank you. Please visit again.</p>
  </article>`;
 }
 async function ownerBill(id){
@@ -202,35 +214,86 @@ function showOrderConfirmation(res,d){
  wrap.querySelector('#conf-copy').onclick=async()=>{try{await navigator.clipboard.writeText(text);toast('Message copied')}catch(e){const box=wrap.querySelector('#conf-text');box.focus();box.select();toast('Select the message and copy it')}};
 }
 
-// ---- WhatsApp menu ----
-// Plain-text menu for WhatsApp: available dishes only, grouped by category, with veg/non-veg marks and prices.
-function menuWhatsAppText(menu,r){
- const live=menu.items.filter(i=>Number(i.available)===1);
- const sections=menu.categories.map(c=>({name:c.name,items:live.filter(i=>String(i.category_id)===String(c.id))}));
- const loose=live.filter(i=>!menu.categories.some(c=>String(c.id)===String(i.category_id)));
- if(loose.length)sections.push({name:'More',items:loose});
- const out=[`*${r.name}* · Menu`,''];
- for(const sec of sections){
-  if(!sec.items.length)continue;
-  out.push(`*${sec.name}*`);
-  for(const it of sec.items)out.push(`${FOOD_MARK[it.food_type]||'•'} ${it.name} — ${priceText(it)}`);
-  out.push('');
- }
- out.push(`Order here: ${posterMenuUrl(r)}`);
- return out.join('\n');
-}
-async function shareMenuForWhatsApp(){
- const [settings,menu]=await Promise.all([api('owner/settings'),api('owner/menu')]);
- const text=menuWhatsAppText(menu,settings.restaurant);
- if(navigator.share){try{await navigator.share({title:`${settings.restaurant.name} menu`,text});return}catch(e){if(e.name==='AbortError')return}}
- try{await navigator.clipboard.writeText(text);toast('Menu copied. Paste it into your WhatsApp chat.')}
- catch(e){showCopyBox(text)}
-}
-function showCopyBox(text){
+// ---- One order's bill (from its token), from the order card or the new-order prompt ----
+async function openOrderBill(id,autoPrint=false){
+ const {bill}=await api('owner/order/bill','GET',{id});
  const wrap=document.createElement('div');wrap.className='modal-wrap';
- wrap.innerHTML=`<div class="modal" style="max-width:600px"><div class="row between"><h2 class="serif">Copy menu</h2><button class="icon-btn" id="copy-close" type="button" aria-label="Close">×</button></div><p class="caption mt10">Select all the text below, copy it and paste it into your WhatsApp chat.</p><textarea id="copy-text" class="mt10" rows="14" readonly>${esc(text)}</textarea></div>`;
+ wrap.innerHTML=`<div class="modal" style="max-width:460px;max-height:92vh;overflow:auto" role="dialog" aria-modal="true" aria-label="Order bill">
+  <div class="row between"><h2 class="serif">Token #${esc(bill.token_no)} bill</h2><button class="icon-btn" id="ob-close" type="button" aria-label="Close">×</button></div>
+  <div class="row wrap mt10 bill-toolbar no-print"><label class="field bill-paper-select"><span>Paper</span><select id="ob-paper" class="input">${opts([['thermal','Thermal 80mm'],['a4','A4 page']],S.billPaper||'thermal')}</select></label><button class="btn" id="ob-print" type="button">🖨 Print bill</button></div>
+  <div class="bill-wrap mt10">${billHtml(bill)}</div>
+ </div>`;
  document.body.append(wrap);
- wrap.querySelector('#copy-close').onclick=()=>wrap.remove();
- wrap.onclick=e=>{if(e.target===wrap)wrap.remove()};
- const box=wrap.querySelector('#copy-text');box.focus();box.select();
+ const close=()=>wrap.remove();
+ wrap.querySelector('#ob-close').onclick=close;
+ wrap.onclick=e=>{if(e.target===wrap)close()};
+ wrap.querySelector('#ob-paper').onchange=e=>{S.billPaper=e.target.value};
+ wrap.querySelector('#ob-print').onclick=()=>printBill();
+ if(autoPrint)setTimeout(printBill,150);
+}
+
+// ---- New-order watch: any owner tab, every 10 seconds, asks "Print the bill now?" for each new order ----
+// ---- Voice alerts: the browser speaks each new order (Chrome needs one click on the page first; the toggle is that click) ----
+function loadVoicePref(){try{return localStorage.getItem('rq_voice')==='1'}catch(e){return false}}
+function orderVoiceText(o){
+ const token=o.token_no?` Token ${o.token_no}.`:'';
+ const kind=o.fulfilment==='delivery'?'Home delivery':o.fulfilment==='takeaway'?'Takeaway':'';
+ if(+o.table_no)return `New order placed. Table ${o.table_no}.${token}`;
+ if(o.source==='whatsapp')return `New order placed from WhatsApp${kind?`. ${kind}`:''}.${token}`;
+ return `New order placed${kind?`. ${kind}`:''}.${token}`;
+}
+// Three chimes (about 3 seconds) for each batch of new orders. Plays only when sound is enabled on this dashboard.
+function ringNewOrder(){if(!S.sound)return;[0,1100,2200].forEach(t=>setTimeout(()=>{if(typeof chime==='function')chime()},t))}
+function speakText(text){
+ if(!('speechSynthesis' in window))return;
+ try{
+  const u=new SpeechSynthesisUtterance(text);
+  const voices=speechSynthesis.getVoices();const v=voices.find(x=>/^en[-_]IN/i.test(x.lang))||voices.find(x=>/^en/i.test(x.lang));
+  if(v)u.voice=v;
+  u.lang=v?v.lang:'en-IN';u.rate=0.95;u.volume=1;
+  speechSynthesis.speak(u);
+ }catch(e){console.warn(e)}
+}
+function speakOrder(o){if(S.voice)speakText(orderVoiceText(o))}
+function toggleVoice(){
+ S.voice=!S.voice;
+ try{localStorage.setItem('rq_voice',S.voice?'1':'0')}catch(e){}
+ if(S.voice)speakText('Voice alerts are on. You will hear each new order.');
+ else if('speechSynthesis' in window)speechSynthesis.cancel();
+ return S.voice;
+}
+function startOrderWatch(){if(S.voice===undefined)S.voice=loadVoicePref();clearInterval(S.orderWatch);S.watch={outlet:null,previous:new Set(),primed:false};S.orderWatch=setInterval(()=>checkNewOrders().catch(e=>console.warn(e)),10e3)}
+async function checkNewOrders(){
+ if(!S.actor||!['owner','staff'].includes(S.actor.role)||document.visibilityState!=='visible')return;
+ const outlet=S.actor.active_restaurant_id,w=S.watch;
+ if(!w)return;
+ if(w.outlet!==outlet){w.outlet=outlet;w.previous=new Set();w.primed=false}
+ const {orders}=await api('owner/orders','GET',{range:'live'});
+ if(S.watch!==w||S.actor?.active_restaurant_id!==outlet)return;
+ const fresh=orders.filter(o=>o.status==='new'&&!w.previous.has(o.id));
+ w.previous=new Set(orders.map(o=>o.id));
+ // The first check after sign-in only learns what is already open; it never asks about old orders.
+ if(!w.primed){w.primed=true;return}
+ if(fresh.length)ringNewOrder();
+ for(const o of fresh){speakOrder(o);askPrintBill(o)}
+}
+const printAskQueue=[];let printAskOpen=false;
+function askPrintBill(o){printAskQueue.push(o);if(!printAskOpen)nextPrintAsk()}
+function nextPrintAsk(){
+ const o=printAskQueue.shift();
+ if(!o){printAskOpen=false;return}
+ printAskOpen=true;
+ const wrap=document.createElement('div');wrap.className='modal-wrap';
+ wrap.innerHTML=`<div class="modal" style="max-width:460px" role="alertdialog" aria-modal="true" aria-labelledby="ask-title">
+  <div class="eyebrow">New order</div><h2 id="ask-title" class="serif mt10">Token #${esc(o.token_no)} · ${esc(fulfilLabel(o))}</h2>
+  <p class="small mt10">${o.items.map(it=>`${Number(it.quantity)} × ${esc(it.dish_name)}`).join('<br>')}</p>
+  <p class="small mt10"><b>${money(o.total)}</b>${o.customer_name?` · ${esc(o.customer_name)}`:''}</p>
+  <p class="bold mt20">Print the bill now?</p>
+  <div class="row wrap mt10"><button class="btn" id="ask-yes" type="button">Yes, print bill</button><button class="btn ghost" id="ask-no" type="button">No</button></div>
+ </div>`;
+ document.body.append(wrap);
+ const done=()=>{wrap.remove();nextPrintAsk()};
+ wrap.querySelector('#ask-yes').onclick=()=>{run(()=>openOrderBill(o.id,true));done()};
+ wrap.querySelector('#ask-no').onclick=done;
+ wrap.onclick=e=>{if(e.target===wrap)done()};
 }

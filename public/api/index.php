@@ -150,9 +150,12 @@ try {
  if($route==='public/order'){
   mutation();$b=body();$slug=val($b['slug']??'',90);$r=one('SELECT * FROM restaurants WHERE slug=? AND deleted_at IS NULL',[$slug]);if(!$r)fail('Restaurant unavailable',404);
   if(!statusActive($r))fail('Online ordering is currently paused',403);
+  // WhatsApp-order mode (link from the restaurant's WhatsApp): takeaway or delivery, with the customer's own details.
+  $channel=val($b['channel']??'',10)==='whatsapp';$fulfil=val($b['fulfilment']??'',10);
+  if($channel&&!in_array($fulfil,['takeaway','delivery'],true))fail('Choose takeaway or home delivery');
   $counter=$r['qr_mode']==='counter';
-  $table=$counter?0:(int)($b['table_no']??0);if(!$counter&&($table<1||$table>(int)$r['table_count']))fail('Please select a valid table number');
-  if($r['qr_mode']==='table'){$expected=(int)($b['qr_table']??0);if($expected!==$table)fail('Table does not match the scanned QR');}
+  $table=($counter||$channel)?0:(int)($b['table_no']??0);if(!$counter&&!$channel&&($table<1||$table>(int)$r['table_count']))fail('Please select a valid table number');
+  if(!$channel&&$r['qr_mode']==='table'){$expected=(int)($b['qr_table']??0);if($expected!==$table)fail('Table does not match the scanned QR');}
   $token=val($b['client_request_id']??'',80);if(!preg_match('/^[a-zA-Z0-9-]{16,80}$/D',$token))fail('Invalid order request');
   $existing=one('SELECT id,tracking_key,table_no,token_no,token_day,total,status FROM orders WHERE restaurant_id=? AND client_request_id=?',[$r['id'],$token]);
   if($existing)respond(['order'=>$existing,'duplicate'=>true]);
@@ -168,9 +171,20 @@ try {
   if($phoneMode==='required'&&$phone==='')fail('Please enter your mobile number');
   if($phone!==''&&!preg_match('/^[6-9]\d{9}$/',$phone))fail('Enter a valid 10-digit mobile number, or leave it empty');
   $customerPhone=$phone===''?null:$phone;
+  $source='qr';$fulfilmentType=$table>0?'dine_in':'takeaway';$addressStore=null;
+  if($channel){
+   // WhatsApp orders always carry the customer's name, mobile and (for delivery) a full address.
+   $customerName=val($b['customer_name']??'',60);if(mb_strlen($customerName)<2)fail('Enter your name (at least 2 characters)');
+   $cphone=preg_replace('/\D+/','',val($b['customer_phone']??'',20));if(strlen($cphone)===12&&str_starts_with($cphone,'91'))$cphone=substr($cphone,2);
+   if(!preg_match('/^[6-9]\d{9}$/',$cphone))fail('Enter your 10-digit mobile number');
+   $customerPhone=$cphone;
+   if($fulfil==='delivery'){$address=val($b['delivery_address']??'',400);if(mb_strlen($address)<10)fail('Enter your full delivery address (at least 10 characters)');$addressStore=$address;}
+   // The order type decides takeaway/delivery; the link origin only sets the WhatsApp label.
+   $source=val($b['from']??'',10)==='whatsapp'?'whatsapp':'qr';$fulfilmentType=$fulfil;
+  }
   $note=val($b['note']??'',500);
   try {
-   $order=insertOrder($r,$table,$prepared,$total,['source'=>'qr','fulfilment'=>$table>0?'dine_in':'takeaway','delivery_address'=>null,'note'=>$note,'customer_name'=>$customerName,'customer_phone'=>$customerPhone,'client_request_id'=>$token,'ip_hash'=>iphash()]);
+   $order=insertOrder($r,$table,$prepared,$total,['source'=>$source,'fulfilment'=>$fulfilmentType,'delivery_address'=>$addressStore,'note'=>$note,'customer_name'=>$customerName,'customer_phone'=>$customerPhone,'client_request_id'=>$token,'ip_hash'=>iphash()]);
   } catch(PDOException $e){if($e->getCode()==='23000'){$existing=one('SELECT id,tracking_key,table_no,token_no,token_day,total,status FROM orders WHERE restaurant_id=? AND client_request_id=?',[$r['id'],$token]);if($existing)respond(['order'=>$existing,'duplicate'=>true]);}throw $e;}
   respond(['order'=>$order],201);
  }
@@ -324,6 +338,8 @@ try {
   elseif($range==='today'){$where.=' AND o.created_at>=CURDATE()';}
   elseif($range==='past'){$where.=' AND o.created_at>=DATE_SUB(NOW(), INTERVAL 60 DAY)';}
   else fail('Invalid order range');
+  // Online orders: those placed through the WhatsApp order link (or entered by staff as WhatsApp orders).
+  if(($_GET['channel']??'')==='online')$where.=' AND o.source="whatsapp"';
   $out=rows("SELECT o.id,o.restaurant_id,r.name AS restaurant_name,o.table_no,o.token_no,o.source,o.status,o.call_count,o.called_at,o.total,o.note,o.customer_name,o.customer_phone,o.delivery_address,o.fulfilment,o.token_day,r.slug AS restaurant_slug,o.created_at,o.updated_at FROM orders o JOIN restaurants r ON r.id=o.restaurant_id WHERE $where ORDER BY o.created_at DESC,o.id DESC LIMIT 250",$p);
   foreach($out as &$o)$o=orderRow($o);respond(['orders'=>$out]);
  }
