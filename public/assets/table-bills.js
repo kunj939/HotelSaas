@@ -266,7 +266,36 @@ async function openOrderBill(id,autoPrint=false){
 }
 
 // ---- New-order watch: any owner tab, every 10 seconds, asks "Print the bill now?" for each new order ----
-function startOrderWatch(){clearInterval(S.orderWatch);S.watch={outlet:null,previous:new Set(),primed:false};S.orderWatch=setInterval(()=>checkNewOrders().catch(e=>console.warn(e)),10e3)}
+// ---- Voice alerts: the browser speaks each new order (Chrome needs one click on the page first; the toggle is that click) ----
+function loadVoicePref(){try{return localStorage.getItem('rq_voice')==='1'}catch(e){return false}}
+function orderVoiceText(o){
+ const token=o.token_no?` टोकन ${o.token_no}.`:'';
+ const kind=o.fulfilment==='delivery'?'होम डिलीवरी':o.fulfilment==='takeaway'?'टेकअवे':'';
+ let from;
+ if(+o.table_no)from=`टेबल ${o.table_no} से`;
+ else if(o.source==='whatsapp')from='व्हाट्सऐप से'+(kind?`, ${kind}`:'');
+ else from=kind||'काउंटर';
+ return `नया ऑर्डर, ${from}.${token}`;
+}
+function speakText(text){
+ if(!('speechSynthesis' in window))return;
+ try{
+  const u=new SpeechSynthesisUtterance(text);
+  const voices=speechSynthesis.getVoices();const v=voices.find(x=>/^hi[-_]IN/i.test(x.lang))||voices.find(x=>/^en[-_]IN/i.test(x.lang))||voices.find(x=>/^en/i.test(x.lang));
+  if(v)u.voice=v;
+  u.lang=v?v.lang:'hi-IN';u.rate=0.95;u.volume=1;
+  speechSynthesis.speak(u);
+ }catch(e){console.warn(e)}
+}
+function speakOrder(o){if(S.voice)speakText(orderVoiceText(o))}
+function toggleVoice(){
+ S.voice=!S.voice;
+ try{localStorage.setItem('rq_voice',S.voice?'1':'0')}catch(e){}
+ if(S.voice)speakText('वॉइस अलर्ट चालू है। हर नया ऑर्डर बताया जाएगा।');
+ else if('speechSynthesis' in window)speechSynthesis.cancel();
+ return S.voice;
+}
+function startOrderWatch(){if(S.voice===undefined)S.voice=loadVoicePref();clearInterval(S.orderWatch);S.watch={outlet:null,previous:new Set(),primed:false};S.orderWatch=setInterval(()=>checkNewOrders().catch(e=>console.warn(e)),10e3)}
 async function checkNewOrders(){
  if(!S.actor||!['owner','staff'].includes(S.actor.role)||document.visibilityState!=='visible')return;
  const outlet=S.actor.active_restaurant_id,w=S.watch;
@@ -278,7 +307,7 @@ async function checkNewOrders(){
  w.previous=new Set(orders.map(o=>o.id));
  // The first check after sign-in only learns what is already open; it never asks about old orders.
  if(!w.primed){w.primed=true;return}
- for(const o of fresh)askPrintBill(o);
+ for(const o of fresh){speakOrder(o);askPrintBill(o)}
 }
 const printAskQueue=[];let printAskOpen=false;
 function askPrintBill(o){printAskQueue.push(o);if(!printAskOpen)nextPrintAsk()}

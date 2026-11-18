@@ -66,5 +66,6 @@ assert 'Send token & tracking link to customer' not in bills
 assert "data-order-bill" in app and 'startOrderWatch();' in app and 'clearInterval(S.orderWatch)' in app
 assert 'function openOrderBill(' in bills and 'function checkNewOrders(' in bills and 'Print the bill now?' in bills
 assert 'Order online (takeaway / delivery): ' in bills and 'onlineLanding(' in app and 'data-order-channel' in app and 'modeTabs' not in app
+assert 'speechSynthesis' in bills and 'speakOrder(o)' in bills and 'voice-toggle' in app
 
 print('PASS: table bill and delivery schema, migrations, owner routes, tracking links and dashboard wiring')

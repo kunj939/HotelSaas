@@ -6,8 +6,8 @@ const code=fs.readFileSync(path.join(__dirname,'..','public','assets','table-bil
 // table-bills.js uses helpers from app.js; stub only what the pure functions call.
 const sandbox={money:n=>'₹'+Number(n||0).toLocaleString('en-IN',{maximumFractionDigits:2,minimumFractionDigits:0}),posterMenuUrl:r=>'https://tablebloom.example/r/'+r.slug,trackingLink:(r,token,day)=>'https://tablebloom.example/r/'+r.slug+'?track='+token+'&day='+day,esc:x=>String(x??''),dateText:s=>String(s||'')};
 vm.createContext(sandbox);
-vm.runInContext(code+'\n;this.exported={menuWhatsAppText,lineAmount,fulfilLabel,whatsappLink,confirmationMessage,billHtml};',sandbox);
-const {menuWhatsAppText,lineAmount,fulfilLabel,whatsappLink,confirmationMessage,billHtml}=sandbox.exported;
+vm.runInContext(code+'\n;this.exported={menuWhatsAppText,lineAmount,fulfilLabel,whatsappLink,confirmationMessage,billHtml,orderVoiceText};',sandbox);
+const {menuWhatsAppText,lineAmount,fulfilLabel,whatsappLink,confirmationMessage,billHtml,orderVoiceText}=sandbox.exported;
 
 // Line amounts: the selected size plus chosen extras, times quantity.
 assert.equal(lineAmount({item:{base_price:100,options:[{name:'Half',price:60},{name:'Full',price:110}],addons:[{name:'Cheese',price:20},{name:'Butter',price:10}]},variant:'Full',addons:new Set(['Cheese']),qty:2}),260);
@@ -70,4 +70,10 @@ assert.match(orderBill,/Order bill/);
 assert.doesNotMatch(orderBill,/Tokens:/);
 assert.match(orderBill,/TOTAL/);
 
-console.log('PASS: table bill line amounts, WhatsApp menu text, order labels, WhatsApp links, order messages and order bills');
+// Voice alerts: short sentences that say where the order came from and its token.
+assert.equal(orderVoiceText({source:'whatsapp',fulfilment:'delivery',table_no:0,token_no:12}),'नया ऑर्डर, व्हाट्सऐप से, होम डिलीवरी. टोकन 12.');
+assert.equal(orderVoiceText({source:'qr',fulfilment:'dine_in',table_no:8,token_no:12}),'नया ऑर्डर, टेबल 8 से. टोकन 12.');
+assert.equal(orderVoiceText({source:'qr',fulfilment:'takeaway',table_no:0,token_no:3}),'नया ऑर्डर, टेकअवे. टोकन 3.');
+assert.equal(orderVoiceText({source:'qr',fulfilment:'takeaway',table_no:0,token_no:null}),'नया ऑर्डर, टेकअवे.');
+
+console.log('PASS: table bill line amounts, WhatsApp menu text, order labels, WhatsApp links, order messages, order bills and voice alerts');
