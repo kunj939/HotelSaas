@@ -58,17 +58,29 @@ async function ownerTables(){
 }
 
 // ---- Printable bill ----
+// Bill layout for table bills and single-order bills. Fixed columns, clear sections, print-friendly.
 function billHtml(bill){
- const r=bill.restaurant,open=bill.status==='open';
- const rows=bill.lines.map(l=>`<tr><td>${esc(l.name)}${l.extras.length?`<div class="bill-extra">+ ${l.extras.map(x=>esc(x)).join(', ')}</div>`:''}</td><td class="num">${Number(l.quantity)}</td><td class="num">${money(l.unit)}</td><td class="num">${money(l.amount)}</td></tr>`).join('');
+ const r=bill.restaurant,open=bill.status==='open',isOrder=bill.kind==='order';
+ const qty=bill.lines.reduce((n,l)=>n+Number(l.quantity),0);
+ const mobile=d=>{const x=String(d||'').replace(/\D/g,'').slice(-10);return x.length===10?`+91 ${x.slice(0,5)} ${x.slice(5)}`:esc(d)};
+ const items=bill.lines.map(l=>`<tr><td><div class="bill-name">${esc(l.name)}</div>${l.extras.length?`<div class="bill-extra">+ ${l.extras.map(x=>esc(x)).join(', ')}</div>`:''}</td><td class="num">${Number(l.quantity)}</td><td class="num">${money(l.unit)}</td><td class="num">${money(l.amount)}</td></tr>`).join('');
  const tokens=bill.orders.filter(o=>o.status!=='rejected').map(o=>`#${o.token_no}`).join(', ');
+ const info=isOrder
+  ? [['Token',`<b class="bill-token">#${esc(bill.token_no)}</b>`],['Type',esc(fulfilLabel(bill))],['Order',`#${esc(bill.id)}`],['Date',esc(dateText(bill.opened_at))],...(bill.customer_name?[['Name',esc(bill.customer_name)]]:[]),...(bill.customer_phone?[['Mobile',mobile(bill.customer_phone)]]:[])]
+  : [['Table',bill.table_no?esc(bill.table_no):'Takeaway'],['Bill',`#${esc(bill.id)}`],['Date',esc(dateText(bill.opened_at))],...(tokens?[['Tokens',esc(tokens)]]:[])];
+ const row=([k,v])=>`<div class="bill-row"><span>${k}</span><span>${v}</span></div>`;
+ const address=isOrder&&bill.delivery_address?`<div class="bill-address"><span>Deliver to</span><p>${esc(bill.delivery_address)}</p></div>`:'';
  return `<article class="bill-paper" id="bill-print">
-  <header class="bill-head"><b class="bill-name">${esc(r.name)}</b>${r.address?`<div>${esc(r.address)}</div>`:''}${r.phone?`<div>Ph: ${esc(r.phone)}</div>`:''}${r.gstin?`<div>GSTIN: ${esc(r.gstin)}</div>`:''}</header>
-  ${bill.kind==='order'?`<div class="bill-meta"><div><b>Token #${esc(bill.token_no)}</b> · ${esc(fulfilLabel(bill))}</div><div>Order #${esc(bill.id)} · ${esc(dateText(bill.opened_at))}</div>${bill.customer_name?`<div>${esc(bill.customer_name)}</div>`:''}${bill.customer_phone?`<div>Mobile: ${esc(bill.customer_phone)}</div>`:''}${bill.delivery_address?`<div>Deliver to: ${esc(bill.delivery_address)}</div>`:''}</div>`:`<div class="bill-meta"><div><b>${bill.table_no?`Table ${esc(bill.table_no)}`:'Takeaway'}</b> · Bill #${esc(bill.id)}</div><div>${esc(dateText(bill.opened_at))}</div>${tokens?`<div>Tokens: ${esc(tokens)}</div>`:''}</div>`}
-  <table class="bill-table"><thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Rate</th><th class="num">Amt</th></tr></thead><tbody>${rows||'<tr><td colspan="4">No items on this bill</td></tr>'}</tbody></table>
-  <div class="bill-totals"><div><span>Subtotal</span><span>${money(bill.subtotal)}</span></div>${bill.tax>0?`<div><span>Tax (${esc(bill.tax_percent)}%)</span><span>${money(bill.tax)}</span></div>`:''}<div class="bill-grand"><span>TOTAL</span><span>${money(bill.total)}</span></div></div>
-  <p class="bill-foot">${bill.kind==='order'?'Order bill':(open?'Draft bill. Final once the table is closed.':`Paid and closed ${esc(dateText(bill.closed_at))}`)}</p>
-  <p class="bill-foot">Thank you. Please visit again.</p>
+  <header class="bill-head"><div class="bill-brand">${esc(r.name)}</div>${r.address?`<div class="bill-sub">${esc(r.address)}</div>`:''}${r.phone?`<div class="bill-sub">Ph: ${esc(r.phone)}</div>`:''}${r.gstin?`<div class="bill-sub">GSTIN: ${esc(r.gstin)}</div>`:''}</header>
+  <div class="bill-rule"></div>
+  <section class="bill-info">${info.map(row).join('')}${address}</section>
+  <div class="bill-rule"></div>
+  <table class="bill-table"><colgroup><col class="c-item"><col class="c-qty"><col class="c-rate"><col class="c-amt"></colgroup><thead><tr><th>Item</th><th class="num">Qty</th><th class="num">Rate</th><th class="num">Amount</th></tr></thead><tbody>${items||'<tr><td colspan="4">No items on this bill</td></tr>'}</tbody></table>
+  <div class="bill-rule"></div>
+  <div class="bill-totals"><div><span>Items</span><span>${qty}</span></div><div><span>Subtotal</span><span>${money(bill.subtotal)}</span></div>${bill.tax>0?`<div><span>Tax (${esc(bill.tax_percent)}%)</span><span>${money(bill.tax)}</span></div>`:''}<div class="bill-grand"><span>TOTAL</span><span>${money(bill.total)}</span></div></div>
+  <div class="bill-rule"></div>
+  <p class="bill-foot">${isOrder?'Order bill':(open?'Draft bill. Final once the table is closed.':`Paid and closed ${esc(dateText(bill.closed_at))}`)}</p>
+  <p class="bill-foot strong">Thank you. Please visit again.</p>
  </article>`;
 }
 async function ownerBill(id){
@@ -281,7 +293,6 @@ function nextPrintAsk(){
   <p class="small mt10"><b>${money(o.total)}</b>${o.customer_name?` · ${esc(o.customer_name)}`:''}</p>
   <p class="bold mt20">Print the bill now?</p>
   <div class="row wrap mt10"><button class="btn" id="ask-yes" type="button">Yes, print bill</button><button class="btn ghost" id="ask-no" type="button">No</button></div>
-  ${orderSendLink(o)?`<a class="btn outline full mt10" id="ask-send" target="_blank" rel="noopener" href="${esc(orderSendLink(o))}">💬 Send token & tracking link to customer</a>`:''}
  </div>`;
  document.body.append(wrap);
  const done=()=>{wrap.remove();nextPrintAsk()};

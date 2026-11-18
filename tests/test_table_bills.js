@@ -63,9 +63,9 @@ assert.match(confirmationMessage({restaurant:'Kaku',token:8,fulfilment:'takeaway
 
 // Order bill (from a token): shows the token, customer and delivery details, and no table-bill footer.
 const orderBill=billHtml({kind:'order',id:16,token_no:24,fulfilment:'delivery',table_no:0,status:'new',opened_at:'2026-11-18 19:09:00',customer_name:'Rahul',customer_phone:'9053573091',delivery_address:'Flat 4B, DLF Phase 3',restaurant:{name:'Kaku',address:'U Block',phone:'',gstin:null},lines:[{name:'Lassi',extras:[],unit:80,quantity:2,amount:160}],orders:[{id:16,token_no:24,status:'new'}],subtotal:160,tax_percent:0,tax:0,total:160});
-assert.match(orderBill,/Token #24/);
-assert.match(orderBill,/Deliver to: Flat 4B, DLF Phase 3/);
-assert.match(orderBill,/Mobile: 9053573091/);
+assert.match(orderBill,/Token<\/span><span><b class="bill-token">#24<\/b>/);
+assert.match(orderBill,/Deliver to<\/span><p>Flat 4B, DLF Phase 3<\/p>/);
+assert.match(orderBill,/\+91 90535 73091/);
 assert.match(orderBill,/Order bill/);
 assert.doesNotMatch(orderBill,/Tokens:/);
 assert.match(orderBill,/TOTAL/);
