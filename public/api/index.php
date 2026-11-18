@@ -74,6 +74,53 @@ function jsonOptions($arr,int $max=15):string {
  return json_encode($out,JSON_UNESCAPED_UNICODE);
 }
 function iphash():string {global $c;return hash_hmac('sha256',$_SERVER['REMOTE_ADDR']??'unknown',$c['app_secret']);}
+// Staff-entered orders (WhatsApp, phone, walk-in) use their own hash so they never count toward a guest's rate limit.
+function staffHash():string {global $c;return hash_hmac('sha256','staff-entry',$c['app_secret']);}
+// Validates a cart against server-side prices. Guest QR orders and staff-entered orders both use this, so totals cannot be spoofed.
+function priceCart(array $r,$lines):array {
+ if(!is_array($lines)||count($lines)<1||count($lines)>30)fail('Cart must have 1–30 items');
+ $prepared=[];$total=0;
+ foreach($lines as $l){
+  if(!is_array($l))fail('Invalid cart');$itemId=(int)($l['item_id']??0);$qty=(int)($l['quantity']??0);
+  if($qty<1||$qty>20)fail('Quantity must be 1–20');
+  $m=one('SELECT * FROM menu_items WHERE id=? AND restaurant_id=? AND available=1 AND deleted_at IS NULL',[$itemId,$r['id']]);if(!$m)fail('An item is no longer available. Please review cart.');
+  $opts=json_decode($m['options_json']??'[]',true)?:[];$addons=json_decode($m['addons_json']??'[]',true)?:[];
+  $variant=val($l['variant']??'',80);$unit=(float)$m['base_price'];
+  if($opts){$found=false;foreach($opts as $o){if($o['name']===$variant){$unit=(float)$o['price'];$found=true;break;}}if(!$found)fail('Select a valid size for '.$m['name']);}
+  else {$variant='';}
+  $selected=$l['addons']??[];if(!is_array($selected)||count($selected)>10)fail('Invalid extras');$checked=[];
+  foreach(array_unique($selected) as $extra){$match=null;foreach($addons as $ad)if($ad['name']===$extra){$match=$ad;break;}if(!$match)fail('Invalid extra for '.$m['name']);$unit+=(float)$match['price'];$checked[]=$match;}
+  $line=round($unit*$qty,2);$total+=$line;
+  $prepared[]=['item_id'=>$itemId,'name'=>$m['name'],'variant'=>$variant,'addons'=>$checked,'quantity'=>$qty,'unit'=>round($unit,2),'line'=>$line];
+ }
+ if($total<=0||$total>100000)fail('Invalid order amount');
+ return [$prepared,round($total,2)];
+}
+// The restaurant's open bill for a table. The row lock stops a bill closing while an order is being added to it.
+function openTableSession(int $rid,int $table):int {
+ for($try=0;$try<2;$try++){
+  execq('INSERT INTO table_sessions(restaurant_id,table_no) VALUES(?,?) ON DUPLICATE KEY UPDATE id=LAST_INSERT_ID(id)',[$rid,$table]);
+  $id=(int)db()->lastInsertId();
+  if(one('SELECT id FROM table_sessions WHERE id=? AND status="open" FOR UPDATE',[$id]))return $id;
+ }
+ throw new RuntimeException('Table bill changed while placing the order. Please retry.');
+}
+// Saves an order, its lines and the next daily token in one transaction. Callers handle duplicate requests.
+function insertOrder(array $r,int $table,array $prepared,float $total,array $meta):array {
+ $track=bin2hex(random_bytes(32));$day=date('Y-m-d');
+ db()->beginTransaction();
+ try{
+  $sessionId=$table>0?openTableSession((int)$r['id'],$table):null;
+  // Daily token: 1, 2, 3… per restaurant, restarting each day. The counter row lock keeps numbers unique under load.
+  execq('INSERT INTO token_counters(restaurant_id,day,last_no) VALUES(?,?,LAST_INSERT_ID(1)) ON DUPLICATE KEY UPDATE last_no=LAST_INSERT_ID(last_no+1)',[$r['id'],$day]);
+  $tokenNo=(int)one('SELECT LAST_INSERT_ID() AS n')['n'];
+  execq('INSERT INTO orders(restaurant_id,table_no,table_session_id,source,fulfilment,token_no,token_day,total,note,customer_name,customer_phone,delivery_address,client_request_id,tracking_key,ip_hash) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[$r['id'],$table,$sessionId,$meta['source'],$meta['fulfilment'],$tokenNo,$day,round($total,2),$meta['note'],$meta['customer_name'],$meta['customer_phone'],$meta['delivery_address'],$meta['client_request_id'],$track,$meta['ip_hash']]);
+  $oid=(int)db()->lastInsertId();
+  foreach($prepared as $p)execq('INSERT INTO order_items(order_id,item_id,dish_name,variant_name,addons_json,quantity,unit_price,line_total) VALUES(?,?,?,?,?,?,?,?)',[$oid,$p['item_id'],$p['name'],$p['variant'],json_encode($p['addons'],JSON_UNESCAPED_UNICODE),$p['quantity'],$p['unit'],$p['line']]);
+  db()->commit();
+ }catch(Throwable $e){if(db()->inTransaction())db()->rollBack();throw $e;}
+ return ['id'=>$oid,'tracking_key'=>$track,'table_no'=>$table,'token_no'=>$tokenNo,'token_day'=>$day,'status'=>'new','total'=>round($total,2)];
+}
 try {
  $route=trim((string)($_GET['route']??'bootstrap'),'/');
  if($route==='bootstrap')respond(['actor'=>actorInfo(),'csrf'=>$_SESSION['csrf'],'app_url'=>$c['app_url']]);
@@ -109,25 +156,10 @@ try {
   $token=val($b['client_request_id']??'',80);if(!preg_match('/^[a-zA-Z0-9-]{16,80}$/D',$token))fail('Invalid order request');
   $existing=one('SELECT id,tracking_key,table_no,token_no,token_day,total,status FROM orders WHERE restaurant_id=? AND client_request_id=?',[$r['id'],$token]);
   if($existing)respond(['order'=>$existing,'duplicate'=>true]);
-  $lines=$b['items']??[];if(!is_array($lines)||count($lines)<1||count($lines)>30)fail('Cart must have 1–30 items');
   $recent=one('SELECT COUNT(*) AS n FROM orders WHERE restaurant_id=? AND ip_hash=? AND created_at>DATE_SUB(NOW(),INTERVAL 10 MINUTE)',[$r['id'],iphash()]);
   // Guests on the restaurant's Wi-Fi share one IP, so the limit is per restaurant and generous; it only stops scripted floods.
   if((int)$recent['n']>=30)fail('Too many recent orders. Please ask restaurant staff for help.',429);
-  $prepared=[];$total=0;
-  foreach($lines as $l){
-   if(!is_array($l))fail('Invalid cart');$itemId=(int)($l['item_id']??0);$qty=(int)($l['quantity']??0);
-   if($qty<1||$qty>20)fail('Quantity must be 1–20');
-   $m=one('SELECT * FROM menu_items WHERE id=? AND restaurant_id=? AND available=1 AND deleted_at IS NULL',[$itemId,$r['id']]);if(!$m)fail('An item is no longer available. Please review cart.');
-   $opts=json_decode($m['options_json']??'[]',true)?:[];$addons=json_decode($m['addons_json']??'[]',true)?:[];
-   $variant=val($l['variant']??'',80);$unit=(float)$m['base_price'];
-   if($opts){$found=false;foreach($opts as $o){if($o['name']===$variant){$unit=(float)$o['price'];$found=true;break;}}if(!$found)fail('Select a valid size for '.$m['name']);}
-   else {$variant='';}
-   $selected=$l['addons']??[];if(!is_array($selected)||count($selected)>10)fail('Invalid extras');$checked=[];
-   foreach(array_unique($selected) as $extra){$match=null;foreach($addons as $a)if($a['name']===$extra){$match=$a;break;}if(!$match)fail('Invalid extra for '.$m['name']);$unit+=(float)$match['price'];$checked[]=$match;}
-   $line=round($unit*$qty,2);$total+=$line;
-   $prepared[]=['item_id'=>$itemId,'name'=>$m['name'],'variant'=>$variant,'addons'=>$checked,'quantity'=>$qty,'unit'=>round($unit,2),'line'=>$line];
-  }
-  if($total<=0||$total>100000)fail('Invalid order amount');
+  [$prepared,$total]=priceCart($r,$b['items']??[]);
   $nameMode=$r['customer_name_mode'];$phoneMode=$r['customer_phone_mode'];
   $customerName=$nameMode==='off'?'':val($b['customer_name']??'',60);
   if(($nameMode==='required'||$customerName!=='')&&mb_strlen($customerName)<2)fail('Please enter a name of at least 2 characters');
@@ -136,19 +168,11 @@ try {
   if($phoneMode==='required'&&$phone==='')fail('Please enter your mobile number');
   if($phone!==''&&!preg_match('/^[6-9]\d{9}$/',$phone))fail('Enter a valid 10-digit mobile number, or leave it empty');
   $customerPhone=$phone===''?null:$phone;
-  $track=bin2hex(random_bytes(32));$note=val($b['note']??'',500);
+  $note=val($b['note']??'',500);
   try {
-   db()->beginTransaction();
-   // Daily token: 1, 2, 3… per restaurant, restarting each day. The counter row lock keeps numbers unique under load.
-   $day=date('Y-m-d');
-   execq('INSERT INTO token_counters(restaurant_id,day,last_no) VALUES(?,?,LAST_INSERT_ID(1)) ON DUPLICATE KEY UPDATE last_no=LAST_INSERT_ID(last_no+1)',[$r['id'],$day]);
-   $tokenNo=(int)one('SELECT LAST_INSERT_ID() AS n')['n'];
-   execq('INSERT INTO orders(restaurant_id,table_no,token_no,token_day,total,note,customer_name,customer_phone,client_request_id,tracking_key,ip_hash) VALUES(?,?,?,?,?,?,?,?,?,?,?)',[$r['id'],$table,$tokenNo,$day,round($total,2),$note,$customerName,$customerPhone,$token,$track,iphash()]);
-   $oid=(int)db()->lastInsertId();
-   foreach($prepared as $p)execq('INSERT INTO order_items(order_id,item_id,dish_name,variant_name,addons_json,quantity,unit_price,line_total) VALUES(?,?,?,?,?,?,?,?)',[$oid,$p['item_id'],$p['name'],$p['variant'],json_encode($p['addons'],JSON_UNESCAPED_UNICODE),$p['quantity'],$p['unit'],$p['line']]);
-   db()->commit();
-  } catch(PDOException $e){if(db()->inTransaction())db()->rollBack();if($e->getCode()==='23000'){$existing=one('SELECT id,tracking_key,table_no,token_no,token_day,total,status FROM orders WHERE restaurant_id=? AND client_request_id=?',[$r['id'],$token]);if($existing)respond(['order'=>$existing,'duplicate'=>true]);}throw $e;}
-  respond(['order'=>['id'=>$oid,'tracking_key'=>$track,'table_no'=>$table,'token_no'=>$tokenNo,'token_day'=>$day,'status'=>'new','total'=>round($total,2)]],201);
+   $order=insertOrder($r,$table,$prepared,$total,['source'=>'qr','fulfilment'=>$table>0?'dine_in':'takeaway','delivery_address'=>null,'note'=>$note,'customer_name'=>$customerName,'customer_phone'=>$customerPhone,'client_request_id'=>$token,'ip_hash'=>iphash()]);
+  } catch(PDOException $e){if($e->getCode()==='23000'){$existing=one('SELECT id,tracking_key,table_no,token_no,token_day,total,status FROM orders WHERE restaurant_id=? AND client_request_id=?',[$r['id'],$token]);if($existing)respond(['order'=>$existing,'duplicate'=>true]);}throw $e;}
+  respond(['order'=>$order],201);
  }
  if($route==='public/status'){
   $id=(int)($_GET['id']??0);$key=val($_GET['key']??'',64);
@@ -157,7 +181,9 @@ try {
  }
  require __DIR__.'/order_tracking.php';
  // All routes below require authentication.
- if(str_starts_with($route,'owner/')){$a=requireRole('owner','staff');$restaurantId=rid($a);}
+ if(str_starts_with($route,'owner/')){$a=requireRole('owner','staff');$restaurantId=rid($a);require __DIR__.'/owner_tables.php';}
+ // Dashboards ping while open, so an idle-but-open screen keeps its sign-in.
+ if($route==='owner/ping')respond(['ok'=>true]);
  if($route==='owner/outlets'){
   $home=one('SELECT id,name,monthly_fee FROM restaurants WHERE id=?',[(int)$a['restaurant_id']]);$count=$home?count(billingOutlets((int)$home['id'])):0;
   respond(['actor'=>actorInfo(),'pricing'=>['monthly_fee'=>(float)($home['monthly_fee']??PLAN_MONTHLY),'setup_fee'=>0,'included'=>OUTLETS_INCLUDED,'extra_outlet_fee'=>EXTRA_OUTLET_FEE,'outlet_count'=>$count,'next_outlet_fee'=>$count>=OUTLETS_INCLUDED?EXTRA_OUTLET_FEE:0,'billing_name'=>$home['name']??'your main restaurant']]);
@@ -298,7 +324,7 @@ try {
   elseif($range==='today'){$where.=' AND o.created_at>=CURDATE()';}
   elseif($range==='past'){$where.=' AND o.created_at>=DATE_SUB(NOW(), INTERVAL 60 DAY)';}
   else fail('Invalid order range');
-  $out=rows("SELECT o.id,o.restaurant_id,r.name AS restaurant_name,o.table_no,o.token_no,o.status,o.call_count,o.called_at,o.total,o.note,o.customer_name,o.customer_phone,o.created_at,o.updated_at FROM orders o JOIN restaurants r ON r.id=o.restaurant_id WHERE $where ORDER BY o.created_at DESC,o.id DESC LIMIT 250",$p);
+  $out=rows("SELECT o.id,o.restaurant_id,r.name AS restaurant_name,o.table_no,o.token_no,o.source,o.status,o.call_count,o.called_at,o.total,o.note,o.customer_name,o.customer_phone,o.delivery_address,o.fulfilment,o.token_day,r.slug AS restaurant_slug,o.created_at,o.updated_at FROM orders o JOIN restaurants r ON r.id=o.restaurant_id WHERE $where ORDER BY o.created_at DESC,o.id DESC LIMIT 250",$p);
   foreach($out as &$o)$o=orderRow($o);respond(['orders'=>$out]);
  }
  if($route==='owner/order/status'){
@@ -347,10 +373,12 @@ try {
   $contactEnabled=(int)!empty($b['contact_options_enabled']);
   if(($whatsapp!==''&&!preg_match('/^[1-9][0-9]{7,14}$/D',$whatsapp))||($contactEnabled&&!$whatsapp))fail('Enter a valid WhatsApp number with country code');
   $contactEmail=val($b['contact_email']??$r['contact_email'],190);if($contactEmail!==''&&!filter_var($contactEmail,FILTER_VALIDATE_EMAIL))fail('Enter a valid contact email');
+  $gstin=strtoupper(val($b['gstin']??$r['gstin']??'',15));if($gstin!==''&&!preg_match('/^[0-9A-Z]{15}$/D',$gstin))fail('GSTIN must be exactly 15 letters and numbers');
+  $taxPercent=num($b['tax_percent']??$r['tax_percent']??0,0,28);
   $logo=val($b['logo_url']??'',500);$cover=val($b['cover_url']??'',500);if(!imagePath($logo)||!imagePath($cover))fail('Invalid image URL');
-  execq('UPDATE restaurants SET name=?,tagline=?,welcome_message=?,logo_url=?,cover_url=?,primary_color=?,accent_color=?,theme_mode=?,menu_layout=?,phone=?,address=?,opening_hours=?,table_count=?,qr_mode=?,ordering_enabled=?,customer_name_mode=?,customer_phone_mode=?,whatsapp_number=?,contact_email=?,contact_options_enabled=? WHERE id=?',[
+  execq('UPDATE restaurants SET name=?,tagline=?,welcome_message=?,logo_url=?,cover_url=?,primary_color=?,accent_color=?,theme_mode=?,menu_layout=?,phone=?,address=?,opening_hours=?,table_count=?,qr_mode=?,ordering_enabled=?,customer_name_mode=?,customer_phone_mode=?,whatsapp_number=?,contact_email=?,contact_options_enabled=?,gstin=?,tax_percent=? WHERE id=?',[
    $name,val($b['tagline']??'',250),val($b['welcome_message']??'',500),$logo?:null,$cover?:null,
-   hexcolor($b['primary_color']??'','#186953'),hexcolor($b['accent_color']??'','#E4B866'),$theme,$layout,val($b['phone']??'',40),val($b['address']??'',400),val($b['opening_hours']??'',180),$tables,$mode,(int)!empty($b['ordering_enabled']),$nameMode,$phoneMode,$whatsapp?:null,$contactEmail?:null,$contactEnabled,$restaurantId]);
+   hexcolor($b['primary_color']??'','#186953'),hexcolor($b['accent_color']??'','#E4B866'),$theme,$layout,val($b['phone']??'',40),val($b['address']??'',400),val($b['opening_hours']??'',180),$tables,$mode,(int)!empty($b['ordering_enabled']),$nameMode,$phoneMode,$whatsapp?:null,$contactEmail?:null,$contactEnabled,$gstin?:null,$taxPercent,$restaurantId]);
   audit('settings.save',$restaurantId);respond(['ok'=>true]);
  }
  if($route==='owner/upload'){
@@ -473,6 +501,7 @@ try {
    'order_items'=>rows('SELECT oi.* FROM order_items oi JOIN orders o ON o.id=oi.order_id WHERE o.restaurant_id=? ORDER BY oi.id',[$id]),
    'subscription_payments'=>rows('SELECT * FROM subscription_payments WHERE restaurant_id=? ORDER BY id',[$id]),
    'payu_transactions'=>rows('SELECT * FROM payu_transactions WHERE restaurant_id=? ORDER BY id',[$id]),
+   'table_sessions'=>rows('SELECT * FROM table_sessions WHERE restaurant_id=? ORDER BY id',[$id]),
    'autopay_mandates'=>rows('SELECT * FROM autopay_mandates WHERE restaurant_id=? ORDER BY id',[$id])]);
  }
  if($route==='admin/restaurants/delete'){

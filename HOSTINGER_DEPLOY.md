@@ -22,6 +22,8 @@ Open phpMyAdmin for this database and import `database/schema.sql` (bundled insi
 
 **Limited admin accounts:** the first Super Admin → Admins → Add admin action installs the new `admin` role, username/session-version columns and `restaurant_onboardings` table. The database user needs ALTER/CREATE privileges for this one-time upgrade. With a full project checkout you can instead run `php tools/upgrade_admin_accounts.php`; rerunning it is safe. Existing email logins work before the upgrade. Token-based guest order recovery needs no schema change.
 
+**Table bills and staff orders:** run `database/migrations/2026-11-18_table_bills.sql` once in phpMyAdmin on an existing database (fresh installs already include it in `schema.sql`). Then run `database/migrations/2026-11-18_order_delivery.sql` once (dine-in, takeaway and delivery on orders). It adds the open-bill table, order source and bill settings columns. The database user needs ALTER privileges for this one-time step.
+
 ## 2. Upload files
 
 Unzip locally. Upload **the contents inside `public/`**, not the parent folder, to the target website's `public_html/`. The web root should contain `index.html`, `api/`, `assets/` and `uploads/`. Preserve `.htaccess` hidden files and the `uploads/` directory.

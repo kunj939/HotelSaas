@@ -15,6 +15,8 @@ CREATE TABLE IF NOT EXISTS restaurants (
  whatsapp_number VARCHAR(15) DEFAULT NULL,
  contact_email VARCHAR(190) DEFAULT NULL,
  contact_options_enabled TINYINT(1) NOT NULL DEFAULT 0,
+ gstin VARCHAR(15) DEFAULT NULL,
+ tax_percent DECIMAL(5,2) NOT NULL DEFAULT 0,
  address VARCHAR(400) DEFAULT NULL,
  opening_hours VARCHAR(180) DEFAULT NULL,
  table_count INT NOT NULL DEFAULT 20,
@@ -67,6 +69,24 @@ CREATE TABLE IF NOT EXISTS token_counters (
  CONSTRAINT fk_token_rest FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- One open bill per table at a time. open_flag is 1 only while open, so closed bills never clash.
+CREATE TABLE IF NOT EXISTS table_sessions (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ restaurant_id BIGINT UNSIGNED NOT NULL,
+ table_no INT NOT NULL,
+ status ENUM('open','closed') NOT NULL DEFAULT 'open',
+ open_flag TINYINT AS (IF(status='open',1,NULL)) STORED,
+ opened_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ closed_at DATETIME DEFAULT NULL,
+ closed_by BIGINT UNSIGNED DEFAULT NULL,
+ subtotal DECIMAL(12,2) DEFAULT NULL,
+ tax DECIMAL(12,2) DEFAULT NULL,
+ total DECIMAL(12,2) DEFAULT NULL,
+ UNIQUE KEY uq_open_table (restaurant_id,table_no,open_flag),
+ INDEX idx_session_rest (restaurant_id,status),
+ CONSTRAINT fk_session_rest FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- Which restaurants each owner/staff login can open (owners can have several outlets)
 CREATE TABLE IF NOT EXISTS restaurant_access (
  user_id BIGINT UNSIGNED NOT NULL,
@@ -115,15 +135,19 @@ CREATE TABLE IF NOT EXISTS orders (
  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
  restaurant_id BIGINT UNSIGNED NOT NULL,
  table_no INT NOT NULL,
+ table_session_id BIGINT UNSIGNED DEFAULT NULL,
  token_no INT UNSIGNED DEFAULT NULL,
  token_day DATE DEFAULT NULL,
  status ENUM('new','accepted','preparing','ready','served','rejected') NOT NULL DEFAULT 'new',
+ source ENUM('qr','whatsapp','phone','walkin') NOT NULL DEFAULT 'qr',
+ fulfilment ENUM('dine_in','takeaway','delivery') NOT NULL DEFAULT 'dine_in',
  call_count TINYINT UNSIGNED NOT NULL DEFAULT 0,
  called_at TIMESTAMP NULL DEFAULT NULL,
  total DECIMAL(12,2) NOT NULL,
  note VARCHAR(500) DEFAULT NULL,
  customer_name VARCHAR(60) DEFAULT NULL,
  customer_phone VARCHAR(10) DEFAULT NULL,
+ delivery_address VARCHAR(400) DEFAULT NULL,
  client_request_id VARCHAR(80) NOT NULL,
  tracking_key CHAR(64) NOT NULL,
  ip_hash CHAR(64) NOT NULL,
@@ -133,6 +157,7 @@ CREATE TABLE IF NOT EXISTS orders (
  UNIQUE KEY uq_tracking_key (tracking_key),
  UNIQUE KEY uq_token (restaurant_id,token_day,token_no),
  INDEX idx_order_live (restaurant_id,status,created_at),
+ INDEX idx_order_session (table_session_id),
  INDEX idx_order_date (restaurant_id,created_at),
  CONSTRAINT fk_orders_rest FOREIGN KEY (restaurant_id) REFERENCES restaurants(id) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
